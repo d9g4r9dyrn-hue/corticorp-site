@@ -1,0 +1,319 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>CortiCorp — Software & AI Solutions</title>
+<meta name="description" content="CortiCorp builds AI-powered applications, audio tools, and data systems. 25+ years of software engineering, now focused on what AI makes possible.">
+<meta property="og:title" content="CortiCorp — Software & AI Solutions">
+<meta property="og:description" content="AI-powered applications, audio tools, and data systems by Cort.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://corticorp.com/">
+<link rel="canonical" href="https://corticorp.com/">
+<style>
+  :root {
+    --bg: #0c0a08; --surface: #141210; --surface2: #1c1915; --border: #2a241c;
+    --text: #e8e0d4; --muted: #9a8e7a; --accent: #d4a555; --accent2: #e7c878;
+    --green: #6fae6a; --teal: #35d0c0; --blue: #5b8fd4; --maxw: 1000px;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0 }
+  html { scroll-behavior: smooth }
+  body {
+    background: var(--bg); color: var(--text);
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    line-height: 1.65; font-size: 17px;
+  }
+  a { color: var(--accent2); text-decoration: none }
+  a:hover { text-decoration: underline }
+  .wrap { max-width: var(--maxw); margin: 0 auto; padding: 0 24px }
+
+  /* ---- NAV ---- */
+  nav {
+    position: sticky; top: 0; z-index: 10;
+    background: rgba(12,10,8,.92); backdrop-filter: blur(8px);
+    border-bottom: 1px solid var(--border);
+  }
+  .nav-inner {
+    display: flex; align-items: center; justify-content: space-between;
+    max-width: var(--maxw); margin: 0 auto; padding: 0 24px; height: 56px;
+  }
+  .brand { font-weight: 800; font-size: 1.1rem; color: var(--accent2); letter-spacing: .03em }
+  .nav-links a { margin-left: 24px; color: var(--muted); font-size: .9rem; transition: color .15s }
+  .nav-links a:hover { color: var(--text); text-decoration: none }
+
+  /* ---- HERO ---- */
+  .hero {
+    padding: 100px 0 80px; text-align: center;
+    background: linear-gradient(180deg, #15120e 0%, var(--bg) 100%);
+  }
+  .hero h1 { font-size: clamp(2rem, 5vw, 3rem); color: var(--accent2); margin-bottom: 12px }
+  .hero p { font-size: 1.15rem; color: var(--muted); max-width: 600px; margin: 0 auto }
+  .hero .subtitle { margin-top: 28px; font-size: .95rem }
+  .hero .subtitle span {
+    display: inline-block; padding: 5px 14px; margin: 4px;
+    background: var(--surface2); border: 1px solid var(--border); border-radius: 6px;
+    font-size: .85rem; color: var(--text);
+  }
+
+  /* ---- SECTIONS ---- */
+  section { padding: 72px 0; border-top: 1px solid #1a1610 }
+  .eyebrow {
+    text-transform: uppercase; letter-spacing: .2em; font-size: .72rem;
+    color: var(--muted); margin-bottom: 8px;
+  }
+  h2 { font-size: clamp(1.4rem, 3vw, 1.9rem); color: var(--accent2); margin-bottom: 24px }
+  h3 { font-size: 1.2rem; color: var(--accent); margin-bottom: 6px }
+
+  /* ---- PROJECT CARDS ---- */
+  .projects { display: flex; flex-direction: column; gap: 32px }
+  .project-card {
+    display: grid; grid-template-columns: 1fr 1fr; gap: 32px; align-items: center;
+    background: var(--surface); border: 1px solid var(--border); border-radius: 12px;
+    padding: 32px; transition: border-color .2s;
+  }
+  .project-card:hover { border-color: #3a3228 }
+  .project-card.reverse { direction: rtl }
+  .project-card.reverse > * { direction: ltr }
+  .project-img {
+    width: 100%; border-radius: 8px; border: 1px solid var(--border);
+    aspect-ratio: 16/10; object-fit: cover; background: var(--surface2);
+  }
+  .project-meta { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 12px }
+  .tag {
+    display: inline-block; padding: 3px 10px; border-radius: 4px; font-size: .75rem;
+    background: var(--surface2); border: 1px solid var(--border); color: var(--muted);
+  }
+  .tag.ai { border-color: #3a4a2a; color: var(--green) }
+  .tag.audio { border-color: #3a2a1a; color: var(--accent) }
+  .tag.web { border-color: #1a3a3a; color: var(--teal) }
+  .project-link {
+    display: inline-block; margin-top: 16px; padding: 8px 20px; border-radius: 7px;
+    font-weight: 600; font-size: .9rem; border: 1px solid var(--border);
+    background: var(--surface2); color: var(--accent2); transition: background .15s;
+  }
+  .project-link:hover { background: #241e14; text-decoration: none }
+
+  /* ---- ABOUT ---- */
+  .about-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 28px }
+  .about-card {
+    background: var(--surface); border: 1px solid var(--border); border-radius: 10px;
+    padding: 24px;
+  }
+  .about-card h3 { margin-bottom: 8px }
+  .about-card p { color: var(--muted); font-size: .95rem }
+
+  /* ---- SKILLS ---- */
+  .skills-grid { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 8px }
+  .skill {
+    padding: 6px 14px; background: var(--surface); border: 1px solid var(--border);
+    border-radius: 6px; font-size: .85rem; color: var(--text);
+  }
+
+  /* ---- CONTACT ---- */
+  .contact-row { display: flex; flex-wrap: wrap; gap: 20px; margin-top: 12px }
+  .contact-item { color: var(--muted); font-size: .95rem }
+  .contact-item a { color: var(--accent2) }
+
+  /* ---- FOOTER ---- */
+  footer {
+    padding: 32px 0; border-top: 1px solid var(--border);
+    text-align: center; color: var(--muted); font-size: .8rem;
+  }
+
+  /* ---- RESPONSIVE ---- */
+  @media (max-width: 700px) {
+    .project-card { grid-template-columns: 1fr; padding: 20px }
+    .project-card.reverse { direction: ltr }
+    .about-grid { grid-template-columns: 1fr }
+    .hero { padding: 60px 0 50px }
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-inner">
+    <div class="brand">CortiCorp</div>
+    <div class="nav-links">
+      <a href="#projects">Projects</a>
+      <a href="#about">About</a>
+      <a href="#contact">Contact</a>
+    </div>
+  </div>
+</nav>
+
+<!-- ==================== HERO ==================== -->
+<section class="hero">
+  <div class="wrap">
+    <h1>Software that thinks.</h1>
+    <p>I build AI-powered applications, audio instruments, and data systems.
+       25+ years of engineering, now focused on what AI makes possible.</p>
+    <div class="subtitle">
+      <span>AI Applications</span>
+      <span>Data Engineering</span>
+      <span>Audio / DSP</span>
+      <span>Full Stack</span>
+    </div>
+  </div>
+</section>
+
+<!-- ==================== PROJECTS ==================== -->
+<section id="projects">
+  <div class="wrap">
+    <p class="eyebrow">Recent work</p>
+    <h2>Projects</h2>
+    <div class="projects">
+
+      <!-- CortSynth -->
+      <div class="project-card">
+        <img class="project-img" src="music/plugins/CortSynth/img/main.png"
+             alt="CortSynth VST3 synthesizer">
+        <div>
+          <h3>CortSynth</h3>
+          <p>A free VST3 synth, sampler, and drum machine in one plugin. Dual-oscillator hybrid
+             engine with physical modeling, 200+ presets, an AI tone designer, and an offline
+             preset generator. Zero heap allocations on the audio thread.</p>
+          <div class="project-meta">
+            <span class="tag audio">C++ / JUCE</span>
+            <span class="tag ai">Claude API</span>
+            <span class="tag">DSP</span>
+            <span class="tag">VST3</span>
+          </div>
+          <a class="project-link" href="music/plugins/CortSynth/">Learn more &rarr;</a>
+        </div>
+      </div>
+
+      <!-- Apartment Finder -->
+      <div class="project-card reverse">
+        <img class="project-img" src="img/apartment-finder.png"
+             alt="Apartment Finder dashboard with map">
+        <div>
+          <h3>Apartment Finder</h3>
+          <p>An AI-powered rental aggregator that scrapes listings from Craigslist,
+             Zillow, Apartments.com, and more. Gemini Vision scores photo quality and identifies
+             flooring, natural light, and kitchen style. Interactive map + filterable dashboard
+             with work-commute scoring.</p>
+          <div class="project-meta">
+            <span class="tag ai">Gemini API</span>
+            <span class="tag web">Python</span>
+            <span class="tag">Web Scraping</span>
+            <span class="tag">Leaflet</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- CatfishCheck -->
+      <div class="project-card">
+        <img class="project-img" src="img/catfishcheck.png"
+             alt="CatfishCheck investigation interface">
+        <div>
+          <h3>CatfishCheck</h3>
+          <p>A self-service investigation tool for verifying online identities. Upload photos,
+             phone numbers, social handles, and messages about a suspected scammer and get a
+             report highlighting red flags. Includes reverse image search, carrier lookup,
+             and a geo-verification beacon.</p>
+          <div class="project-meta">
+            <span class="tag ai">AI Analysis</span>
+            <span class="tag web">JavaScript</span>
+            <span class="tag">OSINT</span>
+            <span class="tag">Privacy</span>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ==================== ABOUT ==================== -->
+<section id="about">
+  <div class="wrap">
+    <p class="eyebrow">Background</p>
+    <h2>About</h2>
+    <p style="color:var(--muted); margin-bottom:28px; max-width:680px">
+      I'm Cort &mdash; a software engineer with 25+ years building systems for Fortune 500
+      companies and startups across finance, energy, healthcare, and marketing. These days I'm
+      focused on what happens when you put AI at the center of an application, not bolted on
+      as an afterthought.
+    </p>
+
+    <div class="about-grid">
+      <div class="about-card">
+        <h3>AI & Automation</h3>
+        <p>Building applications where Claude, Gemini, and vision models do real work &mdash;
+           generating content, scoring data, analyzing images, and driving decisions
+           that would take a human team days.</p>
+      </div>
+      <div class="about-card">
+        <h3>Data Engineering</h3>
+        <p>Scraping, cleaning, enriching, and visualizing data from messy real-world sources.
+           Turning unstructured listings, photos, and text into searchable, scored, actionable
+           dashboards.</p>
+      </div>
+      <div class="about-card">
+        <h3>Audio & DSP</h3>
+        <p>Real-time audio synthesis in C++ with JUCE. Oscillator design, filter modeling,
+           physical-string simulation, zero-allocation audio threads, and shipping a
+           full VST3 plugin.</p>
+      </div>
+      <div class="about-card">
+        <h3>Full Stack</h3>
+        <p>End-to-end: Python backends, interactive web dashboards, REST APIs, cloud
+           deployment, and desktop applications. Whatever the project needs to ship.</p>
+      </div>
+    </div>
+
+    <div style="margin-top:36px">
+      <p class="eyebrow">Tech I work with</p>
+      <div class="skills-grid">
+        <span class="skill">Python</span>
+        <span class="skill">C++</span>
+        <span class="skill">JavaScript</span>
+        <span class="skill">Claude API</span>
+        <span class="skill">Gemini API</span>
+        <span class="skill">JUCE</span>
+        <span class="skill">SQL</span>
+        <span class="skill">AWS</span>
+        <span class="skill">Web Scraping</span>
+        <span class="skill">FastAPI</span>
+        <span class="skill">React</span>
+        <span class="skill">Node.js</span>
+        <span class="skill">Docker</span>
+        <span class="skill">Git</span>
+        <span class="skill">Leaflet / Maps</span>
+        <span class="skill">DSP / Audio</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ==================== CONTACT ==================== -->
+<section id="contact">
+  <div class="wrap">
+    <p class="eyebrow">Get in touch</p>
+    <h2>Contact</h2>
+    <p style="color:var(--muted); margin-bottom:16px">
+      Interested in working together, or have a question about one of my projects?
+    </p>
+    <div class="contact-row">
+      <div class="contact-item">
+        Email: <a href="mailto:info@corticorp.com">info@corticorp.com</a>
+      </div>
+      <div class="contact-item">
+        Phone: <a href="tel:+19419144650">941-914-4650</a>
+      </div>
+      <div class="contact-item">
+        CortSynth: <a href="mailto:cortsynth@corticorp.com">cortsynth@corticorp.com</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    &copy; 2025 CortiCorp, LLC &middot; Clearwater, FL
+  </div>
+</footer>
+
+</body>
+</html>

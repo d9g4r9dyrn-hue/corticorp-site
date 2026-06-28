@@ -1,0 +1,315 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>CortSynth — one plugin, every sound</title>
+<meta name="description" content="CortSynth is a free VST3 synth, sampler, and drum machine in one plugin: deep hybrid synthesis, physical modeling, 200+ presets, AI patch design, and free downloadable instruments.">
+<meta property="og:title" content="CortSynth — one plugin, every sound">
+<meta property="og:description" content="A free synth, sampler, and drum machine in one VST3. 200+ presets, AI patch design, physical-modeled instruments.">
+<meta property="og:image" content="img/main.png">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://corticorp.com/music/plugins/CortSynth/">
+<link rel="canonical" href="https://corticorp.com/music/plugins/CortSynth/">
+<style>
+  :root{
+    --bg:#0e0b07; --panel:#15110d; --panel2:#1c160f; --edge:#3a2d1c;
+    --amber:#d4a555; --amber2:#e7c074; --text:#e8ddc8; --muted:#a9987a;
+    --green:#6fae6a; --maxw:1120px;
+  }
+  *{box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{margin:0;background:var(--bg);color:var(--text);
+    font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+    line-height:1.6;font-size:17px}
+  a{color:var(--amber2);text-decoration:none}
+  a:hover{text-decoration:underline}
+  .wrap{max-width:var(--maxw);margin:0 auto;padding:0 22px}
+  h1,h2,h3{line-height:1.2;margin:0 0 .4em}
+  h2{font-size:clamp(1.5rem,3.2vw,2.1rem);color:var(--amber2);margin-top:0}
+  h3{font-size:1.15rem;color:var(--amber)}
+  section{padding:64px 0;border-top:1px solid #1f180f}
+  .eyebrow{letter-spacing:.22em;text-transform:uppercase;font-size:.72rem;color:var(--muted);margin-bottom:10px}
+  .btn{display:inline-block;padding:14px 26px;border-radius:9px;font-weight:700;font-size:1rem;
+    border:1px solid var(--edge);cursor:pointer;transition:transform .08s ease,filter .15s ease}
+  .btn:hover{filter:brightness(1.08);text-decoration:none;transform:translateY(-1px)}
+  .btn-primary{background:linear-gradient(#e7c074,#c4923f);color:#241704;border-color:#8a6a2e}
+  .btn-ghost{background:#1c160f;color:var(--amber2)}
+  .btn-donate{background:#22301d;color:#bfe3ab;border-color:#3c5631}
+  .muted{color:var(--muted)}
+  /* Header */
+  header{position:sticky;top:0;z-index:20;background:rgba(14,11,7,.92);
+    backdrop-filter:blur(6px);border-bottom:1px solid #211a10}
+  .nav{display:flex;align-items:center;justify-content:space-between;height:60px}
+  .brand{font-weight:800;letter-spacing:.04em;color:var(--amber2);font-size:1.15rem}
+  .brand span{color:var(--text)}
+  .nav-links a{margin-left:22px;color:var(--text);font-size:.93rem}
+  .nav-links{display:flex;align-items:center}
+  .nav-links .btn{padding:9px 16px;font-size:.9rem;margin-left:18px}
+  @media(max-width:680px){.nav-links a:not(.btn){display:none}}
+  /* Hero */
+  .hero{padding:70px 0 30px;text-align:center}
+  .hero h1{font-size:clamp(2.1rem,6vw,3.6rem);letter-spacing:.01em}
+  .hero h1 .tag{display:block;color:var(--amber2);font-size:clamp(1rem,2.4vw,1.4rem);
+    font-weight:600;letter-spacing:.04em;margin-top:.5em}
+  .lede{max-width:760px;margin:18px auto 8px;font-size:1.12rem;color:var(--text)}
+  .pills{display:flex;flex-wrap:wrap;gap:8px;justify-content:center;margin:22px 0 26px}
+  .pill{background:var(--panel2);border:1px solid var(--edge);color:var(--amber);
+    padding:6px 14px;border-radius:999px;font-size:.85rem;font-weight:600}
+  .cta{display:flex;gap:14px;justify-content:center;flex-wrap:wrap;margin-bottom:10px}
+  .free-note{font-size:.92rem;color:var(--muted);margin-top:12px}
+  .shot{display:block;width:100%;height:auto;border-radius:12px;border:1px solid var(--edge);
+    box-shadow:0 18px 50px rgba(0,0,0,.55)}
+  .hero-shot{max-width:1000px;margin:34px auto 0}
+  /* Feature grid */
+  .grid{display:grid;gap:20px}
+  .feats{grid-template-columns:repeat(auto-fit,minmax(280px,1fr))}
+  .card{background:linear-gradient(#16110c,#120e09);border:1px solid var(--edge);
+    border-radius:12px;padding:22px 22px 20px}
+  .card h3{margin-top:0}
+  .card p{margin:0;color:var(--muted);font-size:.97rem}
+  .ico{font-size:1.5rem;margin-bottom:6px}
+  /* Split rows */
+  .split{display:grid;grid-template-columns:1.05fr 1fr;gap:40px;align-items:center}
+  .split.rev{grid-template-columns:1fr 1.05fr}
+  .split.rev .txt{order:2}
+  @media(max-width:820px){.split,.split.rev{grid-template-columns:1fr}.split.rev .txt{order:0}}
+  ul.clean{list-style:none;padding:0;margin:14px 0 0}
+  ul.clean li{padding:7px 0 7px 26px;position:relative;color:var(--text)}
+  ul.clean li::before{content:"◆";position:absolute;left:0;color:var(--amber);font-size:.8rem;top:9px}
+  /* Gallery */
+  .gallery{grid-template-columns:repeat(auto-fit,minmax(300px,1fr))}
+  .gallery figure{margin:0}
+  .gallery figcaption{color:var(--muted);font-size:.85rem;margin-top:8px;text-align:center}
+  /* Download */
+  .download{background:radial-gradient(120% 140% at 50% 0%,#1b150d 0%,#0e0b07 70%);text-align:center}
+  .download .box{max-width:680px;margin:0 auto}
+  .specs{display:flex;gap:26px;justify-content:center;flex-wrap:wrap;margin-top:18px;color:var(--muted);font-size:.9rem}
+  /* Footer */
+  footer{padding:46px 0;border-top:1px solid #211a10;color:var(--muted);font-size:.95rem}
+  .fcols{display:flex;justify-content:space-between;flex-wrap:wrap;gap:24px}
+  .fcols a{color:var(--amber2)}
+  .heart{color:var(--green)}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="wrap nav">
+    <div class="brand">CORT<span>SYNTH</span></div>
+    <nav class="nav-links">
+      <a href="#features">Features</a>
+      <a href="#sounds">Sounds</a>
+      <a href="#engine">Engine</a>
+      <a href="#download" class="btn btn-primary">Download</a>
+    </nav>
+  </div>
+</header>
+
+<!-- ===================== HERO ===================== -->
+<div class="hero wrap">
+  <h1>CortSynth
+    <span class="tag">One plugin, every sound.</span>
+  </h1>
+  <p class="lede">
+    A deep hybrid <strong>synth</strong>, a <strong>sampler</strong>, and a
+    <strong>drum machine</strong> — with an organ that spins a Leslie, a piano you can shape,
+    guitars, pads that breathe, basses that hit, and an AI that builds patches from a sentence.
+    The "everything" instrument, in one plugin slot.
+  </p>
+  <div class="pills">
+    <span class="pill">Synth</span>
+    <span class="pill">Sampler</span>
+    <span class="pill">Drums</span>
+    <span class="pill">200+ Presets</span>
+    <span class="pill">AI Patch Design</span>
+    <span class="pill">VST3 + Standalone</span>
+  </div>
+  <div class="cta">
+    <a href="#download" class="btn btn-primary">Download Free</a>
+    <a href="https://gofund.me/74cdcac19" class="btn btn-donate" target="_blank" rel="noopener">♥ Support it</a>
+  </div>
+  <p class="free-note">Free. No account, no nag screens, no expiry.</p>
+  <img class="shot hero-shot" src="img/main.png" alt="CortSynth main synth interface">
+</div>
+
+<!-- ===================== FEATURES ===================== -->
+<section id="features">
+  <div class="wrap">
+    <p class="eyebrow">Why you'll want it</p>
+    <h2>Three instruments. One window.</h2>
+    <div class="grid feats">
+      <div class="card">
+        <div class="ico">🎛️</div>
+        <h3>It's three instruments</h3>
+        <p>Flip between a deep hybrid synth, a sampler, and a drum machine with a playable
+           pad grid — all in one plugin, one window.</p>
+      </div>
+      <div class="card">
+        <div class="ico">🔊</div>
+        <h3>Big, mix-ready sound</h3>
+        <p>2× oversampled voices, an analog-voiced ladder filter <em>and</em> a clean modern
+           filter, a lush FDN reverb with shimmer, body resonance, a rotary Leslie,
+           tempo-synced delay, and a transparent glue limiter.</p>
+      </div>
+      <div class="card">
+        <div class="ico">🧬</div>
+        <h3>Deep, but fast</h3>
+        <p>Dual oscillators with wavetable, wave-terrain, drawbar-organ and resynthesis modes;
+           FM, sync, PWM, unison; two LFOs, a drag-to-wire Modulation Constellation, and four
+           macro knobs that move everything at once.</p>
+      </div>
+      <div class="card">
+        <div class="ico">🎲</div>
+        <h3>It makes sounds <em>for</em> you</h3>
+        <p>Generate hundreds of presets instantly and offline. Or describe a patch in plain
+           English with the AI Tone Designer. Or drop in audio and let Match Sample
+           resynthesize the real instrument into an editable preset.</p>
+      </div>
+      <div class="card">
+        <div class="ico">🎹</div>
+        <h3>It plays like an instrument</h3>
+        <p>Real velocity response, touch-sensitive brightness, glide, arpeggiator, strum,
+           humanized tremolo, an on-screen keyboard and mod wheel, and a trance gate.</p>
+      </div>
+      <div class="card">
+        <div class="ico">🎚️</div>
+        <h3>200+ quality presets</h3>
+        <p>Leads, pads, basses, keys, guitars, pianos, organs, strings, brass, bells,
+           atmospheres and textures — plus ready-to-play drum kits.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== SOUNDS & PRESETS ===================== -->
+<section id="sounds">
+  <div class="wrap">
+    <p class="eyebrow">Sounds &amp; presets</p>
+    <h2>Hundreds of patches — and a library that grows.</h2>
+    <div class="split">
+      <div class="txt">
+        <p>CortSynth ships with <strong>200+ handcrafted-quality presets</strong> across every
+           category, plus drum kits you can play out of the box. Press one button to generate
+           a whole new pack offline, for free.</p>
+        <p>It's also a real sampler. Hit <strong>Get Sounds</strong> to one-click download free
+           instrument packs — pianos, electric pianos, strings, guitars, woodwinds and more —
+           which install straight into your preset list.</p>
+        <ul class="clean">
+          <li>Disk-streamed sample engine with velocity crossfading</li>
+          <li>SFZ instrument support — bring your own libraries</li>
+          <li>Mapped-key highlighting so you can see what's playable</li>
+          <li>We host nothing questionable — links point to the creators</li>
+        </ul>
+      </div>
+      <div><img class="shot" src="img/sounds.png" alt="Get Sounds — free instrument downloads"></div>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== ENGINE ===================== -->
+<section id="engine">
+  <div class="wrap">
+    <p class="eyebrow">Under the hood</p>
+    <h2>A little about the engineering.</h2>
+    <div class="split rev">
+      <div class="txt">
+        <p>The instruments aren't just samples. Strings and plucks are <strong>physically
+           modeled</strong> (Karplus-Strong), the piano uses a dispersive stiff-string model
+           with a resonating soundboard and sympathetic strings, and tremolo re-energizes the
+           string the way a real player's pick does.</p>
+        <p>Everything is built for clarity: <strong>oversampled</strong> oscillators and drive
+           to keep harmonics clean, dual filter characters (vintage ladder + transparent
+           modern), a feedback-delay-network reverb with shimmer, a true rotary Leslie, and a
+           glue limiter so presets land loud and mix-ready.</p>
+        <p>The audio engine has <strong>zero heap allocations</strong> on the real-time thread —
+           every buffer, coefficient, and sequence is pre-allocated. It's built for low-latency
+           live performance.</p>
+        <ul class="clean">
+          <li>Physical modeling: strings, dispersive piano, soundboard, resonance</li>
+          <li>2× oversampling on voices and master drive</li>
+          <li>FDN reverb, rotary Leslie, body resonator, tempo-synced delay</li>
+          <li>Offline preset generation, AI tone design, and sample resynthesis</li>
+          <li>Zero-allocation audio thread — glitch-free under load</li>
+        </ul>
+      </div>
+      <div><img class="shot" src="img/advanced.png" alt="Advanced engine panel"></div>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== GALLERY ===================== -->
+<section id="gallery">
+  <div class="wrap">
+    <p class="eyebrow">A look around</p>
+    <h2>The whole instrument.</h2>
+    <div class="grid gallery">
+      <figure><img class="shot" src="img/mod.png" alt="Modulation Constellation">
+        <figcaption>Modulation Constellation — drag to wire anything to anything</figcaption></figure>
+      <figure><img class="shot" src="img/sampler.png" alt="Sampler mode">
+        <figcaption>Sampler — waveform view, amp envelope, sample controls, and full FX chain</figcaption></figure>
+      <figure><img class="shot" src="img/drums.png" alt="Drum pad grid">
+        <figcaption>Drum mode — a playable pad grid</figcaption></figure>
+      <figure><img class="shot" src="img/help.png" alt="Built-in help and guide">
+        <figcaption>Built-in help &amp; full guide</figcaption></figure>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== FREE / WHY ===================== -->
+<section id="free">
+  <div class="wrap" style="max-width:820px;text-align:center">
+    <p class="eyebrow">Free — and here's why</p>
+    <h2>No account. No nag screens. No expiry.</h2>
+    <p>I built CortSynth because it's the instrument I always wanted, and I'd rather it be in
+       your projects than behind a paywall. It's completely free to download and use, forever.</p>
+    <p>If it earns a place in your music, a <strong>$20 donation</strong> is hugely appreciated —
+       but never required. It just helps me keep building.</p>
+    <div class="cta" style="margin-top:22px">
+      <a href="https://gofund.me/74cdcac19" class="btn btn-donate" target="_blank" rel="noopener">♥ Donate on GoFundMe</a>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== DOWNLOAD ===================== -->
+<section id="download" class="download">
+  <div class="wrap box">
+    <p class="eyebrow">Get it</p>
+    <h2>Download CortSynth</h2>
+    <p>Drop the VST3 in your plugins folder (or run the standalone), open your DAW, and play.
+       Built-in Help has the full guide; hover any knob for a tooltip.</p>
+    <div class="cta" style="margin-top:20px">
+      <a href="downloads/CortSynth-Windows.zip" class="btn btn-primary">Download for Windows (VST3 + Standalone)</a>
+      <a href="https://gofund.me/74cdcac19" class="btn btn-ghost" target="_blank" rel="noopener">♥ Support it</a>
+    </div>
+    <div class="specs">
+      <span>Windows 10/11 · 64-bit</span>
+      <span>VST3 · Standalone</span>
+      <span>No installer required</span>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== FOOTER ===================== -->
+<footer>
+  <div class="wrap fcols">
+    <div>
+      <div class="brand" style="margin-bottom:6px">CORT<span>SYNTH</span></div>
+      Made by <strong>Cort</strong> · CortiCorp.<br>
+      <span class="muted">If you make something with it, I'd love to hear it.</span>
+    </div>
+    <div>
+      <h3 style="color:var(--amber)">Contact</h3>
+      <a href="mailto:cortsynth@corticorp.com">cortsynth@corticorp.com</a><br>
+      <a href="mailto:corticorpmusic@gmail.com">corticorpmusic@gmail.com</a>
+    </div>
+    <div>
+      <h3 style="color:var(--amber)">Support</h3>
+      <a href="https://gofund.me/74cdcac19" target="_blank" rel="noopener">GoFundMe — $20 appreciated</a><br>
+      <span class="muted">Free forever · <span class="heart">♥</span></span>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>
