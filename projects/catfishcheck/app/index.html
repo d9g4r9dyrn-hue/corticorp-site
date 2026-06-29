@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CatfishCheck</title>
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+    <header>
+        <div class="header-inner">
+            <div class="logo">
+                <svg class="logo-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+                    <path d="M9 12l2 2 4-4"/>
+                </svg>
+                <h1>CatfishCheck</h1>
+            </div>
+            <nav>
+                <button class="nav-btn active" data-view="subjects">Subjects</button>
+                <button class="nav-btn" data-view="new">New Investigation</button>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <!-- Subjects List View -->
+        <section id="view-subjects" class="view active">
+            <div class="section-header">
+                <h2>Your Investigations</h2>
+                <button class="btn btn-primary" id="btn-new-investigation">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="18" height="18">
+                        <line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/>
+                    </svg>
+                    New Investigation
+                </button>
+            </div>
+            <div id="subjects-list" class="subjects-grid">
+                <!-- Populated by JS -->
+            </div>
+            <div id="empty-state" class="empty-state">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" width="64" height="64">
+                    <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+                    <path d="M12 8v4M12 16h.01"/>
+                </svg>
+                <h3>No investigations yet</h3>
+                <p>Start a new investigation to check if someone is who they say they are.</p>
+                <button class="btn btn-primary" id="btn-empty-new">Start Your First Investigation</button>
+            </div>
+        </section>
+
+        <!-- New/Edit Subject View -->
+        <section id="view-new" class="view">
+            <div class="section-header">
+                <h2 id="form-title">New Investigation</h2>
+                <div class="header-actions">
+                    <button class="btn btn-ghost" id="btn-cancel">Cancel</button>
+                    <button class="btn btn-primary" id="btn-save-subject">Save Subject</button>
+                </div>
+            </div>
+
+            <div class="form-layout">
+                <!-- Left Column: Photos -->
+                <div class="form-column">
+                    <div class="card">
+                        <h3>Subject Photos</h3>
+                        <p class="card-subtitle">Upload all photos you have of this person</p>
+
+                        <div id="photo-dropzone" class="dropzone">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" width="48" height="48">
+                                <rect x="3" y="3" width="18" height="18" rx="2" ry="2"/>
+                                <circle cx="8.5" cy="8.5" r="1.5"/>
+                                <polyline points="21 15 16 10 5 21"/>
+                            </svg>
+                            <p>Drag & drop photos here</p>
+                            <span>or</span>
+                            <button class="btn btn-outline" id="btn-browse-photos">Browse Files</button>
+                            <input type="file" id="photo-input" multiple accept="image/*" hidden>
+                        </div>
+
+                        <div id="photo-grid" class="photo-grid">
+                            <!-- Populated by JS -->
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Right Column: Contact Info -->
+                <div class="form-column">
+                    <!-- Case Name -->
+                    <div class="card">
+                        <h3>Case Label</h3>
+                        <input type="text" id="case-name" class="input" placeholder='e.g. "Mike from Tinder"'>
+                    </div>
+
+                    <!-- Names -->
+                    <div class="card">
+                        <div class="card-header-row">
+                            <h3>Names</h3>
+                            <button class="btn btn-sm btn-outline" data-add="name">+ Add Name</button>
+                        </div>
+                        <p class="card-subtitle">All names this person has used</p>
+                        <div id="names-list" class="multi-entries">
+                            <div class="entry-row" data-type="name">
+                                <input type="text" class="input" placeholder="First name" data-field="first">
+                                <input type="text" class="input" placeholder="Last name" data-field="last">
+                                <button class="btn-remove" title="Remove">&times;</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Phone Numbers -->
+                    <div class="card">
+                        <div class="card-header-row">
+                            <h3>Phone Numbers</h3>
+                            <button class="btn btn-sm btn-outline" data-add="phone">+ Add Phone</button>
+                        </div>
+                        <div id="phones-list" class="multi-entries">
+                            <div class="entry-row" data-type="phone">
+                                <input type="tel" class="input" placeholder="Phone number" data-field="number">
+                                <select class="input input-sm" data-field="type">
+                                    <option value="">Type</option>
+                                    <option value="mobile">Mobile</option>
+                                    <option value="home">Home</option>
+                                    <option value="work">Work</option>
+                                    <option value="other">Other</option>
+                                </select>
+                                <button class="btn-remove" title="Remove">&times;</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Email Addresses -->
+                    <div class="card">
+                        <div class="card-header-row">
+                            <h3>Email Addresses</h3>
+                            <button class="btn btn-sm btn-outline" data-add="email">+ Add Email</button>
+                        </div>
+                        <div id="emails-list" class="multi-entries">
+                            <div class="entry-row" data-type="email">
+                                <input type="email" class="input" placeholder="Email address" data-field="address">
+                                <button class="btn-remove" title="Remove">&times;</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Social Media -->
+                    <div class="card">
+                        <div class="card-header-row">
+                            <h3>Social Media</h3>
+                            <button class="btn btn-sm btn-outline" data-add="social">+ Add Account</button>
+                        </div>
+                        <div id="socials-list" class="multi-entries">
+                            <div class="entry-row" data-type="social">
+                                <select class="input input-sm" data-field="platform">
+                                    <option value="">Platform</option>
+                                    <option value="facebook">Facebook</option>
+                                    <option value="instagram">Instagram</option>
+                                    <option value="twitter">Twitter/X</option>
+                                    <option value="tiktok">TikTok</option>
+                                    <option value="snapchat">Snapchat</option>
+                                    <option value="linkedin">LinkedIn</option>
+                                    <option value="telegram">Telegram</option>
+                                    <option value="whatsapp">WhatsApp</option>
+                                    <option value="tinder">Tinder</option>
+                                    <option value="bumble">Bumble</option>
+                                    <option value="hinge">Hinge</option>
+                                    <option value="other">Other</option>
+                                </select>
+                                <input type="text" class="input" placeholder="Username or profile URL" data-field="handle">
+                                <button class="btn-remove" title="Remove">&times;</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Additional Notes -->
+                    <div class="card">
+                        <h3>Additional Notes</h3>
+                        <p class="card-subtitle">Anything else you know about this person</p>
+                        <textarea id="notes" class="input textarea" rows="4" placeholder="Where did you meet them? What have they told you about themselves? Any claims that seem suspicious?"></textarea>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Report View -->
+        <section id="view-report" class="view">
+            <div class="section-header">
+                <button class="btn btn-ghost" id="btn-back-list">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="18" height="18">
+                        <polyline points="15 18 9 12 15 6"/>
+                    </svg>
+                    Back to Investigations
+                </button>
+                <div class="header-actions">
+                    <button class="btn btn-outline" id="btn-edit-subject">Edit Subject</button>
+                    <button class="btn btn-primary" id="btn-run-check">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="18" height="18">
+                            <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+                            <path d="M9 12l2 2 4-4"/>
+                        </svg>
+                        Run Investigation
+                    </button>
+                </div>
+            </div>
+
+            <div id="report-content">
+                <!-- Populated by JS -->
+            </div>
+        </section>
+    </main>
+
+    <script src="js/storage.js"></script>
+    <script src="js/photos.js"></script>
+    <script src="js/form.js"></script>
+    <script src="js/report.js"></script>
+    <script src="js/app.js"></script>
+</body>
+</html>
