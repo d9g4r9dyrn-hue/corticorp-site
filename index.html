@@ -92,6 +92,11 @@
     background: var(--surface2); color: var(--accent2); transition: background .15s;
   }
   .project-link:hover { background: #241e14; text-decoration: none }
+  .badge {
+    display: inline-block; padding: 4px 12px; border-radius: 4px;
+    font-size: .72rem; font-weight: 700; letter-spacing: .08em; text-transform: uppercase;
+    background: #1a2a3a; border: 1px solid #2a4a5a; color: #5bb8d4; margin-bottom: 8px;
+  }
 
   /* ---- ABOUT ---- */
   .about-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 28px }
@@ -164,8 +169,28 @@
     <h2>Projects</h2>
     <div class="projects">
 
-      <!-- CortSynth -->
+      <!-- CortVerb -->
       <div class="project-card">
+        <img class="project-img" src="music/plugins/CortVerb/img/main.png"
+             alt="CortVerb VST3 reverb plugin">
+        <div>
+          <span class="badge">In Progress</span>
+          <h3>CortVerb</h3>
+          <p>A premium VST3 reverb effect plugin with a central digital screen for real-time
+             visualization, brushed-steel knob panels, and deep parameter control. Multiple
+             algorithms, 12 tactile knobs, and a high-end hardware aesthetic.</p>
+          <div class="project-meta">
+            <span class="tag audio">C++ / JUCE</span>
+            <span class="tag">DSP</span>
+            <span class="tag">VST3</span>
+            <span class="tag">Effect</span>
+          </div>
+          <a class="project-link" href="music/plugins/CortVerb/">Learn more &rarr;</a>
+        </div>
+      </div>
+
+      <!-- CortSynth -->
+      <div class="project-card reverse">
         <img class="project-img" src="music/plugins/CortSynth/img/main.png"
              alt="CortSynth VST3 synthesizer">
         <div>
@@ -184,7 +209,7 @@
       </div>
 
       <!-- Apartment Finder -->
-      <div class="project-card reverse">
+      <div class="project-card">
         <img class="project-img" src="img/apartment-finder.png"
              alt="Apartment Finder dashboard with map">
         <div>
@@ -204,7 +229,7 @@
       </div>
 
       <!-- CatfishCheck -->
-      <div class="project-card">
+      <div class="project-card reverse">
         <img class="project-img" src="img/catfishcheck.png"
              alt="CatfishCheck investigation interface">
         <div>

@@ -1,0 +1,314 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>CortVerb — advanced reverb engine</title>
+<meta name="description" content="CortVerb is a premium VST3 reverb effect plugin with deep parameter control, real-time visualization, and a high-end hardware aesthetic. Coming soon.">
+<meta property="og:title" content="CortVerb — advanced reverb engine">
+<meta property="og:description" content="A premium VST3 reverb with real-time visualization, 12 tactile knobs, and deep parameter control. Coming soon.">
+<meta property="og:image" content="img/main.png">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://corticorp.com/music/plugins/CortVerb/">
+<link rel="canonical" href="https://corticorp.com/music/plugins/CortVerb/">
+<style>
+  :root{
+    --bg:#080c12; --panel:#0e1420; --panel2:#141c2a; --edge:#1e2e44;
+    --accent:#00A8FF; --accent2:#00C0FF; --text:#E8F4FF; --muted:#8AA6BB;
+    --green:#6fae6a; --maxw:1120px;
+  }
+  *{box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{margin:0;background:var(--bg);color:var(--text);
+    font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+    line-height:1.6;font-size:17px}
+  a{color:var(--accent2);text-decoration:none}
+  a:hover{text-decoration:underline}
+  .wrap{max-width:var(--maxw);margin:0 auto;padding:0 22px}
+  h1,h2,h3{line-height:1.2;margin:0 0 .4em}
+  h2{font-size:clamp(1.5rem,3.2vw,2.1rem);color:var(--accent2);margin-top:0}
+  h3{font-size:1.15rem;color:var(--accent)}
+  section{padding:64px 0;border-top:1px solid #111e2e}
+  .eyebrow{letter-spacing:.22em;text-transform:uppercase;font-size:.72rem;color:var(--muted);margin-bottom:10px}
+  .btn{display:inline-block;padding:14px 26px;border-radius:9px;font-weight:700;font-size:1rem;
+    border:1px solid var(--edge);cursor:pointer;transition:transform .08s ease,filter .15s ease}
+  .btn:hover{filter:brightness(1.08);text-decoration:none;transform:translateY(-1px)}
+  .btn-primary{background:linear-gradient(#00B8FF,#0080CC);color:#001824;border-color:#005580}
+  .btn-ghost{background:var(--panel2);color:var(--accent2)}
+  .muted{color:var(--muted)}
+  .badge{display:inline-block;padding:5px 14px;border-radius:6px;font-size:.78rem;
+    font-weight:700;letter-spacing:.1em;text-transform:uppercase;
+    background:#1a2a3a;border:1px solid #2a4a5a;color:#5bb8d4;margin-bottom:12px}
+  /* Header */
+  header{position:sticky;top:0;z-index:20;background:rgba(8,12,18,.92);
+    backdrop-filter:blur(6px);border-bottom:1px solid #111e2e}
+  .nav{display:flex;align-items:center;justify-content:space-between;height:60px}
+  .brand{font-weight:800;letter-spacing:.04em;color:var(--accent2);font-size:1.15rem}
+  .brand span{color:var(--text)}
+  .nav-links a{margin-left:22px;color:var(--text);font-size:.93rem}
+  .nav-links{display:flex;align-items:center}
+  @media(max-width:680px){.nav-links a:not(.btn){display:none}}
+  /* Hero */
+  .hero{padding:70px 0 30px;text-align:center}
+  .hero h1{font-size:clamp(2.1rem,6vw,3.6rem);letter-spacing:.01em}
+  .hero h1 .tag{display:block;color:var(--accent2);font-size:clamp(1rem,2.4vw,1.4rem);
+    font-weight:600;letter-spacing:.04em;margin-top:.5em}
+  .lede{max-width:760px;margin:18px auto 8px;font-size:1.12rem;color:var(--text)}
+  .pills{display:flex;flex-wrap:wrap;gap:8px;justify-content:center;margin:22px 0 26px}
+  .pill{background:var(--panel2);border:1px solid var(--edge);color:var(--accent);
+    padding:6px 14px;border-radius:999px;font-size:.85rem;font-weight:600}
+  .shot{display:block;width:100%;height:auto;border-radius:12px;border:1px solid var(--edge);
+    box-shadow:0 18px 50px rgba(0,0,0,.55)}
+  .hero-shot{max-width:1000px;margin:34px auto 0}
+  /* Feature grid */
+  .grid{display:grid;gap:20px}
+  .feats{grid-template-columns:repeat(auto-fit,minmax(280px,1fr))}
+  .card{background:linear-gradient(#0c1420,#0a0e18);border:1px solid var(--edge);
+    border-radius:12px;padding:22px 22px 20px}
+  .card h3{margin-top:0}
+  .card p{margin:0;color:var(--muted);font-size:.97rem}
+  .ico{font-size:1.5rem;margin-bottom:6px}
+  /* Split rows */
+  .split{display:grid;grid-template-columns:1.05fr 1fr;gap:40px;align-items:center}
+  .split.rev{grid-template-columns:1fr 1.05fr}
+  .split.rev .txt{order:2}
+  @media(max-width:820px){.split,.split.rev{grid-template-columns:1fr}.split.rev .txt{order:0}}
+  ul.clean{list-style:none;padding:0;margin:14px 0 0}
+  ul.clean li{padding:7px 0 7px 26px;position:relative;color:var(--text)}
+  ul.clean li::before{content:"\25C6";position:absolute;left:0;color:var(--accent);font-size:.8rem;top:9px}
+  /* Specs table */
+  .specs-table{max-width:500px;margin:0 auto}
+  .specs-table tr td{padding:8px 16px;border-bottom:1px solid #111e2e;font-size:.95rem}
+  .specs-table tr td:first-child{color:var(--muted);font-weight:600;white-space:nowrap}
+  /* Footer */
+  footer{padding:46px 0;border-top:1px solid #111e2e;color:var(--muted);font-size:.95rem}
+  .fcols{display:flex;justify-content:space-between;flex-wrap:wrap;gap:24px}
+  .fcols a{color:var(--accent2)}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="wrap nav">
+    <div class="brand">CORT<span>VERB</span></div>
+    <nav class="nav-links">
+      <a href="#features">Features</a>
+      <a href="#engine">Engine</a>
+      <a href="#specs">Specs</a>
+    </nav>
+  </div>
+</header>
+
+<!-- ===================== HERO ===================== -->
+<div class="hero wrap">
+  <span class="badge">In Progress</span>
+  <h1>CortVerb
+    <span class="tag">Advanced reverb engine.</span>
+  </h1>
+  <p class="lede">
+    A premium <strong>VST3 reverb effect</strong> with a central digital screen for real-time
+    decay visualization, brushed-steel control panels with 12 precision knobs, speaker-cloth
+    side panels with LED strips, and a hardware-inspired aesthetic built for mixing, sound
+    design, and production.
+  </p>
+  <div class="pills">
+    <span class="pill">Reverb</span>
+    <span class="pill">12 Parameters</span>
+    <span class="pill">Real-Time Visualization</span>
+    <span class="pill">Multiple Algorithms</span>
+    <span class="pill">VST3 + Standalone</span>
+  </div>
+  <img class="shot hero-shot" src="img/main.png" alt="CortVerb reverb plugin interface">
+</div>
+
+<!-- ===================== FEATURES ===================== -->
+<section id="features">
+  <div class="wrap">
+    <p class="eyebrow">What it does</p>
+    <h2>Precision reverb, tactile control.</h2>
+    <div class="grid feats">
+      <div class="card">
+        <div class="ico">&#127911;</div>
+        <h3>Deep parameter control</h3>
+        <p>12 rotary knobs across two brushed-steel panels: pre-delay, size, decay, width,
+           diffusion, mod rate, low cut, high cut, damping, early level, late level, and
+           output. Every dimension of the reverb tail is at your fingertips.</p>
+      </div>
+      <div class="card">
+        <div class="ico">&#128202;</div>
+        <h3>Real-time visualization</h3>
+        <p>A central screen displays a live decay curve, parameter readouts, algorithm
+           selection, and an early/late reflection ratio. See the reverb character change
+           as you turn the knobs.</p>
+      </div>
+      <div class="card">
+        <div class="ico">&#127932;</div>
+        <h3>Multiple algorithms</h3>
+        <p>Choose from Hall, Room, Plate, and more. Each algorithm has its own character,
+           from lush concert halls to tight studio rooms. Switchable from the central
+           screen.</p>
+      </div>
+      <div class="card">
+        <div class="ico">&#9881;</div>
+        <h3>Tabbed editing</h3>
+        <p>Six screen tabs &mdash; Main, Early, Late, EQ, Mod, and Advanced &mdash; give access
+           to the full depth of the engine without cluttering the interface.</p>
+      </div>
+      <div class="card">
+        <div class="ico">&#128296;</div>
+        <h3>High-end build quality</h3>
+        <p>Brushed aluminum knob panels with chevron cuts, speaker-cloth side panels with
+           blue LED strips, chamfered chassis bevels, and a dark hardware aesthetic. Designed
+           to look like gear, not software.</p>
+      </div>
+      <div class="card">
+        <div class="ico">&#9889;</div>
+        <h3>Low CPU, high quality</h3>
+        <p>Stereo in, stereo out, with efficient DSP that won't tax your session. Built with
+           JUCE and C++ for real-time performance at any buffer size and sample rate.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== ENGINE ===================== -->
+<section id="engine">
+  <div class="wrap">
+    <p class="eyebrow">Under the hood</p>
+    <h2>Built like hardware.</h2>
+    <div class="split">
+      <div class="txt">
+        <p>CortVerb's interface is modeled after premium rack-mount hardware: a machined
+           chassis with chamfered bevels, brushed-steel control panels secured with visible
+           screws, and speaker-cloth fabric side panels with glowing LED indicators.</p>
+        <p>The central screen is a fully rendered digital display with an interactive decay
+           curve, tabbed parameter pages, a preset browser, and live readouts that respond
+           to every parameter change in real time.</p>
+        <ul class="clean">
+          <li>Stereo in / stereo out effect processor</li>
+          <li>Feedback delay network reverb architecture</li>
+          <li>Configurable early and late reflections</li>
+          <li>Per-parameter EQ: low cut, high cut, damping, shelf</li>
+          <li>Modulation: adjustable rate and depth</li>
+          <li>Width control for mono-to-stereo spread</li>
+          <li>Pre-delay up to 250ms for spatial separation</li>
+        </ul>
+      </div>
+      <div><img class="shot" src="img/main.png" alt="CortVerb full interface"></div>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== PARAMETERS ===================== -->
+<section id="params">
+  <div class="wrap">
+    <p class="eyebrow">Every detail</p>
+    <h2>12 parameters. Full control.</h2>
+    <div class="grid feats" style="grid-template-columns:repeat(auto-fit,minmax(220px,1fr))">
+      <div class="card">
+        <h3>Pre-Delay</h3>
+        <p>0 &ndash; 250 ms. Separates the dry signal from the reverb onset for clarity and depth.</p>
+      </div>
+      <div class="card">
+        <h3>Size</h3>
+        <p>Controls the perceived room size, from tight closets to vast cathedrals.</p>
+      </div>
+      <div class="card">
+        <h3>Decay</h3>
+        <p>0.1 &ndash; 10 seconds. Sets how long the reverb tail sustains before fading to silence.</p>
+      </div>
+      <div class="card">
+        <h3>Width</h3>
+        <p>Stereo spread from mono to fully wide. Shape the spatial image of the reverb.</p>
+      </div>
+      <div class="card">
+        <h3>Diffusion</h3>
+        <p>Density of reflections. Low for discrete echoes, high for smooth, washed tails.</p>
+      </div>
+      <div class="card">
+        <h3>Mod Rate</h3>
+        <p>Internal modulation speed. Adds subtle motion to prevent metallic resonances.</p>
+      </div>
+      <div class="card">
+        <h3>Low Cut</h3>
+        <p>High-pass filter on the reverb signal. Keeps low-end clean and controlled.</p>
+      </div>
+      <div class="card">
+        <h3>High Cut</h3>
+        <p>Low-pass filter to darken the tail. Simulates air absorption and natural rolloff.</p>
+      </div>
+      <div class="card">
+        <h3>Damping</h3>
+        <p>Frequency-dependent decay. Higher damping absorbs highs faster for warmth.</p>
+      </div>
+      <div class="card">
+        <h3>Early Level</h3>
+        <p>Volume of early reflections. Shapes the initial spatial impression.</p>
+      </div>
+      <div class="card">
+        <h3>Late Level</h3>
+        <p>Volume of the diffuse reverb tail. Balance against early reflections for character.</p>
+      </div>
+      <div class="card">
+        <h3>Output</h3>
+        <p>Master output level. Compensate for gain changes across different settings.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== SPECS ===================== -->
+<section id="specs">
+  <div class="wrap" style="text-align:center">
+    <p class="eyebrow">Technical</p>
+    <h2>Specifications</h2>
+    <table class="specs-table">
+      <tr><td>Format</td><td>VST3, Standalone</td></tr>
+      <tr><td>Channels</td><td>Stereo In, Stereo Out</td></tr>
+      <tr><td>Sample Rates</td><td>44.1 &ndash; 192 kHz</td></tr>
+      <tr><td>Bit Depth</td><td>32-bit float</td></tr>
+      <tr><td>Latency</td><td>&lt; 1.0 ms</td></tr>
+      <tr><td>CPU Usage</td><td>Optimized</td></tr>
+      <tr><td>UI Size</td><td>1280 &times; 600</td></tr>
+      <tr><td>Platform</td><td>Windows 10/11 (64-bit)</td></tr>
+      <tr><td>Built With</td><td>C++ / JUCE 8</td></tr>
+    </table>
+  </div>
+</section>
+
+<!-- ===================== STATUS ===================== -->
+<section>
+  <div class="wrap" style="max-width:820px;text-align:center">
+    <p class="eyebrow">Status</p>
+    <h2>In progress.</h2>
+    <p>CortVerb is currently in active development. The interface, DSP engine, and preset
+       system are being built out. A free download will be available here when it ships.</p>
+    <p style="margin-top:16px">Questions or want to know when it drops?</p>
+    <div style="margin-top:18px">
+      <a href="mailto:info@corticorp.com" class="btn btn-ghost">Get in touch</a>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== FOOTER ===================== -->
+<footer>
+  <div class="wrap fcols">
+    <div>
+      <div class="brand" style="margin-bottom:6px">CORT<span>VERB</span></div>
+      Made by <strong>Cort</strong> &middot; <a href="https://corticorp.com">CortiCorp</a>.<br>
+      <span class="muted">Advanced reverb engine &mdash; coming soon.</span>
+    </div>
+    <div>
+      <h3 style="color:var(--accent)">Contact</h3>
+      <a href="mailto:info@corticorp.com">info@corticorp.com</a>
+    </div>
+    <div>
+      <h3 style="color:var(--accent)">Also</h3>
+      <a href="../CortSynth/">CortSynth</a> &mdash; free synth, sampler &amp; drums<br>
+      <a href="https://corticorp.com">corticorp.com</a>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>
