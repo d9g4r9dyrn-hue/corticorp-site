@@ -134,8 +134,9 @@
 </section>
 
 <footer>
-  <div class="wrap">&copy; 2025 CortiCorp, LLC</div>
+  <div class="wrap">&copy; <span id="year">2026</span> CortiCorp, LLC</div>
 </footer>
 
+<script>document.getElementById('year').textContent = new Date().getFullYear();</script>
 </body>
 </html>
