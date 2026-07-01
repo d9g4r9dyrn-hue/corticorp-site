@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Ironclad — amp-style distortion plugin</title>
+<meta name="description" content="Ironclad is a VST3 distortion plugin with a bold hardware-inspired UI, multi-stage amp-style tone shaping, and a polished standalone experience.">
+<meta property="og:title" content="Ironclad — amp-style distortion plugin">
+<meta property="og:description" content="A VST3 distortion plugin with drive, tone shaping, and a hardware-inspired interface.">
+<meta property="og:image" content="img/main.png">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://corticorp.com/music/plugins/Ironclad/">
+<link rel="canonical" href="https://corticorp.com/music/plugins/Ironclad/">
+<style>
+  :root{--bg:#0b0908;--panel:#130f0c;--panel2:#19140f;--edge:#33261a;--accent:#ff2a2a;--accent2:#ff6b57;--text:#f3e9df;--muted:#b09a8b;--maxw:1120px}
+  *{box-sizing:border-box} html{scroll-behavior:smooth} body{margin:0;background:var(--bg);color:var(--text);font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;line-height:1.6;font-size:17px} a{color:var(--accent2);text-decoration:none} a:hover{text-decoration:underline}
+  .wrap{max-width:var(--maxw);margin:0 auto;padding:0 22px} h1,h2,h3{line-height:1.2;margin:0 0 .4em} h2{font-size:clamp(1.5rem,3.2vw,2.1rem);color:var(--accent2);margin-top:0} h3{font-size:1.15rem;color:var(--accent)} section{padding:64px 0;border-top:1px solid #1c1510} .eyebrow{letter-spacing:.22em;text-transform:uppercase;font-size:.72rem;color:var(--muted);margin-bottom:10px}
+  .btn{display:inline-block;padding:14px 26px;border-radius:9px;font-weight:700;font-size:1rem;border:1px solid var(--edge);cursor:pointer;transition:transform .08s ease,filter .15s ease} .btn:hover{filter:brightness(1.08);text-decoration:none;transform:translateY(-1px)} .btn-primary{background:linear-gradient(#ff4a4a,#c71d1d);color:#180606;border-color:#7f1212} .btn-soon{background:var(--panel2);color:var(--muted);border-color:var(--edge);cursor:default} .btn-soon:hover{transform:none;filter:none;text-decoration:none}
+  .muted{color:var(--muted)} .badge{display:inline-block;padding:5px 14px;border-radius:6px;font-size:.78rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;background:#2a1717;border:1px solid #4a2525;color:#ff8b8b;margin-bottom:12px}
+  header{position:sticky;top:0;z-index:20;background:rgba(11,9,8,.92);backdrop-filter:blur(6px);border-bottom:1px solid #1c1510} .nav{display:flex;align-items:center;justify-content:space-between;height:60px} .brand{font-weight:800;letter-spacing:.04em;color:var(--accent2);font-size:1.15rem} .brand span{color:var(--text)} .nav-links a{margin-left:22px;color:var(--text);font-size:.93rem} .nav-links{display:flex;align-items:center} @media(max-width:680px){.nav-links a:not(.btn){display:none}}
+  .hero{padding:70px 0 30px;text-align:center} .hero h1{font-size:clamp(2.1rem,6vw,3.6rem);letter-spacing:.01em} .hero h1 .tag{display:block;color:var(--accent2);font-size:clamp(1rem,2.4vw,1.4rem);font-weight:600;letter-spacing:.04em;margin-top:.5em} .lede{max-width:780px;margin:18px auto 8px;font-size:1.12rem;color:var(--text)} .pills{display:flex;flex-wrap:wrap;gap:8px;justify-content:center;margin:22px 0 26px} .pill{background:var(--panel2);border:1px solid var(--edge);color:var(--accent);padding:6px 14px;border-radius:999px;font-size:.85rem;font-weight:600} .shot{display:block;width:100%;height:auto;border-radius:12px;border:1px solid var(--edge);box-shadow:0 18px 50px rgba(0,0,0,.55)} .hero-shot{max-width:1040px;margin:34px auto 0}
+  .grid{display:grid;gap:20px} .feats{grid-template-columns:repeat(auto-fit,minmax(280px,1fr))} .card{background:linear-gradient(#140f0c,#0f0b08);border:1px solid var(--edge);border-radius:12px;padding:22px 22px 20px} .card h3{margin-top:0} .card p{margin:0;color:var(--muted);font-size:.97rem} .ico{font-size:1.5rem;margin-bottom:6px}
+  .gallery{grid-template-columns:repeat(auto-fit,minmax(320px,1fr))} .gcard{background:#0d0b09;border:1px solid var(--edge);border-radius:12px;overflow:hidden} .gcard img{display:block;width:100%;height:auto;border-bottom:1px solid #160f0a} .gcap{padding:14px 18px 16px} .gcap h3{margin:0 0 3px;font-size:1rem} .gcap p{margin:0;color:var(--muted);font-size:.9rem} .gcap .k{color:var(--accent2);font-weight:700;letter-spacing:.06em;font-size:.72rem;text-transform:uppercase}
+  footer{padding:46px 0;border-top:1px solid #1c1510;color:var(--muted);font-size:.95rem}
+</style>
+</head>
+<body>
+<header>
+  <div class="wrap nav">
+    <div class="brand">IRON<span>CLAD</span></div>
+    <nav class="nav-links">
+      <a href="#features">Features</a>
+      <a href="#gallery">Gallery</a>
+      <a href="#about">About</a>
+      <span class="btn btn-soon" style="margin-left:22px;padding:8px 18px">Coming Soon</span>
+    </nav>
+  </div>
+</header>
+<div class="hero wrap">
+  <span class="badge">Coming Soon &middot; VST3 + Standalone</span>
+  <h1>Ironclad<span class="tag">Amp-style distortion, built for tone.</span></h1>
+  <p class="lede">A modern distortion plugin with a hardware-inspired front panel, rich drive voicings, and a focused set of controls for bass, mid, treble, presence, tightness, mix, and output.</p>
+  <div class="pills">
+    <span class="pill">Clean / Crunch / Lead / Fuzz</span>
+    <span class="pill">Drive &amp; Tone Stack</span>
+    <span class="pill">Presence &amp; Tight Low-cut</span>
+    <span class="pill">VST3 + Standalone</span>
+  </div>
+  <div style="margin:4px 0 2px">
+    <span class="btn btn-soon" style="font-size:1.05rem;padding:15px 32px">Coming Soon</span>
+    <div class="muted" style="margin-top:12px;font-size:.9rem">A polished release page is being prepared for launch.</div>
+  </div>
+  <img class="shot hero-shot" src="img/main.png" alt="Ironclad distortion plugin interface">
+</div>
+<section id="features">
+  <div class="wrap">
+    <p class="eyebrow">What it does</p>
+    <h2>Bold character. Fast control.</h2>
+    <div class="grid feats">
+      <div class="card"><div class="ico">⚙️</div><h3>Four voicings</h3><p>Switch between Clean, Crunch, Lead, and Fuzz to shape the character of your distortion from subtle warmth to aggressive bite.</p></div>
+      <div class="card"><div class="ico">🎛️</div><h3>Focused controls</h3><p>Drive, bass, mid, treble, presence, tight low-cut, mix, and output give you a direct path to the sound you want.</p></div>
+      <div class="card"><div class="ico">🔊</div><h3>Studio-ready tone</h3><p>Designed for guitars, synths, and heavy processing chains with a clear, punchy signal path and a polished UI.</p></div>
+    </div>
+  </div>
+</section>
+<section id="gallery">
+  <div class="wrap">
+    <p class="eyebrow">On screen</p>
+    <h2>Interface preview</h2>
+    <div class="grid gallery" style="margin-top:26px">
+      <div class="gcard"><img src="img/screen_1.png" alt="Ironclad interface preview"><div class="gcap"><span class="k">Preview</span><h3>Core interface</h3><p>Hardware-inspired layout with a bold center display and streamlined control surface.</p></div></div>
+      <div class="gcard"><img src="img/screen_2.png" alt="Ironclad controls preview"><div class="gcap"><span class="k">Controls</span><h3>Drive and tone stack</h3><p>Compact, tactile adjustment for gain and frequency shaping.</p></div></div>
+      <div class="gcard"><img src="img/screen_3.png" alt="Ironclad output preview"><div class="gcap"><span class="k">Output</span><h3>Mix and output shaping</h3><p>Dial in the balance of the processed sound with clear dry/wet and output controls.</p></div></div>
+    </div>
+  </div>
+</section>
+<section id="about">
+  <div class="wrap">
+    <p class="eyebrow">Status</p>
+    <h2>Launching soon.</h2>
+    <p class="muted">Ironclad is being prepared for release as a polished VST3 and standalone plugin. This page will be updated with download links, pricing, and the full launch assets when it is ready.</p>
+  </div>
+</section>
+<footer><div class="wrap">© CortiCorp</div></footer>
+</body>
+</html>
