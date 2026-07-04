@@ -131,6 +131,8 @@
   }
   .pt-status.free { background: #16281a; border: 1px solid #2c4a30; color: var(--green) }
   .pt-status.soon { background: #1a2a3a; border: 1px solid #2a4a5a; color: #5bb8d4 }
+  .pt-status.paid { background: #2a2410; border: 1px solid #4a3f1a; color: var(--accent2) }
+  .plugin-thumb img.contain { object-fit: contain; background: #0a1119 }
   @media (max-width: 640px) { .plugin-strip { grid-template-columns: 1fr } }
 
   /* ---- ABOUT ---- */
@@ -224,11 +226,11 @@
           </div>
         </a>
         <a class="plugin-thumb" href="music/plugins/CortVerb/">
-          <img src="music/plugins/CortVerb/img/main.png" alt="CortVerb VST3 reverb">
+          <img class="contain" src="music/plugins/CortVerb/img/main.png" alt="CortVerb VST3 reverb — dials and center console">
           <div class="pt-body">
             <div class="pt-name">CortVerb</div>
             <div class="pt-desc">Hybrid-FDN reverb with live visualization.</div>
-            <span class="pt-status soon">Coming Soon</span>
+            <span class="pt-status paid">$99</span>
           </div>
         </a>
         <a class="plugin-thumb" href="music/plugins/Ironclad/">
