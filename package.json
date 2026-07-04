@@ -1,0 +1,31 @@
+{
+  "name": "corticorp-site",
+  "version": "1.0.0",
+  "description": "Central hub for managing all CortiCorp Claude projects and website content",
+  "type": "module",
+  "main": "dist/index.js",
+  "scripts": {
+    "build": "tsc",
+    "dev": "tsc --watch",
+    "start": "node dist/index.js",
+    "scan": "node dist/index.js",
+    "registry:list": "node dist/registry/listProjects.js",
+    "registry:update": "node dist/registry/updateRegistry.js"
+  },
+  "keywords": [
+    "corticorp",
+    "plugins",
+    "vst3",
+    "projects",
+    "registry"
+  ],
+  "author": "CortiCorp",
+  "license": "MIT",
+  "devDependencies": {
+    "@types/node": "^20.0.0",
+    "typescript": "^5.0.0"
+  },
+  "dependencies": {
+    "glob": "^10.0.0"
+  }
+}

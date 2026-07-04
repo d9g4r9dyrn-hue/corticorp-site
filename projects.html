@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Project Registry — CortiCorp</title>
+<meta name="description" content="A live inventory of every CortiCorp project — plugins, apps, and tools — generated from each repo's own files and kept in sync by the project scanner.">
+<meta property="og:title" content="Project Registry — CortiCorp">
+<meta property="og:description" content="A live inventory of every CortiCorp project, kept in sync by the project scanner.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://corticorp.com/projects.html">
+<link rel="canonical" href="https://corticorp.com/projects.html">
+<style>
+  :root {
+    --bg: #0c0a08; --surface: #141210; --surface2: #1c1915; --border: #2a241c;
+    --text: #e8e0d4; --muted: #9a8e7a; --accent: #d4a555; --accent2: #e7c878;
+    --green: #6fae6a; --teal: #35d0c0; --blue: #5b8fd4; --maxw: 1040px;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0 }
+  html { scroll-behavior: smooth }
+  body {
+    background: var(--bg); color: var(--text);
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    line-height: 1.6; font-size: 17px; -webkit-font-smoothing: antialiased;
+  }
+  a { color: var(--accent2); text-decoration: none }
+  a:hover { text-decoration: underline }
+  .wrap { max-width: var(--maxw); margin: 0 auto; padding: 0 24px }
+
+  nav {
+    position: sticky; top: 0; z-index: 30;
+    background: rgba(12,10,8,.86); -webkit-backdrop-filter: blur(10px); backdrop-filter: blur(10px);
+    border-bottom: 1px solid var(--border);
+  }
+  .nav-inner {
+    display: flex; align-items: center; justify-content: space-between;
+    max-width: var(--maxw); margin: 0 auto; padding: 0 24px; height: 56px;
+  }
+  .brand { font-weight: 800; font-size: 1.1rem; color: var(--accent2); letter-spacing: .03em }
+  .nav-links a { margin-left: 22px; color: var(--muted); font-size: .9rem; transition: color .15s }
+  .nav-links a:hover { color: var(--text); text-decoration: none }
+  .nav-links a.active { color: var(--accent2) }
+  @media (max-width: 620px){ .nav-links a { margin-left: 14px; font-size: .82rem } }
+
+  /* HERO */
+  .hero { padding: 68px 0 34px; border-bottom: 1px solid #17130d;
+    background: linear-gradient(180deg, #15120e 0%, var(--bg) 100%); }
+  .eyebrow { text-transform: uppercase; letter-spacing: .22em; font-size: .72rem; color: var(--accent); margin-bottom: 12px }
+  .hero h1 { font-size: clamp(2rem, 5vw, 3rem); color: var(--accent2); letter-spacing: -.01em; margin-bottom: 12px }
+  .hero p { color: var(--muted); max-width: 640px }
+  .meta-line { margin-top: 18px; font-size: .85rem; color: var(--muted); display: flex; gap: 18px; flex-wrap: wrap }
+  .meta-line b { color: var(--text); font-weight: 700 }
+
+  /* TOOLBAR */
+  .toolbar { position: sticky; top: 56px; z-index: 20; background: rgba(12,10,8,.9);
+    -webkit-backdrop-filter: blur(8px); backdrop-filter: blur(8px);
+    border-bottom: 1px solid var(--border); padding: 14px 0 }
+  .toolbar-inner { display: flex; gap: 12px; align-items: center; flex-wrap: wrap }
+  .search {
+    flex: 1 1 240px; min-width: 200px; background: var(--surface); border: 1px solid var(--border);
+    border-radius: 9px; padding: 10px 14px; color: var(--text); font-size: .92rem;
+  }
+  .search:focus { outline: none; border-color: #4a3f2c }
+  .search::placeholder { color: #6b6151 }
+  .filters { display: flex; gap: 8px; flex-wrap: wrap }
+  .chip {
+    padding: 8px 16px; border-radius: 999px; border: 1px solid var(--border);
+    background: var(--surface); color: var(--muted); font-size: .85rem; font-weight: 600; cursor: pointer;
+    transition: all .15s;
+  }
+  .chip:hover { color: var(--text); border-color: #3a3228 }
+  .chip.active { background: var(--surface2); color: var(--accent2); border-color: #4a3f2c }
+  .chip .c { opacity: .6; font-weight: 700; margin-left: 4px }
+
+  /* GRID */
+  main { padding: 34px 0 72px }
+  .grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 20px }
+  @media (max-width: 720px){ .grid { grid-template-columns: 1fr } }
+  .card {
+    background: var(--surface); border: 1px solid var(--border); border-radius: 14px;
+    padding: 24px; display: flex; flex-direction: column; transition: border-color .2s, transform .2s;
+  }
+  .card:hover { border-color: #3a3228; transform: translateY(-2px) }
+  .card-top { display: flex; align-items: center; justify-content: space-between; margin-bottom: 12px }
+  .type-badge {
+    font-size: .68rem; font-weight: 700; letter-spacing: .12em; text-transform: uppercase;
+    padding: 4px 11px; border-radius: 6px; border: 1px solid;
+  }
+  .type-plugin { color: var(--accent); border-color: #4a3a1a; background: rgba(212,165,85,.07) }
+  .type-app { color: var(--teal); border-color: #1a3a3a; background: rgba(53,208,192,.07) }
+  .type-web { color: var(--blue); border-color: #2a3a5a; background: rgba(91,143,212,.07) }
+  .status { display: inline-flex; align-items: center; gap: 6px; font-size: .74rem; color: var(--muted); text-transform: capitalize }
+  .dot { width: 8px; height: 8px; border-radius: 50% }
+  .dot.active { background: var(--green); box-shadow: 0 0 0 3px rgba(111,174,106,.15) }
+  .dot.beta { background: var(--accent); box-shadow: 0 0 0 3px rgba(212,165,85,.15) }
+  .dot.prototype, .dot.lab { background: var(--blue); box-shadow: 0 0 0 3px rgba(91,143,212,.15) }
+  .dot.archived { background: #6b6151 }
+  .card h3 { font-size: 1.3rem; color: var(--accent2); margin-bottom: 2px; display: flex; align-items: baseline; gap: 10px }
+  .card h3 .ver { font-size: .78rem; color: var(--muted); font-weight: 500 }
+  .card .desc { color: var(--muted); font-size: .95rem; margin: 8px 0 14px; flex: 1 }
+  .tags { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 12px }
+  .tag { font-size: .72rem; padding: 3px 10px; border-radius: 999px; background: var(--surface2); border: 1px solid var(--border); color: var(--muted) }
+  .params { margin: 2px 0 14px; font-size: .78rem; color: var(--muted) }
+  .params b { color: var(--text); font-weight: 600 }
+  .params .plist { display: flex; flex-wrap: wrap; gap: 5px; margin-top: 7px }
+  .params .plist span { font-size: .68rem; padding: 2px 8px; border-radius: 4px; background: #14100a; border: 1px solid #2c2416; color: var(--accent); font-family: ui-monospace, "SF Mono", Menlo, Consolas, monospace }
+  .card-foot { display: flex; gap: 16px; flex-wrap: wrap; align-items: center; font-size: .84rem; font-weight: 600; border-top: 1px solid #1f1a12; padding-top: 14px }
+  .card-foot .path { color: #6b6151; font-family: ui-monospace, "SF Mono", Menlo, Consolas, monospace; font-size: .74rem; font-weight: 400; margin-left: auto }
+  .card-foot .none { color: #6b6151; font-weight: 500; font-style: italic }
+  .empty { text-align: center; color: var(--muted); padding: 60px 0 }
+
+  footer { padding: 30px 0; border-top: 1px solid var(--border); color: var(--muted); font-size: .82rem }
+  footer code { background: var(--surface2); border: 1px solid var(--border); border-radius: 5px; padding: 2px 7px; font-size: .82em; color: var(--accent2) }
+  footer .fnote { max-width: 720px }
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-inner">
+    <a class="brand" href="/">CortiCorp</a>
+    <div class="nav-links">
+      <a href="/#plugins">Plugins</a>
+      <a href="/journal.html">Highlights</a>
+      <a href="/projects.html" class="active">Registry</a>
+      <a href="/#contact">Contact</a>
+    </div>
+  </div>
+</nav>
+
+<header class="hero">
+  <div class="wrap">
+    <p class="eyebrow">Everything, in one place</p>
+    <h1>Project Registry</h1>
+    <p>A live inventory of every CortiCorp project — plugins, apps, and tools. Generated from each
+       project's own files and kept in sync by the scanner, so this list never drifts from reality.</p>
+    <div class="meta-line">
+      <span><b id="stat-total">0</b> projects</span>
+      <span><b id="stat-plugins">0</b> plugins</span>
+      <span><b id="stat-apps">0</b> apps</span>
+      <span>Last synced: <b id="stat-updated">—</b></span>
+    </div>
+  </div>
+</header>
+
+<div class="toolbar">
+  <div class="wrap toolbar-inner">
+    <input class="search" id="search" type="search" placeholder="Search projects, tags, tech…" autocomplete="off">
+    <div class="filters" id="filters"></div>
+  </div>
+</div>
+
+<main>
+  <div class="wrap">
+    <div class="grid" id="grid"></div>
+    <div class="empty" id="empty" style="display:none">No projects match your filter.</div>
+  </div>
+</main>
+
+<footer>
+  <div class="wrap fnote">
+    This page renders <code>projects/registry.json</code>. To refresh it after adding or changing a
+    project, run <code>npm run scan</code> in <code>corticorp-site</code> — the scanner re-reads every
+    project's <code>CLAUDE.md</code> and <code>.git</code> config and rewrites the registry. Reload this
+    page and the changes appear. &nbsp;&copy; <span id="year">2026</span> CortiCorp, LLC.
+  </div>
+</footer>
+
+<script>
+  document.getElementById('year').textContent = new Date().getFullYear();
+
+  // Inline fallback so the page still renders when opened directly from disk (file://),
+  // where the browser blocks fetch(). The deployed site always uses the fetched registry.
+  var FALLBACK = {"projects":{"compressor_plugin":{"id":"compressor_plugin","name":"CortComp","description":"A VST3 dynamics processor that can make softs loud and louds soft past a limiter — with an INVERT mode that drives the transfer slope negative (beyond ∞:1) for true dynamic inversion.","type":"plugin","version":"0.1.0","status":"active","tags":["audio","dsp","vst3","dynamics","compressor"],"pathFromCortiCorp":"plugins/compressor_plugin","formats":["VST3","Standalone"],"platforms":["Windows"],"parameters":{"THRESHOLD":{"name":"THRESHOLD"},"RATIO":{"name":"RATIO"},"UPWARD":{"name":"UPWARD"},"INVERT":{"name":"INVERT"},"ATTACK":{"name":"ATTACK"},"RELEASE":{"name":"RELEASE"},"KNEE":{"name":"KNEE"},"MAKEUP":{"name":"MAKEUP"},"MIX":{"name":"MIX"}}},"synth_plugin":{"id":"synth_plugin","name":"CortSynth","description":"A free VST3 synth, sampler, and drum machine in one plugin. Dual-oscillator hybrid engine with physical modeling, 200+ presets, an AI Tone Designer, and a zero-allocation audio thread.","type":"plugin","version":"0.9.109","status":"active","tags":["audio","dsp","vst3","synth","sampler","ai"],"pathFromCortiCorp":"plugins/synth_plugin","homepage":"https://corticorp.com/music/plugins/CortSynth/","repository":"https://github.com/d9g4r9dyrn-hue/CortSynth.git","formats":["VST3","Standalone"],"platforms":["Windows"]},"reverb_plugin":{"id":"reverb_plugin","name":"CortVerb","description":"A VST3 reverb on a Hybrid FDN engine, with a central digital screen that visualizes the reverb across six pages, an auto-duck sidechain, and 12 tactile knobs.","type":"plugin","version":"0.1.0","status":"beta","tags":["audio","dsp","vst3","reverb","effect"],"pathFromCortiCorp":"plugins/reverb_plugin","homepage":"https://corticorp.com/music/plugins/CortVerb/","repository":"https://github.com/d9g4r9dyrn-hue/cortverb-plugin.git","formats":["VST3","Standalone"],"platforms":["Windows"]},"ironclad":{"id":"ironclad","name":"Ironclad","description":"A VST3 amp-style distortion plugin with four distinct voicings, a focused tone stack, and a bold hardware-inspired interface for guitars and broader audio processing.","type":"plugin","version":"0.1.0","status":"beta","tags":["audio","dsp","vst3","distortion","effect"],"pathFromCortiCorp":"plugins/ironclad","homepage":"https://corticorp.com/music/plugins/Ironclad/","repository":"https://github.com/d9g4r9dyrn-hue/ironclad.git","formats":["VST3","Standalone"],"platforms":["Windows"]},"apartment_finder":{"id":"apartment_finder","name":"Apartment Finder","description":"An AI-powered rental aggregator that scrapes six listing sources, scores photo quality with Gemini Vision, and maps everything on an interactive dashboard with work-commute scoring.","type":"app","version":"1.0.0","status":"active","tags":["ai","python","web-scraping","gemini-vision","maps"],"pathFromCortiCorp":"apartment_poc","homepage":"https://corticorp.com/projects/apartment-finder/","repository":"https://github.com/d9g4r9dyrn-hue/apartment-finder.git"},"catfishcheck":{"id":"catfishcheck","name":"CatfishCheck","description":"A self-service OSINT tool for verifying online identities — reverse image search, carrier lookup, and a geo-verification beacon that compile into a red-flag report.","type":"app","version":"1.0.0","status":"active","tags":["ai","osint","privacy","javascript"],"pathFromCortiCorp":"catfishcheck","homepage":"https://corticorp.com/projects/catfishcheck/"},"corticorp-site":{"id":"corticorp-site","name":"CortiCorp Site","description":"The CortiCorp marketing site and project hub — a TypeScript project scanner and registry that keeps this very inventory in sync with each project's own files.","type":"web","version":"1.0.0","status":"active","tags":["web","typescript","registry","node"],"pathFromCortiCorp":"corticorp-site","homepage":"https://corticorp.com/"}},"lastUpdated":"2026-07-02T00:00:00.000Z","version":"1.0.0"};
+
+  var TYPE_LABEL = { plugin: 'Plugins', app: 'Apps', web: 'Web' };
+  var state = { projects: [], filter: 'all', query: '' };
+
+  function esc(s){ return String(s == null ? '' : s).replace(/[&<>"]/g, function(c){
+    return { '&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;' }[c]; }); }
+  function clean(s){ return String(s || '').replace(/^#+\s*/, '').trim(); }
+  function prettyName(p){
+    if (p.name && p.name !== p.id) return clean(p.name);
+    return clean(p.id).replace(/[_-]+/g, ' ').replace(/\b\w/g, function(m){ return m.toUpperCase(); });
+  }
+
+  function card(p){
+    var type = (p.type || 'app').toLowerCase();
+    var status = (p.status || 'active').toLowerCase();
+    var tags = (p.tags || []).map(function(t){ return '<span class="tag">' + esc(t) + '</span>'; }).join('');
+    var params = p.parameters ? Object.keys(p.parameters) : [];
+    var paramHtml = params.length ? '<div class="params"><b>' + params.length + '</b> parameters'
+      + '<div class="plist">' + params.map(function(n){ return '<span>' + esc(n) + '</span>'; }).join('') + '</div></div>' : '';
+    var formats = (p.formats && p.formats.length) ? ' &middot; ' + p.formats.join(' / ') : '';
+
+    var links = [];
+    if (p.homepage) links.push('<a href="' + esc(p.homepage) + '" target="_blank" rel="noopener">Homepage &rarr;</a>');
+    if (p.repository) {
+      var url = String(p.repository).replace(/\.git$/, '');
+      links.push('<a href="' + esc(url) + '" target="_blank" rel="noopener">Repository &rarr;</a>');
+    } else {
+      links.push('<span class="none">No repo yet</span>');
+    }
+    var pathHtml = p.pathFromCortiCorp ? '<span class="path">' + esc(p.pathFromCortiCorp) + '</span>' : '';
+
+    return '<article class="card">'
+      + '<div class="card-top">'
+      +   '<span class="type-badge type-' + type + '">' + esc(type) + '</span>'
+      +   '<span class="status"><span class="dot ' + status + '"></span>' + esc(status) + '</span>'
+      + '</div>'
+      + '<h3>' + esc(prettyName(p)) + '<span class="ver">v' + esc(p.version || '—') + formats + '</span></h3>'
+      + '<p class="desc">' + esc(clean(p.description)) + '</p>'
+      + (tags ? '<div class="tags">' + tags + '</div>' : '')
+      + paramHtml
+      + '<div class="card-foot">' + links.join('') + pathHtml + '</div>'
+      + '</article>';
+  }
+
+  function render(){
+    var q = state.query.toLowerCase();
+    var list = state.projects.filter(function(p){
+      if (state.filter !== 'all' && (p.type || '').toLowerCase() !== state.filter) return false;
+      if (!q) return true;
+      var hay = [p.name, p.id, p.description, (p.tags||[]).join(' ')].join(' ').toLowerCase();
+      return hay.indexOf(q) !== -1;
+    });
+    var grid = document.getElementById('grid');
+    grid.innerHTML = list.map(card).join('');
+    document.getElementById('empty').style.display = list.length ? 'none' : 'block';
+  }
+
+  function buildFilters(){
+    var counts = { all: state.projects.length };
+    state.projects.forEach(function(p){ var t = (p.type||'').toLowerCase(); counts[t] = (counts[t]||0) + 1; });
+    var order = ['all'].concat(Object.keys(TYPE_LABEL).filter(function(t){ return counts[t]; }));
+    var el = document.getElementById('filters');
+    el.innerHTML = order.map(function(t){
+      var label = t === 'all' ? 'All' : TYPE_LABEL[t];
+      return '<button class="chip' + (t === state.filter ? ' active' : '') + '" data-type="' + t + '">'
+        + label + '<span class="c">' + counts[t] + '</span></button>';
+    }).join('');
+    el.querySelectorAll('.chip').forEach(function(btn){
+      btn.addEventListener('click', function(){
+        state.filter = btn.getAttribute('data-type');
+        el.querySelectorAll('.chip').forEach(function(b){ b.classList.remove('active'); });
+        btn.classList.add('active');
+        render();
+      });
+    });
+  }
+
+  function load(data){
+    var projects = Object.values(data.projects || {});
+    // Stable order: plugins, then apps, then web; within a type, by name.
+    var rank = { plugin: 0, app: 1, web: 2 };
+    projects.sort(function(a, b){
+      var ra = rank[(a.type||'').toLowerCase()] ?? 9, rb = rank[(b.type||'').toLowerCase()] ?? 9;
+      if (ra !== rb) return ra - rb;
+      return prettyName(a).localeCompare(prettyName(b));
+    });
+    state.projects = projects;
+
+    document.getElementById('stat-total').textContent = projects.length;
+    document.getElementById('stat-plugins').textContent = projects.filter(function(p){ return (p.type||'')==='plugin'; }).length;
+    document.getElementById('stat-apps').textContent = projects.filter(function(p){ return (p.type||'')==='app'; }).length;
+    if (data.lastUpdated) {
+      var d = new Date(data.lastUpdated);
+      document.getElementById('stat-updated').textContent = isNaN(d) ? data.lastUpdated
+        : d.toLocaleDateString(undefined, { year:'numeric', month:'short', day:'numeric' });
+    }
+
+    buildFilters();
+    render();
+  }
+
+  document.getElementById('search').addEventListener('input', function(e){
+    state.query = e.target.value; render();
+  });
+
+  fetch('projects/registry.json', { cache: 'no-store' })
+    .then(function(r){ if (!r.ok) throw new Error('http ' + r.status); return r.json(); })
+    .then(load)
+    .catch(function(){ load(FALLBACK); });
+</script>
+</body>
+</html>

@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>CortiCorp Plugins — VST3 Instruments & Effects</title>
+<meta name="description" content="A growing line of VST3 audio plugins by CortiCorp, built in C++ with JUCE. CortSynth (free synth/sampler/drums), CortVerb (hybrid FDN reverb), and Ironclad (amp-style distortion) — with more in development.">
+<meta property="og:title" content="CortiCorp Plugins — VST3 Instruments & Effects">
+<meta property="og:description" content="VST3 instruments and effects built in C++ with JUCE. Synths, reverbs, distortion — free and premium.">
+<meta property="og:image" content="/music/plugins/CortSynth/img/main.png">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://corticorp.com/plugins/">
+<link rel="canonical" href="https://corticorp.com/plugins/">
+<style>
+  :root {
+    --bg: #0c0a08; --surface: #141210; --surface2: #1c1915; --border: #2a241c;
+    --text: #e8e0d4; --muted: #9a8e7a; --accent: #d4a555; --accent2: #e7c878;
+    --green: #6fae6a; --teal: #35d0c0; --blue: #5b8fd4; --maxw: 1000px;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0 }
+  html { scroll-behavior: smooth }
+  body {
+    background: var(--bg); color: var(--text);
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    line-height: 1.65; font-size: 17px;
+  }
+  a { color: var(--accent2); text-decoration: none }
+  a:hover { text-decoration: underline }
+  .wrap { max-width: var(--maxw); margin: 0 auto; padding: 0 24px }
+
+  /* ---- NAV ---- */
+  nav {
+    position: sticky; top: 0; z-index: 10;
+    background: rgba(12,10,8,.92); backdrop-filter: blur(8px);
+    border-bottom: 1px solid var(--border);
+  }
+  .nav-inner {
+    display: flex; align-items: center; justify-content: space-between;
+    max-width: var(--maxw); margin: 0 auto; padding: 0 24px; height: 56px;
+  }
+  .brand { font-weight: 800; font-size: 1.1rem; color: var(--accent2); letter-spacing: .03em }
+  .nav-links a { margin-left: 24px; color: var(--muted); font-size: .9rem; transition: color .15s }
+  .nav-links a:hover { color: var(--text); text-decoration: none }
+
+  /* ---- HERO ---- */
+  .hero {
+    padding: 90px 0 60px; text-align: center;
+    background: linear-gradient(180deg, #15120e 0%, var(--bg) 100%);
+  }
+  .hero .eyebrow {
+    text-transform: uppercase; letter-spacing: .2em; font-size: .72rem;
+    color: var(--muted); margin-bottom: 10px;
+  }
+  .hero h1 { font-size: clamp(2rem, 5vw, 3rem); color: var(--accent2); margin-bottom: 14px }
+  .hero p { font-size: 1.15rem; color: var(--muted); max-width: 640px; margin: 0 auto }
+  .hero .pills { margin-top: 26px }
+  .hero .pills span {
+    display: inline-block; padding: 5px 14px; margin: 4px;
+    background: var(--surface2); border: 1px solid var(--border); border-radius: 6px;
+    font-size: .85rem; color: var(--text);
+  }
+
+  /* ---- SECTIONS ---- */
+  section { padding: 64px 0; border-top: 1px solid #1a1610 }
+  .eyebrow {
+    text-transform: uppercase; letter-spacing: .2em; font-size: .72rem;
+    color: var(--muted); margin-bottom: 8px;
+  }
+  h2 { font-size: clamp(1.4rem, 3vw, 1.9rem); color: var(--accent2); margin-bottom: 24px }
+  h3 { font-size: 1.2rem; color: var(--accent); margin-bottom: 6px }
+
+  /* ---- PLUGIN CARDS ---- */
+  .plugins { display: flex; flex-direction: column; gap: 32px }
+  .plugin-card {
+    display: grid; grid-template-columns: 1fr 1fr; gap: 32px; align-items: center;
+    background: var(--surface); border: 1px solid var(--border); border-radius: 12px;
+    padding: 32px; transition: border-color .2s;
+  }
+  .plugin-card:hover { border-color: #3a3228 }
+  .plugin-card.reverse { direction: rtl }
+  .plugin-card.reverse > * { direction: ltr }
+  .plugin-img {
+    width: 100%; border-radius: 8px; border: 1px solid var(--border);
+    aspect-ratio: 16/10; object-fit: cover; background: var(--surface2);
+  }
+  .plugin-meta { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 12px }
+  .tag {
+    display: inline-block; padding: 3px 10px; border-radius: 4px; font-size: .75rem;
+    background: var(--surface2); border: 1px solid var(--border); color: var(--muted);
+  }
+  .tag.ai { border-color: #3a4a2a; color: var(--green) }
+  .tag.audio { border-color: #3a2a1a; color: var(--accent) }
+  .plugin-link {
+    display: inline-block; margin-top: 16px; padding: 8px 20px; border-radius: 7px;
+    font-weight: 600; font-size: .9rem; border: 1px solid var(--border);
+    background: var(--surface2); color: var(--accent2); transition: background .15s;
+  }
+  .plugin-link:hover { background: #241e14; text-decoration: none }
+  .price {
+    display: inline-block; margin-bottom: 8px; font-size: .95rem; font-weight: 700;
+    color: var(--accent2);
+  }
+  .badge {
+    display: inline-block; padding: 4px 12px; border-radius: 4px;
+    font-size: .72rem; font-weight: 700; letter-spacing: .08em; text-transform: uppercase;
+    margin-bottom: 8px;
+  }
+  .badge.free { background: #16281a; border: 1px solid #2c4a30; color: var(--green) }
+  .badge.soon { background: #1a2a3a; border: 1px solid #2a4a5a; color: #5bb8d4 }
+
+  /* ---- IN DEVELOPMENT ---- */
+  .dev-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 20px }
+  .dev-card {
+    background: var(--surface); border: 1px dashed var(--border); border-radius: 10px;
+    padding: 22px;
+  }
+  .dev-card h3 { color: var(--accent2) }
+  .dev-card p { color: var(--muted); font-size: .93rem }
+  .dev-card .badge { margin-bottom: 10px }
+
+  /* ---- FOOTER ---- */
+  footer {
+    padding: 32px 0; border-top: 1px solid var(--border);
+    text-align: center; color: var(--muted); font-size: .8rem;
+  }
+  footer a { color: var(--accent2) }
+
+  /* ---- RESPONSIVE ---- */
+  @media (max-width: 700px) {
+    .plugin-card { grid-template-columns: 1fr; padding: 20px }
+    .plugin-card.reverse { direction: ltr }
+    .hero { padding: 60px 0 40px }
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-inner">
+    <div class="brand"><a href="/" style="color:inherit">CortiCorp</a></div>
+    <div class="nav-links">
+      <a href="/">Home</a>
+      <a href="/#projects">Projects</a>
+      <a href="/journal.html">Highlights</a>
+      <a href="/#contact">Contact</a>
+    </div>
+  </div>
+</nav>
+
+<!-- ==================== HERO ==================== -->
+<section class="hero">
+  <div class="wrap">
+    <p class="eyebrow">Audio software</p>
+    <h1>CortiCorp Plugins</h1>
+    <p>A growing line of VST3 instruments and effects, built from scratch in C++ with JUCE.
+       Real-time DSP, hand-crafted interfaces, and zero-allocation audio engines.</p>
+    <div class="pills">
+      <span>C++ / JUCE</span>
+      <span>VST3</span>
+      <span>Standalone</span>
+      <span>Windows 64-bit</span>
+    </div>
+  </div>
+</section>
+
+<!-- ==================== THE PLUGINS ==================== -->
+<section id="lineup">
+  <div class="wrap">
+    <p class="eyebrow">The lineup</p>
+    <h2>Instruments &amp; effects</h2>
+    <div class="plugins">
+
+      <!-- CortSynth -->
+      <div class="plugin-card">
+        <img class="plugin-img" src="/music/plugins/CortSynth/img/main.png"
+             alt="CortSynth VST3 synthesizer">
+        <div>
+          <span class="badge free">Free</span>
+          <h3>CortSynth</h3>
+          <p>A synth, sampler, and drum machine in one plugin. Dual-oscillator hybrid engine with
+             physical modeling, 200+ presets, an AI tone designer, and an offline preset generator.
+             Zero heap allocations on the audio thread.</p>
+          <div class="plugin-meta">
+            <span class="tag audio">C++ / JUCE</span>
+            <span class="tag ai">Claude API</span>
+            <span class="tag">DSP</span>
+            <span class="tag">VST3</span>
+          </div>
+          <a class="plugin-link" href="/music/plugins/CortSynth/">Learn more &rarr;</a>
+        </div>
+      </div>
+
+      <!-- CortVerb -->
+      <div class="plugin-card reverse">
+        <img class="plugin-img" src="/music/plugins/CortVerb/img/main.png"
+             alt="CortVerb VST3 reverb plugin">
+        <div>
+          <span class="badge soon">Coming Soon</span>
+          <span class="price">$99</span>
+          <h3>CortVerb</h3>
+          <p>A reverb effect built on a Hybrid FDN engine, with a central digital screen for
+             real-time visualization across six pages, an auto-duck sidechain, 12 tactile knobs,
+             and a high-end hardware aesthetic.</p>
+          <div class="plugin-meta">
+            <span class="tag audio">C++ / JUCE</span>
+            <span class="tag">DSP</span>
+            <span class="tag">VST3</span>
+            <span class="tag">Effect</span>
+          </div>
+          <a class="plugin-link" href="/music/plugins/CortVerb/">Learn more &rarr;</a>
+        </div>
+      </div>
+
+      <!-- Ironclad -->
+      <div class="plugin-card">
+        <img class="plugin-img" src="/music/plugins/Ironclad/img/main.png"
+             alt="Ironclad distortion plugin">
+        <div>
+          <span class="badge soon">Coming Soon</span>
+          <h3>Ironclad</h3>
+          <p>An amp-style distortion plugin with four distinct voicings, a focused tone stack, and a
+             hardware-inspired interface designed for both guitars and broader audio processing.</p>
+          <div class="plugin-meta">
+            <span class="tag audio">C++ / JUCE</span>
+            <span class="tag">DSP</span>
+            <span class="tag">VST3</span>
+            <span class="tag">Distortion</span>
+          </div>
+          <a class="plugin-link" href="/music/plugins/Ironclad/">Learn more &rarr;</a>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ==================== IN DEVELOPMENT ==================== -->
+<section id="in-dev">
+  <div class="wrap">
+    <p class="eyebrow">On the workbench</p>
+    <h2>In development</h2>
+    <p style="color:var(--muted); margin-bottom:28px; max-width:680px">
+      New instruments and effects are always in the pipeline. Here's a look at what's next —
+      check back as these ship.
+    </p>
+    <div class="dev-grid">
+      <div class="dev-card">
+        <span class="badge soon">In progress</span>
+        <h3>CortVerb</h3>
+        <p>Hybrid FDN reverb with live visualization. Nearing release &mdash; launching at $99.</p>
+      </div>
+      <div class="dev-card">
+        <span class="badge soon">In progress</span>
+        <h3>Ironclad</h3>
+        <p>Amp-style distortion with four voicings and a hardware-inspired tone stack.</p>
+      </div>
+      <div class="dev-card">
+        <span class="badge soon">Exploring</span>
+        <h3>More on the way</h3>
+        <p>Additional instruments and effects are in early design. Want to be notified when they
+           drop? <a href="mailto:cortsynth@corticorp.com">Get in touch.</a></p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    &copy; <span id="year">2026</span> CortiCorp, LLC &middot; Clearwater, FL &middot;
+    <a href="/">corticorp.com</a>
+  </div>
+</footer>
+
+<script>document.getElementById('year').textContent = new Date().getFullYear();</script>
+</body>
+</html>

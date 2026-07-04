@@ -1,0 +1,643 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Cort — Selected Work &amp; Highlights</title>
+<meta name="description" content="A journal of the work I'm proudest of: shipped AI-native apps, real-time C++ audio plugins, and data systems. 25+ years of engineering, now building at the edge of what AI makes possible.">
+<meta property="og:title" content="Cort — Selected Work &amp; Highlights">
+<meta property="og:description" content="Shipped AI-native apps, real-time C++ audio plugins, and data systems. A highlight reel for anyone deciding whether to work with me.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://corticorp.com/journal.html">
+<link rel="canonical" href="https://corticorp.com/journal.html">
+<style>
+  :root {
+    --bg: #0c0a08; --surface: #141210; --surface2: #1c1915; --border: #2a241c;
+    --text: #e8e0d4; --muted: #9a8e7a; --accent: #d4a555; --accent2: #e7c878;
+    --green: #6fae6a; --teal: #35d0c0; --blue: #5b8fd4; --red: #ff6b57;
+    --maxw: 1040px;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0 }
+  html { scroll-behavior: smooth }
+  body {
+    background: var(--bg); color: var(--text);
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    line-height: 1.65; font-size: 17px; -webkit-font-smoothing: antialiased;
+    overflow-x: hidden;
+  }
+  a { color: var(--accent2); text-decoration: none }
+  a:hover { text-decoration: underline }
+  .wrap { max-width: var(--maxw); margin: 0 auto; padding: 0 24px }
+  ::selection { background: rgba(231,200,120,.28) }
+
+  /* ---- NAV ---- */
+  nav {
+    position: sticky; top: 0; z-index: 30;
+    background: rgba(12,10,8,.86); -webkit-backdrop-filter: blur(10px); backdrop-filter: blur(10px);
+    border-bottom: 1px solid var(--border);
+  }
+  .nav-inner {
+    display: flex; align-items: center; justify-content: space-between;
+    max-width: var(--maxw); margin: 0 auto; padding: 0 24px; height: 56px;
+  }
+  .brand { font-weight: 800; font-size: 1.1rem; color: var(--accent2); letter-spacing: .03em }
+  .nav-links a { margin-left: 22px; color: var(--muted); font-size: .9rem; transition: color .15s }
+  .nav-links a:hover { color: var(--text); text-decoration: none }
+  @media (max-width: 620px){ .nav-links a { margin-left: 14px; font-size: .82rem } }
+
+  /* ---- HERO ---- */
+  .hero {
+    position: relative; padding: 118px 0 92px; text-align: center; overflow: hidden;
+    border-bottom: 1px solid #17130d;
+  }
+  .hero canvas { position: absolute; inset: 0; width: 100%; height: 100%; z-index: 0; opacity: .5 }
+  .hero .aurora {
+    position: absolute; inset: -20% -10% auto; height: 520px; z-index: 0; pointer-events: none;
+    background:
+      radial-gradient(46% 60% at 22% 30%, rgba(212,165,85,.20), transparent 70%),
+      radial-gradient(40% 55% at 78% 20%, rgba(53,208,192,.12), transparent 70%),
+      radial-gradient(50% 60% at 55% 80%, rgba(91,143,212,.12), transparent 72%);
+    filter: blur(8px); animation: drift 22s ease-in-out infinite alternate;
+  }
+  @keyframes drift { from { transform: translate3d(-2%, -1%, 0) scale(1.02) } to { transform: translate3d(3%, 2%, 0) scale(1.08) } }
+  .hero > .wrap { position: relative; z-index: 2 }
+  .kicker {
+    display: inline-block; text-transform: uppercase; letter-spacing: .24em; font-size: .72rem;
+    color: var(--accent); border: 1px solid var(--border); background: rgba(28,25,21,.6);
+    padding: 6px 14px; border-radius: 999px; margin-bottom: 26px;
+  }
+  .hero h1 {
+    font-size: clamp(2.3rem, 6vw, 4rem); line-height: 1.05; letter-spacing: -.01em;
+    background: linear-gradient(180deg, #fbeecb 0%, var(--accent2) 55%, #b98a3d 100%);
+    -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent;
+    margin-bottom: 20px;
+  }
+  .hero .lede { font-size: 1.18rem; color: var(--text); max-width: 660px; margin: 0 auto 10px }
+  .hero .sub { color: var(--muted); max-width: 640px; margin: 0 auto }
+  .hero-cta { margin-top: 34px; display: flex; gap: 12px; justify-content: center; flex-wrap: wrap }
+  .btn {
+    display: inline-block; padding: 12px 24px; border-radius: 9px; font-weight: 700;
+    font-size: .95rem; border: 1px solid var(--border); transition: transform .08s ease, filter .15s ease;
+  }
+  .btn:hover { filter: brightness(1.08); text-decoration: none; transform: translateY(-1px) }
+  .btn-primary { background: linear-gradient(#e7c074, #c4923f); color: #241704; border-color: #8a6a2e }
+  .btn-ghost { background: var(--surface2); color: var(--accent2) }
+
+  /* ---- STATS ---- */
+  .stats { border-top: 1px solid #17130d; border-bottom: 1px solid #17130d; background: #100d0a }
+  .stats-grid {
+    display: grid; grid-template-columns: repeat(4, 1fr); gap: 1px; background: var(--border);
+  }
+  .stat { background: #100d0a; padding: 30px 18px; text-align: center }
+  .stat .num {
+    font-size: clamp(1.8rem, 4vw, 2.6rem); font-weight: 800; color: var(--accent2);
+    letter-spacing: -.01em; line-height: 1;
+  }
+  .stat .lbl { color: var(--muted); font-size: .82rem; margin-top: 8px; letter-spacing: .02em }
+  @media (max-width: 720px){ .stats-grid { grid-template-columns: repeat(2, 1fr) } }
+
+  /* ---- SECTIONS ---- */
+  section.block { padding: 76px 0 }
+  .eyebrow { text-transform: uppercase; letter-spacing: .2em; font-size: .72rem; color: var(--muted); margin-bottom: 10px }
+  h2 { font-size: clamp(1.5rem, 3.4vw, 2.1rem); color: var(--accent2); margin-bottom: 10px; letter-spacing: -.01em }
+  .section-lede { color: var(--muted); max-width: 680px; margin-bottom: 40px }
+
+  /* ---- TIMELINE / JOURNAL ---- */
+  .timeline { position: relative; margin-left: 6px }
+  .timeline::before {
+    content: ""; position: absolute; left: 7px; top: 6px; bottom: 6px; width: 2px;
+    background: linear-gradient(180deg, var(--accent) 0%, var(--border) 60%, transparent 100%);
+  }
+  .entry {
+    position: relative; padding: 0 0 44px 42px;
+    opacity: 0; transform: translateY(22px); transition: opacity .6s ease, transform .6s ease;
+  }
+  .entry.show { opacity: 1; transform: none }
+  .entry::before {
+    content: ""; position: absolute; left: 0; top: 6px; width: 16px; height: 16px; border-radius: 50%;
+    background: var(--surface); border: 2px solid var(--accent); box-shadow: 0 0 0 4px rgba(212,165,85,.10);
+  }
+  .entry .when { font-size: .74rem; text-transform: uppercase; letter-spacing: .16em; color: var(--muted) }
+  .entry-card {
+    margin-top: 10px; background: var(--surface); border: 1px solid var(--border);
+    border-radius: 14px; padding: 26px 28px; transition: border-color .2s, transform .2s;
+  }
+  .entry-card:hover { border-color: #3a3228; transform: translateY(-2px) }
+  .entry-head { display: flex; align-items: baseline; flex-wrap: wrap; gap: 10px; margin-bottom: 4px }
+  .entry-head h3 { font-size: 1.35rem; color: var(--accent); }
+  .pillrow { display: flex; flex-wrap: wrap; gap: 6px; margin: 14px 0 6px }
+  .status {
+    font-size: .68rem; font-weight: 700; letter-spacing: .1em; text-transform: uppercase;
+    padding: 3px 10px; border-radius: 999px; border: 1px solid;
+  }
+  .status.shipped { color: var(--green); border-color: #3a4a2a; background: rgba(111,174,106,.08) }
+  .status.live { color: var(--teal); border-color: #1a3a3a; background: rgba(53,208,192,.08) }
+  .status.commercial { color: var(--accent); border-color: #4a3a1a; background: rgba(212,165,85,.08) }
+  .status.lab { color: var(--blue); border-color: #2a3a5a; background: rgba(91,143,212,.08) }
+  .entry-card p { color: var(--muted); font-size: .98rem }
+  .wins { list-style: none; margin: 14px 0 0; padding: 0; display: grid; gap: 8px }
+  .wins li { position: relative; padding-left: 24px; color: var(--text); font-size: .95rem }
+  .wins li::before { content: "◆"; position: absolute; left: 0; top: 1px; color: var(--accent); font-size: .78rem }
+  .tag {
+    display: inline-block; padding: 3px 11px; border-radius: 999px; font-size: .74rem;
+    background: var(--surface2); border: 1px solid var(--border); color: var(--muted);
+  }
+  .tag.ai { border-color: #3a4a2a; color: var(--green) }
+  .tag.audio { border-color: #3a2a1a; color: var(--accent) }
+  .tag.web { border-color: #1a3a3a; color: var(--teal) }
+  .tag.data { border-color: #2a3a5a; color: var(--blue) }
+  .entry-links { margin-top: 18px; display: flex; gap: 16px; flex-wrap: wrap; font-size: .9rem; font-weight: 600 }
+
+  /* ---- SCREENSHOTS ---- */
+  .entry-media {
+    margin: 2px 0 18px; border-radius: 12px; overflow: hidden; border: 1px solid var(--border);
+    background: var(--surface2); cursor: zoom-in; box-shadow: 0 16px 44px rgba(0,0,0,.5);
+  }
+  .entry-media img { display: block; width: 100%; height: auto; transition: transform .5s ease }
+  .entry-media:hover img { transform: scale(1.025) }
+  .thumbs { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; margin: 16px 0 4px }
+  .thumbs figure { margin: 0; border-radius: 10px; overflow: hidden; border: 1px solid var(--border); background: var(--surface2); cursor: zoom-in }
+  .thumbs img { display: block; width: 100%; height: auto; aspect-ratio: 16/10; object-fit: cover; transition: transform .35s ease }
+  .thumbs figure:hover img { transform: scale(1.07) }
+  .curve {
+    margin: 2px 0 18px; border-radius: 12px; border: 1px solid var(--border);
+    background: linear-gradient(160deg, #131b12, #0d0b09); padding: 22px; box-shadow: 0 16px 44px rgba(0,0,0,.5);
+  }
+  .curve svg { display: block; width: 100%; height: auto; max-width: 460px; margin: 0 auto }
+  .curve-legend { display: flex; gap: 18px; justify-content: center; flex-wrap: wrap; margin-top: 12px; font-size: .78rem; color: var(--muted) }
+  .curve-legend span { display: inline-flex; align-items: center; gap: 6px }
+  .curve-legend i { width: 14px; height: 3px; border-radius: 2px; display: inline-block }
+
+  /* ---- LIGHTBOX ---- */
+  .lightbox {
+    position: fixed; inset: 0; z-index: 100; background: rgba(6,5,4,.93); -webkit-backdrop-filter: blur(6px); backdrop-filter: blur(6px);
+    display: none; align-items: center; justify-content: center; padding: 28px; cursor: zoom-out;
+  }
+  .lightbox.open { display: flex }
+  .lightbox img { max-width: 95vw; max-height: 90vh; border-radius: 10px; border: 1px solid var(--border); box-shadow: 0 30px 90px rgba(0,0,0,.75) }
+  .lightbox .lb-close { position: absolute; top: 20px; right: 26px; font-size: 2rem; color: var(--muted); line-height: 1; cursor: pointer }
+  .lightbox .lb-close:hover { color: var(--text) }
+
+  /* ---- WHAT I BRING ---- */
+  .cap-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 18px }
+  .cap {
+    background: var(--surface); border: 1px solid var(--border); border-radius: 12px; padding: 24px;
+    transition: border-color .2s, transform .2s;
+  }
+  .cap:hover { border-color: #3a3228; transform: translateY(-2px) }
+  .cap .ico { font-size: 1.5rem; margin-bottom: 8px }
+  .cap h3 { color: var(--accent); font-size: 1.12rem; margin-bottom: 6px }
+  .cap p { color: var(--muted); font-size: .93rem }
+  @media (max-width: 640px){ .cap-grid { grid-template-columns: 1fr } }
+
+  .skills-grid { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 20px }
+  .skill { padding: 6px 14px; background: var(--surface); border: 1px solid var(--border); border-radius: 999px; font-size: .85rem; color: var(--text) }
+
+  /* ---- AI NOTE ---- */
+  .ai-note {
+    background: linear-gradient(135deg, #16120b, #100d0a); border: 1px solid var(--border);
+    border-radius: 16px; padding: 34px; position: relative; overflow: hidden;
+  }
+  .ai-note::after {
+    content: ""; position: absolute; right: -40px; top: -40px; width: 220px; height: 220px;
+    background: radial-gradient(circle, rgba(212,165,85,.14), transparent 65%); pointer-events: none;
+  }
+  .ai-note .eyebrow { color: var(--accent) }
+  .ai-note p { color: var(--text); max-width: 720px }
+  .ai-note p + p { margin-top: 12px; color: var(--muted) }
+
+  /* ---- CTA ---- */
+  .cta-band { text-align: center; padding: 84px 0 }
+  .cta-band h2 { margin-bottom: 14px }
+  .cta-band p { color: var(--muted); max-width: 540px; margin: 0 auto 26px }
+
+  /* ---- FOOTER ---- */
+  footer { padding: 34px 0; border-top: 1px solid var(--border); text-align: center; color: var(--muted); font-size: .8rem }
+
+  @media (prefers-reduced-motion: reduce) {
+    .entry { opacity: 1; transform: none; transition: none }
+    .aurora { animation: none }
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-inner">
+    <a class="brand" href="/">CortiCorp</a>
+    <div class="nav-links">
+      <a href="/#plugins">Plugins</a>
+      <a href="/#projects">Projects</a>
+      <a href="/journal.html">Highlights</a>
+      <a href="/projects.html">Registry</a>
+      <a href="/#contact">Contact</a>
+    </div>
+  </div>
+</nav>
+
+<!-- ==================== HERO ==================== -->
+<header class="hero">
+  <div class="aurora"></div>
+  <canvas id="wave" aria-hidden="true"></canvas>
+  <div class="wrap">
+    <span class="kicker">Selected work &middot; A journal</span>
+    <h1>The stuff I'm proud of.</h1>
+    <p class="lede">I'm Cort — a software engineer who ships. Real-time audio engines in C++,
+       AI-native applications, and data systems that turn mess into something you can actually use.</p>
+    <p class="sub">25+ years building for Fortune 500s and startups across finance, energy, healthcare,
+       and marketing. This page is the highlight reel — the projects that show what I do when I get to build the whole thing.</p>
+    <div class="hero-cta">
+      <a class="btn btn-primary" href="#journal">See the work &darr;</a>
+      <a class="btn btn-ghost" href="#contact">Get in touch</a>
+    </div>
+  </div>
+</header>
+
+<!-- ==================== STATS ==================== -->
+<section class="stats">
+  <div class="wrap" style="padding:0">
+    <div class="stats-grid">
+      <div class="stat"><div class="num" data-count="25" data-suffix="+">0</div><div class="lbl">Years shipping software</div></div>
+      <div class="stat"><div class="num" data-count="6">0</div><div class="lbl">Industries delivered in</div></div>
+      <div class="stat"><div class="num" data-count="200" data-suffix="+">0</div><div class="lbl">Synth presets crafted</div></div>
+      <div class="stat"><div class="num" data-count="450" data-suffix="+">0</div><div class="lbl">Pages auto-generated</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ==================== JOURNAL / TIMELINE ==================== -->
+<section class="block" id="journal">
+  <div class="wrap">
+    <p class="eyebrow">The highlight reel</p>
+    <h2>Things I built &mdash; and why they matter</h2>
+    <p class="section-lede">Each of these I designed and built end to end: the DSP or the data pipeline,
+       the AI integration, the interface, and the page selling it. Newest first.</p>
+
+    <div class="timeline">
+
+      <!-- CortComp -->
+      <div class="entry">
+        <div class="when">2026 &middot; In the lab</div>
+        <div class="entry-card">
+          <div class="entry-head">
+            <h3>CortComp</h3>
+            <span class="status lab">Prototype</span>
+          </div>
+          <div class="curve">
+            <svg viewBox="0 0 300 300" role="img" aria-label="Transfer curve showing downward, upward, and inverted compression modes">
+              <!-- grid -->
+              <line x1="40" y1="260" x2="280" y2="260" stroke="#2a241c" stroke-width="1.5"/>
+              <line x1="40" y1="260" x2="40" y2="20" stroke="#2a241c" stroke-width="1.5"/>
+              <text x="150" y="288" fill="#9a8e7a" font-size="11" text-anchor="middle" font-family="sans-serif">Input level &rarr;</text>
+              <text x="16" y="150" fill="#9a8e7a" font-size="11" text-anchor="middle" font-family="sans-serif" transform="rotate(-90 16 150)">Output level &rarr;</text>
+              <!-- unity reference -->
+              <line x1="40" y1="260" x2="280" y2="20" stroke="#3a3228" stroke-width="1.5" stroke-dasharray="4 4"/>
+              <text x="250" y="34" fill="#6b6151" font-size="10" font-family="sans-serif">1:1</text>
+              <!-- threshold -->
+              <line x1="170" y1="260" x2="170" y2="20" stroke="#4a3a1a" stroke-width="1" stroke-dasharray="3 5"/>
+              <text x="176" y="30" fill="#d4a555" font-size="10" font-family="sans-serif">Threshold</text>
+              <!-- upward (below threshold, lifted) -->
+              <path d="M40 260 L170 135" fill="none" stroke="#6fae6a" stroke-width="3" stroke-linecap="round"/>
+              <!-- downward compression above threshold -->
+              <path d="M170 135 L280 95" fill="none" stroke="#d4a555" stroke-width="3" stroke-linecap="round"/>
+              <!-- inverted slope above threshold -->
+              <path d="M170 135 L280 210" fill="none" stroke="#5b8fd4" stroke-width="3" stroke-linecap="round" stroke-dasharray="1 0" opacity=".95"/>
+              <circle cx="170" cy="135" r="4" fill="#e7c878"/>
+            </svg>
+            <div class="curve-legend">
+              <span><i style="background:#6fae6a"></i>Upward (softs &uarr;)</span>
+              <span><i style="background:#d4a555"></i>Downward (louds &darr;)</span>
+              <span><i style="background:#5b8fd4"></i>Invert (beyond &infin;:1)</span>
+            </div>
+          </div>
+          <p>A dynamics processor that does something most compressors physically can't: make the softs
+             loud <em>and</em> the louds soft — past the point of a limiter. Its INVERT mode drives the
+             transfer slope negative (beyond &infin;:1), so louder input yields quieter output: true dynamic inversion.</p>
+          <ul class="wins">
+            <li>Header-only, JUCE-free DSP engine — unit-testable offline, no framework lock-in</li>
+            <li>Stereo-linked feedforward detector that reacts to the louder channel to preserve the stereo image</li>
+            <li>Three simultaneous behaviors — downward, upward, and inversion — from one clean transfer curve</li>
+          </ul>
+          <div class="pillrow">
+            <span class="tag audio">C++ / JUCE</span><span class="tag">DSP</span><span class="tag">VST3</span><span class="tag">Real-time</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- CortSynth -->
+      <div class="entry">
+        <div class="when">2025&ndash;2026 &middot; Shipped &amp; free</div>
+        <div class="entry-card">
+          <div class="entry-head">
+            <h3>CortSynth</h3>
+            <span class="status shipped">Shipped</span>
+          </div>
+          <div class="entry-media">
+            <img src="/music/plugins/CortSynth/img/main.png" alt="CortSynth main synthesizer interface" loading="lazy">
+          </div>
+          <p>A complete VST3 <strong>synth, sampler, and drum machine</strong> in one plugin — the "everything"
+             instrument. Dual-oscillator hybrid engine, physically-modeled instruments, 200+ presets, and an AI
+             that builds patches from a plain-English sentence. Downloadable, with a demo video and real users.</p>
+          <ul class="wins">
+            <li>AI Tone Designer: describe a sound in words, get an editable patch — Claude API driving real synthesis</li>
+            <li>Physical modeling: Karplus-Strong strings, a dispersive stiff-string piano with resonating soundboard and sympathetic strings</li>
+            <li>Zero heap allocations on the audio thread — glitch-free under load, built for live performance</li>
+            <li>2&times; oversampling, FDN reverb with shimmer, a rotary Leslie, and an offline preset generator</li>
+          </ul>
+          <div class="thumbs">
+            <figure><img src="/music/plugins/CortSynth/img/mod.png" alt="Modulation Constellation" loading="lazy"></figure>
+            <figure><img src="/music/plugins/CortSynth/img/sampler.png" alt="Sampler mode" loading="lazy"></figure>
+            <figure><img src="/music/plugins/CortSynth/img/drums.png" alt="Drum pad grid" loading="lazy"></figure>
+          </div>
+          <div class="pillrow">
+            <span class="tag audio">C++ / JUCE</span><span class="tag ai">Claude API</span><span class="tag">DSP</span><span class="tag">VST3 + Standalone</span>
+          </div>
+          <div class="entry-links">
+            <a href="/music/plugins/CortSynth/">Product page &rarr;</a>
+            <a href="https://www.youtube.com/embed/UpcI-cCeDR4" target="_blank" rel="noopener">Demo video &rarr;</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- CortVerb -->
+      <div class="entry">
+        <div class="when">2026 &middot; Commercial release</div>
+        <div class="entry-card">
+          <div class="entry-head">
+            <h3>CortVerb</h3>
+            <span class="status commercial">$99 &middot; Launching</span>
+          </div>
+          <div class="entry-media">
+            <img src="/music/plugins/CortVerb/img/main.png" alt="CortVerb reverb interface with live visualization screen" loading="lazy">
+          </div>
+          <p>A commercial VST3 reverb built on a Hybrid FDN engine, wrapped in a hardware-grade interface: a
+             central digital screen that visualizes the reverb live across six pages, an auto-duck sidechain,
+             and 12 tactile knobs. Proof I can take an engine all the way to a product people pay for.</p>
+          <ul class="wins">
+            <li>Hybrid feedback-delay-network reverb tuned for musical, mix-ready tails</li>
+            <li>Real-time visualization screen with six views — the reverb, made legible</li>
+            <li>Auto-duck sidechain so the reverb ceilings gracefully under a busy mix</li>
+          </ul>
+          <div class="pillrow">
+            <span class="tag audio">C++ / JUCE</span><span class="tag">DSP</span><span class="tag">VST3</span><span class="tag">Product</span>
+          </div>
+          <div class="entry-links"><a href="/music/plugins/CortVerb/">Product page &rarr;</a></div>
+        </div>
+      </div>
+
+      <!-- Apartment Finder -->
+      <div class="entry">
+        <div class="when">2026 &middot; Live demo</div>
+        <div class="entry-card">
+          <div class="entry-head">
+            <h3>Apartment Finder</h3>
+            <span class="status live">Live</span>
+          </div>
+          <div class="entry-media">
+            <img src="/img/apartment-finder.png" alt="Apartment Finder dashboard with interactive map and scored listings" loading="lazy">
+          </div>
+          <p>An AI-native rental aggregator that scrapes listings from six sources, then uses vision AI to
+             actually <em>look</em> at every photo — scoring quality and reading off flooring, natural light,
+             and kitchen style. Everything lands on an interactive map-and-table dashboard with commute scoring.</p>
+          <ul class="wins">
+            <li>Multi-source scraping across Craigslist, Zillow, Apartments.com, Trulia, Realtor.com, and Zumper (Playwright)</li>
+            <li>Gemini Vision scores photo quality and extracts features no listing field contains</li>
+            <li>Auto-generated 450+ individual detail pages with galleries, lightboxes, and commute breakdowns</li>
+            <li>Scam detection from price anomalies and stock-photo patterns; work-commute distance scoring</li>
+          </ul>
+          <div class="pillrow">
+            <span class="tag ai">Gemini Vision</span><span class="tag data">Python</span><span class="tag">Playwright</span><span class="tag web">Leaflet / Maps</span>
+          </div>
+          <div class="entry-links">
+            <a href="/projects/apartment-finder/">Project page &rarr;</a>
+            <a href="https://d9g4r9dyrn-hue.github.io/apartment-finder/" target="_blank" rel="noopener">Live demo &rarr;</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- CatfishCheck -->
+      <div class="entry">
+        <div class="when">2026 &middot; Live tool</div>
+        <div class="entry-card">
+          <div class="entry-head">
+            <h3>CatfishCheck</h3>
+            <span class="status live">Live</span>
+          </div>
+          <div class="entry-media">
+            <img src="/img/catfishcheck.png" alt="CatfishCheck investigation interface" loading="lazy">
+          </div>
+          <p>A self-service OSINT tool for verifying online identities. Upload photos, phone numbers, social
+             handles, and messages about a suspected scammer; get back a report that surfaces the red flags —
+             built with privacy as a first principle.</p>
+          <ul class="wins">
+            <li>Reverse image search, carrier lookup, and a geo-verification beacon in one workflow</li>
+            <li>AI-assisted analysis that turns scattered evidence into a readable risk report</li>
+            <li>Case-based investigation UI that keeps each subject organized and reviewable</li>
+          </ul>
+          <div class="pillrow">
+            <span class="tag ai">AI Analysis</span><span class="tag web">JavaScript</span><span class="tag">OSINT</span><span class="tag">Privacy</span>
+          </div>
+          <div class="entry-links"><a href="/projects/catfishcheck/">Project page &rarr;</a></div>
+        </div>
+      </div>
+
+      <!-- Ironclad -->
+      <div class="entry">
+        <div class="when">2026 &middot; In development</div>
+        <div class="entry-card">
+          <div class="entry-head">
+            <h3>Ironclad</h3>
+            <span class="status commercial">Coming soon</span>
+          </div>
+          <div class="entry-media">
+            <img src="/music/plugins/Ironclad/img/main.png" alt="Ironclad amp-style distortion plugin interface" loading="lazy">
+          </div>
+          <p>An amp-style distortion plugin with four distinct voicings and a focused tone stack, dressed in a
+             bold hardware-inspired UI. Rounds out a coherent plugin line — synth, reverb, distortion,
+             compressor — all sharing an engineering discipline.</p>
+          <div class="pillrow">
+            <span class="tag audio">C++ / JUCE</span><span class="tag">DSP</span><span class="tag">VST3</span><span class="tag">Distortion</span>
+          </div>
+          <div class="entry-links"><a href="/music/plugins/Ironclad/">Product page &rarr;</a></div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ==================== WHAT I BRING ==================== -->
+<section class="block" style="border-top:1px solid #17130d; background:#0e0b09">
+  <div class="wrap">
+    <p class="eyebrow">Why hire me</p>
+    <h2>What I actually bring to a team</h2>
+    <p class="section-lede">The through-line across everything above: I take an idea from a napkin to a
+       shipped, polished thing — and I use AI to move faster than a team without it.</p>
+    <div class="cap-grid">
+      <div class="cap">
+        <div class="ico">🚀</div>
+        <h3>I ship the whole thing</h3>
+        <p>Engine, interface, and the page that sells it. I don't need a spec handed down in three parts —
+           I can own a product from architecture to launch.</p>
+      </div>
+      <div class="cap">
+        <div class="ico">⚡</div>
+        <h3>Hard real-time engineering</h3>
+        <p>Zero-allocation audio threads, oversampling, physical modeling, DSP that can't glitch. If a domain
+           has tight constraints and no room for error, I'm comfortable there.</p>
+      </div>
+      <div class="cap">
+        <div class="ico">🧠</div>
+        <h3>AI where it does real work</h3>
+        <p>Not a chatbot bolted on. Vision models that read photos, language models that generate valid patches,
+           pipelines that score and decide — AI as a load-bearing part of the product.</p>
+      </div>
+      <div class="cap">
+        <div class="ico">🗺️</div>
+        <h3>Mess into something usable</h3>
+        <p>Scraping, cleaning, enriching, and visualizing real-world data — turning unstructured listings,
+           photos, and text into searchable, scored, actionable dashboards.</p>
+      </div>
+    </div>
+
+    <div style="margin-top:40px">
+      <p class="eyebrow">The toolkit</p>
+      <div class="skills-grid">
+        <span class="skill">C++</span><span class="skill">Python</span><span class="skill">JavaScript</span>
+        <span class="skill">JUCE / DSP</span><span class="skill">Claude API</span><span class="skill">Gemini Vision</span>
+        <span class="skill">FastAPI</span><span class="skill">React</span><span class="skill">Node.js</span>
+        <span class="skill">Playwright / Scraping</span><span class="skill">SQL</span><span class="skill">AWS</span>
+        <span class="skill">Docker</span><span class="skill">Leaflet / Maps</span><span class="skill">Git</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ==================== AI NOTE ==================== -->
+<section class="block">
+  <div class="wrap">
+    <div class="ai-note">
+      <p class="eyebrow">About this page</p>
+      <p style="font-size:1.1rem"><strong>This page is itself the argument.</strong> I built it with an AI
+         coding agent as a pair — it read my whole body of work, matched my site's design system, and helped
+         me shape and polish this in a single sitting.</p>
+      <p>That's the point I want a future employer to take away: I don't just <em>use</em> AI as a feature in
+         products — I work <em>with</em> it as a force multiplier. The same leverage that put this page together
+         is the leverage I bring to a team's roadmap. More shipped, faster, without cutting the quality corner.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ==================== CTA ==================== -->
+<section class="cta-band" id="contact">
+  <div class="wrap">
+    <p class="eyebrow">Let's talk</p>
+    <h2>Want someone who ships?</h2>
+    <p>If you're building something ambitious and want an engineer who can own it end to end — and who
+       already builds with AI, not around it — I'd love to hear from you.</p>
+    <div class="hero-cta">
+      <a class="btn btn-primary" href="mailto:info@corticorp.com">Email me &rarr;</a>
+      <a class="btn btn-ghost" href="/">Back to CortiCorp</a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    &copy; <span id="year">2026</span> CortiCorp, LLC &middot; Clearwater, FL &middot; Built by Cort, with an assist from AI.
+  </div>
+</footer>
+
+<!-- ==================== LIGHTBOX ==================== -->
+<div class="lightbox" id="lightbox" aria-hidden="true">
+  <span class="lb-close" aria-label="Close">&times;</span>
+  <img id="lb-img" src="" alt="">
+</div>
+
+<script>
+  document.getElementById('year').textContent = new Date().getFullYear();
+
+  /* ---- Scroll-reveal timeline entries ---- */
+  (function(){
+    var entries = document.querySelectorAll('.entry');
+    if (!('IntersectionObserver' in window)) { entries.forEach(function(e){ e.classList.add('show'); }); return; }
+    var io = new IntersectionObserver(function(list){
+      list.forEach(function(en){
+        if (en.isIntersecting){ en.target.classList.add('show'); io.unobserve(en.target); }
+      });
+    }, { threshold: .18 });
+    entries.forEach(function(e){ io.observe(e); });
+  })();
+
+  /* ---- Count-up stats ---- */
+  (function(){
+    var reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    var nums = document.querySelectorAll('.num[data-count]');
+    function run(el){
+      var target = parseInt(el.getAttribute('data-count'), 10);
+      var suffix = el.getAttribute('data-suffix') || '';
+      if (reduce){ el.textContent = target + suffix; return; }
+      var start = null, dur = 1300;
+      function step(ts){
+        if (!start) start = ts;
+        var p = Math.min((ts - start) / dur, 1);
+        var eased = 1 - Math.pow(1 - p, 3);
+        el.textContent = Math.round(target * eased) + suffix;
+        if (p < 1) requestAnimationFrame(step);
+      }
+      requestAnimationFrame(step);
+    }
+    if (!('IntersectionObserver' in window)) { nums.forEach(run); return; }
+    var io = new IntersectionObserver(function(list){
+      list.forEach(function(en){ if (en.isIntersecting){ run(en.target); io.unobserve(en.target); } });
+    }, { threshold: .6 });
+    nums.forEach(function(n){ io.observe(n); });
+  })();
+
+  /* ---- Lightbox for screenshots ---- */
+  (function(){
+    var lb = document.getElementById('lightbox'), lbImg = document.getElementById('lb-img');
+    if (!lb) return;
+    function open(src, alt){ lbImg.src = src; lbImg.alt = alt || ''; lb.classList.add('open'); lb.setAttribute('aria-hidden','false'); }
+    function close(){ lb.classList.remove('open'); lb.setAttribute('aria-hidden','true'); lbImg.src = ''; }
+    document.querySelectorAll('.entry-media img, .thumbs img').forEach(function(img){
+      img.style.cursor = 'zoom-in';
+      img.addEventListener('click', function(){ open(img.getAttribute('src'), img.getAttribute('alt')); });
+    });
+    lb.addEventListener('click', close);
+    document.addEventListener('keydown', function(e){ if (e.key === 'Escape') close(); });
+  })();
+
+  /* ---- Hero waveform (nod to the audio work) ---- */
+  (function(){
+    var reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    var c = document.getElementById('wave'); if (!c) return;
+    var ctx = c.getContext('2d'), w, h, dpr = Math.min(window.devicePixelRatio || 1, 2), t = 0;
+    function size(){
+      var r = c.getBoundingClientRect();
+      w = c.width = r.width * dpr; h = c.height = r.height * dpr;
+    }
+    size(); window.addEventListener('resize', size);
+    function draw(){
+      ctx.clearRect(0, 0, w, h);
+      var mid = h * 0.62, waves = [
+        { amp: h*0.10, len: 0.010, sp: 0.020, col: 'rgba(212,165,85,0.45)' },
+        { amp: h*0.07, len: 0.016, sp: 0.031, col: 'rgba(53,208,192,0.30)' },
+        { amp: h*0.05, len: 0.022, sp: 0.014, col: 'rgba(91,143,212,0.28)' }
+      ];
+      waves.forEach(function(wv){
+        ctx.beginPath();
+        for (var x = 0; x <= w; x += 2*dpr){
+          var y = mid + Math.sin(x*wv.len + t*wv.sp) * wv.amp * (0.6 + 0.4*Math.sin(x*0.002 + t*0.01));
+          x === 0 ? ctx.moveTo(x, y) : ctx.lineTo(x, y);
+        }
+        ctx.strokeStyle = wv.col; ctx.lineWidth = 1.5*dpr; ctx.stroke();
+      });
+      t += 1;
+      if (!reduce) requestAnimationFrame(draw);
+    }
+    reduce ? draw() : requestAnimationFrame(draw);
+  })();
+</script>
+</body>
+</html>
