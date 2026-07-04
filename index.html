@@ -98,6 +98,37 @@
     background: #1a2a3a; border: 1px solid #2a4a5a; color: #5bb8d4; margin-bottom: 8px;
   }
 
+  /* ---- PLUGINS HUB (home) ---- */
+  .plugin-hub {
+    background: var(--surface); border: 1px solid var(--border); border-radius: 12px;
+    padding: 32px; transition: border-color .2s;
+  }
+  .plugin-hub:hover { border-color: #3a3228 }
+  .plugin-hub > p { color: var(--muted); max-width: 720px }
+  .plugin-strip {
+    display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; margin: 24px 0 4px;
+  }
+  .plugin-thumb {
+    display: block; background: var(--surface2); border: 1px solid var(--border);
+    border-radius: 10px; overflow: hidden; transition: border-color .2s, transform .12s;
+    color: var(--text);
+  }
+  .plugin-thumb:hover { border-color: #4a3f2c; transform: translateY(-2px); text-decoration: none }
+  .plugin-thumb img {
+    width: 100%; aspect-ratio: 16/10; object-fit: cover; display: block;
+    border-bottom: 1px solid var(--border);
+  }
+  .plugin-thumb .pt-body { padding: 12px 14px 14px }
+  .plugin-thumb .pt-name { font-weight: 700; color: var(--accent2); font-size: 1rem }
+  .plugin-thumb .pt-desc { color: var(--muted); font-size: .82rem; margin-top: 2px }
+  .pt-status {
+    display: inline-block; margin-top: 8px; padding: 2px 9px; border-radius: 4px;
+    font-size: .68rem; font-weight: 700; letter-spacing: .06em; text-transform: uppercase;
+  }
+  .pt-status.free { background: #16281a; border: 1px solid #2c4a30; color: var(--green) }
+  .pt-status.soon { background: #1a2a3a; border: 1px solid #2a4a5a; color: #5bb8d4 }
+  @media (max-width: 640px) { .plugin-strip { grid-template-columns: 1fr } }
+
   /* ---- ABOUT ---- */
   .about-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 28px }
   .about-card {
@@ -173,28 +204,46 @@
     <p style="color:var(--muted); margin-bottom:28px; max-width:680px">
       A growing line of VST3 instruments and effects, built in C++ with JUCE.
     </p>
-    <div class="projects">
+    <!-- Plugins hub -->
+    <div class="plugin-hub">
+      <h3>CortiCorp Plugins</h3>
+      <p>Real-time audio plugins with hand-crafted interfaces and zero-allocation engines.
+         Three are here so far &mdash; with new instruments and effects almost ready to ship.</p>
 
-      <!-- Plugins hub -->
-      <div class="project-card">
-        <img class="project-img" src="music/plugins/CortSynth/img/main.png"
-             alt="CortiCorp VST3 plugins">
-        <div>
-          <h3>CortiCorp Plugins</h3>
-          <p>Real-time audio plugins with hand-crafted interfaces and zero-allocation engines.
-             The lineup so far: <strong>CortSynth</strong>, a free synth / sampler / drum machine;
-             <strong>CortVerb</strong>, a hybrid-FDN reverb with live visualization; and
-             <strong>Ironclad</strong>, an amp-style distortion &mdash; with more in development.</p>
-          <div class="project-meta">
-            <span class="tag audio">C++ / JUCE</span>
-            <span class="tag ai">Claude API</span>
-            <span class="tag">DSP</span>
-            <span class="tag">VST3</span>
+      <div class="plugin-strip">
+        <a class="plugin-thumb" href="music/plugins/CortSynth/">
+          <img src="music/plugins/CortSynth/img/main.png" alt="CortSynth VST3 synthesizer">
+          <div class="pt-body">
+            <div class="pt-name">CortSynth</div>
+            <div class="pt-desc">Synth, sampler &amp; drum machine in one plugin.</div>
+            <span class="pt-status free">Free</span>
           </div>
-          <a class="project-link" href="plugins/">Explore all plugins &rarr;</a>
-        </div>
+        </a>
+        <a class="plugin-thumb" href="music/plugins/CortVerb/">
+          <img src="music/plugins/CortVerb/img/main.png" alt="CortVerb VST3 reverb">
+          <div class="pt-body">
+            <div class="pt-name">CortVerb</div>
+            <div class="pt-desc">Hybrid-FDN reverb with live visualization.</div>
+            <span class="pt-status soon">Coming Soon</span>
+          </div>
+        </a>
+        <a class="plugin-thumb" href="music/plugins/Ironclad/">
+          <img src="music/plugins/Ironclad/img/main.png" alt="Ironclad distortion plugin">
+          <div class="pt-body">
+            <div class="pt-name">Ironclad</div>
+            <div class="pt-desc">Amp-style distortion with four voicings.</div>
+            <span class="pt-status soon">Coming Soon</span>
+          </div>
+        </a>
       </div>
 
+      <div class="project-meta">
+        <span class="tag audio">C++ / JUCE</span>
+        <span class="tag ai">Claude API</span>
+        <span class="tag">DSP</span>
+        <span class="tag">VST3</span>
+      </div>
+      <a class="project-link" href="plugins/">Explore all plugins &rarr;</a>
     </div>
   </div>
 </section>
