@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Request received — CortiCorp Support</title>
+<meta name="robots" content="noindex">
+<link rel="canonical" href="https://corticorp.com/plugins/support/">
+<style>
+  :root {
+    --bg: #0c0a08; --surface: #141210; --surface2: #1c1915; --border: #2a241c;
+    --text: #e8e0d4; --muted: #9a8e7a; --accent: #d4a555; --accent2: #e7c878;
+    --green: #6fae6a; --maxw: 1000px;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0 }
+  body {
+    background: var(--bg); color: var(--text); min-height: 100vh;
+    display: flex; flex-direction: column;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    line-height: 1.65; font-size: 17px;
+  }
+  a { color: var(--accent2); text-decoration: none }
+  a:hover { text-decoration: underline }
+  .wrap { max-width: var(--maxw); margin: 0 auto; padding: 0 24px }
+
+  nav {
+    background: rgba(12,10,8,.92); border-bottom: 1px solid var(--border);
+  }
+  .nav-inner {
+    display: flex; align-items: center; justify-content: space-between;
+    max-width: var(--maxw); margin: 0 auto; padding: 0 24px; height: 56px;
+  }
+  .brand { font-weight: 800; font-size: 1.1rem; color: var(--accent2); letter-spacing: .03em }
+  .nav-links a { margin-left: 24px; color: var(--muted); font-size: .9rem }
+  .nav-links a:hover { color: var(--text); text-decoration: none }
+
+  main { flex: 1; display: flex; align-items: center; justify-content: center; text-align: center; padding: 60px 24px }
+  .card { max-width: 560px }
+  .check {
+    width: 64px; height: 64px; margin: 0 auto 24px; border-radius: 50%;
+    background: #16281a; border: 1px solid #2c4a30;
+    display: flex; align-items: center; justify-content: center;
+  }
+  .check svg { width: 30px; height: 30px; stroke: var(--green); stroke-width: 3; fill: none }
+  h1 { font-size: clamp(1.7rem, 4vw, 2.4rem); color: var(--accent2); margin-bottom: 14px }
+  p { color: var(--muted); max-width: 480px; margin: 0 auto 12px }
+  .btns { margin-top: 30px; display: flex; gap: 14px; justify-content: center; flex-wrap: wrap }
+  .btn {
+    display: inline-block; padding: 11px 24px; border-radius: 8px; font-weight: 600; font-size: .92rem;
+    border: 1px solid var(--border); background: var(--surface2); color: var(--accent2);
+    transition: background .15s;
+  }
+  .btn:hover { background: #241e14; text-decoration: none }
+  .btn.primary {
+    border-color: #4a3d24; color: #1a1408;
+    background: linear-gradient(180deg, var(--accent2), var(--accent));
+  }
+  .btn.primary:hover { filter: brightness(1.07); background: linear-gradient(180deg, var(--accent2), var(--accent)) }
+
+  footer {
+    padding: 28px 0; border-top: 1px solid var(--border);
+    text-align: center; color: var(--muted); font-size: .8rem;
+  }
+  footer a { color: var(--accent2) }
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-inner">
+    <div style="display:flex;align-items:center;gap:16px">
+      <a href="/plugins/" style="font-size:.88rem;font-weight:600;color:var(--muted);white-space:nowrap">&larr; Plugins</a>
+      <div class="brand"><a href="/" style="color:inherit">CortiCorp</a></div>
+    </div>
+    <div class="nav-links">
+      <a href="/plugins/">Plugins</a>
+      <a href="/#contact">Contact</a>
+    </div>
+  </div>
+</nav>
+
+<main>
+  <div class="card">
+    <div class="check">
+      <svg viewBox="0 0 24 24"><path d="M4 12l5 5L20 6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+    </div>
+    <h1>Thanks — your request is in.</h1>
+    <p>We've received your support request and it's landed in our inbox.
+       We'll reply by email as soon as we can, usually within a couple of days.</p>
+    <p>In the meantime, feel free to keep exploring the plugins.</p>
+    <div class="btns">
+      <a class="btn primary" href="/plugins/">Back to plugins</a>
+      <a class="btn" href="/">Home</a>
+    </div>
+  </div>
+</main>
+
+<footer>
+  <div class="wrap">
+    &copy; <span id="year">2026</span> CortiCorp, LLC &middot; Clearwater, FL &middot;
+    <a href="/">corticorp.com</a>
+  </div>
+</footer>
+
+<script>document.getElementById('year').textContent = new Date().getFullYear();</script>
+</body>
+</html>

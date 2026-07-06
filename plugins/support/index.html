@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Plugin Support — CortiCorp</title>
+<meta name="description" content="Get help with a CortiCorp VST3 plugin. Report a bug, ask a question, or send feedback — fill out the support form and we'll get back to you.">
+<meta property="og:title" content="Plugin Support — CortiCorp">
+<meta property="og:description" content="Report a bug, ask a question, or send feedback about a CortiCorp plugin.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://corticorp.com/plugins/support/">
+<link rel="canonical" href="https://corticorp.com/plugins/support/">
+<style>
+  :root {
+    --bg: #0c0a08; --surface: #141210; --surface2: #1c1915; --border: #2a241c;
+    --text: #e8e0d4; --muted: #9a8e7a; --accent: #d4a555; --accent2: #e7c878;
+    --green: #6fae6a; --teal: #35d0c0; --blue: #5b8fd4; --maxw: 1000px;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0 }
+  html { scroll-behavior: smooth }
+  body {
+    background: var(--bg); color: var(--text);
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    line-height: 1.65; font-size: 17px;
+  }
+  a { color: var(--accent2); text-decoration: none }
+  a:hover { text-decoration: underline }
+  .wrap { max-width: var(--maxw); margin: 0 auto; padding: 0 24px }
+
+  /* ---- NAV ---- */
+  nav {
+    position: sticky; top: 0; z-index: 10;
+    background: rgba(12,10,8,.92); backdrop-filter: blur(8px);
+    border-bottom: 1px solid var(--border);
+  }
+  .nav-inner {
+    display: flex; align-items: center; justify-content: space-between;
+    max-width: var(--maxw); margin: 0 auto; padding: 0 24px; height: 56px;
+  }
+  .brand { font-weight: 800; font-size: 1.1rem; color: var(--accent2); letter-spacing: .03em }
+  .nav-links a { margin-left: 24px; color: var(--muted); font-size: .9rem; transition: color .15s }
+  .nav-links a:hover { color: var(--text); text-decoration: none }
+
+  /* ---- HERO ---- */
+  .hero {
+    padding: 72px 0 44px; text-align: center;
+    background: linear-gradient(180deg, #15120e 0%, var(--bg) 100%);
+  }
+  .hero .eyebrow {
+    text-transform: uppercase; letter-spacing: .2em; font-size: .72rem;
+    color: var(--muted); margin-bottom: 10px;
+  }
+  .hero h1 { font-size: clamp(2rem, 5vw, 2.8rem); color: var(--accent2); margin-bottom: 14px }
+  .hero p { font-size: 1.1rem; color: var(--muted); max-width: 620px; margin: 0 auto }
+
+  /* ---- SECTIONS ---- */
+  section { padding: 48px 0 64px }
+  .eyebrow {
+    text-transform: uppercase; letter-spacing: .2em; font-size: .72rem;
+    color: var(--muted); margin-bottom: 8px;
+  }
+  h2 { font-size: clamp(1.4rem, 3vw, 1.9rem); color: var(--accent2); margin-bottom: 8px }
+
+  /* ---- FORM ---- */
+  .form-card {
+    background: var(--surface); border: 1px solid var(--border); border-radius: 12px;
+    padding: 32px; max-width: 720px; margin: 0 auto;
+  }
+  .form-intro { color: var(--muted); font-size: .96rem; margin-bottom: 28px }
+  .grid2 { display: grid; grid-template-columns: 1fr 1fr; gap: 20px }
+  .field { margin-bottom: 20px }
+  .field.last { margin-bottom: 8px }
+  label {
+    display: block; font-size: .8rem; font-weight: 600; letter-spacing: .04em;
+    text-transform: uppercase; color: var(--muted); margin-bottom: 7px;
+  }
+  label .req { color: var(--accent); margin-left: 3px }
+  input, select, textarea {
+    width: 100%; padding: 11px 13px; font-size: .98rem; font-family: inherit;
+    color: var(--text); background: var(--surface2);
+    border: 1px solid var(--border); border-radius: 7px; transition: border-color .15s;
+  }
+  input:focus, select:focus, textarea:focus {
+    outline: none; border-color: var(--accent);
+  }
+  input::placeholder, textarea::placeholder { color: #6a6153 }
+  select { appearance: none; cursor: pointer;
+    background-image: url("data:image/svg+xml;charset=US-ASCII,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20width='14'%20height='14'%20viewBox='0%200%2024%2024'%20fill='none'%20stroke='%239a8e7a'%20stroke-width='2'%3E%3Cpath%20d='M6%209l6%206%206-6'/%3E%3C/svg%3E");
+    background-repeat: no-repeat; background-position: right 13px center; padding-right: 38px;
+  }
+  textarea { resize: vertical; min-height: 140px; line-height: 1.55 }
+  .hint { font-size: .8rem; color: #6a6153; margin-top: 6px }
+  .submit-row { display: flex; align-items: center; gap: 18px; flex-wrap: wrap; margin-top: 26px }
+  button[type=submit] {
+    padding: 12px 30px; border-radius: 8px; font-weight: 700; font-size: .95rem;
+    font-family: inherit; cursor: pointer; border: 1px solid #4a3d24;
+    background: linear-gradient(180deg, var(--accent2), var(--accent)); color: #1a1408;
+    transition: filter .15s, transform .05s;
+  }
+  button[type=submit]:hover { filter: brightness(1.07) }
+  button[type=submit]:active { transform: translateY(1px) }
+  .privacy { font-size: .82rem; color: var(--muted) }
+
+  /* honeypot — hidden from real users */
+  .hp { position: absolute; left: -5000px }
+
+  /* ---- ALT CONTACT ---- */
+  .alt {
+    max-width: 720px; margin: 28px auto 0; text-align: center;
+    color: var(--muted); font-size: .9rem;
+  }
+
+  /* ---- FOOTER ---- */
+  footer {
+    padding: 32px 0; border-top: 1px solid var(--border);
+    text-align: center; color: var(--muted); font-size: .8rem;
+  }
+  footer a { color: var(--accent2) }
+
+  @media (max-width: 640px) {
+    .grid2 { grid-template-columns: 1fr; gap: 0 }
+    .form-card { padding: 22px }
+    .hero { padding: 52px 0 32px }
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-inner">
+    <div style="display:flex;align-items:center;gap:16px">
+      <a href="/plugins/" style="font-size:.88rem;font-weight:600;color:var(--muted);white-space:nowrap">&larr; Plugins</a>
+      <div class="brand"><a href="/" style="color:inherit">CortiCorp</a></div>
+    </div>
+    <div class="nav-links">
+      <a href="/plugins/">Plugins</a>
+      <a href="/#projects">Projects</a>
+      <a href="/#contact">Contact</a>
+    </div>
+  </div>
+</nav>
+
+<!-- ==================== HERO ==================== -->
+<section class="hero">
+  <div class="wrap">
+    <p class="eyebrow">Plugin support</p>
+    <h1>How can we help?</h1>
+    <p>Hit a bug, have a question, or want to send feedback about a CortiCorp plugin?
+       Fill out the form below and we'll get back to you by email.</p>
+  </div>
+</section>
+
+<!-- ==================== FORM ==================== -->
+<section>
+  <div class="wrap">
+    <form class="form-card"
+          action="https://formsubmit.co/pluginsupport@corticorp.com"
+          method="POST">
+
+      <!-- FormSubmit config -->
+      <input type="hidden" name="_subject" value="New plugin support request">
+      <input type="hidden" name="_template" value="table">
+      <input type="hidden" name="_captcha" value="true">
+      <input type="hidden" name="_next" value="https://corticorp.com/plugins/support/thanks.html">
+      <!-- honeypot for bots -->
+      <input type="text" name="_honey" class="hp" tabindex="-1" autocomplete="off">
+
+      <p class="form-intro">Fields marked <span style="color:var(--accent)">*</span> are required.
+        The more detail you give on the issue and how to reproduce it, the faster we can help.</p>
+
+      <div class="grid2">
+        <div class="field">
+          <label for="name">Name <span class="req">*</span></label>
+          <input type="text" id="name" name="Name" required placeholder="Your name" autocomplete="name">
+        </div>
+        <div class="field">
+          <label for="email">Email <span class="req">*</span></label>
+          <input type="email" id="email" name="Email" required placeholder="you@example.com" autocomplete="email">
+        </div>
+      </div>
+
+      <div class="grid2">
+        <div class="field">
+          <label for="plugin">Plugin <span class="req">*</span></label>
+          <select id="plugin" name="Plugin" required>
+            <option value="" disabled selected>Select a plugin…</option>
+            <option>CortSynth</option>
+            <option>CortVerb</option>
+            <option>Ironclad</option>
+            <option>Other / not sure</option>
+          </select>
+        </div>
+        <div class="field">
+          <label for="version">Plugin version</label>
+          <input type="text" id="version" name="Version" placeholder="e.g. 1.2.0">
+          <p class="hint">Shown in the plugin's about / title bar.</p>
+        </div>
+      </div>
+
+      <div class="grid2">
+        <div class="field">
+          <label for="type">Type of request <span class="req">*</span></label>
+          <select id="type" name="Request type" required>
+            <option value="" disabled selected>Select…</option>
+            <option>Bug report</option>
+            <option>Crash / won't load</option>
+            <option>Installation / activation</option>
+            <option>Question</option>
+            <option>Feature request</option>
+            <option>Feedback</option>
+            <option>Other</option>
+          </select>
+        </div>
+        <div class="field">
+          <label for="daw">DAW &amp; OS</label>
+          <input type="text" id="daw" name="DAW and OS" placeholder="e.g. FL Studio 21, Windows 11">
+          <p class="hint">Which host and operating system you're running.</p>
+        </div>
+      </div>
+
+      <div class="field last">
+        <label for="message">Describe the issue <span class="req">*</span></label>
+        <textarea id="message" name="Message" required
+          placeholder="What happened, what you expected, and the steps to reproduce it. Include any error messages."></textarea>
+      </div>
+
+      <div class="submit-row">
+        <button type="submit">Send request</button>
+        <span class="privacy">We only use your details to respond to this request.</span>
+      </div>
+    </form>
+
+    <p class="alt">Prefer email? Reach us directly at
+       <a href="mailto:pluginsupport@corticorp.com?subject=Plugin%20support">pluginsupport@corticorp.com</a>.</p>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    &copy; <span id="year">2026</span> CortiCorp, LLC &middot; Clearwater, FL &middot;
+    <a href="/">corticorp.com</a>
+  </div>
+</footer>
+
+<script>document.getElementById('year').textContent = new Date().getFullYear();</script>
+</body>
+</html>
