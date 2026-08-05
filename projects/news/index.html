@@ -53,25 +53,31 @@
   .btn-ghost { background: var(--surface2); color: var(--accent2) }
   .btn:hover { filter: brightness(1.08); text-decoration: none }
 
-  /* ---- News poster (stands in for a screenshot) ---- */
-  .poster { position: relative; overflow: hidden; border-radius: 12px; border: 1px solid var(--border);
-    background: radial-gradient(120% 140% at 15% 0%, #1a2740 0%, #12100c 55%, #0c0a08 100%);
-    padding: 30px 30px 26px; margin: 8px 0 4px; }
-  .poster .masthead { display:flex; align-items:baseline; justify-content:space-between; flex-wrap:wrap; gap:8px;
-    border-bottom:1px solid #2f2a20; padding-bottom:14px; margin-bottom:18px }
-  .poster .mh-name { font-weight:800; letter-spacing:.02em; font-size:1.5rem }
-  .poster .mh-name .c { color: var(--accent2) } .poster .mh-name .n { color: var(--blue) }
-  .poster .mh-live { display:inline-flex; align-items:center; gap:7px; font-size:.72rem; text-transform:uppercase;
-    letter-spacing:.14em; color:var(--green) }
-  .poster .cats { display:flex; flex-wrap:wrap; gap:7px; margin-bottom:20px }
-  .poster .cat { font-size:.72rem; padding:3px 10px; border-radius:999px; border:1px solid #2f3a30; color:#9fb8a0; background:#141c15 }
-  .poster .cat.hot { border-color:#4a2f2f; color:#d99; background:#1c1414 }
-  .poster .story { margin-bottom:14px }
-  .poster .st-line { height:9px; border-radius:5px; background:linear-gradient(90deg,#2a3550,#1a2033); }
-  .poster .st-line.t { height:12px; width:78%; background:linear-gradient(90deg,#3a4a66,#26324e); margin-bottom:9px }
-  .poster .st-line.a { width:96% } .poster .st-line.b { width:88%; margin-top:7px } .poster .st-line.c { width:64%; margin-top:7px }
-  .poster .grid2 { display:grid; grid-template-columns:1fr 1fr; gap:22px; margin-top:8px }
-  .poster .src { margin-top:12px; font-size:.72rem; color:#6f7d92 }
+  /* ---- Framed app windows (collage + gallery) ---- */
+  .win { border-radius: 11px; overflow: hidden; border: 1px solid #2c313a;
+    background: #14171c; box-shadow: 0 22px 50px rgba(0,0,0,.55) }
+  .win .bar { display:flex; align-items:center; gap:6px; height:26px; padding:0 11px;
+    background:#20242b; border-bottom:1px solid #2c313a }
+  .win .bar i { width:9px; height:9px; border-radius:50%; background:#3a4048 }
+  .win .bar i.r{background:#e0605e} .win .bar i.y{background:#e0b24e} .win .bar i.g{background:#5fb85f}
+  .win .bar span { margin-left:7px; font-size:.64rem; color:#8b93a0 }
+  .win img { display:block; width:100%; object-fit:cover; object-position:top center }
+  /* overlapping hero collage */
+  .collage { position: relative; height: 400px; margin: 10px 0 4px }
+  .collage .win { position:absolute }
+  .collage .win-situation { width:64%; left:0; top:28px; z-index:1 }
+  .collage .win-situation img { height:240px }
+  .collage .win-feed { width:47%; right:0; top:0; z-index:3 }
+  .collage .win-feed img { height:256px }
+  .collage .win-analytics { width:44%; left:6%; bottom:0; z-index:2 }
+  .collage .win-analytics img { height:132px }
+  /* captioned gallery */
+  .gallery { display:grid; grid-template-columns:1fr 1fr; gap:26px 24px; margin-top:20px }
+  .shotcard.wide { grid-column:1 / -1 }
+  .shotcard .cap { margin-top:14px }
+  .shotcard .cap h3 { margin-bottom:4px }
+  .shotcard .cap p { color:var(--muted); font-size:.92rem }
+  @media (max-width:600px){ .collage{height:330px} .gallery{grid-template-columns:1fr} }
 
   footer { padding: 32px 0; border-top: 1px solid var(--border); text-align: center; color: var(--muted); font-size: .8rem }
   @media (max-width: 600px) { .features { grid-template-columns: 1fr } .poster .grid2 { grid-template-columns:1fr } }
@@ -105,26 +111,19 @@
 
 <section>
   <div class="wrap">
-    <!-- Branded poster stands in for a live screenshot -->
-    <div class="poster" aria-hidden="true">
-      <div class="masthead">
-        <div class="mh-name"><span class="c">Corticorp</span> <span class="n">News</span></div>
-        <div class="mh-live"><span class="dot"></span> Updated hourly</div>
+    <!-- Collage of real app pages -->
+    <div class="collage">
+      <div class="win win-situation">
+        <div class="bar"><i class="r"></i><i class="y"></i><i class="g"></i><span>Situation Room — live map</span></div>
+        <img src="img/situation.png" alt="Situation Room tactical map of the Russia-Ukraine war">
       </div>
-      <div class="cats">
-        <span class="cat">World</span><span class="cat">US</span><span class="cat">Local</span>
-        <span class="cat">Technology</span><span class="cat">Science</span><span class="cat">Sports</span>
-        <span class="cat">Entertainment</span><span class="cat">Health</span><span class="cat hot">Russia–Ukraine</span>
+      <div class="win win-analytics">
+        <div class="bar"><i class="r"></i><i class="y"></i><i class="g"></i><span>Analytics</span></div>
+        <img src="img/analytics.png" alt="Corticorp News analytics dashboard">
       </div>
-      <div class="grid2">
-        <div>
-          <div class="story"><div class="st-line t"></div><div class="st-line a"></div><div class="st-line b"></div><div class="st-line c"></div></div>
-          <div class="src">Synthesized from 7 sources</div>
-        </div>
-        <div>
-          <div class="story"><div class="st-line t"></div><div class="st-line a"></div><div class="st-line b"></div><div class="st-line c"></div></div>
-          <div class="src">Synthesized from 4 sources</div>
-        </div>
+      <div class="win win-feed">
+        <div class="bar"><i class="r"></i><i class="y"></i><i class="g"></i><span>The Feed</span></div>
+        <img src="img/feed.png" alt="Corticorp News synthesized story feed">
       </div>
     </div>
   </div>
@@ -164,6 +163,49 @@
         <h3>Archived &amp; fast</h3>
         <p>Every digest is stored in a local SQLite archive with extracted article imagery,
            served from a lean Next.js 16 / React 19 app with light and dark themes.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <p class="eyebrow">A look inside</p>
+    <h2>Pages &amp; views</h2>
+    <div class="gallery">
+      <div class="shotcard wide">
+        <div class="win">
+          <div class="bar"><i class="r"></i><i class="y"></i><i class="g"></i><span>Situation Room</span></div>
+          <img src="img/situation.png" alt="Situation Room tactical map with military unit symbols">
+        </div>
+        <div class="cap">
+          <h3>Situation Room</h3>
+          <p>A live tactical map of the Russia–Ukraine war on Leaflet — corroborated, public event
+             locations with military symbology, a front-line overlay, and filters for military, diplomatic,
+             humanitarian, and economic events.</p>
+        </div>
+      </div>
+      <div class="shotcard">
+        <div class="win">
+          <div class="bar"><i class="r"></i><i class="y"></i><i class="g"></i><span>The Feed</span></div>
+          <img src="img/feed.png" alt="Synthesized story feed grouped by category">
+        </div>
+        <div class="cap">
+          <h3>The Feed</h3>
+          <p>One synthesized summary per event, grouped by section and region, with source counts
+             and an expand-all for the full briefing.</p>
+        </div>
+      </div>
+      <div class="shotcard">
+        <div class="win">
+          <div class="bar"><i class="r"></i><i class="y"></i><i class="g"></i><span>Analytics</span></div>
+          <img src="img/analytics.png" alt="Traffic analytics dashboard">
+        </div>
+        <div class="cap">
+          <h3>Analytics</h3>
+          <p>Built-in traffic analytics — visits over time, top paths and locations, and a
+             bot-vs-human breakdown from the user-agent sample.</p>
+        </div>
       </div>
     </div>
   </div>

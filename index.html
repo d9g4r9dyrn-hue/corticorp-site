@@ -117,23 +117,35 @@
     70% { box-shadow: 0 0 0 7px rgba(111,174,106,0) }
     100% { box-shadow: 0 0 0 0 rgba(111,174,106,0) }
   }
-  .news-poster {
-    width: 100%; aspect-ratio: 16/10; border-radius: 8px; border: 1px solid var(--border);
-    overflow: hidden; padding: 20px 22px;
-    background: radial-gradient(120% 140% at 15% 0%, #1a2740 0%, #12100c 55%, #0c0a08 100%);
-    display: flex; flex-direction: column;
+  .news-feature {
+    display: grid; grid-template-columns: 1.35fr 1fr; gap: 36px; align-items: center;
+    background: var(--surface); border: 1px solid var(--border); border-radius: 14px; padding: 30px;
+    transition: border-color .2s;
   }
-  .news-poster .np-top { display: flex; align-items: baseline; justify-content: space-between;
-    border-bottom: 1px solid #2f2a20; padding-bottom: 10px; margin-bottom: 12px }
-  .news-poster .np-name { font-weight: 800; font-size: 1.15rem }
-  .news-poster .np-name .c { color: var(--accent2) } .news-poster .np-name .n { color: var(--blue) }
-  .news-poster .np-live { font-size: .62rem; letter-spacing: .12em; text-transform: uppercase; color: var(--green) }
-  .news-poster .np-cats { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 14px }
-  .news-poster .np-cat { font-size: .64rem; padding: 2px 8px; border-radius: 999px;
-    border: 1px solid #2f3a30; color: #9fb8a0; background: #141c15 }
-  .news-poster .np-cat.hot { border-color: #4a2f2f; color: #d99; background: #1c1414 }
-  .news-poster .np-line { height: 8px; border-radius: 4px; background: linear-gradient(90deg,#2a3550,#1a2033); margin-top: 7px }
-  .news-poster .np-line.t { height: 10px; width: 72%; background: linear-gradient(90deg,#3a4a66,#26324e) }
+  .news-feature:hover { border-color: #3a3228 }
+  .news-feature .np-name .c { color: var(--accent2) } .news-feature .np-name .n { color: var(--blue) }
+  /* collage of framed app windows */
+  .news-collage { position: relative; height: 372px }
+  .win {
+    position: absolute; border-radius: 10px; overflow: hidden; border: 1px solid #2c313a;
+    background: #14171c; box-shadow: 0 20px 44px rgba(0,0,0,.55);
+  }
+  .win .bar { display: flex; align-items: center; gap: 6px; height: 24px; padding: 0 10px;
+    background: #20242b; border-bottom: 1px solid #2c313a }
+  .win .bar i { width: 8px; height: 8px; border-radius: 50%; background: #3a4048 }
+  .win .bar i.r { background: #e0605e } .win .bar i.y { background: #e0b24e } .win .bar i.g { background: #5fb85f }
+  .win .bar span { margin-left: 6px; font-size: .6rem; color: #8b93a0; letter-spacing: .03em }
+  .win img { display: block; width: 100%; object-fit: cover; object-position: top center }
+  .win-situation { width: 66%; left: 0; top: 22px; z-index: 1 }
+  .win-situation img { height: 208px }
+  .win-feed { width: 48%; right: 0; top: 104px; z-index: 3 }
+  .win-feed img { height: 236px }
+  .win-analytics { width: 42%; left: 5%; bottom: 0; z-index: 2 }
+  .win-analytics img { height: 118px }
+  @media (max-width: 760px) {
+    .news-feature { grid-template-columns: 1fr; gap: 22px; padding: 20px }
+    .news-collage { height: 320px }
+  }
 
   /* ---- PLUGINS HUB (home) ---- */
   .plugin-hub {
@@ -241,33 +253,33 @@
   <div class="wrap">
     <p class="eyebrow">Latest project</p>
     <h2>Corticorp News</h2>
-    <div class="project-card">
-      <div class="news-poster">
-        <div class="np-top">
-          <div class="np-name"><span class="c">Corticorp</span> <span class="n">News</span></div>
-          <div class="np-live">Updated hourly</div>
+    <div class="news-feature">
+      <div class="news-collage">
+        <div class="win win-situation">
+          <div class="bar"><i class="r"></i><i class="y"></i><i class="g"></i><span>Situation Room &mdash; live map</span></div>
+          <img src="projects/news/img/situation.png" alt="Situation Room tactical map of the Russia-Ukraine war">
         </div>
-        <div class="np-cats">
-          <span class="np-cat">World</span><span class="np-cat">US</span>
-          <span class="np-cat">Tech</span><span class="np-cat">Science</span>
-          <span class="np-cat">Sports</span><span class="np-cat hot">Russia&ndash;Ukraine</span>
+        <div class="win win-analytics">
+          <div class="bar"><i class="r"></i><i class="y"></i><i class="g"></i><span>Analytics</span></div>
+          <img src="projects/news/img/analytics.png" alt="Corticorp News analytics dashboard">
         </div>
-        <div class="np-line t"></div>
-        <div class="np-line" style="width:94%"></div>
-        <div class="np-line" style="width:82%"></div>
+        <div class="win win-feed">
+          <div class="bar"><i class="r"></i><i class="y"></i><i class="g"></i><span>The Feed</span></div>
+          <img src="projects/news/img/feed.png" alt="Corticorp News synthesized story feed">
+        </div>
       </div>
-      <div>
+      <div class="news-copy">
         <span class="featured-badge"><span class="dot"></span> Live</span>
-        <h3>AI-curated news digest</h3>
-        <p>Reads dozens of paywall-free outlets and gives you <strong>one synthesized summary
-           per real-world event</strong> &mdash; not ten near-duplicate headlines. Clusters stories
-           by section, then expands ongoing theatres into situation-room deep dives with live maps.</p>
+        <h3 style="font-size:1.25rem"><span class="np-name"><span class="c">Corticorp</span> <span class="n">News</span></span></h3>
+        <p style="color:var(--muted); margin-top:6px">An AI-curated digest that reads dozens of paywall-free
+           outlets and gives you <strong>one synthesized summary per real-world event</strong> &mdash; not ten
+           near-duplicate headlines. It clusters stories by section, then expands ongoing theatres into
+           <strong>situation-room deep dives with live tactical maps</strong>.</p>
         <div class="project-meta">
           <span class="tag ai">Claude API</span>
           <span class="tag web">Next.js 16</span>
           <span class="tag">SQLite</span>
-          <span class="tag">RSS</span>
-          <span class="tag">Leaflet</span>
+          <span class="tag">Leaflet maps</span>
         </div>
         <a class="project-link" href="projects/news/">Learn more &rarr;</a>
         <a class="project-link" href="https://news.corticorp.com" target="_blank" rel="noopener"
