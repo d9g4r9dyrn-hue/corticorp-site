@@ -4,9 +4,9 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Corticorp News — CortiCorp</title>
-<meta name="description" content="An AI-curated news digest: one synthesized summary per real-world event, clustered from paywall-free outlets, with situation-room deep dives and live maps.">
+<meta name="description" content="An AI-curated news digest: one synthesized summary per real-world event, a transparent claim-checking Verification Desk, live situation-room maps, and a simulated AI strategy tracker.">
 <meta property="og:title" content="Corticorp News — CortiCorp">
-<meta property="og:description" content="AI-curated news digest — one synthesized summary per event, with situation-room deep dives and live maps.">
+<meta property="og:description" content="AI-curated news digest — one synthesized summary per event, a transparent Verification Desk, live situation-room maps, and a simulated AI strategy tracker.">
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://corticorp.com/projects/news/">
 <link rel="canonical" href="https://corticorp.com/projects/news/">
@@ -101,8 +101,9 @@
   <h1>Corticorp News</h1>
   <p>An AI-curated news digest that reads dozens of outlets and gives you <strong>one synthesized
      summary per real-world event</strong> — not ten near-duplicate headlines. Stories are clustered
-     across paywall-free sources, sorted by section, and expanded into situation-room deep dives
-     with live maps.</p>
+     across paywall-free sources, sorted by section, and backed by a <strong>Verification Desk</strong>
+     that checks circulating claims against independent reporting instead of repeating them at face
+     value. Ongoing conflicts get their own live, map-driven situation rooms.</p>
   <div style="margin-top:20px">
     <a class="btn btn-primary" href="https://news.corticorp.com" target="_blank" rel="noopener">Open news.corticorp.com</a>
     <a class="btn btn-ghost" href="/#projects">Back to Projects</a>
@@ -115,15 +116,15 @@
     <div class="collage">
       <div class="win win-situation">
         <div class="bar"><i class="r"></i><i class="y"></i><i class="g"></i><span>Situation Room — live map</span></div>
-        <img src="img/situation.png" alt="Situation Room tactical map of the Russia-Ukraine war">
+        <img src="img/situation.jpg" alt="Live Situation Room satellite map of the Russia-Ukraine war with front-line overlay and military symbology">
       </div>
       <div class="win win-analytics">
-        <div class="bar"><i class="r"></i><i class="y"></i><i class="g"></i><span>Deep Dive</span></div>
-        <img src="img/deepdive.png" alt="Corticorp News situation-room deep-dive briefing">
+        <div class="bar"><i class="r"></i><i class="y"></i><i class="g"></i><span>Verification Desk</span></div>
+        <img src="img/verification.jpg" alt="Corticorp News Verification Desk showing claim statuses like Confirmed and Disputed with evidence">
       </div>
       <div class="win win-feed">
         <div class="bar"><i class="r"></i><i class="y"></i><i class="g"></i><span>The Feed</span></div>
-        <img src="img/feed.png" alt="Corticorp News synthesized story feed">
+        <img src="img/feed.jpg" alt="Corticorp News synthesized story feed with real photo coverage">
       </div>
     </div>
   </div>
@@ -132,7 +133,7 @@
 <section>
   <div class="wrap">
     <p class="eyebrow">How it works</p>
-    <h2>Cluster. Synthesize. Brief.</h2>
+    <h2>Cluster. Synthesize. Verify. Brief.</h2>
     <div class="features">
       <div class="feat">
         <h3>One summary per event</h3>
@@ -141,13 +142,26 @@
       </div>
       <div class="feat">
         <h3>Paywall-free sources</h3>
-        <p>Pulls from freely readable outlets via RSS across World, US, Local, Entertainment,
-           Sports, Science, Technology, Health, and the Russia–Ukraine war.</p>
+        <p>Pulls from dozens of freely readable outlets via RSS across World, US, Local, Finance,
+           Entertainment, Sports, Science &amp; Tech, and Gaming.</p>
       </div>
       <div class="feat">
-        <h3>Situation-room deep dives</h3>
-        <p>Dedicated briefings for ongoing theatres — Ukraine, the Middle East, and global
-           flashpoints — with an interactive Leaflet map of the latest events.</p>
+        <h3>Situation Room — three live theatres</h3>
+        <p>Dedicated, map-driven coverage for Ukraine, Israel–Palestine, and Iran, each with a
+           satellite Leaflet map, military symbology, a front-line overlay, and topic filters.</p>
+      </div>
+      <div class="feat">
+        <h3>Verification Desk</h3>
+        <p>Claims circulating in Situation Room coverage are checked against independent
+           reporting and existing fact-checks. Confirmed, Likely, Unverified, Disputed, or False —
+           each with the evidence shown, not asserted.</p>
+      </div>
+      <div class="feat">
+        <h3>Simulated AI strategy tracker</h3>
+        <p>A dozen model-managed portfolios — standard risk tiers, contrarian and momentum
+           disciplines, leveraged and dividend-policy strategies — rebalanced with a stated
+           rationale, plus daily comparative commentary. A transparent research experiment, not
+           investment advice.</p>
       </div>
       <div class="feat">
         <h3>Always current</h3>
@@ -155,9 +169,9 @@
            feed refreshes on its own without a separate worker.</p>
       </div>
       <div class="feat">
-        <h3>Search &amp; analytics</h3>
-        <p>Full-text search across the archived digest plus an analytics view of coverage
-           volume and source mix over time.</p>
+        <h3>Full-text search</h3>
+        <p>Every event ever published is searchable, with results ranked by relevance across
+           the whole archive.</p>
       </div>
       <div class="feat">
         <h3>Archived &amp; fast</h3>
@@ -176,35 +190,58 @@
       <div class="shotcard wide">
         <div class="win">
           <div class="bar"><i class="r"></i><i class="y"></i><i class="g"></i><span>Situation Room</span></div>
-          <img src="img/situation.png" alt="Situation Room tactical map with military unit symbols">
+          <img src="img/situation.jpg" alt="Situation Room satellite map with military symbology and a front-line overlay">
         </div>
         <div class="cap">
           <h3>Situation Room</h3>
-          <p>A live tactical map of the Russia–Ukraine war on Leaflet — corroborated, public event
-             locations with military symbology, a front-line overlay, and filters for military, diplomatic,
-             humanitarian, and economic events.</p>
+          <p>A live satellite map for the Ukraine, Israel–Palestine, and Iran theatres — corroborated,
+             public event locations with military symbology, a front-line overlay, and filters for
+             military, diplomatic, humanitarian, and economic events.</p>
         </div>
       </div>
       <div class="shotcard">
         <div class="win">
           <div class="bar"><i class="r"></i><i class="y"></i><i class="g"></i><span>The Feed</span></div>
-          <img src="img/feed.png" alt="Synthesized story feed grouped by category">
+          <img src="img/feed.jpg" alt="Synthesized story feed with real photo coverage grouped by category">
         </div>
         <div class="cap">
           <h3>The Feed</h3>
-          <p>One synthesized summary per event, grouped by section and region, with source counts
-             and an expand-all for the full briefing.</p>
+          <p>One synthesized summary per event, grouped by section and region, with a browsable
+             photo carousel of the biggest current stories.</p>
         </div>
       </div>
       <div class="shotcard">
         <div class="win">
-          <div class="bar"><i class="r"></i><i class="y"></i><i class="g"></i><span>Deep Dive</span></div>
-          <img src="img/deepdive.png" alt="Situation-room deep-dive briefing">
+          <div class="bar"><i class="r"></i><i class="y"></i><i class="g"></i><span>Verification Desk</span></div>
+          <img src="img/verification.jpg" alt="Verification Desk showing claim statuses and supporting evidence">
         </div>
         <div class="cap">
-          <h3>Deep dives</h3>
-          <p>Ongoing theatres get a synthesized briefing — what happened, why it matters, and
-             what's next — compiled across many sources with no single outlet quoted verbatim.</p>
+          <h3>Verification Desk</h3>
+          <p>Every claim currently being tracked across the Situation Room theatres — status,
+             sourcing, and the reasoning behind it. Unverified is a normal, honest outcome here,
+             not something smoothed over.</p>
+        </div>
+      </div>
+      <div class="shotcard">
+        <div class="win">
+          <div class="bar"><i class="r"></i><i class="y"></i><i class="g"></i><span>Strategy tracker</span></div>
+          <img src="img/strategy.jpg" alt="Strategy Pulse card comparing twelve simulated AI-managed portfolios">
+        </div>
+        <div class="cap">
+          <h3>Strategy tracker</h3>
+          <p>Twelve simulated portfolios, each following a distinct, disciplined philosophy, with a
+             daily AI-written comparison of how they're performing and why.</p>
+        </div>
+      </div>
+      <div class="shotcard">
+        <div class="win">
+          <div class="bar"><i class="r"></i><i class="y"></i><i class="g"></i><span>About</span></div>
+          <img src="img/about.jpg" alt="About page explaining how stories are sourced, checked, and chosen">
+        </div>
+        <div class="cap">
+          <h3>About &amp; methodology</h3>
+          <p>A plain-language page on how stories get sourced, how claims get checked, and how
+             images get chosen — without exposing the exact mechanics behind any of it.</p>
         </div>
       </div>
     </div>
