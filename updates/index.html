@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Updates — CortiCorp</title>
+<meta name="description" content="New features and milestones across CortiCorp's projects, as they ship.">
+<meta property="og:title" content="Updates — CortiCorp">
+<meta property="og:description" content="New features and milestones across CortiCorp's projects, as they ship.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://corticorp.com/updates/">
+<link rel="canonical" href="https://corticorp.com/updates/">
+<style>
+  :root {
+    --bg: #0c0a08; --surface: #141210; --surface2: #1c1915; --border: #2a241c;
+    --text: #e8e0d4; --muted: #9a8e7a; --accent: #d4a555; --accent2: #e7c878;
+    --maxw: 880px;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0 }
+  body {
+    background: var(--bg); color: var(--text);
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    line-height: 1.65; font-size: 17px; -webkit-font-smoothing: antialiased;
+  }
+  a { color: var(--accent2); text-decoration: none }
+  a:hover { text-decoration: underline }
+  .wrap { max-width: var(--maxw); margin: 0 auto; padding: 0 24px }
+  nav { position: sticky; top: 0; z-index: 10; background: rgba(12,10,8,.92);
+    backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px); border-bottom: 1px solid var(--border); }
+  .nav-inner { display: flex; align-items: center; justify-content: space-between;
+    max-width: var(--maxw); margin: 0 auto; padding: 0 24px; height: 56px; }
+  .brand { font-weight: 800; font-size: 1.1rem; color: var(--accent2); letter-spacing: .03em }
+  .nav-links a { margin-left: 24px; color: var(--muted); font-size: .9rem }
+  .nav-links a:hover { color: var(--text); text-decoration: none }
+  .hero { padding: 56px 0 32px }
+  .hero h1 { font-size: clamp(1.8rem, 4vw, 2.4rem); color: var(--accent2); margin-bottom: 12px }
+  .hero p { color: var(--muted); max-width: 620px }
+  .list { padding: 8px 0 64px }
+  .entry { display: block; padding: 22px 0; border-top: 1px solid #17130d; }
+  .entry:first-child { border-top: none }
+  .entry:hover { text-decoration: none }
+  .entry .date { color: var(--muted); font-size: .78rem; text-transform: uppercase; letter-spacing: .12em; margin-bottom: 6px }
+  .entry h2 { font-size: 1.2rem; color: var(--accent2); margin-bottom: 6px }
+  .entry:hover h2 { text-decoration: underline }
+  .entry p { color: var(--text); font-size: .95rem; max-width: 640px }
+  footer { padding: 32px 0 56px; border-top: 1px solid var(--border); text-align: center; color: var(--muted); font-size: .85rem }
+  footer a { color: var(--muted) }
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-inner">
+    <a class="brand" href="/">CortiCorp</a>
+    <div class="nav-links">
+      <a href="/#projects">Projects</a>
+      <a href="/journal.html">Highlights</a>
+      <a href="/#contact">Contact</a>
+    </div>
+  </div>
+</nav>
+
+<div class="wrap hero">
+  <h1>Updates</h1>
+  <p>New features and milestones across CortiCorp's projects, as they ship.</p>
+</div>
+
+<div class="wrap list">
+  <a class="entry" href="/updates/2026-08-12-finance-market-pulse.html">
+    <div class="date">August 12, 2026</div>
+    <h2>Finance gets a brain: Market Pulse and 12 investment strategies</h2>
+    <p>A daily auto-generated market briefing, plus 12 simulated investment strategies rebalanced and explained by Claude, tracked live against the S&amp;P 500.</p>
+  </a>
+</div>
+
+<footer>
+  <div class="wrap">
+    <p>CortiCorp — <a href="/">corticorp.com</a></p>
+  </div>
+</footer>
+
+</body>
+</html>
