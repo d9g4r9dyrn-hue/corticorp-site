@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Strategies moves to the front door, and the table gets a real redesign — Corticorp News</title>
+<meta name="description" content="Corticorp News: the Strategies tab is now the default view on Finance (which itself moved earlier in the main nav), the All Strategies table got tightened and redesigned with a period selector, Strategy Pulse shows a real freshness indicator, and a security/resiliency hardening pass shipped behind the scenes.">
+<meta property="og:title" content="Strategies moves to the front door, and the table gets a real redesign">
+<meta property="og:description" content="The Strategies tab is now the default Finance view, the All Strategies table got tightened with a period selector, Strategy Pulse shows a real freshness indicator, and a security hardening pass shipped behind the scenes.">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://corticorp.com/updates/2026-08-14-strategies-first-and-hardening.html">
+<meta property="og:image" content="https://corticorp.com/updates/img/og-strategies-first.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Finance page landing directly on the Strategies tab, showing the Strategy Pulse card with an 'updated 2 days ago' freshness indicator">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Strategies moves to the front door, and the table gets a real redesign">
+<meta name="twitter:description" content="The Strategies tab is now the default Finance view, the All Strategies table got tightened with a period selector, Strategy Pulse shows a real freshness indicator, and a security hardening pass shipped behind the scenes.">
+<meta name="twitter:image" content="https://corticorp.com/updates/img/og-strategies-first.jpg">
+<link rel="canonical" href="https://corticorp.com/updates/2026-08-14-strategies-first-and-hardening.html">
+<style>
+  :root {
+    --bg: #0c0a08; --surface: #141210; --surface2: #1c1915; --border: #2a241c;
+    --text: #e8e0d4; --muted: #9a8e7a; --accent: #d4a555; --accent2: #e7c878;
+    --green: #6fae6a; --teal: #35d0c0; --blue: #5b8fd4; --red: #ff6b57;
+    --maxw: 880px;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0 }
+  body {
+    background: var(--bg); color: var(--text);
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    line-height: 1.65; font-size: 17px; -webkit-font-smoothing: antialiased;
+  }
+  a { color: var(--accent2); text-decoration: none }
+  a:hover { text-decoration: underline }
+  .wrap { max-width: var(--maxw); margin: 0 auto; padding: 0 24px }
+
+  nav { position: sticky; top: 0; z-index: 10; background: rgba(12,10,8,.92);
+    backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px); border-bottom: 1px solid var(--border); }
+  .nav-inner { display: flex; align-items: center; justify-content: space-between;
+    max-width: var(--maxw); margin: 0 auto; padding: 0 24px; height: 56px; }
+  .brand { font-weight: 800; font-size: 1.1rem; color: var(--accent2); letter-spacing: .03em }
+  .nav-links a { margin-left: 24px; color: var(--muted); font-size: .9rem }
+  .nav-links a:hover { color: var(--text); text-decoration: none }
+
+  .hero { padding: 56px 0 40px; }
+  .kicker { display: inline-flex; align-items: center; gap: 7px; text-transform: uppercase;
+    letter-spacing: .2em; font-size: .72rem; color: var(--accent); border: 1px solid var(--border);
+    background: var(--surface2); padding: 6px 14px; border-radius: 999px; margin-bottom: 22px; }
+  .hero h1 { font-size: clamp(1.9rem, 4.5vw, 2.7rem); line-height: 1.15; color: var(--accent2); margin-bottom: 16px; letter-spacing: -.01em }
+  .hero .lede { color: var(--text); max-width: 700px; font-size: 1.08rem; }
+  .hero .lede + .lede { margin-top: 14px; color: var(--muted) }
+
+  .cta-row { margin-top: 30px; display: flex; gap: 12px; flex-wrap: wrap }
+  .btn { display: inline-block; padding: 13px 26px; border-radius: 9px; font-weight: 700;
+    font-size: .95rem; border: 1px solid var(--border); transition: filter .15s ease, transform .08s ease; }
+  .btn:hover { filter: brightness(1.08); text-decoration: none; transform: translateY(-1px) }
+  .btn-primary { background: linear-gradient(#e7c074,#c4923f); color: #241704; border-color: #8a6a2e }
+  .btn-ghost { background: var(--surface2); color: var(--accent2) }
+
+  section { padding: 44px 0; border-top: 1px solid #17130d }
+  .eyebrow { text-transform: uppercase; letter-spacing: .2em; font-size: .72rem; color: var(--muted); margin-bottom: 10px }
+  h2 { font-size: 1.4rem; color: var(--accent2); margin-bottom: 14px }
+
+  .win { border-radius: 11px; overflow: hidden; border: 1px solid #2c313a;
+    background: #14171c; box-shadow: 0 22px 50px rgba(0,0,0,.5) }
+  .win .bar { display:flex; align-items:center; gap:6px; height:26px; padding:0 11px;
+    background:#20242b; border-bottom:1px solid #2c313a }
+  .win .bar i { width:9px; height:9px; border-radius:50%; background:#3a4048 }
+  .win .bar i.r{background:#e0605e} .win .bar i.y{background:#e0b24e} .win .bar i.g{background:#5fb85f}
+  .win .bar span { margin-left:7px; font-size:.64rem; color:#8b93a0 }
+  .win img { display:block; width:100%; height:auto }
+
+  .lead-shot { margin: 8px 0 6px }
+  .gallery { display:grid; grid-template-columns:1fr 1fr; gap:26px 24px; margin-top:28px }
+  .shotcard.wide { grid-column:1 / -1 }
+  .shotcard .cap { margin-top:12px }
+  .shotcard .cap h3 { font-size: 1rem; color: var(--text); margin-bottom: 4px }
+  .shotcard .cap p { color:var(--muted); font-size:.9rem }
+  @media (max-width:640px){ .gallery{grid-template-columns:1fr} }
+
+  .disclosure { margin-top: 8px; color: var(--muted); font-size: .85rem; font-style: italic }
+
+  footer { padding: 40px 0 56px; border-top: 1px solid var(--border); text-align: center; color: var(--muted); font-size: .85rem }
+  footer a { color: var(--muted) }
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-inner">
+    <a class="brand" href="/">CortiCorp</a>
+    <div class="nav-links">
+      <a href="/updates/">Updates</a>
+      <a href="/#projects">Projects</a>
+      <a href="/#contact">Contact</a>
+    </div>
+  </div>
+</nav>
+
+<div class="wrap hero">
+  <p class="kicker">Product update · August 14, 2026</p>
+  <h1>Strategies moves to the front door, and the table gets a real redesign</h1>
+  <p class="lede">Finance moved up in the main nav — it's the second tab now, right after World instead of
+    third. And landing on <code>/finance</code> drops you straight into <strong>Strategies</strong>, no click
+    needed. It's the most distinctive part of the app, so it stopped hiding behind Market Pulse.</p>
+  <p class="lede">The All Strategies table got tightened to match: a couple of columns came out, a period
+    selector went in, and Strategy Pulse now tells you honestly how stale it is.</p>
+  <div class="cta-row">
+    <a class="btn btn-primary" href="https://news.corticorp.com/finance" target="_blank" rel="noopener">Open the Strategies tab →</a>
+    <a class="btn btn-ghost" href="/updates/">More updates</a>
+  </div>
+</div>
+
+<section>
+  <div class="wrap">
+    <div class="lead-shot win">
+      <div class="bar"><i class="r"></i><i class="y"></i><i class="g"></i><span>news.corticorp.com/finance</span></div>
+      <img src="img/strategies-first-tab.jpg" width="1280" height="900" loading="lazy"
+        alt="Finance page landing directly on the Strategies tab, showing the Strategy Pulse card with an updated 2 days ago freshness indicator above the start of the Category Indexes chart">
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <p class="eyebrow">What's new</p>
+    <h2>Strategies first, and a freshness indicator that means something</h2>
+    <p>Strategy Pulse used to show a static date on its daily comparison. It now says <strong>"updated Xh
+      ago"</strong> or <strong>"updated N days ago"</strong> instead — an honest signal for exactly how fresh
+      the commentary actually is, especially on a day the generation step has less to say. That generation step
+      also retries automatically on a transient failure now, instead of leaving the card stale until the next
+      scheduled run.</p>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <p class="eyebrow">The bigger idea</p>
+    <h2>All Strategies, redesigned</h2>
+    <p>The main table — now covering thirty strategies — dropped a total-%-change column and a per-row colored
+      "type" dot. Both were mostly wasted space once the new Category tables above already answer "what kind of
+      strategy is this" at a glance. In their place: a <strong>period selector</strong> (7D / 30D / 90D / 1Y /
+      Since inception) that drives value-change and %-change together for whichever window you pick, plus the
+      filled <strong>vs S&amp;P 500</strong> pill from the Category Indexes work — a much clearer "is this
+      actually beating a simple buy-and-hold" signal than either return number alone. The whole table is denser
+      now too — smaller fonts, tighter padding — specifically so thirty rows fit without turning the page into
+      an endless scroll.</p>
+
+    <div class="gallery">
+      <div class="shotcard wide">
+        <div class="win">
+          <div class="bar"><i class="r"></i><i class="y"></i><i class="g"></i><span>Finance → Strategies → All Strategies</span></div>
+          <img src="img/all-strategies-table.jpg" width="1280" height="900" loading="lazy"
+            alt="Redesigned All Strategies table with a Period selector set to 30D, portfolio value, 30-day value and percent change columns, and a filled vs S&P 500 pill for each strategy">
+        </div>
+        <div class="cap">
+          <h3>All Strategies, tightened</h3>
+          <p>Period selector up top, two columns that move together underneath it, and a vs-S&amp;P-500 verdict on every row — dense enough for thirty strategies without excessive scrolling.</p>
+        </div>
+      </div>
+    </div>
+    <p class="disclosure">Simulated portfolios. Not investment advice.</p>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <p class="eyebrow">Behind the scenes</p>
+    <h2>A security pass, and a quieter image-queue bug fixed</h2>
+    <p>Separately from anything user-facing: a resiliency and security audit found a real fail-open bug — a
+      handful of admin-only pages each had their own duplicated access check that would silently <em>grant</em>
+      access if a required config value were ever missing, instead of refusing. All of them now route through
+      one shared check that fails closed. The app also picked up its first real set of security headers (a
+      content-security policy plus the usual set — frame options, content-type sniffing protection, referrer
+      policy, HSTS), and a dependency bump closed four high-severity CVEs; <code>npm audit</code> now reports
+      zero vulnerabilities.</p>
+    <p style="margin-top:14px">Smaller but real: the admin image-review queue had a stale-entry bug — one
+      specific manual-fix tool was setting an event's image without telling the queue about it, so a fixed event
+      could sit in the queue looking unfixed forever. Fixed directly, plus a defensive cleanup pass that drops
+      any queued row for an event that's no longer actually missing an image, regardless of which code path
+      fixed it. The queue's admin view also got a fuller "story details" disclosure per row, so a fix doesn't
+      require guessing at context.</p>
+  </div>
+</section>
+
+<section>
+  <div class="wrap" style="text-align:center; padding: 8px 0 4px">
+    <h2>Take a look</h2>
+    <p style="color:var(--muted); max-width:560px; margin: 0 auto 24px">
+      The redesigned Strategies tab is live now — it's the first thing you'll see in the Finance section of Corticorp News.
+    </p>
+    <a class="btn btn-primary" href="https://news.corticorp.com/finance" target="_blank" rel="noopener">Open news.corticorp.com/finance →</a>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <p>CortiCorp — <a href="/">corticorp.com</a> · <a href="/updates/">More updates</a></p>
+  </div>
+</footer>
+
+</body>
+</html>

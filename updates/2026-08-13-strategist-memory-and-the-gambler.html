@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Strategists that remember, a sixth risk-taker, and a real weather index — Corticorp News</title>
+<meta name="description" content="Corticorp News: all five advanced strategies now learn from their own past decisions, a new high-variance sixth strategy called The Gambler joins them, an old weather proxy got replaced with a real global severity index, and two new views — Category Indexes and a Features catalog — make the whole roster easier to judge.">
+<meta property="og:title" content="Strategists that remember, a sixth risk-taker, and a real weather index">
+<meta property="og:description" content="Five advanced strategies now learn from their own decisions, a new sixth strategy called The Gambler joins them, a real global weather severity index replaces an old proxy, and Category Indexes plus a Features catalog make the roster easier to judge.">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://corticorp.com/updates/2026-08-13-strategist-memory-and-the-gambler.html">
+<meta property="og:image" content="https://corticorp.com/updates/img/og-category-indexes.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Category Indexes chart plotting blended returns for seven strategy categories, with a category performance table below it">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Strategists that remember, a sixth risk-taker, and a real weather index">
+<meta name="twitter:description" content="Five advanced strategies now learn from their own decisions, a new sixth strategy called The Gambler joins them, a real global weather severity index replaces an old proxy, and Category Indexes plus a Features catalog make the roster easier to judge.">
+<meta name="twitter:image" content="https://corticorp.com/updates/img/og-category-indexes.jpg">
+<link rel="canonical" href="https://corticorp.com/updates/2026-08-13-strategist-memory-and-the-gambler.html">
+<style>
+  :root {
+    --bg: #0c0a08; --surface: #141210; --surface2: #1c1915; --border: #2a241c;
+    --text: #e8e0d4; --muted: #9a8e7a; --accent: #d4a555; --accent2: #e7c878;
+    --green: #6fae6a; --teal: #35d0c0; --blue: #5b8fd4; --red: #ff6b57;
+    --maxw: 880px;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0 }
+  body {
+    background: var(--bg); color: var(--text);
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    line-height: 1.65; font-size: 17px; -webkit-font-smoothing: antialiased;
+  }
+  a { color: var(--accent2); text-decoration: none }
+  a:hover { text-decoration: underline }
+  .wrap { max-width: var(--maxw); margin: 0 auto; padding: 0 24px }
+
+  nav { position: sticky; top: 0; z-index: 10; background: rgba(12,10,8,.92);
+    backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px); border-bottom: 1px solid var(--border); }
+  .nav-inner { display: flex; align-items: center; justify-content: space-between;
+    max-width: var(--maxw); margin: 0 auto; padding: 0 24px; height: 56px; }
+  .brand { font-weight: 800; font-size: 1.1rem; color: var(--accent2); letter-spacing: .03em }
+  .nav-links a { margin-left: 24px; color: var(--muted); font-size: .9rem }
+  .nav-links a:hover { color: var(--text); text-decoration: none }
+
+  .hero { padding: 56px 0 40px; }
+  .kicker { display: inline-flex; align-items: center; gap: 7px; text-transform: uppercase;
+    letter-spacing: .2em; font-size: .72rem; color: var(--accent); border: 1px solid var(--border);
+    background: var(--surface2); padding: 6px 14px; border-radius: 999px; margin-bottom: 22px; }
+  .hero h1 { font-size: clamp(1.9rem, 4.5vw, 2.7rem); line-height: 1.15; color: var(--accent2); margin-bottom: 16px; letter-spacing: -.01em }
+  .hero .lede { color: var(--text); max-width: 700px; font-size: 1.08rem; }
+  .hero .lede + .lede { margin-top: 14px; color: var(--muted) }
+
+  .cta-row { margin-top: 30px; display: flex; gap: 12px; flex-wrap: wrap }
+  .btn { display: inline-block; padding: 13px 26px; border-radius: 9px; font-weight: 700;
+    font-size: .95rem; border: 1px solid var(--border); transition: filter .15s ease, transform .08s ease; }
+  .btn:hover { filter: brightness(1.08); text-decoration: none; transform: translateY(-1px) }
+  .btn-primary { background: linear-gradient(#e7c074,#c4923f); color: #241704; border-color: #8a6a2e }
+  .btn-ghost { background: var(--surface2); color: var(--accent2) }
+
+  section { padding: 44px 0; border-top: 1px solid #17130d }
+  .eyebrow { text-transform: uppercase; letter-spacing: .2em; font-size: .72rem; color: var(--muted); margin-bottom: 10px }
+  h2 { font-size: 1.4rem; color: var(--accent2); margin-bottom: 14px }
+
+  .win { border-radius: 11px; overflow: hidden; border: 1px solid #2c313a;
+    background: #14171c; box-shadow: 0 22px 50px rgba(0,0,0,.5) }
+  .win .bar { display:flex; align-items:center; gap:6px; height:26px; padding:0 11px;
+    background:#20242b; border-bottom:1px solid #2c313a }
+  .win .bar i { width:9px; height:9px; border-radius:50%; background:#3a4048 }
+  .win .bar i.r{background:#e0605e} .win .bar i.y{background:#e0b24e} .win .bar i.g{background:#5fb85f}
+  .win .bar span { margin-left:7px; font-size:.64rem; color:#8b93a0 }
+  .win img { display:block; width:100%; height:auto }
+
+  .lead-shot { margin: 8px 0 6px }
+  .gallery { display:grid; grid-template-columns:1fr 1fr; gap:26px 24px; margin-top:28px }
+  .shotcard.wide { grid-column:1 / -1 }
+  .shotcard .cap { margin-top:12px }
+  .shotcard .cap h3 { font-size: 1rem; color: var(--text); margin-bottom: 4px }
+  .shotcard .cap p { color:var(--muted); font-size:.9rem }
+  @media (max-width:640px){ .gallery{grid-template-columns:1fr} }
+
+  .disclosure { margin-top: 8px; color: var(--muted); font-size: .85rem; font-style: italic }
+
+  footer { padding: 40px 0 56px; border-top: 1px solid var(--border); text-align: center; color: var(--muted); font-size: .85rem }
+  footer a { color: var(--muted) }
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-inner">
+    <a class="brand" href="/">CortiCorp</a>
+    <div class="nav-links">
+      <a href="/updates/">Updates</a>
+      <a href="/#projects">Projects</a>
+      <a href="/#contact">Contact</a>
+    </div>
+  </div>
+</nav>
+
+<div class="wrap hero">
+  <p class="kicker">Product update · August 13, 2026</p>
+  <h1>Strategists that remember, a sixth risk-taker, and a real weather index</h1>
+  <p class="lede">All five of the original advanced strategies — The Real Trader, The Analyst, Day Trader, the
+    Wizard, and The Farmer — now carry a persistent, self-written note on what actually worked and what
+    didn't, revised every decision cycle instead of following a fixed rulebook. A sixth joined them: <strong>The
+    Gambler</strong>, built for concentrated, catalyst-driven swings rather than diversified exposure.</p>
+  <p class="lede">Underneath, one of the oldest heuristics in the app got replaced with something real, and two
+    new views make the whole thirty-strategy roster easier to judge at a glance.</p>
+  <div class="cta-row">
+    <a class="btn btn-primary" href="https://news.corticorp.com/finance" target="_blank" rel="noopener">Open the Finance section →</a>
+    <a class="btn btn-ghost" href="/updates/">More updates</a>
+  </div>
+</div>
+
+<section>
+  <div class="wrap">
+    <p class="eyebrow">What's new</p>
+    <h2>Five strategists that learn, and a sixth that gambles on purpose</h2>
+    <p>Every advanced strategy already read a summary of its own recent decisions before deciding again. Now
+      that context shows what actually happened, not just what was said — each past decision's mark-to-market
+      value was already sitting in the data, just never surfaced. On top of that, each strategy maintains one
+      running <strong>lesson note</strong> it writes and revises itself, cycle to cycle, shown in the Decision
+      Log right under its rationale.</p>
+    <p style="margin-top:14px">The new sixth voice, <strong>The Gambler</strong>, is built to be genuinely
+      different: concentrated, high-conviction swings via leveraged and inverse ETFs, options, crypto, single
+      stocks, and index futures — but every big move still has to trace back to a real named signal, never a
+      hunch, and the same structural safety rules apply as everywhere else (defined-risk options only, no
+      single idea that can take the whole book out).</p>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <p class="eyebrow">Also this session</p>
+    <h2>A real weather index, not a city proxy</h2>
+    <p>The Wizard and The Analyst used to read a heuristic that measured the volume of weather <em>news
+      articles</em> about three seeded local-digest cities — a quiet news day in a real drought looked
+      identical to no drought at all. That's retired now, replaced with two real, free data sources: GDACS
+      (the UN/European Commission's global disaster feed) for active weather-related disasters worldwide, and
+      an upgraded regional weather feature that compares current conditions against a real 15-year percentile
+      baseline instead of a single year-over-year snapshot.</p>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <p class="eyebrow">The bigger idea</p>
+    <h2>Judging the roster at a glance, honestly</h2>
+    <p>Two new views sit above the individual strategy comparisons on the Strategies tab. <strong>Category
+      Indexes</strong> blends each category's member strategies into one composite line, so you can see how an
+      entire discipline — Standard, Novel Vehicles, Dividend Policy, and the rest — is doing before drilling
+      into any single strategy. And every strategy on the All Strategies table now carries a <strong>vs S&amp;P
+      500</strong> pill: the actual spread against a plain buy-and-hold benchmark, which is a clearer "is this
+      actually working" signal than a raw return number on its own.</p>
+
+    <div class="gallery">
+      <div class="shotcard wide">
+        <div class="win">
+          <div class="bar"><i class="r"></i><i class="y"></i><i class="g"></i><span>Finance → Strategies</span></div>
+          <img src="img/category-indexes.jpg" width="1280" height="900" loading="lazy"
+            alt="Category Indexes chart plotting blended returns for seven strategy categories, with a Category performance table below showing member count and since-inception return per category">
+        </div>
+        <div class="cap">
+          <h3>Category Indexes</h3>
+          <p>One weighted line per category — Standard, Novel Disciplines, Novel Vehicles, Dividend Policy, Systematic Models, Multi-Disciplinary, Technical Analysis — plus a compact table of member count and since-inception return.</p>
+        </div>
+      </div>
+
+      <div class="shotcard wide">
+        <div class="win">
+          <div class="bar"><i class="r"></i><i class="y"></i><i class="g"></i><span>Finance → Strategies → Features</span></div>
+          <img src="img/features-catalog.jpg" width="1280" height="900" loading="lazy"
+            alt="Features catalog showing named signals like fearGreedScore and vixLevel grouped into categories, with a total feature count and category filter pills">
+        </div>
+        <div class="cap">
+          <h3>Every signal, cataloged</h3>
+          <p>Every named, computed input a strategy has ever actually decided from, grouped by category —
+            Market, News &amp; Situation Room, Weather &amp; Climate, Macro &amp; Rates, and more. Built from real
+            decision history, not a static list: a signal only shows up once it's been used, and a retired one
+            (the old weather proxy is the live example) stays fully browsable, just tagged "not in use" instead
+            of disappearing.</p>
+        </div>
+      </div>
+    </div>
+    <p class="disclosure">Simulated portfolios. Not investment advice.</p>
+  </div>
+</section>
+
+<section>
+  <div class="wrap" style="text-align:center; padding: 8px 0 4px">
+    <h2>Take a look</h2>
+    <p style="color:var(--muted); max-width:560px; margin: 0 auto 24px">
+      Category Indexes, the vs-S&amp;P-500 column, and the Features catalog are all live now in the Finance section of Corticorp News.
+    </p>
+    <a class="btn btn-primary" href="https://news.corticorp.com/finance" target="_blank" rel="noopener">Open news.corticorp.com/finance →</a>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <p>CortiCorp — <a href="/">corticorp.com</a> · <a href="/updates/">More updates</a></p>
+  </div>
+</footer>
+
+</body>
+</html>
