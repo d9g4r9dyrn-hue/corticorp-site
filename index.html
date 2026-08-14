@@ -147,6 +147,27 @@
     .news-collage { height: 320px }
   }
 
+  /* ---- WORLD'S EYE VIEW ----
+     Its own product on its own domain; it sits directly below News purely
+     because that's where it reads best on the page. The collage is mirrored
+     to the other side so two feature cards in a row don't look like one
+     repeated block. */
+  #worlds-eye-view { padding-top: 40px; padding-bottom: 44px }
+  .feature-flip { grid-template-columns: 1fr 1.35fr }
+  .wev-name .w { color: var(--text) } .wev-name .v { color: #38bdf8; font-weight: 400 }
+  .wev-collage { position: relative; height: 372px }
+  .win-wev-world { width: 64%; left: 0; top: 24px; z-index: 1 }
+  .win-wev-world img { height: 204px }
+  .win-wev-city { width: 49%; right: 0; top: 100px; z-index: 3 }
+  .win-wev-city img { height: 230px }
+  .win-wev-volcano { width: 42%; left: 5%; bottom: 0; z-index: 2 }
+  .win-wev-volcano img { height: 116px }
+  .tag.cam { border-color: #1a3350; color: #38bdf8 }
+  @media (max-width: 760px) {
+    .feature-flip { grid-template-columns: 1fr }
+    .wev-collage { height: 320px }
+  }
+
   /* ---- PLUGINS HUB (home) ---- */
   .plugin-hub {
     background: var(--surface); border: 1px solid var(--border); border-radius: 12px;
@@ -286,6 +307,48 @@
         <a class="project-link" href="projects/news/">Learn more &rarr;</a>
         <a class="project-link" href="https://news.corticorp.com" target="_blank" rel="noopener"
            style="margin-left:8px">Open live &rarr;</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ==================== WORLD'S EYE VIEW (separate product, own domain) ==================== -->
+<section id="worlds-eye-view">
+  <div class="wrap">
+    <p class="eyebrow">Also live</p>
+    <h2>World&rsquo;s Eye View</h2>
+    <div class="news-feature feature-flip">
+      <div class="news-copy">
+        <span class="featured-badge"><span class="dot"></span> Live</span>
+        <h3 style="font-size:1.25rem"><span class="wev-name"><span class="w">World&rsquo;s Eye</span> <span class="v">View</span></span></h3>
+        <p style="color:var(--muted); margin-top:6px">Around <strong>25,000 public webcams</strong>
+           quilted onto one satellite map as live thumbnails &mdash; volcanoes, harbours, city streets
+           and highways. Zoom in and a city fills with windows; click any camera to watch it, or send
+           several to a <strong>multicam wall</strong>. Frames refresh on their own schedules, so the
+           map drifts through the day with the world.</p>
+        <div class="project-meta">
+          <span class="tag web">Next.js 16</span>
+          <span class="tag cam">Leaflet</span>
+          <span class="tag">Esri imagery</span>
+          <span class="tag">No database</span>
+        </div>
+        <a class="project-link" href="projects/worlds-eye-view/">Learn more &rarr;</a>
+        <a class="project-link" href="https://cams.corticorp.com" target="_blank" rel="noopener"
+           style="margin-left:8px">Open live &rarr;</a>
+      </div>
+      <div class="wev-collage">
+        <div class="win win-wev-world">
+          <div class="bar"><i class="r"></i><i class="y"></i><i class="g"></i><span>Continental view</span></div>
+          <img src="projects/worlds-eye-view/img/world.jpg" alt="World's Eye View at continental zoom, live webcam thumbnails scattered across a satellite map of North America">
+        </div>
+        <div class="win win-wev-volcano">
+          <div class="bar"><i class="r"></i><i class="y"></i><i class="g"></i><span>Volcano cams</span></div>
+          <img src="projects/worlds-eye-view/img/volcano.jpg" alt="Alaska Volcano Observatory cameras strung along the Aleutian arc">
+        </div>
+        <div class="win win-wev-city">
+          <div class="bar"><i class="r"></i><i class="y"></i><i class="g"></i><span>Tampa Bay at night</span></div>
+          <img src="projects/worlds-eye-view/img/city.jpg" alt="Dozens of live traffic camera thumbnails covering Tampa Bay at night">
+        </div>
       </div>
     </div>
   </div>

@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>World&rsquo;s Eye View — CortiCorp</title>
+<meta name="description" content="Around 25,000 public webcams quilted onto one satellite map as live thumbnails. Zoom in and a city fills with windows; click any camera to watch it, or build a multicam wall.">
+<meta property="og:title" content="World&rsquo;s Eye View — CortiCorp">
+<meta property="og:description" content="Around 25,000 public webcams quilted onto one satellite map as live thumbnails — volcanoes, harbours, city streets and highways, updating through the day.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://corticorp.com/projects/worlds-eye-view/">
+<meta property="og:image" content="https://corticorp.com/projects/worlds-eye-view/img/city.jpg">
+<link rel="canonical" href="https://corticorp.com/projects/worlds-eye-view/">
+<style>
+  :root {
+    --bg: #0c0a08; --surface: #141210; --surface2: #1c1915; --border: #2a241c;
+    --text: #e8e0d4; --muted: #9a8e7a; --accent: #d4a555; --accent2: #e7c878;
+    --green: #6fae6a; --teal: #35d0c0; --blue: #5b8fd4;
+    /* This project's own accent, used sparingly so the page still reads as
+       part of corticorp.com rather than as the app it describes. */
+    --cyan: #38bdf8;
+    --maxw: 900px;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0 }
+  body { background: var(--bg); color: var(--text);
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    line-height: 1.65; font-size: 17px; }
+  a { color: var(--accent2); text-decoration: none }
+  a:hover { text-decoration: underline }
+  .wrap { max-width: var(--maxw); margin: 0 auto; padding: 0 24px }
+  nav { position: sticky; top: 0; z-index: 10; background: rgba(12,10,8,.92);
+    backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px); border-bottom: 1px solid var(--border); }
+  .nav-inner { display: flex; align-items: center; justify-content: space-between;
+    max-width: var(--maxw); margin: 0 auto; padding: 0 24px; height: 56px; }
+  .brand { font-weight: 800; font-size: 1.1rem; color: var(--accent2); letter-spacing: .03em }
+  .nav-links a { margin-left: 24px; color: var(--muted); font-size: .9rem }
+  .nav-links a:hover { color: var(--text); text-decoration: none }
+  .hero { padding: 72px 0 48px; }
+  .hero .eyebrow-live { display:inline-flex; align-items:center; gap:7px; }
+  .dot { width:8px; height:8px; border-radius:50%; background:var(--green); box-shadow:0 0 0 0 rgba(111,174,106,.6); animation:pulse 2s infinite }
+  @keyframes pulse { 0%{box-shadow:0 0 0 0 rgba(111,174,106,.5)} 70%{box-shadow:0 0 0 7px rgba(111,174,106,0)} 100%{box-shadow:0 0 0 0 rgba(111,174,106,0)} }
+  .hero h1 { font-size: clamp(1.8rem, 4vw, 2.5rem); margin-bottom: 12px }
+  .hero h1 .a { color: var(--text) } .hero h1 .b { color: var(--cyan); font-weight: 300 }
+  .hero p { color: var(--muted); max-width: 680px; }
+  section { padding: 48px 0; border-top: 1px solid #1a1610 }
+  .eyebrow { text-transform: uppercase; letter-spacing: .2em; font-size: .72rem; color: var(--muted); margin-bottom: 8px }
+  h2 { font-size: 1.5rem; color: var(--accent2); margin-bottom: 16px }
+  h3 { font-size: 1.15rem; color: var(--accent); margin-bottom: 6px }
+  .features { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-top: 16px }
+  .feat { background: var(--surface); border: 1px solid var(--border); border-radius: 10px; padding: 20px }
+  .feat h3 { color: var(--cyan); font-size: 1.05rem }
+  .feat p { color: var(--muted); font-size: .93rem }
+  .tag { display: inline-block; padding: 4px 12px; border-radius: 5px; font-size: .8rem;
+    background: var(--surface2); border: 1px solid var(--border); color: var(--muted); margin: 3px 2px }
+  .tag.web { border-color: #1a3a3a; color: var(--teal) }
+  .tag.map { border-color: #1a3350; color: var(--cyan) }
+  .btn { display: inline-block; padding: 12px 24px; border-radius: 8px; font-weight: 600;
+    font-size: .95rem; border: 1px solid var(--border); margin: 6px 6px 6px 0; transition: background .15s }
+  .btn-primary { background: linear-gradient(#5cc9f5,#1f8dc4); color: #04202e; border-color: #2b7fa8 }
+  .btn-ghost { background: var(--surface2); color: var(--accent2) }
+  .btn:hover { filter: brightness(1.08); text-decoration: none }
+
+  /* ---- Framed app windows ---- */
+  .win { border-radius: 11px; overflow: hidden; border: 1px solid #2c313a;
+    background: #14171c; box-shadow: 0 22px 50px rgba(0,0,0,.55) }
+  .win .bar { display:flex; align-items:center; gap:6px; height:26px; padding:0 11px;
+    background:#20242b; border-bottom:1px solid #2c313a }
+  .win .bar i { width:9px; height:9px; border-radius:50%; background:#3a4048 }
+  .win .bar i.r{background:#e0605e} .win .bar i.y{background:#e0b24e} .win .bar i.g{background:#5fb85f}
+  .win .bar span { margin-left:7px; font-size:.64rem; color:#8b93a0 }
+  .win img { display:block; width:100%; object-fit:cover; object-position:top center }
+
+  .collage { position: relative; height: 400px; margin: 10px 0 4px }
+  .collage .win { position:absolute }
+  .collage .win-world { width:64%; left:0; top:30px; z-index:1 }
+  .collage .win-world img { height:240px }
+  .collage .win-city { width:48%; right:0; top:0; z-index:3 }
+  .collage .win-city img { height:250px }
+  .collage .win-volcano { width:44%; left:7%; bottom:0; z-index:2 }
+  .collage .win-volcano img { height:132px }
+
+  .gallery { display:grid; grid-template-columns:1fr 1fr; gap:26px 24px; margin-top:20px }
+  .shotcard.wide { grid-column:1 / -1 }
+  .shotcard .cap { margin-top:14px }
+  .shotcard .cap h3 { margin-bottom:4px; color: var(--cyan) }
+  .shotcard .cap p { color:var(--muted); font-size:.92rem }
+
+  table.sources { width:100%; border-collapse:collapse; margin-top:14px; font-size:.92rem }
+  table.sources th { text-align:left; color:var(--muted); font-weight:600; font-size:.75rem;
+    text-transform:uppercase; letter-spacing:.1em; padding:0 12px 8px 0; border-bottom:1px solid var(--border) }
+  table.sources td { padding:10px 12px 10px 0; border-bottom:1px solid #1a1610; color:var(--muted); vertical-align:top }
+  table.sources td.n { color:var(--text); white-space:nowrap; font-variant-numeric:tabular-nums }
+  table.sources td strong { color:var(--text); font-weight:600 }
+
+  footer { padding: 32px 0; border-top: 1px solid var(--border); text-align: center; color: var(--muted); font-size: .8rem }
+  @media (max-width:600px){
+    .collage{height:330px} .gallery{grid-template-columns:1fr} .features { grid-template-columns: 1fr }
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-inner">
+    <a class="brand" href="/">CortiCorp</a>
+    <div class="nav-links">
+      <a href="/#projects">Projects</a>
+      <a href="/updates/">Updates</a>
+      <a href="/#about">About</a>
+      <a href="/#contact">Contact</a>
+    </div>
+  </div>
+</nav>
+
+<div class="wrap hero">
+  <p class="eyebrow eyebrow-live"><span class="dot"></span> Live web app</p>
+  <h1><span class="a">World&rsquo;s Eye</span> <span class="b">View</span></h1>
+  <p>Around <strong>25,000 public webcams</strong>, stitched onto a single satellite map as live
+     thumbnails. Zoom out and you see the notable ones &mdash; volcanoes, harbours, landmark city
+     streets. Zoom in and a city fills with windows. Click any camera to watch it full size, or send
+     several to a <strong>multicam wall</strong> and watch them together. Because every frame is real
+     and refreshes on its own schedule, the map drifts through the day with the world: you can watch
+     dawn cross a continent, or find a city already dark hours before its neighbour.</p>
+  <div style="margin-top:20px">
+    <a class="btn btn-primary" href="https://cams.corticorp.com" target="_blank" rel="noopener">Open cams.corticorp.com</a>
+    <a class="btn btn-ghost" href="/#projects">Back to Projects</a>
+  </div>
+</div>
+
+<section>
+  <div class="wrap">
+    <div class="collage">
+      <div class="win win-world">
+        <div class="bar"><i class="r"></i><i class="y"></i><i class="g"></i><span>Continental view</span></div>
+        <img src="img/world.jpg" alt="World's Eye View at continental zoom over North America, live webcam thumbnails scattered across a satellite map">
+      </div>
+      <div class="win win-volcano">
+        <div class="bar"><i class="r"></i><i class="y"></i><i class="g"></i><span>Alaska &mdash; volcano cams</span></div>
+        <img src="img/volcano.jpg" alt="Alaska Volcano Observatory cameras strung along the Aleutian arc, some in daylight and some still dark">
+      </div>
+      <div class="win win-city">
+        <div class="bar"><i class="r"></i><i class="y"></i><i class="g"></i><span>City view &mdash; Tampa Bay at night</span></div>
+        <img src="img/city.jpg" alt="Dozens of live traffic camera thumbnails covering Tampa Bay at night, headlights and street lighting visible in each">
+      </div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <p class="eyebrow">What it does</p>
+    <h2>A map made of windows</h2>
+    <div class="features">
+      <div class="feat">
+        <h3>Thumbnails, not pins</h3>
+        <p>Every camera draws as its own live frame, sized in proportion to how notable it is and how
+           far you&rsquo;ve zoomed in. The map stays a map &mdash; cameras never carpet it.</p>
+      </div>
+      <div class="feat">
+        <h3>You can see the time of day</h3>
+        <p>Frames refresh on each camera&rsquo;s own cadence, so the wall of thumbnails darkens and
+           brightens with real daylight rather than sitting frozen.</p>
+      </div>
+      <div class="feat">
+        <h3>Multicam wall</h3>
+        <p>Send any camera to a grid that arranges itself into a rectangle and resizes as you add or
+           remove feeds. Your wall is remembered between visits.</p>
+      </div>
+      <div class="feat">
+        <h3>Layers you can actually use</h3>
+        <p>Filter by what you&rsquo;re looking at (volcanoes, harbours, roads) or by who runs it &mdash;
+           so &ldquo;only the Florida DOT cameras&rdquo; is a single click.</p>
+      </div>
+    </div>
+    <div style="margin-top:22px">
+      <span class="tag web">Next.js 16</span>
+      <span class="tag map">Leaflet</span>
+      <span class="tag">Esri satellite imagery</span>
+      <span class="tag">sharp</span>
+      <span class="tag">No database</span>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <p class="eyebrow">Sources</p>
+    <h2>Where the cameras come from</h2>
+    <p style="color:var(--muted); max-width:680px">Every camera is published openly by the agency that
+       operates it. Nothing is scraped from a closed system, and no feed here requires a paid key.</p>
+    <table class="sources">
+      <thead>
+        <tr><th>Source</th><th>Cameras</th><th>Coverage</th></tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><strong>511 traveler information</strong></td>
+          <td class="n">~21,000</td>
+          <td>14 US states and 8 Canadian provinces and territories &mdash; Florida and Georgia are the
+              two largest single feeds</td>
+        </tr>
+        <tr><td><strong>Caltrans CCTV</strong></td><td class="n">~3,400</td><td>California highways</td></tr>
+        <tr><td><strong>Transport for London</strong></td><td class="n">~780</td><td>JamCams across Greater London</td></tr>
+        <tr>
+          <td><strong>USGS Alaska Volcano Observatory</strong></td>
+          <td class="n">64</td>
+          <td>Active volcanoes and the communities downwind of them</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <p class="eyebrow">Closer look</p>
+    <h2>Two things worth clicking</h2>
+    <div class="gallery">
+      <div class="shotcard">
+        <div class="win">
+          <div class="bar"><i class="r"></i><i class="y"></i><i class="g"></i><span>Multicam</span></div>
+          <img src="img/multicam.jpg" alt="Multicam wall showing three live night-time traffic cameras arranged in a two-by-two grid">
+        </div>
+        <div class="cap">
+          <h3>The multicam wall</h3>
+          <p>Columns are the square root of the camera count, so the wall always aims at a rectangle
+             rather than a long row. Past a certain size the tiles shrink instead of the panel growing
+             off screen.</p>
+        </div>
+      </div>
+      <div class="shotcard">
+        <div class="win">
+          <div class="bar"><i class="r"></i><i class="y"></i><i class="g"></i><span>Layers</span></div>
+          <img src="img/layers.jpg" alt="Layers control listing camera types and operators with live counts for the current view">
+        </div>
+        <div class="cap">
+          <h3>Layers, with real counts</h3>
+          <p>Counts are for everything in view, not just what fit on screen &mdash; so isolating a layer
+             genuinely reveals cameras that lost their slot while everything else was switched on.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <p class="eyebrow">Under the hood</p>
+    <h2>How it stays fast</h2>
+    <p style="color:var(--muted); max-width:680px">
+      Twenty-five thousand cameras will not fit on a screen, so the server decides who gets a slot:
+      it projects every candidate into screen pixels at your current zoom, drops them into
+      thumbnail-sized grid cells, and keeps the most interesting camera in each. Zooming in shrinks
+      the ground each cell covers, so the highway cameras that lost to a volcano at country scale
+      reappear on their own once there&rsquo;s room.
+    </p>
+    <p style="color:var(--muted); max-width:680px; margin-top:14px">
+      Frames are fetched and downscaled server-side &mdash; roughly 6KB each instead of 120KB, which is
+      the difference between a map that loads and one that doesn&rsquo;t. That also means every image
+      arrives from a single origin, so the site&rsquo;s content-security policy never has to trust the
+      dozens of third-party hosts the cameras actually live on. Cameras that stop responding, or that
+      answer with a &ldquo;temporarily unavailable&rdquo; placeholder card, are detected and dropped
+      rather than left as dead tiles.
+    </p>
+    <p style="color:var(--muted); max-width:680px; margin-top:14px">
+      There is no database and no scheduled job. The whole catalogue is rebuilt in memory on boot and
+      refreshed per source in the background.
+    </p>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">&copy; <span id="year">2026</span> CortiCorp, LLC</div>
+</footer>
+
+<script>document.getElementById('year').textContent = new Date().getFullYear();</script>
+</body>
+</html>
