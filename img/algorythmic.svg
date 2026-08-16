@@ -1,0 +1,72 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 500" width="800" height="500" role="img"
+     aria-label="AlgoRythmic: a plain-English description compiles to editable rules, generates a queue you preview for free, and saves to YouTube Music">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#1c1915"/>
+      <stop offset="1" stop-color="#0c0a08"/>
+    </linearGradient>
+    <linearGradient id="warm" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0" stop-color="#d4a555"/>
+      <stop offset="1" stop-color="#e7c878"/>
+    </linearGradient>
+  </defs>
+
+  <rect width="800" height="500" fill="url(#bg)"/>
+
+  <!-- Equaliser bars, echoing the name. Purely decorative. -->
+  <g fill="#d4a555" opacity=".16">
+    <rect x="52"  y="372" width="9" height="52"  rx="4.5"/>
+    <rect x="70"  y="340" width="9" height="84"  rx="4.5"/>
+    <rect x="88"  y="392" width="9" height="32"  rx="4.5"/>
+    <rect x="106" y="316" width="9" height="108" rx="4.5"/>
+    <rect x="124" y="356" width="9" height="68"  rx="4.5"/>
+    <rect x="142" y="300" width="9" height="124" rx="4.5"/>
+    <rect x="160" y="380" width="9" height="44"  rx="4.5"/>
+    <rect x="178" y="332" width="9" height="92"  rx="4.5"/>
+    <rect x="196" y="364" width="9" height="60"  rx="4.5"/>
+    <rect x="214" y="308" width="9" height="116" rx="4.5"/>
+    <rect x="232" y="386" width="9" height="38"  rx="4.5"/>
+    <rect x="250" y="348" width="9" height="76"  rx="4.5"/>
+  </g>
+
+  <text x="52" y="78" font-family="Segoe UI, Helvetica, Arial, sans-serif"
+        font-size="15" letter-spacing="3.5" fill="#9a8e7a">CORTICORP</text>
+  <text x="52" y="132" font-family="Segoe UI, Helvetica, Arial, sans-serif"
+        font-size="46" font-weight="600" fill="#e8e0d4">AlgoRythmic</text>
+
+  <!-- The pipeline, which is the whole idea: describe it, edit the rules it
+       compiled, hear it for nothing, then commit it to YouTube. -->
+  <g font-family="Segoe UI, Helvetica, Arial, sans-serif">
+    <g>
+      <rect x="52" y="176" width="184" height="62" rx="9" fill="#141210" stroke="#2a241c"/>
+      <text x="68" y="203" font-size="14.5" fill="#e8e0d4">“moody late-night</text>
+      <text x="68" y="224" font-size="14.5" fill="#e8e0d4">driving music”</text>
+    </g>
+    <path d="M244 207 h44" stroke="#d4a555" stroke-width="2" fill="none"/>
+    <path d="M282 201 l8 6 -8 6z" fill="#d4a555"/>
+
+    <g>
+      <rect x="296" y="176" width="184" height="62" rx="9" fill="#141210" stroke="#2a241c"/>
+      <text x="312" y="203" font-size="14.5" fill="#e8e0d4">rules you can edit</text>
+      <text x="312" y="224" font-size="13" fill="#9a8e7a">post-1990 · no live · 3/artist</text>
+    </g>
+    <path d="M488 207 h44" stroke="#d4a555" stroke-width="2" fill="none"/>
+    <path d="M526 201 l8 6 -8 6z" fill="#d4a555"/>
+
+    <g>
+      <rect x="540" y="176" width="208" height="62" rx="9" fill="#141210" stroke="#2a241c"/>
+      <text x="556" y="203" font-size="14.5" fill="#e8e0d4">a queue, previewed</text>
+      <text x="556" y="224" font-size="13" fill="#6fae6a">free · unlimited</text>
+    </g>
+
+    <path d="M644 246 v30" stroke="#2a241c" stroke-width="2" fill="none"/>
+    <path d="M638 268 l6 10 6 -10z" fill="#2a241c"/>
+    <g>
+      <rect x="540" y="284" width="208" height="52" rx="9" fill="#141210" stroke="#d4a555" stroke-opacity=".45"/>
+      <text x="556" y="316" font-size="14.5" fill="url(#warm)">saved to YouTube Music</text>
+    </g>
+  </g>
+
+  <text x="52" y="452" font-family="Segoe UI, Helvetica, Arial, sans-serif"
+        font-size="14.5" fill="#9a8e7a">music.corticorp.com</text>
+</svg>

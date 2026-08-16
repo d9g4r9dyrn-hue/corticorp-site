@@ -83,6 +83,22 @@ export const KNOWN_PROJECTS: ProjectSeed[] = [
     status: 'beta',
     tags: ['audio', 'dsp', 'vst3', 'harmonizer', 'auto-tune', 'effect'],
   },
+  // First non-plugin entry. It has no CLAUDE.md for the scanner to mine, so
+  // name and description are seeded here rather than left to the id fallback.
+  {
+    id: 'algorythmic',
+    pathFromCortiCorp: 'algorythmic',
+    type: 'app',
+    status: 'active',
+    tags: ['web', 'music', 'youtube', 'playlists', 'ai', 'nextjs', 'postgres'],
+    homepage: 'https://music.corticorp.com',
+    name: 'AlgoRythmic',
+    description:
+      'Build YouTube Music playlists from selection strategies you define. ' +
+      'Describe a vibe in plain English and it compiles to rules you can edit, ' +
+      'preview the whole queue in the browser for nothing, then save it as a ' +
+      'real private playlist your car can play.',
+  },
 ];
 
 interface ParsedClaudeMd {
