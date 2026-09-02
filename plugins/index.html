@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>CortiCorp Plugins — VST3 Instruments & Effects</title>
-<meta name="description" content="A growing line of VST3 audio plugins by CortiCorp, built in C++ with JUCE. CortSynth (free synth/sampler/drums), CortVerb (hybrid FDN reverb), and Ironclad (amp-style distortion) — with more in development.">
+<meta name="description" content="A growing line of VST3 audio plugins by CortiCorp, built in C++ with JUCE. CortSynth (free synth/sampler/drums), CortVerb (hybrid FDN reverb) and Ironclad (amp-style distortion), with CortKeys, CortSampler, CortDrum, CortComp and CortHarm in build.">
 <meta property="og:title" content="CortiCorp Plugins — VST3 Instruments & Effects">
 <meta property="og:description" content="VST3 instruments and effects built in C++ with JUCE. Synths, reverbs, distortion — free and premium.">
 <meta property="og:image" content="/music/plugins/CortSynth/img/main.png">
@@ -248,7 +248,9 @@
     <h2>In development</h2>
     <p style="color:var(--muted); margin-bottom:28px; max-width:680px">
       New instruments and effects are always in the pipeline. Here's a look at what's next —
-      check back as these ship.
+      check back as these ship. Three of them, CortKeys, CortSampler and CortDrum, are the all-in-one
+      CortSynth split into three single-purpose plugins, for anyone who wanted the synth without the
+      sampler or the drums without either.
     </p>
     <div class="dev-grid">
       <div class="dev-card">
@@ -261,6 +263,37 @@
         <span class="badge soon">Coming Soon</span>
         <h3>Ironclad</h3>
         <p>Amp-style distortion with four voicings and a hardware-inspired tone stack.</p>
+      </div>
+      <div class="dev-card">
+        <span class="badge soon">In build</span>
+        <h3>CortKeys</h3>
+        <p>The synthesizer half of CortSynth as its own plugin: dual oscillators, FM and wavetable
+           engines, physically modelled strings and piano, and the AI Tone Designer, with no sampler
+           and no drum grid in the way.</p>
+      </div>
+      <div class="dev-card">
+        <span class="badge soon">In build</span>
+        <h3>CortSampler</h3>
+        <p>The sampler half of CortSynth as its own plugin. Load, map and play your own samples,
+           auto-split a folder into velocity banks, or import an SFZ instrument.</p>
+      </div>
+      <div class="dev-card">
+        <span class="badge soon">In build</span>
+        <h3>CortDrum</h3>
+        <p>A 20-pad General MIDI drum machine on the CortSampler engine in one-shot mode. Import a
+           folder of one-shots, a folder tree, or a DrumGizmo kit.</p>
+      </div>
+      <div class="dev-card">
+        <span class="badge soon">In build</span>
+        <h3>CortComp</h3>
+        <p>A dynamics processor with an INVERT mode that drives the transfer slope negative, so
+           louder input yields quieter output. Softs up and louds down, past a limiter.</p>
+      </div>
+      <div class="dev-card">
+        <span class="badge soon">In build</span>
+        <h3>CortHarm</h3>
+        <p>Vocal harmonizer and pitch correction. Pick a key and scale, set how hard the retune
+           bites, and blend generated harmony voices under the lead.</p>
       </div>
       <div class="dev-card">
         <span class="badge soon">Exploring</span>

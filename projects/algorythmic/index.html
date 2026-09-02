@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>AlgoRythmic — CortiCorp</title>
+<meta name="description" content="AlgoRythmic builds YouTube Music playlists from selection strategies you define. Describe a vibe in plain English, it compiles to rules you can edit, preview the whole queue for nothing, then save it as a real private playlist your car can play.">
+<meta property="og:title" content="AlgoRythmic — CortiCorp">
+<meta property="og:description" content="Playlist rules you can actually edit. Preview free, save once, then play it in the car from YouTube Music.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://corticorp.com/projects/algorythmic/">
+<meta property="og:image" content="https://corticorp.com/img/algorythmic.svg">
+<link rel="canonical" href="https://corticorp.com/projects/algorythmic/">
+<style>
+  :root {
+    --bg: #0c0a08; --surface: #141210; --surface2: #1c1915; --border: #2a241c;
+    --text: #e8e0d4; --muted: #9a8e7a; --accent: #d4a555; --accent2: #e7c878;
+    --green: #6fae6a; --teal: #35d0c0; --blue: #5b8fd4; --maxw: 900px;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0 }
+  body { background: var(--bg); color: var(--text);
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    line-height: 1.65; font-size: 17px; }
+  a { color: var(--accent2); text-decoration: none }
+  a:hover { text-decoration: underline }
+  .wrap { max-width: var(--maxw); margin: 0 auto; padding: 0 24px }
+  nav { position: sticky; top: 0; z-index: 10; background: rgba(12,10,8,.92);
+    backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px); border-bottom: 1px solid var(--border); }
+  .nav-inner { display: flex; align-items: center; justify-content: space-between;
+    max-width: var(--maxw); margin: 0 auto; padding: 0 24px; height: 56px; }
+  .brand { font-weight: 800; font-size: 1.1rem; color: var(--accent2); letter-spacing: .03em }
+  .nav-links a { margin-left: 24px; color: var(--muted); font-size: .9rem }
+  .nav-links a:hover { color: var(--text); text-decoration: none }
+  .hero { padding: 72px 0 48px; }
+  .hero .eyebrow-live { display:inline-flex; align-items:center; gap:7px; }
+  .dot { width:8px; height:8px; border-radius:50%; background:var(--green); box-shadow:0 0 0 0 rgba(111,174,106,.6); animation:pulse 2s infinite }
+  @keyframes pulse { 0%{box-shadow:0 0 0 0 rgba(111,174,106,.5)} 70%{box-shadow:0 0 0 7px rgba(111,174,106,0)} 100%{box-shadow:0 0 0 0 rgba(111,174,106,0)} }
+  .hero h1 { font-size: clamp(1.8rem, 4vw, 2.5rem); color: var(--accent2); margin-bottom: 12px }
+  .hero h1 .a { color: var(--accent2) } .hero h1 .b { color: var(--teal) }
+  .hero p { color: var(--muted); max-width: 680px; }
+  section { padding: 48px 0; border-top: 1px solid #1a1610 }
+  .eyebrow { text-transform: uppercase; letter-spacing: .2em; font-size: .72rem; color: var(--muted); margin-bottom: 8px }
+  h2 { font-size: 1.5rem; color: var(--accent2); margin-bottom: 16px }
+  h3 { font-size: 1.15rem; color: var(--accent); margin-bottom: 6px }
+  .features { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-top: 16px }
+  .feat { background: var(--surface); border: 1px solid var(--border); border-radius: 10px; padding: 20px }
+  .feat p { color: var(--muted); font-size: .93rem }
+  .tag { display: inline-block; padding: 4px 12px; border-radius: 5px; font-size: .8rem;
+    background: var(--surface2); border: 1px solid var(--border); color: var(--muted); margin: 3px 2px }
+  .tag.ai { border-color: #3a4a2a; color: var(--green) }
+  .tag.web { border-color: #1a3a3a; color: var(--teal) }
+  .btn { display: inline-block; padding: 12px 24px; border-radius: 8px; font-weight: 600;
+    font-size: .95rem; border: 1px solid var(--border); margin: 6px 6px 6px 0; transition: background .15s }
+  .btn-primary { background: linear-gradient(#e7c074,#c4923f); color: #241704; border-color: #8a6a2e }
+  .btn-ghost { background: var(--surface2); color: var(--accent2) }
+  .btn:hover { filter: brightness(1.08); text-decoration: none }
+
+  .flow { display:block; width:100%; max-width:760px; margin: 8px auto 0; border-radius:12px;
+    border:1px solid var(--border); background:var(--surface); padding: 18px }
+
+  /* ---- The quota table. The one constraint that shapes the whole product, so
+         it gets a real table rather than a sentence somebody skims past. ---- */
+  table.costs { width:100%; border-collapse:collapse; margin-top:14px; font-size:.92rem }
+  table.costs th { text-align:left; color:var(--muted); font-weight:600; font-size:.75rem;
+    text-transform:uppercase; letter-spacing:.1em; padding:0 12px 8px 0; border-bottom:1px solid var(--border) }
+  table.costs td { padding:10px 12px 10px 0; border-bottom:1px solid #1a1610; color:var(--muted); vertical-align:top }
+  table.costs td.n { color:var(--text); white-space:nowrap; font-variant-numeric:tabular-nums }
+  table.costs td strong { color:var(--text); font-weight:600 }
+
+  .note { background: var(--surface); border: 1px solid var(--border); border-radius: 10px;
+    padding: 20px 22px; color: var(--muted); font-size: .93rem; margin-top: 20px }
+  .note strong { color: var(--text) }
+
+  footer { padding: 32px 0; border-top: 1px solid var(--border); text-align: center; color: var(--muted); font-size: .8rem }
+  @media (max-width: 600px) { .features { grid-template-columns: 1fr } }
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-inner">
+    <a class="brand" href="/">CortiCorp</a>
+    <div class="nav-links">
+      <a href="/#projects">Projects</a>
+      <a href="/updates/">Updates</a>
+      <a href="/#about">About</a>
+      <a href="/#contact">Contact</a>
+    </div>
+  </div>
+</nav>
+
+<div class="wrap hero">
+  <p class="eyebrow eyebrow-live"><span class="dot"></span> Live web app</p>
+  <h1><span class="a">Algo</span><span class="b">Rythmic</span></h1>
+  <p>A playlist builder for YouTube Music that treats a playlist as a <strong>rule set you can
+     edit</strong> rather than a black box. Describe a vibe in plain English and it compiles to
+     selection rules you can actually see and change: era, length, no live versions, never the same
+     artist twice. Or start from one song and weight what "similar" is allowed to mean, across eight
+     dimensions. Preview the whole queue in the browser for nothing, then save it once as a real
+     private playlist your car can play.</p>
+  <div style="margin-top:20px">
+    <a class="btn btn-primary" href="https://music.corticorp.com" target="_blank" rel="noopener">Open music.corticorp.com</a>
+    <a class="btn btn-ghost" href="/#projects">Back to Projects</a>
+  </div>
+</div>
+
+<section>
+  <div class="wrap">
+    <img class="flow" src="/img/algorythmic.svg"
+         alt="A plain-English description compiles to editable rules, which generate a queue you preview for free, which you then save to YouTube Music">
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <p class="eyebrow">How it works</p>
+    <h2>Describe. Edit. Preview. Save.</h2>
+    <div class="features">
+      <div class="feat">
+        <h3>Rules, not a black box</h3>
+        <p>A sentence compiles into a visible strategy: filters, ordering, and limits you can open up
+           and adjust. If the queue is wrong, you can see which rule made it wrong.</p>
+      </div>
+      <div class="feat">
+        <h3>Seed from one song</h3>
+        <p>Give it a track and weight eight dimensions of similarity yourself: same artist, same era,
+           same country, similar mood and so on. "Similar" stops being somebody else's definition.</p>
+      </div>
+      <div class="feat">
+        <h3>Your library, mirrored locally</h3>
+        <p>Your YouTube library syncs into a local database once, and every strategy runs against that
+           mirror. Generating and previewing are deterministic, instant, and cost nothing.</p>
+      </div>
+      <div class="feat">
+        <h3>Enriched tracks</h3>
+        <p>Tracks pick up factual detail from MusicBrainz and a written sense of feel from a language
+           model, so a rule about era or mood has something real to filter on.</p>
+      </div>
+      <div class="feat">
+        <h3>Discovery beyond your library</h3>
+        <p>Paginated discovery searches out past what you already own, and can name the artists that
+           make up a scene rather than making you list them yourself.</p>
+      </div>
+      <div class="feat">
+        <h3>Saved as a real playlist</h3>
+        <p>Saving writes a genuine private playlist on your YouTube account, so it plays in the
+           YouTube Music app with background playback, lock-screen controls and Bluetooth metadata.
+           Confirmed working in a car.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <p class="eyebrow">The constraint</p>
+    <h2>Why previewing is free and saving is not</h2>
+    <p style="color:var(--muted); max-width:700px">The YouTube Data API gives a project 10,000 quota
+       units a day, and writes are what hurt. That one number shapes the whole product: everything
+       that can be done against the local mirror is free and unlimited, and the single expensive step
+       tells you its price before you commit.</p>
+    <table class="costs">
+      <thead>
+        <tr><th>Operation</th><th>Units</th><th>What that means</th></tr>
+      </thead>
+      <tbody>
+        <tr><td><strong>Add one track to a playlist</strong></td><td class="n">50</td><td>The expensive one. A 50-track playlist costs roughly 2,550 units to save</td></tr>
+        <tr><td><strong>Create a playlist</strong></td><td class="n">50</td><td>Paid once per playlist</td></tr>
+        <tr><td><strong>One discovery search</strong></td><td class="n">100</td><td>Which is why discovery is paginated rather than fired off per keystroke</td></tr>
+        <tr><td><strong>Read 50 tracks</strong></td><td class="n">1</td><td>Reading is close to free, so the local mirror is cheap to build and refresh</td></tr>
+      </tbody>
+    </table>
+    <div class="note">
+      <strong>Roughly four playlists a day.</strong> Every unit spent is written to a ledger, and the
+      app refuses any call that would exceed the day's budget rather than failing halfway through a
+      save and leaving a half-written playlist behind. Updating an existing playlist inserts only the
+      tracks that changed instead of rebuilding it.
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <p class="eyebrow">Recently</p>
+    <h2>What is new</h2>
+    <div class="features">
+      <div class="feat">
+        <h3>A dashboard in three numbered steps</h3>
+        <p>Sync, build, save. The remaining quota moved into the header where it belongs, and the
+           first-run sync step is now impossible to miss.</p>
+      </div>
+      <div class="feat">
+        <h3>Seed mode and enrichment</h3>
+        <p>Seed-based playlists with eight weighted similarity dimensions, backed by track enrichment
+           from MusicBrainz facts and a model-written sense of feel.</p>
+      </div>
+      <div class="feat">
+        <h3>Discovery, paginated</h3>
+        <p>Search past your own library without spending a search's worth of quota on every page, and
+           ask it to name the artists behind a scene.</p>
+      </div>
+      <div class="feat">
+        <h3>Your own uploads work</h3>
+        <p>Tracks you uploaded to YouTube Music come back from the API as private. They cannot play in
+           an embedded browser player, which is a rule of embeds and not a bug, but they add to a
+           playlist and play in YouTube Music normally. All three behaviours were tested rather than
+           assumed.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <p class="eyebrow">Built with</p>
+    <div>
+      <span class="tag ai">Claude API</span>
+      <span class="tag web">Next.js</span>
+      <span class="tag web">TypeScript</span>
+      <span class="tag">Postgres</span>
+      <span class="tag">YouTube Data API v3</span>
+      <span class="tag">MusicBrainz</span>
+      <span class="tag">OAuth</span>
+    </div>
+    <div style="margin-top:22px">
+      <a class="btn btn-primary" href="https://music.corticorp.com" target="_blank" rel="noopener">Open music.corticorp.com</a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">&copy; <span id="year">2026</span> CortiCorp, LLC</div>
+</footer>
+
+<script>document.getElementById('year').textContent = new Date().getFullYear();</script>
+</body>
+</html>

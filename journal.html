@@ -4,9 +4,9 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Cort — Selected Work &amp; Highlights</title>
-<meta name="description" content="A journal of the work I'm proudest of: shipped AI-native apps, real-time C++ audio plugins, and data systems. 25+ years of engineering, now building at the edge of what AI makes possible.">
+<meta name="description" content="A journal of the work I'm proudest of: four live AI-native web products (Corticorp News, Corticorp Finance, World's Eye View, AlgoRythmic), real-time C++ audio plugins, and data systems. 25+ years of engineering, now building at the edge of what AI makes possible.">
 <meta property="og:title" content="Cort — Selected Work &amp; Highlights">
-<meta property="og:description" content="Shipped AI-native apps, real-time C++ audio plugins, and data systems. A highlight reel for anyone deciding whether to work with me.">
+<meta property="og:description" content="Four live AI-native web products, real-time C++ audio plugins, and data systems. A highlight reel for anyone deciding whether to work with me.">
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://corticorp.com/journal.html">
 <link rel="canonical" href="https://corticorp.com/journal.html">
@@ -275,6 +275,136 @@
        the AI integration, the interface, and the page selling it. Newest first.</p>
 
     <div class="timeline">
+
+      <!-- Corticorp Finance -->
+      <div class="entry">
+        <div class="when">September 2026 &middot; Live on its own domain</div>
+        <div class="entry-card">
+          <div class="entry-head">
+            <h3>Corticorp Finance</h3>
+            <span class="status live">Live</span>
+          </div>
+          <div class="entry-media">
+            <img src="/projects/finance/img/strategies.jpg" alt="The Corticorp Finance strategies table with a period selector and a vs S&P 500 verdict on every row" loading="lazy">
+          </div>
+          <p>The most ambitious thing I have built. <strong>Thirty-nine simulated portfolios</strong>
+             run side by side on the same live market, each with its own stated investment discipline,
+             each starting from the same $100,000, and each publishing every decision it makes along
+             with the reasoning and the exact inputs it saw. It began as a tab inside Corticorp News
+             and in late August 2026 it moved out to its own domain, its own masthead and its own five
+             sections. Simulated, and not investment advice; the point is the experiment, not a tip.</p>
+          <ul class="wins">
+            <li>Thirteen model-driven strategists plus twenty-six documented sleeve portfolios, including two deliberate control arms that exist so the roster has something honest to be measured against</li>
+            <li>An AI Board reviewing the experiment in public: a Judge, a Scientist, a Treasurer, an Auditor, an Editor, a research Librarian and a Marketer, with their findings and open work items published rather than kept internal</li>
+            <li>Delta-1 risk telemetry: every decision carries a snapshot of what a 1, 3, 5 or 10 percent market fall does to that exact book, computed by revaluing each position rather than by a rule of thumb</li>
+            <li>A written register of every change to the models behind it, because changing a model changes the measuring instrument and a track record that spans one is two records, not one</li>
+            <li>Two products from one codebase, routed by hostname, each domain publishing only its own pages, sitemap and robots file</li>
+          </ul>
+          <div class="pillrow">
+            <span class="tag ai">Claude API</span><span class="tag web">Next.js 16</span><span class="tag data">SQLite</span><span class="tag">Railway</span>
+          </div>
+          <div class="entry-links">
+            <a href="/projects/finance/">Project page &amp; diary &rarr;</a>
+            <a href="https://finance.corticorp.com" target="_blank" rel="noopener">Open live &rarr;</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Corticorp News -->
+      <div class="entry">
+        <div class="when">2026 &middot; Live, running on its own</div>
+        <div class="entry-card">
+          <div class="entry-head">
+            <h3>Corticorp News</h3>
+            <span class="status live">Live</span>
+          </div>
+          <div class="entry-media">
+            <img src="/projects/news/img/situation.jpg" alt="Corticorp News Situation Room satellite map with military symbology and a front-line overlay" loading="lazy">
+          </div>
+          <p>An AI-curated digest that reads dozens of paywall-free outlets and gives you
+             <strong>one synthesized summary per real-world event</strong> instead of ten
+             near-duplicate headlines. What I am proudest of here is the part that admits doubt: a
+             public Verification Desk that checks circulating claims against independent reporting and
+             is willing to publish "unverified" rather than smooth it over.</p>
+          <ul class="wins">
+            <li>Articles clustered into real-world events, then summarized once, neutrally, with the sources shown</li>
+            <li>Map-driven situation rooms for ongoing conflicts, with corroborated public event locations and a front-line overlay</li>
+            <li>Scheduled digest runs inside the server process, so the feed refreshes itself with no separate worker to babysit</li>
+            <li>Full-text search across every event ever published, with extracted article imagery archived alongside</li>
+          </ul>
+          <div class="pillrow">
+            <span class="tag ai">Claude API</span><span class="tag web">Next.js 16</span><span class="tag data">SQLite</span><span class="tag">Leaflet / Maps</span>
+          </div>
+          <div class="entry-links">
+            <a href="/projects/news/">Project page &rarr;</a>
+            <a href="https://news.corticorp.com" target="_blank" rel="noopener">Open live &rarr;</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- World's Eye View -->
+      <div class="entry">
+        <div class="when">2026 &middot; Live</div>
+        <div class="entry-card">
+          <div class="entry-head">
+            <h3>World&rsquo;s Eye View</h3>
+            <span class="status live">Live</span>
+          </div>
+          <div class="entry-media">
+            <img src="/projects/worlds-eye-view/img/world.jpg" alt="World's Eye View at continental zoom, live webcam thumbnails scattered across a satellite map" loading="lazy">
+          </div>
+          <p>Around <strong>34,700 public webcams</strong> from 31 open sources, quilted onto one
+             satellite map as live thumbnails rather than pins. Zoom out and you get the notable ones;
+             zoom in and a city fills with windows. Because every frame is real and refreshes on its
+             own schedule, the map drifts through the day with the world, and you can watch dawn cross
+             a continent.</p>
+          <ul class="wins">
+            <li>Server-side thinning that projects every candidate into screen pixels and keeps the most interesting camera per grid cell, which is what stops 4,800 Florida cameras becoming a solid wall</li>
+            <li>Frames proxied and downscaled to roughly 6KB each, so one origin serves every image and the security policy never has to trust dozens of third-party hosts</li>
+            <li>A multicam wall, cameras along a driving route, and a finder for wherever sunrise or sunset is happening right now</li>
+            <li>The map needs no database at all; the one behind it exists only for optional accounts and saved walls, and the map keeps working without it</li>
+          </ul>
+          <div class="pillrow">
+            <span class="tag web">Next.js 16</span><span class="tag data">Leaflet</span><span class="tag">Esri imagery</span><span class="tag">sharp</span>
+          </div>
+          <div class="entry-links">
+            <a href="/projects/worlds-eye-view/">Project page &rarr;</a>
+            <a href="https://cams.corticorp.com" target="_blank" rel="noopener">Open live &rarr;</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- AlgoRythmic -->
+      <div class="entry">
+        <div class="when">2026 &middot; Live</div>
+        <div class="entry-card">
+          <div class="entry-head">
+            <h3>AlgoRythmic</h3>
+            <span class="status live">Live</span>
+          </div>
+          <div class="entry-media">
+            <img src="/img/algorythmic.svg" alt="A plain-English description compiles to editable rules, which generate a queue you preview for free, then save to YouTube Music" loading="lazy">
+          </div>
+          <p>A playlist builder for YouTube Music that treats a playlist as a <strong>rule set you can
+             edit</strong>. Describe a vibe in plain English and it compiles to visible selection
+             rules: era, length, no live versions, never the same artist twice. If the queue is wrong,
+             you can see which rule made it wrong, which is the thing no streaming service will let
+             you do.</p>
+          <ul class="wins">
+            <li>Built around one hard constraint: the API gives 10,000 quota units a day and a 50-track save costs about 2,550, so everything except saving runs free against a local mirror of your library</li>
+            <li>Seed a queue from one song and weight eight dimensions of what "similar" is allowed to mean</li>
+            <li>Every unit spent is written to a ledger, and a call that would blow the day's budget is refused rather than failing halfway through a save</li>
+            <li>Saves a real private playlist, so it plays in the car with background playback and lock-screen controls, which an embedded player cannot do</li>
+          </ul>
+          <div class="pillrow">
+            <span class="tag ai">Claude API</span><span class="tag web">Next.js</span><span class="tag data">Postgres</span><span class="tag">YouTube Data API</span>
+          </div>
+          <div class="entry-links">
+            <a href="/projects/algorythmic/">Project page &rarr;</a>
+            <a href="https://music.corticorp.com" target="_blank" rel="noopener">Open live &rarr;</a>
+          </div>
+        </div>
+      </div>
 
       <!-- CortComp -->
       <div class="entry">

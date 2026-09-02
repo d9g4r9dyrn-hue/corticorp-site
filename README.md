@@ -17,12 +17,30 @@ corticorp-site/
 
 ## Projects Tracked
 
-Currently tracks:
-- **compressor_plugin** — CortComp VST3 compressor
-- **CortSynth** — Synth plugin (managed via Claude)
-- **apartment-finder** — Tool for finding apartments
-- **catfish-finder** — Tool for finding catfish
-- *(More as added)*
+Fifteen projects, seeded in `KNOWN_PROJECTS` in `src/scanner/ProjectScanner.ts`.
+
+Hosted products:
+- **Corticorp News** (news.corticorp.com) - AI-curated news digest
+- **Corticorp Finance** (finance.corticorp.com) - simulated strategy tracker; split out
+  of News in late August 2026, and served by the same repository, which is why both
+  seeds point at the `news` folder
+- **World's Eye View** (cams.corticorp.com) - public webcams on a satellite map
+- **AlgoRythmic** (music.corticorp.com) - YouTube Music playlist builder
+
+Tools:
+- **Apartment Finder** - rental aggregator with vision-scored photos
+- **CatfishCheck** - browser-only identity verification tool
+- **CortiCorp Site** - this hub
+
+VST3 plugins: **CortSynth**, **CortVerb**, **Ironclad**, **CortComp**, **CortHarm**,
+and the three single-purpose instruments split out of CortSynth: **CortKeys**,
+**CortSampler**, **CortDrum**.
+
+A seed's `name` and `description` win over anything parsed from the project's
+`CLAUDE.md`, because several of those files open on an engineering heading rather
+than a product title. Set `repoPrivate: true` rather than relying on a missing
+remote: the scanner reads `.git/config` and would otherwise publish a link to a
+repository that answers 404.
 
 ## Usage
 

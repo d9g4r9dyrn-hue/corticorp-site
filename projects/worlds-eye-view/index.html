@@ -4,9 +4,9 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>World&rsquo;s Eye View — CortiCorp</title>
-<meta name="description" content="Around 27,700 public webcams quilted onto one satellite map as live thumbnails. Zoom in and a city fills with windows; click any camera to watch it, or build a multicam wall.">
+<meta name="description" content="Around 34,700 public webcams from 31 sources, quilted onto one satellite map as live thumbnails. Zoom in and a city fills with windows, watch one full screen, build a multicam wall, or follow the cameras along a route.">
 <meta property="og:title" content="World&rsquo;s Eye View — CortiCorp">
-<meta property="og:description" content="Around 27,700 public webcams quilted onto one satellite map as live thumbnails — volcanoes, harbours, city streets and highways, updating through the day.">
+<meta property="og:description" content="Around 34,700 public webcams quilted onto one satellite map as live thumbnails — volcanoes, harbours, city streets and highways, updating through the day.">
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://corticorp.com/projects/worlds-eye-view/">
 <meta property="og:image" content="https://corticorp.com/projects/worlds-eye-view/img/city.jpg">
@@ -115,12 +115,16 @@
 <div class="wrap hero">
   <p class="eyebrow eyebrow-live"><span class="dot"></span> Live web app</p>
   <h1><span class="a">World&rsquo;s Eye</span> <span class="b">View</span></h1>
-  <p>Around <strong>27,700 public webcams</strong>, stitched onto a single satellite map as live
-     thumbnails. Zoom out and you see the notable ones &mdash; volcanoes, harbours, landmark city
-     streets. Zoom in and a city fills with windows. Click any camera to watch it full size, or send
-     several to a <strong>multicam wall</strong> and watch them together. Because every frame is real
-     and refreshes on its own schedule, the map drifts through the day with the world: you can watch
-     dawn cross a continent, or find a city already dark hours before its neighbour.</p>
+  <p>Around <strong>34,700 public webcams</strong> from 31 sources, stitched onto a single satellite
+     map as live thumbnails. Zoom out and you see the notable ones: volcanoes, harbours,
+     landmark city streets. Zoom in and a city fills with windows. Click any camera to watch it full
+     screen, or send several to a <strong>multicam wall</strong> and watch them together. Because
+     every frame is real and refreshes on its own schedule, the map drifts through the day with the
+     world: you can watch dawn cross a continent, or find a city already dark hours before its
+     neighbour.</p>
+  <p style="color:var(--muted); max-width:680px; margin-top:14px">Newer: sign in to keep your walls
+     in folders and publish one to a public gallery, find the cameras along a driving route, or ask
+     for the cameras where the sun is about to rise or set.</p>
   <div style="margin-top:20px">
     <a class="btn btn-primary" href="https://cams.corticorp.com" target="_blank" rel="noopener">Open cams.corticorp.com</a>
     <a class="btn btn-ghost" href="/#projects">Back to Projects</a>
@@ -171,13 +175,35 @@
         <p>Filter by what you&rsquo;re looking at (volcanoes, harbours, roads) or by who runs it &mdash;
            so &ldquo;only the Florida DOT cameras&rdquo; is a single click.</p>
       </div>
+      <div class="feat">
+        <h3>Cameras along a route</h3>
+        <p>Give it two places and it returns the cameras strung along the drive between them, in
+           order, which is a different question from &ldquo;what is near me&rdquo; and a more useful
+           one before setting off.</p>
+      </div>
+      <div class="feat">
+        <h3>Find by place, or by the sun</h3>
+        <p>Search a place by name, use your own location, or ask for the cameras where sunrise or
+           sunset is happening right now anywhere on earth.</p>
+      </div>
+      <div class="feat">
+        <h3>An account, if you want one</h3>
+        <p>Sign in to keep your walls in folders across devices, publish one to a public gallery, or
+           browse what other people have published. The map itself needs no account and works
+           unchanged without the database behind it.</p>
+      </div>
+      <div class="feat">
+        <h3>Built for a phone too</h3>
+        <p>The controls fit across the top on a narrow screen, a big wall scrolls instead of
+           squeezing itself into unreadable tiles, and a tap expands a single camera to full screen.</p>
+      </div>
     </div>
     <div style="margin-top:22px">
       <span class="tag web">Next.js 16</span>
       <span class="tag map">Leaflet</span>
       <span class="tag">Esri satellite imagery</span>
       <span class="tag">sharp</span>
-      <span class="tag">No database</span>
+      <span class="tag">Postgres (accounts only)</span>
     </div>
   </div>
 </section>
@@ -187,36 +213,49 @@
     <p class="eyebrow">Sources</p>
     <h2>Where the cameras come from</h2>
     <p style="color:var(--muted); max-width:680px">Every camera is published openly by the agency that
-       operates it. Nothing is scraped from a closed system, and no feed here requires a paid key.</p>
+       operates it. Nothing is scraped from a closed system. Counts below are the live totals the map
+       itself reports.</p>
     <table class="sources">
       <thead>
         <tr><th>Source</th><th>Cameras</th><th>Coverage</th></tr>
       </thead>
       <tbody>
         <tr>
-          <td><strong>511 traveler information</strong></td>
-          <td class="n">~21,000</td>
-          <td>14 US states and 8 Canadian provinces and territories &mdash; Florida and Georgia are the
-              two largest single feeds</td>
+          <td><strong>Windy Webcams</strong></td>
+          <td class="n">~7,140</td>
+          <td>Worldwide, and the source that fills in everything outside North America and northern
+              Europe: observatories, zoos, beaches, landmarks</td>
         </tr>
-        <tr><td><strong>Caltrans CCTV</strong></td><td class="n">~3,400</td><td>California highways</td></tr>
-        <tr><td><strong>DriveBC</strong></td><td class="n">~1,030</td><td>British Columbia &mdash; runs its own software rather than the shared 511 platform</td></tr>
+        <tr>
+          <td><strong>511 traveler information</strong></td>
+          <td class="n">~20,350</td>
+          <td>14 US states and 8 Canadian provinces and territories. Florida at 4,872 and
+              Georgia at 4,043 are the two largest single feeds</td>
+        </tr>
+        <tr><td><strong>Caltrans CCTV</strong></td><td class="n">~3,320</td><td>California highways</td></tr>
+        <tr><td><strong>DriveBC</strong></td><td class="n">~1,020</td><td>British Columbia, which runs its own software rather than the shared 511 platform</td></tr>
+        <tr><td><strong>Hong Kong Transport Department</strong></td><td class="n">~1,010</td><td>Hong Kong roads and tunnels</td></tr>
         <tr><td><strong>Fintraffic</strong></td><td class="n">~810</td><td>Finland &mdash; far enough north that part of it sits in polar night in midwinter</td></tr>
-        <tr><td><strong>Transport for London</strong></td><td class="n">~780</td><td>JamCams across Greater London</td></tr>
+        <tr><td><strong>Transport for London</strong></td><td class="n">~790</td><td>JamCams across Greater London</td></tr>
         <tr>
           <td><strong>NZ Transport Agency</strong></td>
-          <td class="n">~260</td>
-          <td>New Zealand &mdash; the only southern-hemisphere source, which is what makes the day/night
-              line read correctly on a world view</td>
+          <td class="n">~250</td>
+          <td>New Zealand, the only southern-hemisphere road source, which is what makes the
+              day/night line read correctly on a world view</td>
         </tr>
         <tr>
           <td><strong>USGS Alaska Volcano Observatory</strong></td>
-          <td class="n">64</td>
+          <td class="n">66</td>
           <td>Active volcanoes and the communities downwind of them</td>
         </tr>
-        <tr><td><strong>LTA Singapore</strong></td><td class="n">8</td><td>Expressway cameras &mdash; small, but the only Asian coverage</td></tr>
+        <tr><td><strong>LTA Singapore</strong></td><td class="n">8</td><td>Expressway cameras: small, but a second Asian source</td></tr>
       </tbody>
     </table>
+    <p style="color:var(--muted); max-width:680px; margin-top:18px">By subject rather than by
+       operator, that is roughly 29,400 road cameras, 3,000 city views, 1,220 weather cameras, 600
+       harbours, 400 mountains, 83 airports, 45 volcanoes and a dozen observatories. Every source
+       except Windy is free and needs no key at all, so the map still works without one; Windy is
+       what makes it a world map rather than a North Atlantic one.</p>
   </div>
 </section>
 
@@ -257,7 +296,7 @@
     <p class="eyebrow">Under the hood</p>
     <h2>How it stays fast</h2>
     <p style="color:var(--muted); max-width:680px">
-      Twenty-seven thousand cameras will not fit on a screen, so the server decides who gets a slot:
+      Thirty-four thousand cameras will not fit on a screen, so the server decides who gets a slot:
       it projects every candidate into screen pixels at your current zoom, drops them into
       thumbnail-sized grid cells, and keeps the most interesting camera in each. Zooming in shrinks
       the ground each cell covers, so the highway cameras that lost to a volcano at country scale
@@ -272,8 +311,10 @@
       rather than left as dead tiles.
     </p>
     <p style="color:var(--muted); max-width:680px; margin-top:14px">
-      There is no database and no scheduled job. The whole catalogue is rebuilt in memory on boot and
-      refreshed per source in the background.
+      The map itself has no database and no scheduled job. The whole catalogue is rebuilt in memory on
+      boot and refreshed per source in the background. A database exists only for the optional
+      accounts and saved walls, and the separation is deliberate: if it went away entirely, the map
+      would carry on working.
     </p>
   </div>
 </section>
