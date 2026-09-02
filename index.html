@@ -4,9 +4,9 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>CortiCorp — Software & AI Solutions</title>
-<meta name="description" content="CortiCorp builds AI-powered applications, audio tools, and data systems. 25+ years of software engineering, now focused on what AI makes possible.">
+<meta name="description" content="CortiCorp builds AI-powered applications, audio tools, and data systems: Corticorp News, Corticorp Finance, World's Eye View, AlgoRythmic and a line of VST3 plugins. 25+ years of software engineering, now focused on what AI makes possible.">
 <meta property="og:title" content="CortiCorp — Software & AI Solutions">
-<meta property="og:description" content="AI-powered applications, audio tools, and data systems by Cort.">
+<meta property="og:description" content="Four live web products and a line of VST3 audio plugins. AI-powered applications, audio tools, and data systems by Cort.">
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://corticorp.com/">
 <link rel="canonical" href="https://corticorp.com/">
@@ -147,13 +147,28 @@
     .news-collage { height: 320px }
   }
 
-  /* ---- WORLD'S EYE VIEW ----
-     Its own product on its own domain; it sits directly below News purely
-     because that's where it reads best on the page. The collage is mirrored
-     to the other side so two feature cards in a row don't look like one
-     repeated block. */
-  #worlds-eye-view { padding-top: 40px; padding-bottom: 44px }
+  /* ---- CORTICORP FINANCE ----
+     Its own product on its own domain since late August 2026, though one
+     codebase still serves it and News. It sits directly under News because
+     that is where it came from, and it is mirrored (copy left, collage right)
+     so three feature cards in a row do not read as one repeated block. */
+  #finance { padding-top: 40px; padding-bottom: 40px }
   .feature-flip { grid-template-columns: 1fr 1.35fr }
+  .fin-name .c { color: var(--accent2) } .fin-name .f { color: var(--green) }
+  .fin-collage { position: relative; height: 372px }
+  .win-fin-strategies { width: 64%; left: 0; top: 24px; z-index: 1 }
+  .win-fin-strategies img { height: 204px }
+  .win-fin-pulse { width: 49%; right: 0; top: 100px; z-index: 3 }
+  .win-fin-pulse img { height: 230px }
+  .win-fin-categories { width: 42%; left: 5%; bottom: 0; z-index: 2 }
+  .win-fin-categories img { height: 116px }
+  .tag.fin { border-color: #2c4a30; color: var(--green) }
+  @media (max-width: 760px) { .fin-collage { height: 320px } }
+
+  /* ---- WORLD'S EYE VIEW ----
+     Its own product on its own domain; it sits below Finance purely because
+     that's where it reads best on the page. */
+  #worlds-eye-view { padding-top: 40px; padding-bottom: 44px }
   .wev-name .w { color: var(--text) } .wev-name .v { color: #38bdf8; font-weight: 400 }
   .wev-collage { position: relative; height: 372px }
   .win-wev-world { width: 64%; left: 0; top: 24px; z-index: 1 }
@@ -244,6 +259,7 @@
     <div class="brand">CortiCorp</div>
     <div class="nav-links">
       <a href="#news">News</a>
+      <a href="#finance">Finance</a>
       <a href="#plugins">Plugins</a>
       <a href="#projects">Projects</a>
       <a href="updates/">Updates</a>
@@ -297,9 +313,9 @@
            outlets and gives you <strong>one synthesized summary per real-world event</strong> &mdash; not ten
            near-duplicate headlines. Circulating claims get checked by a transparent
            <strong>Verification Desk</strong>, and ongoing conflicts get their own live, map-driven
-           situation rooms. Its Finance section tracks thirty simulated AI-managed strategies with
-           category-index charts, a live vs-S&amp;P-500 verdict per strategy, and a browsable catalog
-           of every signal behind their decisions.</p>
+           situation rooms, with full-text search over every event ever published. The markets side of
+           the app has since moved out to its own domain as
+           <a href="#finance">Corticorp Finance</a>.</p>
         <div class="project-meta">
           <span class="tag ai">Claude API</span>
           <span class="tag web">Next.js 16</span>
@@ -314,30 +330,56 @@
   </div>
 </section>
 
+<!-- ==================== CORTICORP FINANCE (split out of News, own domain) ==================== -->
+<section id="finance">
+  <div class="wrap">
+    <p class="eyebrow">Now its own product</p>
+    <h2>Corticorp Finance</h2>
+    <div class="news-feature feature-flip">
+      <div class="news-copy">
+        <span class="featured-badge"><span class="dot"></span> Live</span>
+        <h3 style="font-size:1.25rem"><span class="fin-name"><span class="c">Corticorp</span> <span class="f">Finance</span></span></h3>
+        <p style="color:var(--muted); margin-top:6px">The markets work that grew up inside News now
+           stands on its own domain. <strong>Thirty-nine simulated portfolios</strong> run side by
+           side on the same market, each with its own stated discipline, each publishing every
+           decision along with the reasoning and the exact inputs behind it. Around them: a
+           twice-daily <strong>Market Pulse</strong>, the persisted market data the strategies are
+           shown, an earnings and macro calendar, and an <strong>AI Board</strong> that reviews the
+           roster in public. Simulated, and not investment advice.</p>
+        <div class="project-meta">
+          <span class="tag ai">Claude API</span>
+          <span class="tag web">Next.js 16</span>
+          <span class="tag fin">39 strategies</span>
+          <span class="tag">SQLite</span>
+        </div>
+        <a class="project-link" href="projects/finance/">Learn more &rarr;</a>
+        <a class="project-link" href="https://finance.corticorp.com" target="_blank" rel="noopener"
+           style="margin-left:8px">Open live &rarr;</a>
+      </div>
+      <div class="fin-collage">
+        <div class="win win-fin-strategies">
+          <div class="bar"><i class="r"></i><i class="y"></i><i class="g"></i><span>Strategies</span></div>
+          <img src="projects/finance/img/strategies.jpg" alt="The all-strategies table with a period selector and a vs S&P 500 verdict on every row">
+        </div>
+        <div class="win win-fin-categories">
+          <div class="bar"><i class="r"></i><i class="y"></i><i class="g"></i><span>Category indexes</span></div>
+          <img src="projects/finance/img/categories.jpg" alt="Category index chart plotting blended returns per strategy category over time">
+        </div>
+        <div class="win win-fin-pulse">
+          <div class="bar"><i class="r"></i><i class="y"></i><i class="g"></i><span>Market Pulse</span></div>
+          <img src="projects/finance/img/pulse.jpg" alt="The Market Pulse briefing with the day's headline read, index levels and sector movers">
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
 <!-- ==================== WORLD'S EYE VIEW (separate product, own domain) ==================== -->
 <section id="worlds-eye-view">
   <div class="wrap">
     <p class="eyebrow">Also live</p>
     <h2>World&rsquo;s Eye View</h2>
-    <div class="news-feature feature-flip">
-      <div class="news-copy">
-        <span class="featured-badge"><span class="dot"></span> Live</span>
-        <h3 style="font-size:1.25rem"><span class="wev-name"><span class="w">World&rsquo;s Eye</span> <span class="v">View</span></span></h3>
-        <p style="color:var(--muted); margin-top:6px">Around <strong>27,700 public webcams</strong>
-           quilted onto one satellite map as live thumbnails &mdash; volcanoes, harbours, city streets
-           and highways, from Finland to New Zealand. Zoom in and a city fills with windows; click any camera to watch it, or send
-           several to a <strong>multicam wall</strong>. Frames refresh on their own schedules, so the
-           map drifts through the day with the world.</p>
-        <div class="project-meta">
-          <span class="tag web">Next.js 16</span>
-          <span class="tag cam">Leaflet</span>
-          <span class="tag">Esri imagery</span>
-          <span class="tag">No database</span>
-        </div>
-        <a class="project-link" href="projects/worlds-eye-view/">Learn more &rarr;</a>
-        <a class="project-link" href="https://cams.corticorp.com" target="_blank" rel="noopener"
-           style="margin-left:8px">Open live &rarr;</a>
-      </div>
+    <div class="news-feature">
       <div class="wev-collage">
         <div class="win win-wev-world">
           <div class="bar"><i class="r"></i><i class="y"></i><i class="g"></i><span>Continental view</span></div>
@@ -351,6 +393,25 @@
           <div class="bar"><i class="r"></i><i class="y"></i><i class="g"></i><span>Tampa Bay at night</span></div>
           <img src="projects/worlds-eye-view/img/city.jpg" alt="Dozens of live traffic camera thumbnails covering Tampa Bay at night">
         </div>
+      </div>
+      <div class="news-copy">
+        <span class="featured-badge"><span class="dot"></span> Live</span>
+        <h3 style="font-size:1.25rem"><span class="wev-name"><span class="w">World&rsquo;s Eye</span> <span class="v">View</span></span></h3>
+        <p style="color:var(--muted); margin-top:6px">Around <strong>34,700 public webcams</strong>
+           from 31 sources, quilted onto one satellite map as live thumbnails: volcanoes,
+           harbours, city streets and highways, from Finland to New Zealand. Zoom in and a city fills
+           with windows; watch one full screen, send several to a <strong>multicam wall</strong>, or
+           follow the cameras along a driving route. Frames refresh on their own schedules, so the
+           map drifts through the day with the world.</p>
+        <div class="project-meta">
+          <span class="tag web">Next.js 16</span>
+          <span class="tag cam">Leaflet</span>
+          <span class="tag">Esri imagery</span>
+          <span class="tag">31 sources</span>
+        </div>
+        <a class="project-link" href="projects/worlds-eye-view/">Learn more &rarr;</a>
+        <a class="project-link" href="https://cams.corticorp.com" target="_blank" rel="noopener"
+           style="margin-left:8px">Open live &rarr;</a>
       </div>
     </div>
   </div>
@@ -368,7 +429,9 @@
     <div class="plugin-hub">
       <h3>CortiCorp Plugins</h3>
       <p>Real-time audio plugins with hand-crafted interfaces and zero-allocation engines.
-         Three are here so far &mdash; with new instruments and effects almost ready to ship.</p>
+         Three have their own pages so far. Behind them are five more in build, including
+         CortKeys, CortSampler and CortDrum, which split the all-in-one CortSynth into three
+         single-purpose instruments for anyone who wanted one of the three and not all of them.</p>
 
       <div class="plugin-strip">
         <a class="plugin-thumb" href="music/plugins/CortSynth/">
@@ -473,7 +536,9 @@
             <span class="tag">Postgres</span>
             <span class="tag">YouTube Data API</span>
           </div>
-          <a class="project-link" href="https://music.corticorp.com" target="_blank" rel="noopener">Try it &rarr;</a>
+          <a class="project-link" href="projects/algorythmic/">Learn more &rarr;</a>
+          <a class="project-link" href="https://music.corticorp.com" target="_blank" rel="noopener"
+             style="margin-left:8px">Try it &rarr;</a>
         </div>
       </div>
 

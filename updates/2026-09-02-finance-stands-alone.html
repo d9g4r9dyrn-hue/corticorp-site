@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Corticorp Finance stands on its own domain — CortiCorp</title>
+<meta name="description" content="Corticorp Finance moved out of Corticorp News to finance.corticorp.com with its own masthead, front page and five sections. Plus: what changed everywhere else, from 34,700 webcams on World's Eye View to three new plugins split out of CortSynth.">
+<meta property="og:title" content="Corticorp Finance stands on its own domain">
+<meta property="og:description" content="Finance moved out of News to its own domain with 39 simulated portfolios, a Market Pulse and a public AI Board. Plus what changed across every other project.">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://corticorp.com/updates/2026-09-02-finance-stands-alone.html">
+<meta property="og:image" content="https://corticorp.com/projects/finance/img/strategies.jpg">
+<meta property="og:image:alt" content="The Corticorp Finance strategies table with a period selector and a vs S&P 500 verdict on every row">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Corticorp Finance stands on its own domain">
+<meta name="twitter:description" content="Finance moved out of News to its own domain with 39 simulated portfolios, a Market Pulse and a public AI Board.">
+<meta name="twitter:image" content="https://corticorp.com/projects/finance/img/strategies.jpg">
+<link rel="canonical" href="https://corticorp.com/updates/2026-09-02-finance-stands-alone.html">
+<style>
+  :root {
+    --bg: #0c0a08; --surface: #141210; --surface2: #1c1915; --border: #2a241c;
+    --text: #e8e0d4; --muted: #9a8e7a; --accent: #d4a555; --accent2: #e7c878;
+    --green: #6fae6a; --teal: #35d0c0; --blue: #5b8fd4; --red: #ff6b57;
+    --maxw: 880px;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0 }
+  body {
+    background: var(--bg); color: var(--text);
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    line-height: 1.65; font-size: 17px; -webkit-font-smoothing: antialiased;
+  }
+  a { color: var(--accent2); text-decoration: none }
+  a:hover { text-decoration: underline }
+  .wrap { max-width: var(--maxw); margin: 0 auto; padding: 0 24px }
+
+  nav { position: sticky; top: 0; z-index: 10; background: rgba(12,10,8,.92);
+    backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px); border-bottom: 1px solid var(--border); }
+  .nav-inner { display: flex; align-items: center; justify-content: space-between;
+    max-width: var(--maxw); margin: 0 auto; padding: 0 24px; height: 56px; }
+  .brand { font-weight: 800; font-size: 1.1rem; color: var(--accent2); letter-spacing: .03em }
+  .nav-links a { margin-left: 24px; color: var(--muted); font-size: .9rem }
+  .nav-links a:hover { color: var(--text); text-decoration: none }
+
+  .hero { padding: 56px 0 40px; }
+  .kicker { display: inline-flex; align-items: center; gap: 7px; text-transform: uppercase;
+    letter-spacing: .2em; font-size: .72rem; color: var(--accent); border: 1px solid var(--border);
+    background: var(--surface2); padding: 6px 14px; border-radius: 999px; margin-bottom: 22px; }
+  .hero h1 { font-size: clamp(1.9rem, 4.5vw, 2.7rem); line-height: 1.15; color: var(--accent2); margin-bottom: 16px; letter-spacing: -.01em }
+  .hero .lede { color: var(--text); max-width: 700px; font-size: 1.08rem; }
+  .hero .lede + .lede { margin-top: 14px; color: var(--muted) }
+
+  .cta-row { margin-top: 30px; display: flex; gap: 12px; flex-wrap: wrap }
+  .btn { display: inline-block; padding: 13px 26px; border-radius: 9px; font-weight: 700;
+    font-size: .95rem; border: 1px solid var(--border); transition: filter .15s ease, transform .08s ease; }
+  .btn:hover { filter: brightness(1.08); text-decoration: none; transform: translateY(-1px) }
+  .btn-primary { background: linear-gradient(#e7c074,#c4923f); color: #241704; border-color: #8a6a2e }
+  .btn-ghost { background: var(--surface2); color: var(--accent2) }
+
+  section { padding: 44px 0; border-top: 1px solid #17130d }
+  .eyebrow { text-transform: uppercase; letter-spacing: .2em; font-size: .72rem; color: var(--muted); margin-bottom: 10px }
+  h2 { font-size: 1.4rem; color: var(--accent2); margin-bottom: 14px }
+  h3 { font-size: 1.05rem; color: var(--accent); margin-bottom: 6px }
+  section p + p { margin-top: 14px }
+
+  .win { border-radius: 11px; overflow: hidden; border: 1px solid #2c313a;
+    background: #14171c; box-shadow: 0 22px 50px rgba(0,0,0,.5) }
+  .win .bar { display:flex; align-items:center; gap:6px; height:26px; padding:0 11px;
+    background:#20242b; border-bottom:1px solid #2c313a }
+  .win .bar i { width:9px; height:9px; border-radius:50%; background:#3a4048 }
+  .win .bar i.r{background:#e0605e} .win .bar i.y{background:#e0b24e} .win .bar i.g{background:#5fb85f}
+  .win .bar span { margin-left:7px; font-size:.64rem; color:#8b93a0 }
+  .win img { display:block; width:100%; height:auto }
+
+  .lead-shot { margin: 8px 0 6px }
+  .gallery { display:grid; grid-template-columns:1fr 1fr; gap:26px 24px; margin-top:28px }
+  .shotcard.wide { grid-column:1 / -1 }
+  .shotcard .cap { margin-top:12px }
+  .shotcard .cap h3 { font-size: 1rem; color: var(--text); margin-bottom: 4px }
+  .shotcard .cap p { color:var(--muted); font-size:.9rem }
+  @media (max-width:640px){ .gallery{grid-template-columns:1fr} }
+
+  /* Per-project roundup blocks. One heading each, so a reader scanning for the
+     project they care about can find it without reading the rest. */
+  .roundup { display: grid; gap: 18px; margin-top: 8px }
+  .item { background: var(--surface); border: 1px solid var(--border); border-radius: 12px; padding: 20px 22px }
+  .item p { color: var(--muted); font-size: .95rem }
+  .item .links { margin-top: 12px; font-size: .9rem; font-weight: 600 }
+  .item .links a { margin-right: 16px }
+
+  .disclosure { margin-top: 8px; color: var(--muted); font-size: .85rem; font-style: italic }
+
+  footer { padding: 40px 0 56px; border-top: 1px solid var(--border); text-align: center; color: var(--muted); font-size: .85rem }
+  footer a { color: var(--muted) }
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-inner">
+    <a class="brand" href="/">CortiCorp</a>
+    <div class="nav-links">
+      <a href="/updates/">Updates</a>
+      <a href="/#projects">Projects</a>
+      <a href="/#contact">Contact</a>
+    </div>
+  </div>
+</nav>
+
+<div class="wrap hero">
+  <p class="kicker">Product update &middot; September 2, 2026</p>
+  <h1>Corticorp Finance stands on its own domain</h1>
+  <p class="lede">The markets work that grew up inside Corticorp News has moved out.
+    <strong>finance.corticorp.com</strong> is now its own product with its own masthead, its own
+    front page and five sections of its own. News keeps the newsroom. One codebase still serves both,
+    routed by hostname, and each domain publishes only its own pages, sitemap and robots file.</p>
+  <p class="lede">This post also catches up on everything else, because a lot shipped in the same
+    three weeks: 34,700 cameras on World's Eye View, an account system and route cameras with them,
+    and three new plugins carved out of CortSynth.</p>
+  <div class="cta-row">
+    <a class="btn btn-primary" href="https://finance.corticorp.com" target="_blank" rel="noopener">Open finance.corticorp.com &rarr;</a>
+    <a class="btn btn-ghost" href="/projects/finance/">The improvements diary</a>
+  </div>
+</div>
+
+<section>
+  <div class="wrap">
+    <div class="lead-shot win">
+      <div class="bar"><i class="r"></i><i class="y"></i><i class="g"></i><span>finance.corticorp.com/markets/strategies</span></div>
+      <img src="/projects/finance/img/strategies.jpg" loading="lazy"
+        alt="The Corticorp Finance strategies table with a period selector, portfolio value and percent change, and a filled vs S&P 500 pill on every row">
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <p class="eyebrow">Why split it at all</p>
+    <h2>Two products were sharing one header</h2>
+    <p>A news digest and a simulated strategy tracker are different things for different readers, and
+      for a while they shared a navigation bar, a sitemap and a set of analytics. Neither one could be
+      described honestly on its own terms, and neither could be measured on its own either.</p>
+    <p>So the finance product moved to its own segment with its own brand, the two hostnames were
+      taught to serve only their own paths, sitemap and robots answers were split per host, and page
+      visits started being recorded against the host that served them. Then Finance got a real front
+      page: the day's read, where the indices closed, what led and lagged by sector, and the finance
+      stories from the newsroom next door.</p>
+    <p>What lives there now: <strong>thirty-nine simulated portfolios</strong> across seven
+      categories, each publishing its decisions and reasoning; the Market Pulse in six editions
+      written twice a weekday; the persisted market and macro data the strategies are actually shown;
+      an earnings and macro calendar built from companies' own filing history rather than announced
+      dates; and an Oversight tab where the AI Board's findings and the open work queue are published
+      instead of kept internal.</p>
+    <p class="disclosure">Simulated portfolios. A research experiment, not investment advice.</p>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <p class="eyebrow">The rest of it</p>
+    <h2>Finance, in the three weeks around the move</h2>
+    <div class="roundup">
+      <div class="item">
+        <h3>You can sign in now</h3>
+        <p>Magic-link login with real sessions replaced an admin key that used to sit in a URL. Behind
+          it: a dashboard with its own route and a panel registry, chart arithmetic over any two
+          persisted series, and a reports system of eleven parameterised read-only queries whose saved
+          definitions are re-validated every single time they run rather than trusted once.</p>
+      </div>
+      <div class="item">
+        <h3>Delta-1 risk telemetry</h3>
+        <p>Every strategy is now told what the market does to the book it is actually holding: net and
+          gross exposure, its largest position, and what a 1, 3, 5 or 10 percent fall costs, computed
+          by revaluing every position at the shocked price rather than by multiplying a rule of thumb.
+          An options sleeve also gets time decay and what a ten-point move in volatility is worth. The
+          Board reads the same figures across the roster.</p>
+      </div>
+      <div class="item">
+        <h3>The Market Pulse got more honest, then stopped losing editions</h3>
+        <p>One consistent line per market instead of six different shapes, repetition measured across
+          the stored archive, the model given the day's real deltas rather than being told to reuse a
+          headline, and the research desk available so a named company carries its real number. Then a
+          quieter defect: four of the six daily editions had been silently failing whenever the answer
+          ran past its output ceiling. The ceiling was raised and a cut-off answer is retried.</p>
+      </div>
+      <div class="item">
+        <h3>Prices you can trust, and an earnings loop that closes</h3>
+        <p>Only settled closes are stored, each stamped with when it was written and where it came
+          from, and reconciled against a second provider. A bad out-of-hours tick is no longer served
+          as a price. The S&amp;P stopped reading flat overnight, because a cash index simply stops
+          existing when the session shuts. And an earnings result is now carried back to the strategist
+          that armed a trigger for it, so the loop closes instead of dangling.</p>
+        <div class="links"><a href="/projects/finance/#diary">Read the full dated diary &rarr;</a></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <p class="eyebrow">Elsewhere</p>
+    <h2>What changed on everything else</h2>
+    <div class="roundup">
+      <div class="item">
+        <h3>World's Eye View: 34,700 cameras, and a reason to sign in</h3>
+        <p>The map has grown from roughly 27,700 cameras to about <strong>34,700 from 31 sources</strong>,
+          with Hong Kong's 1,013 road cameras added and the worldwide Windy feed fanned out by country
+          and region. New since the last write-up: an account system, so your multicam walls live in
+          folders across devices and can be published to a public gallery; cameras along a driving
+          route; finders by place name, by your own location, and by wherever sunrise or sunset is
+          happening right now; full-screen for a single camera; and a genuine phone layout where a big
+          wall scrolls instead of squeezing itself unreadable.</p>
+        <div class="links">
+          <a href="/projects/worlds-eye-view/">Project page &rarr;</a>
+          <a href="https://cams.corticorp.com" target="_blank" rel="noopener">Open live &rarr;</a>
+        </div>
+      </div>
+      <div class="item">
+        <h3>AlgoRythmic has a page of its own</h3>
+        <p>The playlist builder at music.corticorp.com finally has a proper write-up on this site,
+          covering the part that shapes everything about it: the YouTube API's 10,000-unit daily
+          budget, which is why generating and previewing are free and unlimited while saving is the one
+          step that costs and always quotes its price first. Recently added there: seed-based playlists
+          with eight weighted similarity dimensions, track enrichment from MusicBrainz facts plus a
+          model-written sense of feel, paginated discovery beyond your own library, and a dashboard
+          rebuilt as three numbered steps.</p>
+        <div class="links">
+          <a href="/projects/algorythmic/">Project page &rarr;</a>
+          <a href="https://music.corticorp.com" target="_blank" rel="noopener">Open live &rarr;</a>
+        </div>
+      </div>
+      <div class="item">
+        <h3>Three new plugins, carved out of CortSynth</h3>
+        <p>CortSynth is a synth, a sampler and a drum machine in one plugin, which is exactly what some
+          people do not want. <strong>CortKeys</strong> is the synth half on its own, <strong>CortSampler</strong>
+          the sampler half, and <strong>CortDrum</strong> a 20-pad General MIDI drum machine running the
+          sampler engine in one-shot mode. All three are in build alongside CortComp and CortHarm.
+          CortVerb is finished and listing shortly; Ironclad is close behind.</p>
+        <div class="links"><a href="/plugins/">The plugin line &rarr;</a></div>
+      </div>
+      <div class="item">
+        <h3>The project registry now lists everything</h3>
+        <p>The registry page had been showing eight projects while the hub actually tracked more, and
+          it linked two repositories that are private and answer 404. Both are fixed: fifteen projects
+          are listed, each catalog card links to its own write-up as well as its live site, and a
+          private repository now says so rather than offering a dead link.</p>
+        <div class="links"><a href="/projects.html">Project registry &rarr;</a></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap" style="text-align:center; padding: 8px 0 4px">
+    <h2>Take a look</h2>
+    <p style="color:var(--muted); max-width:560px; margin: 0 auto 24px">
+      Finance is live on its own domain now, and it keeps a dated diary of what has improved and when.
+    </p>
+    <a class="btn btn-primary" href="https://finance.corticorp.com" target="_blank" rel="noopener">Open finance.corticorp.com &rarr;</a>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <p>CortiCorp — <a href="/">corticorp.com</a> · <a href="/updates/">More updates</a></p>
+  </div>
+</footer>
+
+</body>
+</html>
