@@ -274,6 +274,20 @@ export const KNOWN_PROJECTS: ProjectSeed[] = [
       'reads each project from its own files so the published catalog cannot ' +
       'quietly drift from what is actually on disk.',
   },
+  {
+    id: 'opd',
+    pathFromCortiCorp: 'opd',
+    type: 'tool',
+    status: 'planned',
+    version: '0.1.0',
+    tags: ['document-format', 'open-standard', 'typescript'],
+    repoPrivate: true,
+    name: 'Open Page Document',
+    description:
+      'An open document format that carries a constrained HTML source and an ' +
+      'optional frozen page render bound to it by hash, with a validator, a ' +
+      'single-file viewer and an editor.',
+  },
 ];
 
 interface ParsedClaudeMd {
