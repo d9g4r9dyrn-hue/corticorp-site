@@ -103,7 +103,7 @@
   #projects { padding-top: 44px }
 
   /* ---- FEATURED / NEWS ---- */
-  #news { padding-top: 40px; padding-bottom: 40px }
+  #news { border-top: none; padding-top: 40px; padding-bottom: 40px }
   .featured-badge {
     display: inline-flex; align-items: center; gap: 8px; margin-bottom: 12px;
     padding: 4px 12px; border-radius: 999px; font-size: .72rem; font-weight: 700;
@@ -169,7 +169,7 @@
      The newest project, so it leads the page. Same collage pattern as the
      others, with its own name colours because the app itself is blue on
      slate rather than gold on black. */
-  #opd { border-top: none; padding-top: 40px; padding-bottom: 40px }
+  #opd { padding-top: 40px; padding-bottom: 40px }
   .opd-name .o { color: #8da2fb } .opd-name .d { color: var(--text); font-weight: 400 }
   .opd-collage { position: relative; height: 372px }
   .win-opd-viewer { width: 64%; left: 0; top: 24px; z-index: 1 }
@@ -178,6 +178,9 @@
   .win-opd-form img { height: 230px }
   .win-opd-import { width: 42%; left: 5%; bottom: 0; z-index: 2 }
   .win-opd-import img { height: 116px }
+  .opd-logo-badge { position: absolute; right: 6px; bottom: 0; width: 118px; height: 118px; z-index: 4; border-radius: 50%; box-shadow: 0 14px 34px rgba(0,0,0,.6) }
+  .opd-head { display: flex; align-items: center; gap: 14px }
+  .opd-head img { width: 56px; height: 56px; border-radius: 50%; flex: none }
   .tag.opd { border-color: #2a3a5a; color: #8da2fb }
   .featured-badge.build { background: #1a2238; border-color: #2a3a5a; color: #8da2fb }
   .featured-badge.build .dot { background: #8da2fb; animation: none }
@@ -276,9 +279,9 @@
   <div class="nav-inner">
     <div class="brand">CortiCorp</div>
     <div class="nav-links">
-      <a href="#opd">opd</a>
       <a href="#news">News</a>
       <a href="#finance">Finance</a>
+      <a href="#opd">opd</a>
       <a href="#plugins">Plugins</a>
       <a href="#projects">Projects</a>
       <a href="updates/">Updates</a>
@@ -305,54 +308,10 @@
   </div>
 </section>
 
-<!-- ==================== OPD (newest project) ==================== -->
-<section id="opd">
-  <div class="wrap">
-    <p class="eyebrow">Newest project</p>
-    <h2>The Open Page Document</h2>
-    <div class="news-feature">
-      <div class="opd-collage">
-        <div class="win win-opd-viewer">
-          <div class="bar"><i class="r"></i><i class="y"></i><i class="g"></i><span>Viewer, a Market Pulse edition opened by link</span></div>
-          <img src="projects/opd/img/viewer-pulse.jpg" alt="The opd viewer showing a Corticorp Finance Market Pulse edition with its share card chart, an outline, and a provenance bar naming where the file came from">
-        </div>
-        <div class="win win-opd-import">
-          <div class="bar"><i class="r"></i><i class="y"></i><i class="g"></i><span>Import a PDF</span></div>
-          <img src="projects/opd/img/import.jpg" alt="The opd PDF import page, which processes every PDF on the device and offers to keep the original page layout">
-        </div>
-        <div class="win win-opd-form">
-          <div class="bar"><i class="r"></i><i class="y"></i><i class="g"></i><span>Editor, a filled form</span></div>
-          <img src="projects/opd/img/editor-form.jpg" alt="The opd editor with a volunteer application form filled in, seven of seven fields complete, and a Save filled copy button">
-        </div>
-      </div>
-      <div class="news-copy">
-        <span class="featured-badge build"><span class="dot"></span> In build, pre-alpha</span>
-        <h3 style="font-size:1.25rem"><span class="opd-name"><span class="o">opd</span> <span class="d">the Open Page Document</span></span></h3>
-        <p style="color:var(--muted); margin-top:6px">An open file format meant to replace PDF in the common
-           case: one <strong>.opd</strong> file carries a clean, reflowable source in a strict subset of
-           HTML, its fonts, and optionally a frozen copy of the exact pages, bound to the source by hash.
-           Around it, a <strong>viewer, an editor and a PDF importer</strong> that are each a single HTML
-           file, run offline from any folder, and never phone home. Write a document, add form fields,
-           send it, have it filled and signed, and collect the returned copies. Built in four days in
-           October 2026, and still an experiment.</p>
-        <div class="project-meta">
-          <span class="tag opd">Open format</span>
-          <span class="tag web">TypeScript</span>
-          <span class="tag">Single-file apps</span>
-          <span class="tag">Ed25519 signatures</span>
-        </div>
-        <a class="project-link" href="projects/opd/">Learn more &rarr;</a>
-        <a class="project-link" href="https://opd-docs-production.up.railway.app" target="_blank" rel="noopener"
-           style="margin-left:8px">Open the app &rarr;</a>
-      </div>
-    </div>
-  </div>
-</section>
-
 <!-- ==================== NEWS (featured) ==================== -->
 <section id="news">
   <div class="wrap">
-    <p class="eyebrow">The newsroom</p>
+    <p class="eyebrow">Live now</p>
     <h2>Corticorp News</h2>
     <div class="news-feature">
       <div class="news-collage">
@@ -434,6 +393,52 @@
           <div class="bar"><i class="r"></i><i class="y"></i><i class="g"></i><span>Market Pulse, Sector edition</span></div>
           <img src="projects/finance/img/edition.jpg" alt="A dated Sector edition of the Market Pulse with its headline and a 60-session Energy chart drawn from the stored numbers">
         </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ==================== OPD (newest project) ==================== -->
+<section id="opd">
+  <div class="wrap">
+    <p class="eyebrow">Newest project, in build</p>
+    <h2>The Open Page Document</h2>
+    <div class="news-feature">
+      <div class="opd-collage">
+        <div class="win win-opd-viewer">
+          <div class="bar"><i class="r"></i><i class="y"></i><i class="g"></i><span>Viewer, a Market Pulse edition opened by link</span></div>
+          <img src="projects/opd/img/viewer-pulse.jpg" alt="The opd viewer showing a Corticorp Finance Market Pulse edition with its share card chart, an outline, and a provenance bar naming where the file came from">
+        </div>
+        <div class="win win-opd-import">
+          <div class="bar"><i class="r"></i><i class="y"></i><i class="g"></i><span>Import a PDF</span></div>
+          <img src="projects/opd/img/import.jpg" alt="The opd PDF import page, which processes every PDF on the device and offers to keep the original page layout">
+        </div>
+        <div class="win win-opd-form">
+          <div class="bar"><i class="r"></i><i class="y"></i><i class="g"></i><span>Editor, a filled form</span></div>
+          <img src="projects/opd/img/editor-form.jpg" alt="The opd editor with a volunteer application form filled in, seven of seven fields complete, and a Save filled copy button">
+        </div>
+        <img class="opd-logo-badge" src="projects/opd/img/logo.png" alt="The opd logo, an open book whose pages form a butterfly&rsquo;s wings above the letters OPD" width="118" height="118">
+      </div>
+      <div class="news-copy">
+        <span class="featured-badge build"><span class="dot"></span> In build, pre-alpha</span>
+        <div class="opd-head"><img src="projects/opd/img/logo-128.png" alt="" width="56" height="56"><h3 style="font-size:1.25rem;margin:0"><span class="opd-name"><span class="o">opd</span> <span class="d">the Open Page Document</span></span></h3></div>
+        <p style="color:var(--muted); margin-top:6px">An open file format meant to replace PDF in the common
+           case: one <strong>.opd</strong> file carries a clean, reflowable source in a strict subset of
+           HTML, its fonts, and optionally a frozen copy of the exact pages, bound to the source by hash.
+           Around it, a <strong>viewer, an editor and a PDF importer</strong> that are each a single HTML
+           file, run offline from any folder, and never phone home. Write a document, add form fields,
+           send it, have it filled and signed, and collect the returned copies. Built in four days in
+           October 2026, and still an experiment.</p>
+        <p style="color:var(--muted); margin-top:10px"><strong>Coming soon:</strong> a Tagalog to English translator.</p>
+        <div class="project-meta">
+          <span class="tag opd">Open format</span>
+          <span class="tag web">TypeScript</span>
+          <span class="tag">Single-file apps</span>
+          <span class="tag">Ed25519 signatures</span>
+        </div>
+        <a class="project-link" href="projects/opd/">Learn more &rarr;</a>
+        <a class="project-link" href="https://opd-docs-production.up.railway.app" target="_blank" rel="noopener"
+           style="margin-left:8px">Open the app &rarr;</a>
       </div>
     </div>
   </div>
