@@ -3,10 +3,10 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Tagalog to English translator, CortiCorp</title>
-<meta name="description" content="A Tagalog to English translator from CortiCorp. Built and, in theory, ready to use; first trials come next.">
-<meta property="og:title" content="Tagalog to English translator, CortiCorp">
-<meta property="og:description" content="Built and, in theory, ready to use. First trials come next.">
+<title>Taglish Live, CortiCorp</title>
+<meta name="description" content="Taglish Live: real-time Tagalog and Taglish transcription with an English translation a beat behind. Built; first trials come next.">
+<meta property="og:title" content="Taglish Live, CortiCorp">
+<meta property="og:description" content="Real-time Tagalog and Taglish transcription with English translation. Built; first trials come next.">
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://corticorp.com/projects/tagalog-translator/">
 <link rel="canonical" href="https://corticorp.com/projects/tagalog-translator/">
@@ -34,7 +34,7 @@
   .brand { font-weight: 800; font-size: 1.1rem; color: var(--accent2); letter-spacing: .03em }
   .nav-links a { margin-left: 24px; color: var(--muted); font-size: .9rem }
   .nav-links a:hover { color: var(--text); text-decoration: none }
-  .hero { padding: 72px 0 48px; }
+  .hero { padding: 72px 24px 48px; }
   .hero .eyebrow-live { display:inline-flex; align-items:center; gap:7px; }
   .dot { width:8px; height:8px; border-radius:50%; background:var(--green); box-shadow:0 0 0 0 rgba(111,174,106,.6); animation:pulse 2s infinite }
   @keyframes pulse { 0%{box-shadow:0 0 0 0 rgba(111,174,106,.5)} 70%{box-shadow:0 0 0 7px rgba(111,174,106,0)} 100%{box-shadow:0 0 0 0 rgba(111,174,106,0)} }
@@ -116,20 +116,88 @@
 
 <div class="wrap hero">
   <p class="eyebrow">Coming soon</p>
-  <h1><span class="a">Tagalog</span> <span class="b">to English translator</span></h1>
-  <p>A translator that takes Tagalog text and returns English. The software is built and, in theory, ready to use.
-     It has not had its first real trial yet, so this page says only what is true today.</p>
-  <div style="margin-top:20px"><a class="btn btn-ghost" href="/#projects">Back to Projects</a></div>
+  <h1><span class="a">Taglish</span> <span class="b">Live</span></h1>
+  <p>Real-time transcription of <strong>Tagalog and Taglish</strong>, the everyday mix of Tagalog and
+     English, with an <strong>English translation a beat behind</strong>. Open the page, press Start
+     listening, and talk: one column shows what was heard in whatever mix it was spoken, the other
+     shows it in English. It listens continuously rather than turn by turn, so a conversation reads
+     like a conversation.</p>
+  <p style="color:var(--muted); max-width:680px; margin-top:14px">The software is built and, in
+     theory, ready to use. It has not had its first trial on real speech yet. That trial comes first,
+     with a native speaker of Tagalog and Bisaya, before anyone else is asked to rely on it.</p>
+  <div style="margin-top:20px"><a class="btn btn-ghost" href="/#coming-soon">Back</a></div>
 </div>
+
+<section>
+  <div class="wrap">
+    <div class="win">
+      <div class="bar"><i class="r"></i><i class="y"></i><i class="g"></i><span>Taglish Live, ready to listen</span></div>
+      <img style="height:300px" src="img/listening.jpg" alt="The Taglish Live page with a Start listening button and a level meter, a left column headed Heard, Tagalog and English, and a right column headed English">
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <p class="eyebrow">How it works</p>
+    <h2>Speech in, two columns out</h2>
+    <div class="features">
+      <div class="feat"><h3>Mixed language is normal</h3><p>Taglish switches between Tagalog and English
+        mid-sentence. The recogniser and the translator are both told that this is ordinary speech, not
+        an error, so a mixed sentence is transcribed as spoken and translated whole.</p></div>
+      <div class="feat"><h3>Continuous, not turn-based</h3><p>The browser streams the microphone to the
+        server. A voice-activity detector finds where speech starts and stops, partial text refreshes as
+        you talk, and each finished line is translated with the few lines before it for context.</p></div>
+      <div class="feat"><h3>Silence costs nothing</h3><p>Nothing is sent for recognition or translation
+        while nobody is speaking, so leaving it open in a quiet room is free.</p></div>
+      <div class="feat"><h3>Bisaya, opportunistically</h3><p>Bisaya, or Cebuano, is a hoped-for extra
+        rather than a promise. The prompts allow for it, and the first trials will say whether the
+        speech models actually handle it.</p></div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <p class="eyebrow">Two ways to run it</p>
+    <h2>On a home GPU, or as a link anyone can open</h2>
+    <div class="features">
+      <div class="feat"><h3>Desktop mode</h3><p>Speech recognition runs on a local graphics card with an
+        open model, Qwen3-ASR, with Whisper as a fallback. Only the translation goes to a hosted open
+        model, which keeps the running cost to roughly five cents an hour of talk.</p></div>
+      <div class="feat"><h3>Cloud mode</h3><p>A small container with no GPU: recognition goes to a hosted
+        speech service that lists Filipino and Cebuano, translation to a hosted model. Anyone with the
+        link and an access code can use it from a phone, at roughly forty-five to ninety cents an hour of
+        talk.</p></div>
+      <div class="feat"><h3>Guard rails from the start</h3><p>A shared access code, a cap on concurrent
+        sessions and on session length, and one usage line per session recording the audio sent and the
+        translation tokens, so the real cost per hour is measured rather than guessed.</p></div>
+      <div class="feat"><h3>A built-in bake-off</h3><p>A comparison tool runs the same recording through
+        every speech backend along the same streaming path the live server uses, so the provider is
+        chosen on real Filipino speech rather than on a vendor's language list.</p></div>
+    </div>
+  </div>
+</section>
 
 <section>
   <div class="wrap">
     <p class="eyebrow">Status</p>
     <h2>Where it stands</h2>
     <div class="features">
-      <div class="feat"><h3>Built</h3><p>The software is written and, in theory, ready to use.</p></div>
-      <div class="feat"><h3>Next: first trials</h3><p>It gets tried on real Tagalog text before anyone else is asked to rely on it.</p></div>
-      <div class="feat"><h3>Then: live</h3><p>Once the trials hold up, a link to try it appears here and in the updates.</p></div>
+      <div class="feat"><h3>Built</h3><p>The server, the listening page, both run modes, the comparison
+        tool and the deployment files are written.</p></div>
+      <div class="feat"><h3>Next: first trials</h3><p>Real recordings in Tagalog, in Bisaya and mixed,
+        from a native speaker, judged separately from noisy film audio used as a stress test.</p></div>
+      <div class="feat"><h3>Then: live</h3><p>Once the trials hold up, a link to try it appears here and
+        in the updates.</p></div>
+    </div>
+    <div style="margin-top:28px" class="tags">
+      <span class="tag web">Python</span>
+      <span class="tag web">FastAPI</span>
+      <span class="tag">WebSockets</span>
+      <span class="tag">Silero VAD</span>
+      <span class="tag map">Qwen3-ASR</span>
+      <span class="tag">Llama 3.3 70B</span>
     </div>
   </div>
 </section>
