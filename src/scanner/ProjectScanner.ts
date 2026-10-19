@@ -200,10 +200,11 @@ export const KNOWN_PROJECTS: ProjectSeed[] = [
     repoPrivate: true,
     name: 'Corticorp Finance',
     description:
-      'A public, simulated strategy tracker: 39 model-managed portfolios that ' +
-      'publish every decision and the reasoning behind it, alongside the Market ' +
-      'Pulse, the persisted market data the strategies are shown, an earnings ' +
-      'and macro calendar, and the AI Board that reviews the whole roster.',
+      'A public, simulated strategy tracker: 44 simulated funds that publish ' +
+      'every decision and the reasoning behind it, alongside a daily Market ' +
+      'Pulse in seven editions with four desk tools, a share card with a chart ' +
+      'for every edition, 1,239 persisted data series, an earnings and macro ' +
+      'calendar, and the AI Board that reviews the whole roster in public.',
   },
   {
     id: 'worlds_eye_view',
@@ -215,9 +216,10 @@ export const KNOWN_PROJECTS: ProjectSeed[] = [
     detailPage: 'https://corticorp.com/projects/worlds-eye-view/',
     name: "World's Eye View",
     description:
-      'Around 34,700 public webcams quilted onto one satellite map as live ' +
+      'Around 53,000 public webcams quilted onto one satellite map as live ' +
       'thumbnails. Zoom in and a city fills with windows, watch one full screen ' +
-      'or send several to a multicam wall, and follow cameras along a route.',
+      'or send several to a multicam wall, follow cameras along a route, and ' +
+      'share a view with a live preview.',
   },
   {
     id: 'algorythmic',
@@ -278,15 +280,19 @@ export const KNOWN_PROJECTS: ProjectSeed[] = [
     id: 'opd',
     pathFromCortiCorp: 'opd',
     type: 'tool',
-    status: 'planned',
+    status: 'beta',
     version: '0.1.0',
-    tags: ['document-format', 'open-standard', 'typescript'],
+    tags: ['document-format', 'open-standard', 'typescript', 'forms', 'pdf-import'],
     repoPrivate: true,
+    homepage: 'https://opd-docs-production.up.railway.app',
+    detailPage: 'https://corticorp.com/projects/opd/',
     name: 'Open Page Document',
     description:
-      'An open document format that carries a constrained HTML source and an ' +
-      'optional frozen page render bound to it by hash, with a validator, a ' +
-      'single-file viewer and an editor.',
+      'An open document format meant to replace PDF in the common case: one ' +
+      '.opd file carries a constrained HTML source, its fonts, and an optional ' +
+      'frozen page render bound to it by hash. A single-file viewer, editor and ' +
+      'PDF importer run offline in the browser; forms can be sent, filled, ' +
+      'signed and collected. Pre-alpha, built in four days in October 2026.',
   },
 ];
 

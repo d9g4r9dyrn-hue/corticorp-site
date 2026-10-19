@@ -17,7 +17,7 @@ corticorp-site/
 
 ## Projects Tracked
 
-Fifteen projects, seeded in `KNOWN_PROJECTS` in `src/scanner/ProjectScanner.ts`.
+Sixteen projects, seeded in `KNOWN_PROJECTS` in `src/scanner/ProjectScanner.ts`.
 
 Hosted products:
 - **Corticorp News** (news.corticorp.com) - AI-curated news digest
@@ -30,6 +30,8 @@ Hosted products:
 Tools:
 - **Apartment Finder** - rental aggregator with vision-scored photos
 - **CatfishCheck** - browser-only identity verification tool
+- **Open Page Document** (opd) - open document format with a single-file viewer, editor
+  and PDF importer; pre-alpha, private repository, hosted app linked from its page
 - **CortiCorp Site** - this hub
 
 VST3 plugins: **CortSynth**, **CortVerb**, **Ironclad**, **CortComp**, **CortHarm**,

@@ -1,0 +1,326 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>opd, the Open Page Document, CortiCorp</title>
+<meta name="description" content="opd is an open document format meant to replace PDF in the common case: one zip holding a clean reflowable source, frozen pages bound to it by hash, fonts, images and a manifest. Free single-file viewer, editor and PDF import that run in the browser and work offline.">
+<meta property="og:title" content="opd, the Open Page Document, CortiCorp">
+<meta property="og:description" content="An open document format for the common case where PDF is too heavy: a reflowable source and frozen pages in one file, bound by hash, with a viewer, an editor and PDF import that run in the browser.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://corticorp.com/projects/opd/">
+<meta property="og:image" content="https://corticorp.com/projects/opd/img/viewer-pulse.jpg">
+<link rel="canonical" href="https://corticorp.com/projects/opd/">
+<style>
+  :root {
+    --bg: #0c0a08; --surface: #141210; --surface2: #1c1915; --border: #2a241c;
+    --text: #e8e0d4; --muted: #9a8e7a; --accent: #d4a555; --accent2: #e7c878;
+    --green: #6fae6a; --teal: #35d0c0; --blue: #5b8fd4;
+    /* This project's own accent, used sparingly so the page still reads as
+       part of corticorp.com rather than as the app it describes. */
+    --cyan: #38bdf8;
+    --maxw: 900px;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0 }
+  body { background: var(--bg); color: var(--text);
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    line-height: 1.65; font-size: 17px; }
+  a { color: var(--accent2); text-decoration: none }
+  a:hover { text-decoration: underline }
+  .wrap { max-width: var(--maxw); margin: 0 auto; padding: 0 24px }
+  nav { position: sticky; top: 0; z-index: 10; background: rgba(12,10,8,.92);
+    backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px); border-bottom: 1px solid var(--border); }
+  .nav-inner { display: flex; align-items: center; justify-content: space-between;
+    max-width: var(--maxw); margin: 0 auto; padding: 0 24px; height: 56px; }
+  .brand { font-weight: 800; font-size: 1.1rem; color: var(--accent2); letter-spacing: .03em }
+  .nav-links a { margin-left: 24px; color: var(--muted); font-size: .9rem }
+  .nav-links a:hover { color: var(--text); text-decoration: none }
+  .hero { padding: 72px 0 48px; }
+  .hero .eyebrow-live { display:inline-flex; align-items:center; gap:7px; }
+  .dot { width:8px; height:8px; border-radius:50%; background:var(--green); box-shadow:0 0 0 0 rgba(111,174,106,.6); animation:pulse 2s infinite }
+  @keyframes pulse { 0%{box-shadow:0 0 0 0 rgba(111,174,106,.5)} 70%{box-shadow:0 0 0 7px rgba(111,174,106,0)} 100%{box-shadow:0 0 0 0 rgba(111,174,106,0)} }
+  .hero h1 { font-size: clamp(1.8rem, 4vw, 2.5rem); margin-bottom: 12px }
+  .hero h1 .a { color: var(--text) } .hero h1 .b { color: var(--cyan); font-weight: 300 }
+  .hero p { color: var(--muted); max-width: 680px; }
+  section { padding: 48px 0; border-top: 1px solid #1a1610 }
+  .eyebrow { text-transform: uppercase; letter-spacing: .2em; font-size: .72rem; color: var(--muted); margin-bottom: 8px }
+  h2 { font-size: 1.5rem; color: var(--accent2); margin-bottom: 16px }
+  h3 { font-size: 1.15rem; color: var(--accent); margin-bottom: 6px }
+  .features { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-top: 16px }
+  .feat { background: var(--surface); border: 1px solid var(--border); border-radius: 10px; padding: 20px }
+  .feat h3 { color: var(--cyan); font-size: 1.05rem }
+  .feat p { color: var(--muted); font-size: .93rem }
+  .tag { display: inline-block; padding: 4px 12px; border-radius: 5px; font-size: .8rem;
+    background: var(--surface2); border: 1px solid var(--border); color: var(--muted); margin: 3px 2px }
+  .tag.web { border-color: #1a3a3a; color: var(--teal) }
+  .tag.map { border-color: #1a3350; color: var(--cyan) }
+  .btn { display: inline-block; padding: 12px 24px; border-radius: 8px; font-weight: 600;
+    font-size: .95rem; border: 1px solid var(--border); margin: 6px 6px 6px 0; transition: background .15s }
+  .btn-primary { background: linear-gradient(#5cc9f5,#1f8dc4); color: #04202e; border-color: #2b7fa8 }
+  .btn-ghost { background: var(--surface2); color: var(--accent2) }
+  .btn:hover { filter: brightness(1.08); text-decoration: none }
+
+  /* ---- Framed app windows ---- */
+  .win { border-radius: 11px; overflow: hidden; border: 1px solid #2c313a;
+    background: #14171c; box-shadow: 0 22px 50px rgba(0,0,0,.55) }
+  .win .bar { display:flex; align-items:center; gap:6px; height:26px; padding:0 11px;
+    background:#20242b; border-bottom:1px solid #2c313a }
+  .win .bar i { width:9px; height:9px; border-radius:50%; background:#3a4048 }
+  .win .bar i.r{background:#e0605e} .win .bar i.y{background:#e0b24e} .win .bar i.g{background:#5fb85f}
+  .win .bar span { margin-left:7px; font-size:.64rem; color:#8b93a0 }
+  .win img { display:block; width:100%; object-fit:cover; object-position:top center }
+
+  .collage { position: relative; height: 400px; margin: 10px 0 4px }
+  .collage .win { position:absolute }
+  .collage .win-world { width:64%; left:0; top:30px; z-index:1 }
+  .collage .win-world img { height:240px }
+  .collage .win-city { width:48%; right:0; top:0; z-index:3 }
+  .collage .win-city img { height:250px }
+  .collage .win-volcano { width:44%; left:7%; bottom:0; z-index:2 }
+  .collage .win-volcano img { height:132px }
+
+  .gallery { display:grid; grid-template-columns:1fr 1fr; gap:26px 24px; margin-top:20px }
+  .shotcard.wide { grid-column:1 / -1 }
+  .shotcard .cap { margin-top:14px }
+  .shotcard .cap h3 { margin-bottom:4px; color: var(--cyan) }
+  .shotcard .cap p { color:var(--muted); font-size:.92rem }
+
+  table.sources { width:100%; border-collapse:collapse; margin-top:14px; font-size:.92rem }
+  table.sources th { text-align:left; color:var(--muted); font-weight:600; font-size:.75rem;
+    text-transform:uppercase; letter-spacing:.1em; padding:0 12px 8px 0; border-bottom:1px solid var(--border) }
+  table.sources td { padding:10px 12px 10px 0; border-bottom:1px solid #1a1610; color:var(--muted); vertical-align:top }
+  table.sources td.n { color:var(--text); white-space:nowrap; font-variant-numeric:tabular-nums }
+  table.sources td strong { color:var(--text); font-weight:600 }
+
+  footer { padding: 32px 0; border-top: 1px solid var(--border); text-align: center; color: var(--muted); font-size: .8rem }
+  @media (max-width:600px){
+    .collage{height:330px} .gallery{grid-template-columns:1fr} .features { grid-template-columns: 1fr }
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-inner">
+    <a class="brand" href="/">CortiCorp</a>
+    <div class="nav-links">
+      <a href="/#projects">Projects</a>
+      <a href="/updates/">Updates</a>
+      <a href="/#about">About</a>
+      <a href="/#contact">Contact</a>
+    </div>
+  </div>
+</nav>
+
+<div class="wrap hero">
+  <p class="eyebrow">Pre-alpha, in active build</p>
+  <h1><span class="a">opd</span> <span class="b">The Open Page Document</span></h1>
+  <p>An <strong>open document format</strong> meant to replace PDF in the common case: showing a
+     fixed, formatted document without the weight of the PDF toolchain. One <strong>.opd</strong>
+     file is one zip. Inside it is a clean, reflowable source written in a strict subset of HTML and
+     CSS, with no scripting and nothing loaded from outside the file; optionally a frozen copy of the
+     exact pages, one SVG per page, for print and archive, bound to the source by hash; fonts as
+     WOFF2; images; metadata; and a manifest that lists every entry with its SHA-256.</p>
+  <p style="color:var(--muted); max-width:680px; margin-top:14px">Nobody ships a single file that
+     carries a validated reflowable source and a frozen page render bound to it by hash, under a
+     signature that survives later user data. PDF gives you the frozen pages; the text, the
+     structure, the form fields, and the question of whether a file that came back is the one you
+     sent all take more work than they should. opd starts from the other end and keeps the pages too.</p>
+  <div style="margin-top:20px">
+    <a class="btn btn-primary" href="https://opd-docs-production.up.railway.app" target="_blank" rel="noopener">Open the app</a>
+    <a class="btn btn-ghost" href="/#projects">Back to Projects</a>
+  </div>
+</div>
+
+<section>
+  <div class="wrap">
+    <div class="collage">
+      <div class="win win-world">
+        <div class="bar"><i class="r"></i><i class="y"></i><i class="g"></i><span>Viewer, a Market Pulse edition opened by link</span></div>
+        <img src="img/viewer-pulse.jpg" alt="The opd viewer showing a Corticorp Finance Market Pulse Overview edition loaded from the corpus server, with a provenance bar, an outline and the share card with three sparklines at the top of the page">
+      </div>
+      <div class="win win-volcano">
+        <div class="bar"><i class="r"></i><i class="y"></i><i class="g"></i><span>PDF import</span></div>
+        <img src="img/import.jpg" alt="The PDF import page with a drop zone and the options to keep the original page layout and keep existing form values, noting that every PDF is processed on this device">
+      </div>
+      <div class="win win-city">
+        <div class="bar"><i class="r"></i><i class="y"></i><i class="g"></i><span>Editor, a filled form</span></div>
+        <img src="img/editor-form.jpg" alt="The opd editor with a filled Volunteer application form showing 7 of 7 filled and 0 required remaining, with Previous, Next, Edit form and Save filled copy controls">
+      </div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <p class="eyebrow">What it does</p>
+    <h2>A document that reflows, and pages that do not move</h2>
+    <div class="features">
+      <div class="feat">
+        <h3>One file, one zip</h3>
+        <p>Source, frozen pages, fonts, images, metadata and a manifest with a SHA-256 for every
+           entry, all in a single .opd file with the media type application/vnd.opd+zip. Nothing is
+           fetched from outside the file and nothing in it can run a script.</p>
+      </div>
+      <div class="feat">
+        <h3>A source that reflows, pages that are frozen</h3>
+        <p>The source is a strict subset of HTML and CSS, so it fits any screen. The optional frozen
+           pages are one SVG each, for print and archive, and they are bound to the source by hash so
+           a reader can tell the two belong together.</p>
+      </div>
+      <div class="feat">
+        <h3>Honest determinism</h3>
+        <p>The source promises a stable structure. Pixel fidelity is claimed only for the frozen
+           pages. If the two disagree the reader is told, and the tools never quietly pick one.</p>
+      </div>
+      <div class="feat">
+        <h3>No modes</h3>
+        <p>Every valid file opens editable with one standard toolbar. A form opens ready to fill
+           inside the editor, and Edit form warns that it makes a new version. The editor can only
+           produce valid files, because its schema is generated from the profile.</p>
+      </div>
+      <div class="feat">
+        <h3>Create, send, fill, return</h3>
+        <p>Form fields are declared separately from the text. Filling writes answers to a userdata
+           area and leaves the author&rsquo;s bytes unchanged, a form fingerprint shows the form came
+           back unaltered, and a Collect view groups returned copies and exports CSV on the device.</p>
+      </div>
+      <div class="feat">
+        <h3>Signatures with honest wording</h3>
+        <p>Ed25519 signatures for the author and the filler. The wording is careful: a signature
+           proves the holder of this key signed exactly these entries; it does not identify the
+           holder. The tools never say &ldquo;verified&rdquo;.</p>
+      </div>
+      <div class="feat">
+        <h3>PDF import, with its scores on the table</h3>
+        <p>Import keeps text, structure and AcroForm fields, and can redraw the original page layout
+           from the PDF&rsquo;s own geometry. On a 35-document ground-truth set: block F1 about 0.97,
+           reading order 1.00, exact text 0.988, tables 9 of 10, form field recall 0.58, about 23 ms
+           per page. Fonts are swapped for open-licence fonts, never embedded from the PDF.</p>
+      </div>
+      <div class="feat">
+        <h3>Single files that work offline, and a sandbox</h3>
+        <p>The viewer (about 0.5 MB), the editor (about 1.3 MB) and the PDF import page (about
+           2.2 MB) are each one HTML file that runs from any folder, tested to make zero network
+           requests. Documents render in a fully sandboxed frame with no scripts under a strict
+           content security policy. The site sets no cookies and has no server code.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <p class="eyebrow">Closer look</p>
+    <h2>Three things worth clicking</h2>
+    <div class="gallery">
+      <div class="shotcard wide">
+        <div class="win">
+          <div class="bar"><i class="r"></i><i class="y"></i><i class="g"></i><span>Editor</span></div>
+          <img src="img/editor-article.jpg" loading="lazy" alt="The opd editor with the article Why a document should open anywhere open, the standard toolbar above it, and the Document panel showing title, language, author, A4 page size, margins, theme, header and footer">
+        </div>
+        <div class="cap">
+          <h3>The editor and its Document panel</h3>
+          <p>One toolbar for every file. The Document panel holds the title, language, author, page
+             size, margins, theme, header and footer. Tables, footnotes, a table of contents, page
+             numbers, and custom and landscape page sizes are all there, and whatever comes out is a
+             valid file, because the editor cannot write anything else.</p>
+        </div>
+      </div>
+      <div class="shotcard">
+        <div class="win">
+          <div class="bar"><i class="r"></i><i class="y"></i><i class="g"></i><span>Viewer</span></div>
+          <img src="img/viewer-report.jpg" loading="lazy" alt="The opd viewer showing a Quarterly reading room report with an outline, Source and Pages tabs, a figures table, and a footer reading Source and pages, fingerprint, Unsigned">
+        </div>
+        <div class="cap">
+          <h3>Source and Pages, and a footer that tells the truth</h3>
+          <p>The Source tab reflows; the Pages tab shows the frozen pages. The footer reports the
+             fingerprint and the signing state plainly. For an unsigned file it says: Unsigned.
+             Nothing in this file shows who made it.</p>
+        </div>
+      </div>
+      <div class="shotcard">
+        <div class="win">
+          <div class="bar"><i class="r"></i><i class="y"></i><i class="g"></i><span>Hosted landing page</span></div>
+          <img src="img/home.jpg" loading="lazy" alt="The opd landing page titled The Open Page Document, with Open a document, Open the viewer and Import a PDF, a three-step How it works, and Take it with you downloads of opd-editor.html and opd-viewer.html">
+        </div>
+        <div class="cap">
+          <h3>The hosted app, and the files you can take with you</h3>
+          <p>Open a document, open the viewer, or import a PDF. The same page offers opd-editor.html
+             and opd-viewer.html as downloads, each a single file that works offline. The hosted app
+             can also install itself and register to open .opd files.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <p class="eyebrow">How it was built</p>
+    <h2>Four days, pull requests only</h2>
+    <p style="color:var(--muted); max-width:680px">
+      opd was built in four days, October 16 to 19, 2026, in about 101 commits and 55 pull requests,
+      by a Board of Claude Code subagents: a System Architect, an AI Architect, a Security Expert and
+      a Software Engineer. Only the Engineer writes code, in branches with pull requests, and a hook
+      blocks it from merging. The architects and the Security Expert read and propose; the operator
+      merges.
+    </p>
+    <p style="color:var(--muted); max-width:680px; margin-top:14px">
+      The gates are the same on every change: more than 1,000 unit tests, Playwright runs in
+      Chromium, Firefox and WebKit, and axe accessibility checks held at zero findings. The
+      single-file tools are tested to make no network request at all.
+    </p>
+    <p style="color:var(--muted); max-width:680px; margin-top:14px">
+      There is a real corpus to open. Every Corticorp Finance Market Pulse edition is re-exported to
+      .opd every six hours, 51 editions by October 17, and served with open CORS so the viewer can
+      open one by link.
+    </p>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <p class="eyebrow">Status</p>
+    <h2>What is still open</h2>
+    <p style="color:var(--muted); max-width:680px">The specification is at v0.1 and still in
+       progress. The items below are known and not yet done.</p>
+    <ul style="color:var(--muted); max-width:680px; margin-top:14px; padding-left:22px">
+      <li>Carrying a file&rsquo;s own stylesheet through edits.</li>
+      <li>Multi-column layout.</li>
+      <li>The remaining chapters of the specification.</li>
+      <li>A second implementation.</li>
+      <li>Import of scanned PDFs. Forms without AcroForm fields are also missed today.</li>
+      <li>A custom domain; docs.corticorp.com is planned.</li>
+    </ul>
+    <p style="color:var(--muted); max-width:680px; margin-top:18px">The repository stays private
+       for now, and the project is an experiment that may or may not continue. The specification is
+       licensed CC BY 4.0 and the code MIT.</p>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <p class="eyebrow">Built with</p>
+    <div>
+      <span class="tag web">TypeScript</span>
+      <span class="tag web">Tiptap</span>
+      <span class="tag web">Playwright</span>
+      <span class="tag map">Ed25519</span>
+      <span class="tag map">SVG</span>
+      <span class="tag">Railway</span>
+      <span class="tag">Claude Code</span>
+    </div>
+    <div style="margin-top:22px">
+      <a class="btn btn-primary" href="https://opd-docs-production.up.railway.app" target="_blank" rel="noopener">Open the app</a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">&copy; <span id="year">2026</span> CortiCorp, LLC</div>
+</footer>
+
+<script>document.getElementById('year').textContent = new Date().getFullYear();</script>
+</body>
+</html>

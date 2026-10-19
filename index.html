@@ -4,9 +4,9 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>CortiCorp — Software & AI Solutions</title>
-<meta name="description" content="CortiCorp builds AI-powered applications, audio tools, and data systems: Corticorp News, Corticorp Finance, World's Eye View, AlgoRythmic and a line of VST3 plugins. 25+ years of software engineering, now focused on what AI makes possible.">
+<meta name="description" content="CortiCorp builds AI-powered applications, audio tools, and data systems: Corticorp News, Corticorp Finance, World's Eye View, AlgoRythmic, the Open Page Document and a line of VST3 plugins. 25+ years of software engineering, now focused on what AI makes possible.">
 <meta property="og:title" content="CortiCorp — Software & AI Solutions">
-<meta property="og:description" content="Four live web products and a line of VST3 audio plugins. AI-powered applications, audio tools, and data systems by Cort.">
+<meta property="og:description" content="Four live web products, an open document format in build, and a line of VST3 audio plugins. AI-powered applications, audio tools, and data systems by Cort.">
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://corticorp.com/">
 <link rel="canonical" href="https://corticorp.com/">
@@ -103,7 +103,7 @@
   #projects { padding-top: 44px }
 
   /* ---- FEATURED / NEWS ---- */
-  #news { border-top: none; padding-top: 40px; padding-bottom: 40px }
+  #news { padding-top: 40px; padding-bottom: 40px }
   .featured-badge {
     display: inline-flex; align-items: center; gap: 8px; margin-bottom: 12px;
     padding: 4px 12px; border-radius: 999px; font-size: .72rem; font-weight: 700;
@@ -164,6 +164,24 @@
   .win-fin-categories img { height: 116px }
   .tag.fin { border-color: #2c4a30; color: var(--green) }
   @media (max-width: 760px) { .fin-collage { height: 320px } }
+
+  /* ---- OPD, THE OPEN PAGE DOCUMENT ----
+     The newest project, so it leads the page. Same collage pattern as the
+     others, with its own name colours because the app itself is blue on
+     slate rather than gold on black. */
+  #opd { border-top: none; padding-top: 40px; padding-bottom: 40px }
+  .opd-name .o { color: #8da2fb } .opd-name .d { color: var(--text); font-weight: 400 }
+  .opd-collage { position: relative; height: 372px }
+  .win-opd-viewer { width: 64%; left: 0; top: 24px; z-index: 1 }
+  .win-opd-viewer img { height: 204px }
+  .win-opd-form { width: 49%; right: 0; top: 100px; z-index: 3 }
+  .win-opd-form img { height: 230px }
+  .win-opd-import { width: 42%; left: 5%; bottom: 0; z-index: 2 }
+  .win-opd-import img { height: 116px }
+  .tag.opd { border-color: #2a3a5a; color: #8da2fb }
+  .featured-badge.build { background: #1a2238; border-color: #2a3a5a; color: #8da2fb }
+  .featured-badge.build .dot { background: #8da2fb; animation: none }
+  @media (max-width: 760px) { .opd-collage { height: 320px } }
 
   /* ---- WORLD'S EYE VIEW ----
      Its own product on its own domain; it sits below Finance purely because
@@ -258,6 +276,7 @@
   <div class="nav-inner">
     <div class="brand">CortiCorp</div>
     <div class="nav-links">
+      <a href="#opd">opd</a>
       <a href="#news">News</a>
       <a href="#finance">Finance</a>
       <a href="#plugins">Plugins</a>
@@ -286,10 +305,54 @@
   </div>
 </section>
 
+<!-- ==================== OPD (newest project) ==================== -->
+<section id="opd">
+  <div class="wrap">
+    <p class="eyebrow">Newest project</p>
+    <h2>The Open Page Document</h2>
+    <div class="news-feature">
+      <div class="opd-collage">
+        <div class="win win-opd-viewer">
+          <div class="bar"><i class="r"></i><i class="y"></i><i class="g"></i><span>Viewer, a Market Pulse edition opened by link</span></div>
+          <img src="projects/opd/img/viewer-pulse.jpg" alt="The opd viewer showing a Corticorp Finance Market Pulse edition with its share card chart, an outline, and a provenance bar naming where the file came from">
+        </div>
+        <div class="win win-opd-import">
+          <div class="bar"><i class="r"></i><i class="y"></i><i class="g"></i><span>Import a PDF</span></div>
+          <img src="projects/opd/img/import.jpg" alt="The opd PDF import page, which processes every PDF on the device and offers to keep the original page layout">
+        </div>
+        <div class="win win-opd-form">
+          <div class="bar"><i class="r"></i><i class="y"></i><i class="g"></i><span>Editor, a filled form</span></div>
+          <img src="projects/opd/img/editor-form.jpg" alt="The opd editor with a volunteer application form filled in, seven of seven fields complete, and a Save filled copy button">
+        </div>
+      </div>
+      <div class="news-copy">
+        <span class="featured-badge build"><span class="dot"></span> In build, pre-alpha</span>
+        <h3 style="font-size:1.25rem"><span class="opd-name"><span class="o">opd</span> <span class="d">the Open Page Document</span></span></h3>
+        <p style="color:var(--muted); margin-top:6px">An open file format meant to replace PDF in the common
+           case: one <strong>.opd</strong> file carries a clean, reflowable source in a strict subset of
+           HTML, its fonts, and optionally a frozen copy of the exact pages, bound to the source by hash.
+           Around it, a <strong>viewer, an editor and a PDF importer</strong> that are each a single HTML
+           file, run offline from any folder, and never phone home. Write a document, add form fields,
+           send it, have it filled and signed, and collect the returned copies. Built in four days in
+           October 2026, and still an experiment.</p>
+        <div class="project-meta">
+          <span class="tag opd">Open format</span>
+          <span class="tag web">TypeScript</span>
+          <span class="tag">Single-file apps</span>
+          <span class="tag">Ed25519 signatures</span>
+        </div>
+        <a class="project-link" href="projects/opd/">Learn more &rarr;</a>
+        <a class="project-link" href="https://opd-docs-production.up.railway.app" target="_blank" rel="noopener"
+           style="margin-left:8px">Open the app &rarr;</a>
+      </div>
+    </div>
+  </div>
+</section>
+
 <!-- ==================== NEWS (featured) ==================== -->
 <section id="news">
   <div class="wrap">
-    <p class="eyebrow">Latest project</p>
+    <p class="eyebrow">The newsroom</p>
     <h2>Corticorp News</h2>
     <div class="news-feature">
       <div class="news-collage">
@@ -302,8 +365,8 @@
           <img src="projects/news/img/verification.jpg" alt="Corticorp News Verification Desk showing claim statuses and evidence">
         </div>
         <div class="win win-feed">
-          <div class="bar"><i class="r"></i><i class="y"></i><i class="g"></i><span>The Feed</span></div>
-          <img src="projects/news/img/feed.jpg" alt="Corticorp News synthesized story feed with real photo coverage">
+          <div class="bar"><i class="r"></i><i class="y"></i><i class="g"></i><span>Top stories</span></div>
+          <img src="projects/news/img/top-stories.jpg" alt="The Corticorp News front page, a grid of top stories with photos and a Share control on every card">
         </div>
       </div>
       <div class="news-copy">
@@ -313,9 +376,10 @@
            outlets and gives you <strong>one synthesized summary per real-world event</strong> &mdash; not ten
            near-duplicate headlines. Circulating claims get checked by a transparent
            <strong>Verification Desk</strong>, and ongoing conflicts get their own live, map-driven
-           situation rooms, with full-text search over every event ever published. The markets side of
-           the app has since moved out to its own domain as
-           <a href="#finance">Corticorp Finance</a>.</p>
+           situation rooms, with full-text search over every event ever published. Since October 2026
+           the front page is <strong>Top stories</strong>, and every story, section and situation room
+           can be shared with its own preview card. The markets side of the app has since moved out to
+           its own domain as <a href="#finance">Corticorp Finance</a>.</p>
         <div class="project-meta">
           <span class="tag ai">Claude API</span>
           <span class="tag web">Next.js 16</span>
@@ -340,16 +404,17 @@
         <span class="featured-badge"><span class="dot"></span> Live</span>
         <h3 style="font-size:1.25rem"><span class="fin-name"><span class="c">Corticorp</span> <span class="f">Finance</span></span></h3>
         <p style="color:var(--muted); margin-top:6px">The markets work that grew up inside News now
-           stands on its own domain. <strong>Thirty-nine simulated portfolios</strong> run side by
-           side on the same market, each with its own stated discipline, each publishing every
-           decision along with the reasoning and the exact inputs behind it. Around them: a
-           twice-daily <strong>Market Pulse</strong>, the persisted market data the strategies are
-           shown, an earnings and macro calendar, and an <strong>AI Board</strong> that reviews the
-           roster in public. Simulated, and not investment advice.</p>
+           stands on its own domain. <strong>Forty-four simulated funds</strong> run side by side on
+           the same market, each with its own stated discipline, each publishing every decision along
+           with the reasoning and the exact inputs behind it. Around them: a <strong>Market Pulse</strong>
+           that has become a daily markets newspaper with seven editions and four desk tools, a share
+           card for every edition carrying a chart that fits what it says, 1,239 persisted data series,
+           an earnings and macro calendar, and an <strong>AI Board</strong> that reviews the roster in
+           public. Simulated, and not investment advice.</p>
         <div class="project-meta">
           <span class="tag ai">Claude API</span>
           <span class="tag web">Next.js 16</span>
-          <span class="tag fin">39 strategies</span>
+          <span class="tag fin">44 funds</span>
           <span class="tag">SQLite</span>
         </div>
         <a class="project-link" href="projects/finance/">Learn more &rarr;</a>
@@ -358,16 +423,16 @@
       </div>
       <div class="fin-collage">
         <div class="win win-fin-strategies">
-          <div class="bar"><i class="r"></i><i class="y"></i><i class="g"></i><span>Strategies</span></div>
-          <img src="projects/finance/img/strategies.jpg" alt="The all-strategies table with a period selector and a vs S&P 500 verdict on every row">
+          <div class="bar"><i class="r"></i><i class="y"></i><i class="g"></i><span>The roster against the index</span></div>
+          <img src="projects/finance/img/performance.jpg" alt="Every fund's return since inception plotted against the S&P 500, with 26 of 26 ranked funds ahead of the index">
         </div>
         <div class="win win-fin-categories">
-          <div class="bar"><i class="r"></i><i class="y"></i><i class="g"></i><span>Category indexes</span></div>
-          <img src="projects/finance/img/categories.jpg" alt="Category index chart plotting blended returns per strategy category over time">
+          <div class="bar"><i class="r"></i><i class="y"></i><i class="g"></i><span>The Board</span></div>
+          <img src="projects/finance/img/board.jpg" alt="The Board page's chain of command diagram, from the operator down through the Judge, Librarian and nine specialist roles">
         </div>
         <div class="win win-fin-pulse">
-          <div class="bar"><i class="r"></i><i class="y"></i><i class="g"></i><span>Market Pulse</span></div>
-          <img src="projects/finance/img/pulse.jpg" alt="The Market Pulse briefing with the day's headline read, index levels and sector movers">
+          <div class="bar"><i class="r"></i><i class="y"></i><i class="g"></i><span>Market Pulse, Sector edition</span></div>
+          <img src="projects/finance/img/edition.jpg" alt="A dated Sector edition of the Market Pulse with its headline and a 60-session Energy chart drawn from the stored numbers">
         </div>
       </div>
     </div>
@@ -382,8 +447,8 @@
     <div class="news-feature">
       <div class="wev-collage">
         <div class="win win-wev-world">
-          <div class="bar"><i class="r"></i><i class="y"></i><i class="g"></i><span>Continental view</span></div>
-          <img src="projects/worlds-eye-view/img/world.jpg" alt="World's Eye View at continental zoom, live webcam thumbnails scattered across a satellite map of North America">
+          <div class="bar"><i class="r"></i><i class="y"></i><i class="g"></i><span>53,361 cameras worldwide</span></div>
+          <img src="projects/worlds-eye-view/img/world-2026-10.jpg" alt="World's Eye View zoomed out over the Atlantic, live webcam thumbnails on a satellite map and a counter reading 53,361 cameras worldwide">
         </div>
         <div class="win win-wev-volcano">
           <div class="bar"><i class="r"></i><i class="y"></i><i class="g"></i><span>Volcano cams</span></div>
@@ -397,17 +462,18 @@
       <div class="news-copy">
         <span class="featured-badge"><span class="dot"></span> Live</span>
         <h3 style="font-size:1.25rem"><span class="wev-name"><span class="w">World&rsquo;s Eye</span> <span class="v">View</span></span></h3>
-        <p style="color:var(--muted); margin-top:6px">Around <strong>34,700 public webcams</strong>
-           from 31 sources, quilted onto one satellite map as live thumbnails: volcanoes,
-           harbours, city streets and highways, from Finland to New Zealand. Zoom in and a city fills
-           with windows; watch one full screen, send several to a <strong>multicam wall</strong>, or
-           follow the cameras along a driving route. Frames refresh on their own schedules, so the
-           map drifts through the day with the world.</p>
+        <p style="color:var(--muted); margin-top:6px">Around <strong>53,000 public webcams</strong>
+           from traffic authorities, observatories and weather networks on five continents, quilted
+           onto one satellite map as live thumbnails: volcanoes, harbours, city streets, ocean buoys
+           and an Antarctic research station. Zoom in and a city fills with windows; watch one full
+           screen, send several to a <strong>multicam wall</strong>, follow the cameras along a driving
+           route, or share a view and the link carries a live preview. Frames refresh on their own
+           schedules, so the map drifts through the day with the world.</p>
         <div class="project-meta">
           <span class="tag web">Next.js 16</span>
           <span class="tag cam">Leaflet</span>
           <span class="tag">Esri imagery</span>
-          <span class="tag">31 sources</span>
+          <span class="tag">53,000 cameras</span>
         </div>
         <a class="project-link" href="projects/worlds-eye-view/">Learn more &rarr;</a>
         <a class="project-link" href="https://cams.corticorp.com" target="_blank" rel="noopener"
