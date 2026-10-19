@@ -284,7 +284,7 @@ export const KNOWN_PROJECTS: ProjectSeed[] = [
     version: '0.1.0',
     tags: ['document-format', 'open-standard', 'typescript', 'forms', 'pdf-import'],
     repoPrivate: true,
-    homepage: 'https://opd-docs-production.up.railway.app',
+    homepage: 'https://docs.corticorp.com',
     detailPage: 'https://corticorp.com/projects/opd/',
     name: 'Open Page Document',
     description:
