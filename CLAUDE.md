@@ -46,3 +46,16 @@ relative to the corticorp root via `pathFromCortiCorp`.
 - Registry is the source of truth for what appears on the site; don't hand-edit the
   generated `registry.json` — change the scanner or source metadata and re-scan.
 - Keep `dist/` out of commits (gitignored); build is reproducible from `src/`.
+
+## Sharing project pages
+Every `projects/<slug>/index.html` details page carries:
+- The social preview tags (canonical, `og:*`, `twitter:card summary_large_image`) pointing at
+  `projects/<slug>/img/share.jpg`, a 1200x630 card. LinkedIn and Facebook don't show SVG.
+- `<div data-share></div>` at the end of the hero plus `<script src="/js/share.js" defer>`,
+  which renders the LinkedIn / Facebook / X / copy-link row (and the phone's share sheet).
+
+Cards are generated, not hand-made: add or edit the project in `scripts/share-cards/cards.json`
+(`logo` for a centered emblem, `shot` for a framed screenshot), then run
+`node scripts/share-cards/render.cjs [slug]` (needs Playwright; `NODE_PATH` can point at
+`../news/node_modules`). After changing a live card, re-scrape it in LinkedIn Post Inspector
+and the Facebook Sharing Debugger, which otherwise keep the old preview.

@@ -1,0 +1,74 @@
+[
+  {
+    "slug": "opd",
+    "title": "opd",
+    "subtitle": "The Open Page Document",
+    "tagline": "An open document format for when PDF is too heavy. Viewer, editor and PDF import, all in the browser.",
+    "accent": "#38bdf8",
+    "logo": "projects/opd/img/logo.png",
+    "alt": "The opd butterfly logo, an open book whose pages form a butterfly's wings, beside the title opd, the Open Page Document"
+  },
+  {
+    "slug": "tagalog-translator",
+    "title": "Taglish Live",
+    "subtitle": "Tagalog to English, as you speak",
+    "tagline": "Real-time transcription of Tagalog and Taglish speech, with an English translation a beat behind.",
+    "accent": "#38bdf8",
+    "shot": "projects/tagalog-translator/img/listening.jpg",
+    "alt": "The Taglish Live listening page, with a Heard column and an English column, beside the title Taglish Live"
+  },
+  {
+    "slug": "worlds-eye-view",
+    "title": "World's Eye View",
+    "subtitle": "53,000 live webcams on one map",
+    "tagline": "Public webcams quilted onto a satellite map as live thumbnails: volcanoes, harbours, city streets.",
+    "accent": "#38bdf8",
+    "shot": "projects/worlds-eye-view/img/world.jpg",
+    "alt": "A world map covered in live webcam thumbnails, beside the title World's Eye View"
+  },
+  {
+    "slug": "finance",
+    "title": "Corticorp Finance",
+    "subtitle": "44 funds that show their work",
+    "tagline": "Simulated funds that publish every decision and its reasoning, plus a daily Market Pulse.",
+    "accent": "#e7c878",
+    "shot": "projects/finance/img/strategies.jpg",
+    "alt": "The Corticorp Finance strategies page, beside the title Corticorp Finance"
+  },
+  {
+    "slug": "news",
+    "title": "Corticorp News",
+    "subtitle": "One summary per event",
+    "tagline": "An AI-curated news digest with a transparent Verification Desk and live situation-room maps.",
+    "accent": "#e7c878",
+    "shot": "projects/news/img/top-stories.jpg",
+    "alt": "The Corticorp News top stories page, beside the title Corticorp News"
+  },
+  {
+    "slug": "algorythmic",
+    "title": "AlgoRythmic",
+    "subtitle": "Playlists as rules you can edit",
+    "tagline": "Describe a vibe, see the rules, preview the queue free, then save it to YouTube Music.",
+    "accent": "#e7c878",
+    "shot": "img/algorythmic.svg",
+    "alt": "The AlgoRythmic diagram from description to rules to playlist, beside the title AlgoRythmic"
+  },
+  {
+    "slug": "apartment-finder",
+    "title": "Apartment Finder",
+    "subtitle": "Rentals, scraped, scored and mapped",
+    "tagline": "Listings from several sources on one map and table, with photo quality scored by AI.",
+    "accent": "#e7c878",
+    "shot": "img/apartment-finder.png",
+    "alt": "The Apartment Finder map-and-table dashboard, beside the title Apartment Finder"
+  },
+  {
+    "slug": "catfishcheck",
+    "title": "CatfishCheck",
+    "subtitle": "Is this person who they say?",
+    "tagline": "Upload photos, numbers, handles and messages about someone online and get a red-flag report.",
+    "accent": "#5b8fd4",
+    "shot": "img/catfishcheck.png",
+    "alt": "The CatfishCheck investigation form, beside the title CatfishCheck"
+  }
+]

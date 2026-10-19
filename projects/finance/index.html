@@ -5,12 +5,19 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Corticorp Finance — CortiCorp</title>
 <meta name="description" content="Corticorp Finance: 44 simulated funds across nine families that publish every decision and the reasoning behind it, a daily Market Pulse in seven editions with four desk tools, 1,239 persisted market series, an earnings and macro calendar, and an AI Board that reviews the whole roster in public.">
+<link rel="canonical" href="https://corticorp.com/projects/finance/">
+<meta property="og:site_name" content="CortiCorp">
 <meta property="og:title" content="Corticorp Finance — CortiCorp">
 <meta property="og:description" content="44 simulated funds across nine families that publish every decision and its reasoning, a seven-edition daily Market Pulse with real charts on every share card, and an AI Board reviewing the roster in public. Plus a dated diary of what has improved.">
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://corticorp.com/projects/finance/">
-<meta property="og:image" content="https://corticorp.com/projects/finance/img/strategies.jpg">
-<link rel="canonical" href="https://corticorp.com/projects/finance/">
+<meta property="og:image" content="https://corticorp.com/projects/finance/img/share.jpg">
+<meta property="og:image:type" content="image/jpeg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="The Corticorp Finance strategies page, beside the title Corticorp Finance">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://corticorp.com/projects/finance/img/share.jpg">
 <style>
   :root {
     --bg: #0c0a08; --surface: #141210; --surface2: #1c1915; --border: #2a241c;
@@ -31,7 +38,7 @@
   .brand { font-weight: 800; font-size: 1.1rem; color: var(--accent2); letter-spacing: .03em }
   .nav-links a { margin-left: 24px; color: var(--muted); font-size: .9rem }
   .nav-links a:hover { color: var(--text); text-decoration: none }
-  .hero { padding: 72px 0 48px; }
+  .hero { padding: 72px 24px 48px; }
   .hero .eyebrow-live { display:inline-flex; align-items:center; gap:7px; }
   .dot { width:8px; height:8px; border-radius:50%; background:var(--green); box-shadow:0 0 0 0 rgba(111,174,106,.6); animation:pulse 2s infinite }
   @keyframes pulse { 0%{box-shadow:0 0 0 0 rgba(111,174,106,.5)} 70%{box-shadow:0 0 0 7px rgba(111,174,106,0)} 100%{box-shadow:0 0 0 0 rgba(111,174,106,0)} }
@@ -143,6 +150,7 @@
     <a class="btn btn-ghost" href="#diary">Read the diary</a>
     <a class="btn btn-ghost" href="/projects/news/">Corticorp News</a>
   </div>
+  <div data-share></div>
 </div>
 
 <section>
@@ -728,5 +736,6 @@
 </footer>
 
 <script>document.getElementById('year').textContent = new Date().getFullYear();</script>
+<script src="/js/share.js" defer></script>
 </body>
 </html>

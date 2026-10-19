@@ -5,12 +5,19 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>World&rsquo;s Eye View — CortiCorp</title>
 <meta name="description" content="Around 53,000 public webcams from traffic authorities, observatories and weather networks on five continents, quilted onto one satellite map as live thumbnails. Zoom in and a city fills with windows, watch one full screen, build a multicam wall, share a view, or follow the cameras along a route.">
+<link rel="canonical" href="https://corticorp.com/projects/worlds-eye-view/">
+<meta property="og:site_name" content="CortiCorp">
 <meta property="og:title" content="World&rsquo;s Eye View — CortiCorp">
 <meta property="og:description" content="Around 53,000 public webcams quilted onto one satellite map as live thumbnails: volcanoes, harbours, ocean buoys, city streets and highways, updating through the day.">
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://corticorp.com/projects/worlds-eye-view/">
-<meta property="og:image" content="https://corticorp.com/projects/worlds-eye-view/img/city.jpg">
-<link rel="canonical" href="https://corticorp.com/projects/worlds-eye-view/">
+<meta property="og:image" content="https://corticorp.com/projects/worlds-eye-view/img/share.jpg">
+<meta property="og:image:type" content="image/jpeg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="A world map covered in live webcam thumbnails, beside the title World&#x27;s Eye View">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://corticorp.com/projects/worlds-eye-view/img/share.jpg">
 <style>
   :root {
     --bg: #0c0a08; --surface: #141210; --surface2: #1c1915; --border: #2a241c;
@@ -35,7 +42,7 @@
   .brand { font-weight: 800; font-size: 1.1rem; color: var(--accent2); letter-spacing: .03em }
   .nav-links a { margin-left: 24px; color: var(--muted); font-size: .9rem }
   .nav-links a:hover { color: var(--text); text-decoration: none }
-  .hero { padding: 72px 0 48px; }
+  .hero { padding: 72px 24px 48px; }
   .hero .eyebrow-live { display:inline-flex; align-items:center; gap:7px; }
   .dot { width:8px; height:8px; border-radius:50%; background:var(--green); box-shadow:0 0 0 0 rgba(111,174,106,.6); animation:pulse 2s infinite }
   @keyframes pulse { 0%{box-shadow:0 0 0 0 rgba(111,174,106,.5)} 70%{box-shadow:0 0 0 7px rgba(111,174,106,0)} 100%{box-shadow:0 0 0 0 rgba(111,174,106,0)} }
@@ -129,6 +136,7 @@
     <a class="btn btn-primary" href="https://cams.corticorp.com" target="_blank" rel="noopener">Open cams.corticorp.com</a>
     <a class="btn btn-ghost" href="/#projects">Back to Projects</a>
   </div>
+  <div data-share></div>
 </div>
 
 <section>
@@ -348,5 +356,6 @@
 </footer>
 
 <script>document.getElementById('year').textContent = new Date().getFullYear();</script>
+<script src="/js/share.js" defer></script>
 </body>
 </html>
