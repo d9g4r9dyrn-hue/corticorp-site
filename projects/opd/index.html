@@ -4,11 +4,11 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>opd, the Open Page Document, CortiCorp</title>
-<meta name="description" content="opd is an open document format meant to replace PDF in the common case: one zip holding a clean reflowable source, frozen pages bound to it by hash, fonts, images and a manifest. Free single-file viewer, editor and PDF import that run in the browser and work offline.">
+<meta name="description" content="opd is an open document format meant to replace PDF in the common case: one zip holding a clean reflowable source, frozen pages bound to it by hash, fonts, images and a manifest. Free single-file viewer, editor, PDF import and PDF export that run in the browser and work offline.">
 <link rel="canonical" href="https://corticorp.com/projects/opd/">
 <meta property="og:site_name" content="CortiCorp">
 <meta property="og:title" content="opd, the Open Page Document, CortiCorp">
-<meta property="og:description" content="An open document format for the common case where PDF is too heavy: a reflowable source and frozen pages in one file, bound by hash, with a viewer, an editor and PDF import that run in the browser.">
+<meta property="og:description" content="An open document format for the common case where PDF is too heavy: a reflowable source and frozen pages in one file, bound by hash, with a viewer, an editor, PDF import and PDF export that run in the browser.">
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://corticorp.com/projects/opd/">
 <meta property="og:image" content="https://corticorp.com/projects/opd/img/share.jpg">
@@ -203,18 +203,35 @@
            holder. The tools never say &ldquo;verified&rdquo;.</p>
       </div>
       <div class="feat">
-        <h3>PDF import, with its scores on the table</h3>
-        <p>Import keeps text, structure and AcroForm fields, and can redraw the original page layout
-           from the PDF&rsquo;s own geometry. On a 35-document ground-truth set: block F1 about 0.97,
-           reading order 1.00, exact text 0.988, tables 9 of 10, form field recall 0.58, about 23 ms
-           per page. Fonts are swapped for open-licence fonts, never embedded from the PDF.</p>
+        <h3>PDF import that keeps the look, with its scores on the table</h3>
+        <p>Import keeps text, structure and AcroForm fields, and now the look as well: text colours,
+           slide backgrounds, rules, card grids and column regions, and up to 40 named styles. Fonts
+           the PDF names are matched to a pinned set of open-licence faces, never embedded from the
+           PDF, and photos stay JPEG. On a 40-document ground-truth set: block F1 0.973, reading
+           order 1.00, grids 5 of 5, tables 10 of 11, style match 0.98, form field recall 0.58.</p>
+      </div>
+      <div class="feat">
+        <h3>Export to PDF, for everyone not on opd yet</h3>
+        <p>Any document exports to a real PDF from the viewer, the editor or the command line, built
+           from opd&rsquo;s own page layout: selectable text in the document&rsquo;s fonts, clickable
+           links, accessibility tags, charts as vector shapes, and form fields that stay fillable
+           with their answers. The PDF carries no scripts, and it says plainly that it does not
+           carry the opd signature.</p>
+      </div>
+      <div class="feat">
+        <h3>Grids and named styles</h3>
+        <p>Format 1.2 adds card grids, gaps and rounded corners, and named paragraph and character
+           styles. The editor keeps a file&rsquo;s own stylesheet and fonts through every save, edits
+           a style once for every place it is used, and inserts and reshapes grids. Visual order
+           always matches reading order, by design.</p>
       </div>
       <div class="feat">
         <h3>Single files that work offline, and a sandbox</h3>
-        <p>The viewer (about 0.5 MB), the editor (about 1.3 MB) and the PDF import page (about
-           2.2 MB) are each one HTML file that runs from any folder, tested to make zero network
-           requests. Documents render in a fully sandboxed frame with no scripts under a strict
-           content security policy. The site sets no cookies and has no server code.</p>
+        <p>The viewer (about 0.75 MB, PDF export included), the editor (about 1.6 MB) and the PDF
+           import page (about 2.4 MB) are each one HTML file that runs from any folder, tested to make
+           zero network requests. Documents render in a fully sandboxed frame with no scripts under a
+           strict content security policy. On the hosted site, an optional passkey sign-in keeps
+           documents online; registration is closed while it is tested.</p>
       </div>
     </div>
   </div>
@@ -223,8 +240,21 @@
 <section>
   <div class="wrap">
     <p class="eyebrow">Closer look</p>
-    <h2>Three things worth clicking</h2>
+    <h2>Four things worth clicking</h2>
     <div class="gallery">
+      <div class="shotcard wide">
+        <div class="win">
+          <div class="bar"><i class="r"></i><i class="y"></i><i class="g"></i><span>Editor, a card grid and the File menu</span></div>
+          <img src="img/editor-grid-export.jpg" loading="lazy" alt="The opd editor showing an Our team page laid out as a three-column grid of cards, each with a name, a role and an email in named styles, with the File menu open on Export PDF, Print and Save with pages">
+        </div>
+        <div class="cap">
+          <h3>Grids, named styles, and Export PDF</h3>
+          <p>A team page laid out as a grid of cards, each with a name, a role and an address in the
+             document&rsquo;s own styles, with a rule under each card. The same layout is what PDF
+             import now rebuilds from a slide deck. The File menu exports the page to PDF, saves it
+             with frozen pages, or signs it.</p>
+        </div>
+      </div>
       <div class="shotcard wide">
         <div class="win">
           <div class="bar"><i class="r"></i><i class="y"></i><i class="g"></i><span>Editor</span></div>
@@ -271,14 +301,14 @@
     <p class="eyebrow">How it was built</p>
     <h2>Four days, pull requests only</h2>
     <p style="color:var(--muted); max-width:680px">
-      opd was built in four days, October 16 to 19, 2026, in about 101 commits and 55 pull requests,
+      opd was built in four days, October 16 to 19, 2026, in about 238 commits and 80 pull requests,
       by a Board of Claude Code subagents: a System Architect, an AI Architect, a Security Expert and
       a Software Engineer. Only the Engineer writes code, in branches with pull requests, and a hook
       blocks it from merging. The architects and the Security Expert read and propose; the operator
       merges.
     </p>
     <p style="color:var(--muted); max-width:680px; margin-top:14px">
-      The gates are the same on every change: more than 1,000 unit tests, Playwright runs in
+      The gates are the same on every change: more than 2,100 unit tests, Playwright runs in
       Chromium, Firefox and WebKit, and axe accessibility checks held at zero findings. The
       single-file tools are tested to make no network request at all.
     </p>
@@ -297,12 +327,12 @@
     <p style="color:var(--muted); max-width:680px">The specification is at v0.1 and still in
        progress. The items below are known and not yet done.</p>
     <ul style="color:var(--muted); max-width:680px; margin-top:14px; padding-left:22px">
-      <li>Carrying a file&rsquo;s own stylesheet through edits.</li>
-      <li>Multi-column layout.</li>
+      <li>Flex and multi-column text layout, gradients and per-page backgrounds (planned for format 1.3).</li>
+      <li>PDF import of a grid beside a table on the same lines, and of very light dividers on dark slides.</li>
+      <li>Export from Safari, which uses the print dialog until it has its own render tests.</li>
       <li>The remaining chapters of the specification.</li>
       <li>A second implementation.</li>
       <li>Import of scanned PDFs. Forms without AcroForm fields are also missed today.</li>
-      <li>A custom domain; docs.corticorp.com is planned.</li>
     </ul>
     <p style="color:var(--muted); max-width:680px; margin-top:18px">The repository stays private
        for now, and the project is an experiment that may or may not continue. The specification is
