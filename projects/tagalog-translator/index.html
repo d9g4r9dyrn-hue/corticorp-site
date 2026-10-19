@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Tagalog to English translator, CortiCorp</title>
+<meta name="description" content="A Tagalog to English translator from CortiCorp. Built and, in theory, ready to use; first trials come next.">
+<meta property="og:title" content="Tagalog to English translator, CortiCorp">
+<meta property="og:description" content="Built and, in theory, ready to use. First trials come next.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://corticorp.com/projects/tagalog-translator/">
+<link rel="canonical" href="https://corticorp.com/projects/tagalog-translator/">
+<style>
+  :root {
+    --bg: #0c0a08; --surface: #141210; --surface2: #1c1915; --border: #2a241c;
+    --text: #e8e0d4; --muted: #9a8e7a; --accent: #d4a555; --accent2: #e7c878;
+    --green: #6fae6a; --teal: #35d0c0; --blue: #5b8fd4;
+    /* This project's own accent, used sparingly so the page still reads as
+       part of corticorp.com rather than as the app it describes. */
+    --cyan: #38bdf8;
+    --maxw: 900px;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0 }
+  body { background: var(--bg); color: var(--text);
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    line-height: 1.65; font-size: 17px; }
+  a { color: var(--accent2); text-decoration: none }
+  a:hover { text-decoration: underline }
+  .wrap { max-width: var(--maxw); margin: 0 auto; padding: 0 24px }
+  nav { position: sticky; top: 0; z-index: 10; background: rgba(12,10,8,.92);
+    backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px); border-bottom: 1px solid var(--border); }
+  .nav-inner { display: flex; align-items: center; justify-content: space-between;
+    max-width: var(--maxw); margin: 0 auto; padding: 0 24px; height: 56px; }
+  .brand { font-weight: 800; font-size: 1.1rem; color: var(--accent2); letter-spacing: .03em }
+  .nav-links a { margin-left: 24px; color: var(--muted); font-size: .9rem }
+  .nav-links a:hover { color: var(--text); text-decoration: none }
+  .hero { padding: 72px 0 48px; }
+  .hero .eyebrow-live { display:inline-flex; align-items:center; gap:7px; }
+  .dot { width:8px; height:8px; border-radius:50%; background:var(--green); box-shadow:0 0 0 0 rgba(111,174,106,.6); animation:pulse 2s infinite }
+  @keyframes pulse { 0%{box-shadow:0 0 0 0 rgba(111,174,106,.5)} 70%{box-shadow:0 0 0 7px rgba(111,174,106,0)} 100%{box-shadow:0 0 0 0 rgba(111,174,106,0)} }
+  .hero h1 { font-size: clamp(1.8rem, 4vw, 2.5rem); margin-bottom: 12px }
+  .hero-logo { display:flex; align-items:center; gap:22px; margin-bottom:6px }
+  .hero-logo img { width:112px; height:112px; border-radius:50%; flex:none; box-shadow:0 14px 34px rgba(0,0,0,.55) }
+  .hero-logo h1 { margin-bottom:0 }
+  .hero h1 .a { color: var(--text) } .hero h1 .b { color: var(--cyan); font-weight: 300 }
+  .hero p { color: var(--muted); max-width: 680px; }
+  section { padding: 48px 0; border-top: 1px solid #1a1610 }
+  .eyebrow { text-transform: uppercase; letter-spacing: .2em; font-size: .72rem; color: var(--muted); margin-bottom: 8px }
+  h2 { font-size: 1.5rem; color: var(--accent2); margin-bottom: 16px }
+  h3 { font-size: 1.15rem; color: var(--accent); margin-bottom: 6px }
+  .features { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-top: 16px }
+  .feat { background: var(--surface); border: 1px solid var(--border); border-radius: 10px; padding: 20px }
+  .feat h3 { color: var(--cyan); font-size: 1.05rem }
+  .feat p { color: var(--muted); font-size: .93rem }
+  .tag { display: inline-block; padding: 4px 12px; border-radius: 5px; font-size: .8rem;
+    background: var(--surface2); border: 1px solid var(--border); color: var(--muted); margin: 3px 2px }
+  .tag.web { border-color: #1a3a3a; color: var(--teal) }
+  .tag.map { border-color: #1a3350; color: var(--cyan) }
+  .btn { display: inline-block; padding: 12px 24px; border-radius: 8px; font-weight: 600;
+    font-size: .95rem; border: 1px solid var(--border); margin: 6px 6px 6px 0; transition: background .15s }
+  .btn-primary { background: linear-gradient(#5cc9f5,#1f8dc4); color: #04202e; border-color: #2b7fa8 }
+  .btn-ghost { background: var(--surface2); color: var(--accent2) }
+  .btn:hover { filter: brightness(1.08); text-decoration: none }
+
+  /* ---- Framed app windows ---- */
+  .win { border-radius: 11px; overflow: hidden; border: 1px solid #2c313a;
+    background: #14171c; box-shadow: 0 22px 50px rgba(0,0,0,.55) }
+  .win .bar { display:flex; align-items:center; gap:6px; height:26px; padding:0 11px;
+    background:#20242b; border-bottom:1px solid #2c313a }
+  .win .bar i { width:9px; height:9px; border-radius:50%; background:#3a4048 }
+  .win .bar i.r{background:#e0605e} .win .bar i.y{background:#e0b24e} .win .bar i.g{background:#5fb85f}
+  .win .bar span { margin-left:7px; font-size:.64rem; color:#8b93a0 }
+  .win img { display:block; width:100%; object-fit:cover; object-position:top center }
+
+  .collage { position: relative; height: 400px; margin: 10px 0 4px }
+  .collage .win { position:absolute }
+  .collage .win-world { width:64%; left:0; top:30px; z-index:1 }
+  .collage .win-world img { height:240px }
+  .collage .win-city { width:48%; right:0; top:0; z-index:3 }
+  .collage .win-city img { height:250px }
+  .collage .win-volcano { width:44%; left:7%; bottom:0; z-index:2 }
+  .collage .win-volcano img { height:132px }
+
+  .gallery { display:grid; grid-template-columns:1fr 1fr; gap:26px 24px; margin-top:20px }
+  .shotcard.wide { grid-column:1 / -1 }
+  .shotcard .cap { margin-top:14px }
+  .shotcard .cap h3 { margin-bottom:4px; color: var(--cyan) }
+  .shotcard .cap p { color:var(--muted); font-size:.92rem }
+
+  table.sources { width:100%; border-collapse:collapse; margin-top:14px; font-size:.92rem }
+  table.sources th { text-align:left; color:var(--muted); font-weight:600; font-size:.75rem;
+    text-transform:uppercase; letter-spacing:.1em; padding:0 12px 8px 0; border-bottom:1px solid var(--border) }
+  table.sources td { padding:10px 12px 10px 0; border-bottom:1px solid #1a1610; color:var(--muted); vertical-align:top }
+  table.sources td.n { color:var(--text); white-space:nowrap; font-variant-numeric:tabular-nums }
+  table.sources td strong { color:var(--text); font-weight:600 }
+
+  footer { padding: 32px 0; border-top: 1px solid var(--border); text-align: center; color: var(--muted); font-size: .8rem }
+  @media (max-width:600px){
+    .collage{height:330px} .gallery{grid-template-columns:1fr} .features { grid-template-columns: 1fr }
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-inner">
+    <a class="brand" href="/">CortiCorp</a>
+    <div class="nav-links">
+      <a href="/#projects">Projects</a>
+      <a href="/updates/">Updates</a>
+      <a href="/#about">About</a>
+      <a href="/#contact">Contact</a>
+    </div>
+  </div>
+</nav>
+
+<div class="wrap hero">
+  <p class="eyebrow">Coming soon</p>
+  <h1><span class="a">Tagalog</span> <span class="b">to English translator</span></h1>
+  <p>A translator that takes Tagalog text and returns English. The software is built and, in theory, ready to use.
+     It has not had its first real trial yet, so this page says only what is true today.</p>
+  <div style="margin-top:20px"><a class="btn btn-ghost" href="/#projects">Back to Projects</a></div>
+</div>
+
+<section>
+  <div class="wrap">
+    <p class="eyebrow">Status</p>
+    <h2>Where it stands</h2>
+    <div class="features">
+      <div class="feat"><h3>Built</h3><p>The software is written and, in theory, ready to use.</p></div>
+      <div class="feat"><h3>Next: first trials</h3><p>It gets tried on real Tagalog text before anyone else is asked to rely on it.</p></div>
+      <div class="feat"><h3>Then: live</h3><p>Once the trials hold up, a link to try it appears here and in the updates.</p></div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">&copy; <span id="year">2026</span> CortiCorp, LLC</div>
+</footer>
+
+<script>document.getElementById('year').textContent = new Date().getFullYear();</script>
+</body>
+</html>
