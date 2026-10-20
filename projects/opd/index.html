@@ -301,14 +301,14 @@
     <p class="eyebrow">How it was built</p>
     <h2>Four days, pull requests only</h2>
     <p style="color:var(--muted); max-width:680px">
-      opd was built in five days, October 16 to 20, 2026, in about 280 commits and 94 pull requests,
+      opd was built in five days, October 16 to 20, 2026, in about 300 commits and 98 pull requests,
       by a Board of Claude Code subagents: a System Architect, an AI Architect, a Security Expert and
       a Software Engineer. Only the Engineer writes code, in branches with pull requests, and a hook
       blocks it from merging. The architects and the Security Expert read and propose; the operator
       merges.
     </p>
     <p style="color:var(--muted); max-width:680px; margin-top:14px">
-      The gates are the same on every change: more than 2,600 unit tests, Playwright runs in
+      The gates are the same on every change: more than 2,800 unit tests, Playwright runs in
       Chromium, Firefox and WebKit, and axe accessibility checks held at zero findings. The
       single-file tools are tested to make no network request at all.
     </p>
@@ -327,16 +327,16 @@
     <p style="color:var(--muted); max-width:680px">The specification is at v0.1 and still in
        progress. The items below are known and not yet done.</p>
     <ul style="color:var(--muted); max-width:680px; margin-top:14px; padding-left:22px">
-      <li>Import of scanned PDFs, which have no text to read without optical character recognition.</li>
-      <li>Sharing a document with other people by email: the server side is live, the dialog is in review.</li>
       <li>Exporting a signed document to PDF from Safari is untested, because the test browser cannot open signed files.</li>
       <li>A second implementation.</li>
     </ul>
     <p style="color:var(--muted); max-width:680px; margin-top:14px">Closed on October 19 and 20:
        format 1.3 (flex and multi-column text, gradients, per-page backgrounds), a font, size, colour
-       and highlight toolbar, a menu bar with one Open and one Save, PDF import of a grid beside a
-       table and of pale dividers on dark slides, PDF forms without fillable fields, PDF export from
-       Safari, and the remaining specification chapters.</p>
+       and highlight toolbar, a menu bar with one Open and one Save, sharing a document by email
+       (view, fill in or edit, with form answers returned to the owner), scanned-PDF import with
+       on-device text recognition, PDF import of a grid beside a table and of pale dividers on dark
+       slides, PDF forms without fillable fields, PDF export from Safari, fixed-layout pages that
+       keep a PDF's fills and colours, and the remaining specification chapters.</p>
     <p style="color:var(--muted); max-width:680px; margin-top:18px">The repository stays private
        for now, and the project is an experiment that may or may not continue. The specification is
        licensed CC BY 4.0 and the code MIT.</p>
