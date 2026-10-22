@@ -4,11 +4,11 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>opd, the Open Page Document, CortiCorp</title>
-<meta name="description" content="opd is an open document format meant to replace PDF in the common case: one zip holding a clean reflowable source, frozen pages bound to it by hash, fonts, images and a manifest. Free single-file viewer, editor, PDF import and PDF export that run in the browser and work offline.">
+<meta name="description" content="opd is an open document format meant to replace PDF in the common case: one zip holding a clean reflowable source, frozen pages bound to it by hash, fonts, images and a manifest. Free single-file viewer and editor that run in the browser and work offline, with PDF, Word and OpenDocument import and export, page setup by section, and comments.">
 <link rel="canonical" href="https://corticorp.com/projects/opd/">
 <meta property="og:site_name" content="CortiCorp">
 <meta property="og:title" content="opd, the Open Page Document, CortiCorp">
-<meta property="og:description" content="An open document format for the common case where PDF is too heavy: a reflowable source and frozen pages in one file, bound by hash, with a viewer, an editor, PDF import and PDF export that run in the browser.">
+<meta property="og:description" content="An open document format for the common case where PDF is too heavy: a reflowable source and frozen pages in one file, bound by hash, with a viewer and an editor that run in the browser, open Word and PDF files, and download as Word, OpenDocument or PDF.">
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://corticorp.com/projects/opd/">
 <meta property="og:image" content="https://corticorp.com/projects/opd/img/share.jpg">
@@ -164,6 +164,94 @@
 
 <section>
   <div class="wrap">
+    <p class="eyebrow">New on October 21 and 22</p>
+    <h2>Word in, Word out, and the tools long documents need</h2>
+    <p style="color:var(--muted); max-width:680px">The second round of work set out to cover what
+       people do every day in Word, Google Docs and PDF. All of it is live in the hosted app and in
+       the single files. opd is still free, still works offline as a single file, and still opens a
+       form ready to fill.</p>
+    <div class="features">
+      <div class="feat">
+        <h3>Download in six formats</h3>
+        <p>File, Download as saves any document as Word (.docx), OpenDocument (.odt), PDF, a web
+           page, Markdown or plain text, from the editor and from the viewer. The PDF now carries a
+           bookmarks outline built from the headings.</p>
+      </div>
+      <div class="feat">
+        <h3>Paste in, copy out</h3>
+        <p>Text pasted from Word or Google Docs keeps its headings, lists, tables, links, pictures
+           and formatting. Copying out of the editor carries the formatting with it, so a passage
+           pasted into Word or an email keeps its look.</p>
+      </div>
+      <div class="feat">
+        <h3>Word and OpenDocument import</h3>
+        <p>A .docx or .odt file opens with its sections and landscape pages, headers and footers,
+           table column widths and shading, wrapped pictures, numbered lists, captions, cross
+           references and endnotes. PDF import now reads the bookmarks outline as well.</p>
+      </div>
+      <div class="feat">
+        <h3>Page setup by section</h3>
+        <p>Each section has its own page size, orientation and margins, so one landscape table can
+           sit between portrait pages. Headers and footers can differ on the first page and on odd
+           and even pages, page numbers come in five styles, and a page can carry a watermark.</p>
+      </div>
+      <div class="feat">
+        <h3>Tables, pictures and long documents</h3>
+        <p>Tables take column widths, shading, styles and header rows that repeat on every page.
+           Pictures take text wrap, and paragraphs take indents and spacing. Legal numbering (1.1.1),
+           numbered headings and captions, cross references that update, endnotes, six templates, a
+           document outline, a word count and a new Tools menu round it out.</p>
+      </div>
+      <div class="feat">
+        <h3>Comments</h3>
+        <p>Comments work in the editor and the viewer, with replies and resolve. A document can be
+           shared with a comment-only role, so a reviewer can add notes without changing the text.
+           Comments go into the PDF and Word downloads when the person downloading chooses to
+           include them.</p>
+      </div>
+    </div>
+    <div class="gallery">
+      <div class="shotcard wide">
+        <div class="win">
+          <div class="bar"><i class="r"></i><i class="y"></i><i class="g"></i><span>Editor, File and Download as</span></div>
+          <img src="img/editor-download.jpg" loading="lazy" alt="The opd editor with a quarterly report open and the File menu showing Download as, with the choices PDF, Word (.docx), OpenDocument (.odt), Web page (.html), Markdown (.md) and Plain text (.txt)">
+        </div>
+        <div class="cap">
+          <h3>Download as</h3>
+          <p>The same report goes out as Word, OpenDocument, PDF, a web page, Markdown or plain text.
+             The File menu also holds New from template, Version history and Page setup.</p>
+        </div>
+      </div>
+      <div class="shotcard">
+        <div class="win">
+          <div class="bar"><i class="r"></i><i class="y"></i><i class="g"></i><span>Editor, Page setup</span></div>
+          <img src="img/editor-page-setup.jpg" loading="lazy" alt="The Page setup dialog in the opd editor with a section named wide selected, set to A4 landscape with its own margins, a page number format, and options for a different first page and different odd and even pages">
+        </div>
+        <div class="cap">
+          <h3>A landscape section</h3>
+          <p>A harbour survey keeps its text on portrait pages and turns one section to landscape so
+             a wide table keeps every column. Page size, margins and page numbering are set per
+             section.</p>
+        </div>
+      </div>
+      <div class="shotcard">
+        <div class="win">
+          <div class="bar"><i class="r"></i><i class="y"></i><i class="g"></i><span>Editor, Comments</span></div>
+          <img src="img/editor-comments.jpg" loading="lazy" alt="The opd editor with the Comments pane open beside a quarterly report, showing a comment on the words evening sessions with a reply, and a second comment on the words second scanner, each with Reply, Resolve, Edit and Delete">
+        </div>
+        <div class="cap">
+          <h3>Comments with replies</h3>
+          <p>Each comment is anchored to the words it is about and can be answered, resolved or
+             deleted. The pane states that comments are not covered by the author&rsquo;s
+             signature.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
     <p class="eyebrow">What it does</p>
     <h2>A document that reflows, and pages that do not move</h2>
     <div class="features">
@@ -207,15 +295,15 @@
         <p>Import keeps text, structure and AcroForm fields, and now the look as well: text colours,
            slide backgrounds, rules, card grids and column regions, and up to 40 named styles. Fonts
            the PDF names are matched to a pinned set of open-licence faces, never embedded from the
-           PDF, and photos stay JPEG. On a 40-document ground-truth set: block F1 0.973, reading
+           PDF, and photos stay JPEG. The PDF&rsquo;s bookmarks outline comes in as well. On a 40-document ground-truth set: block F1 0.973, reading
            order 1.00, grids 5 of 5, tables 10 of 11, style match 0.98, form field recall 0.58.</p>
       </div>
       <div class="feat">
         <h3>Export to PDF, for everyone not on opd yet</h3>
         <p>Any document exports to a real PDF from the viewer, the editor or the command line, built
            from opd&rsquo;s own page layout: selectable text in the document&rsquo;s fonts, clickable
-           links, accessibility tags, charts as vector shapes, and form fields that stay fillable
-           with their answers. The PDF carries no scripts, and it says plainly that it does not
+           links, accessibility tags, a bookmarks outline built from the headings, charts as vector
+           shapes, and form fields that stay fillable with their answers. The PDF carries no scripts, and it says plainly that it does not
            carry the opd signature.</p>
       </div>
       <div class="feat">
@@ -227,9 +315,9 @@
       </div>
       <div class="feat">
         <h3>Single files that work offline, and a sandbox</h3>
-        <p>The viewer (about 0.75 MB, PDF export included), the editor (about 1.6 MB) and the PDF
-           import page (about 2.4 MB) are each one HTML file that runs from any folder, tested to make
-           zero network requests. Documents render in a fully sandboxed frame with no scripts under a
+        <p>The viewer (about 1.1 MB, every download format included), the editor (about 2.1 MB) and
+           the PDF import page are each one HTML file that runs from any folder, tested to make zero
+           network requests. Documents render in a fully sandboxed frame with no scripts under a
            strict content security policy. On the hosted site, an optional passkey sign-in keeps
            documents online; registration is closed while it is tested.</p>
       </div>
@@ -299,9 +387,9 @@
 <section>
   <div class="wrap">
     <p class="eyebrow">How it was built</p>
-    <h2>Four days, pull requests only</h2>
+    <h2>A week, pull requests only</h2>
     <p style="color:var(--muted); max-width:680px">
-      opd was built in five days, October 16 to 20, 2026, in about 300 commits and 98 pull requests,
+      opd was built in seven days, October 16 to 22, 2026, in about 400 commits and 112 pull requests,
       by a Board of Claude Code subagents: a System Architect, an AI Architect, a Security Expert and
       a Software Engineer. Only the Engineer writes code, in branches with pull requests, and a hook
       blocks it from merging. The architects and the Security Expert read and propose; the operator
@@ -329,6 +417,8 @@
     <ul style="color:var(--muted); max-width:680px; margin-top:14px; padding-left:22px">
       <li>Exporting a signed document to PDF from Safari is untested, because the test browser cannot open signed files.</li>
       <li>A second implementation.</li>
+      <li>Suggested edits with tracked changes, equations, charts made in the editor, and more than
+          one person editing the same document at once.</li>
     </ul>
     <p style="color:var(--muted); max-width:680px; margin-top:14px">Closed on October 19 and 20:
        format 1.3 (flex and multi-column text, gradients, per-page backgrounds), a font, size, colour
@@ -337,6 +427,13 @@
        on-device text recognition, PDF import of a grid beside a table and of pale dividers on dark
        slides, PDF forms without fillable fields, PDF export from Safari, fixed-layout pages that
        keep a PDF's fills and colours, and the remaining specification chapters.</p>
+    <p style="color:var(--muted); max-width:680px; margin-top:14px">Closed on October 21 and 22:
+       download as Word, OpenDocument, web page, Markdown and plain text; Word and OpenDocument
+       import; paste from Word and Google Docs; page setup by section with landscape pages,
+       watermarks and five page number styles; table column widths, shading and repeating header
+       rows; text wrap around pictures; legal numbering, numbered headings, captions and cross
+       references; endnotes; six templates; and comments with replies and a comment-only sharing
+       role.</p>
     <p style="color:var(--muted); max-width:680px; margin-top:18px">The repository stays private
        for now, and the project is an experiment that may or may not continue. The specification is
        licensed CC BY 4.0 and the code MIT.</p>

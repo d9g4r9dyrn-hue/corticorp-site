@@ -291,9 +291,11 @@ export const KNOWN_PROJECTS: ProjectSeed[] = [
       'An open document format meant to replace PDF in the common case: one ' +
       '.opd file carries a constrained HTML source, its fonts, and an optional ' +
       'frozen page render bound to it by hash. A single-file viewer, editor and ' +
-      'PDF importer run offline in the browser, imports keep fonts, colours and ' +
-      'card grids, and any document exports back to PDF; forms can be sent, ' +
-      'filled, signed and collected. Pre-alpha, built in four days in October 2026.',
+      'PDF importer run offline in the browser. Word, OpenDocument and PDF files ' +
+      'import with their layout, and any document downloads as Word, OpenDocument, ' +
+      'PDF, a web page, Markdown or plain text, with page setup by section and ' +
+      'comments; forms can be sent, filled, signed and collected. Pre-alpha, built ' +
+      'in a week in October 2026.',
   },
 ];
 
