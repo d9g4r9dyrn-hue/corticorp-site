@@ -1,0 +1,769 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Corticorp's Virtual Team</title>
+<meta name="description" content="Two public sites, one human, and a virtual team of AI roles that write, audit and improve Corticorp Finance and Corticorp News every day. The org chart, the daily flow and the loop that lets the team improve itself.">
+<link rel="canonical" href="https://corticorp.com/team.html">
+<meta property="og:title" content="Anyone can build an app in a weekend. We built a staff.">
+<meta property="og:description" content="How Corticorp Finance and Corticorp News are run by one human and a virtual team of AI roles: the org chart, a day in the building, and the loop that improves the team.">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://corticorp.com/team.html">
+<meta property="og:image" content="https://corticorp.com/img/team-share.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Anyone can build an app in a weekend. We built a staff.">
+<meta name="twitter:description" content="One human, a virtual team of AI roles, two public sites. The org chart and how it runs.">
+<meta name="twitter:image" content="https://corticorp.com/img/team-share.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Sora:wght@500;600;700&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  /* Layout idea: a newsroom masthead over a ledger. Each wing of the team owns a hue; the one human owns orange. Icons carry the roles so the diagrams read without the words. */
+  :root {
+    --paper: #f4f6f8;
+    --ink: #10203a;
+    --muted: #5b6b82;
+    --rule: #c9d2dd;
+    --panel: #ffffff;
+    --human: #e35d1f;
+    --board: #6b5cd6;
+    --newsroom: #1a8f8f;
+    --strat: #2f9e60;
+    --desk: #d9931a;
+    --newsdesk: #2f72d6;
+    --font-display: "Sora", "Segoe UI", Helvetica, Arial, sans-serif;
+    --font-body: "IBM Plex Sans", "Segoe UI", Helvetica, Arial, sans-serif;
+    --font-mono: "IBM Plex Mono", Consolas, "Courier New", monospace;
+    color-scheme: light;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --paper: #0c1522;
+      --ink: #e7edf5;
+      --muted: #93a3b8;
+      --rule: #27354a;
+      --panel: #132033;
+      --human: #ff7a3d;
+      --board: #8f82e8;
+      --newsroom: #35b5b5;
+      --strat: #4cc27e;
+      --desk: #f0ac3a;
+      --newsdesk: #5b94ec;
+      color-scheme: dark;
+    }
+  }
+  :root[data-theme="dark"] {
+    --paper: #0c1522;
+    --ink: #e7edf5;
+    --muted: #93a3b8;
+    --rule: #27354a;
+    --panel: #132033;
+    --human: #ff7a3d;
+    --board: #8f82e8;
+    --newsroom: #35b5b5;
+    --strat: #4cc27e;
+    --desk: #f0ac3a;
+    --newsdesk: #5b94ec;
+    color-scheme: dark;
+  }
+
+  * { box-sizing: border-box; }
+  html, body { margin: 0; }
+  body {
+    background: var(--paper);
+    color: var(--ink);
+    font-family: var(--font-body);
+    font-size: 17px;
+    line-height: 1.55;
+    -webkit-font-smoothing: antialiased;
+  }
+  a { color: var(--newsroom); text-decoration-thickness: 1px; text-underline-offset: 3px; }
+  a:focus-visible, button:focus-visible { outline: 2px solid var(--human); outline-offset: 3px; }
+
+  .wrap { max-width: 1060px; margin: 0 auto; padding: 0 20px; }
+  .eyebrow {
+    font-family: var(--font-mono);
+    font-size: 12px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--muted);
+    display: flex; align-items: center; gap: 8px;
+  }
+  .eyebrow::before { content: ""; width: 10px; height: 10px; border-radius: 3px; background: var(--c, var(--newsroom)); }
+  h1, h2, h3 { font-family: var(--font-display); text-wrap: balance; margin: 0; line-height: 1.12; }
+  h1 { font-size: clamp(34px, 5.2vw, 58px); font-weight: 700; letter-spacing: -0.015em; }
+  h2 { font-size: clamp(24px, 3vw, 32px); font-weight: 600; }
+  h3 { font-size: 18px; font-weight: 600; }
+  p { margin: 0; max-width: 62ch; }
+  p + p { margin-top: 14px; }
+
+  .ic { width: 18px; height: 18px; flex: none; display: inline-block; vertical-align: -3px; }
+  .ic.lg { width: 26px; height: 26px; }
+
+  /* Masthead with the colour key as a bar */
+  .mast {
+    padding: 18px 0 14px;
+    display: flex; justify-content: space-between; align-items: baseline; gap: 16px; flex-wrap: wrap;
+  }
+  .mast .brand { font-family: var(--font-display); font-weight: 700; font-size: 18px; letter-spacing: 0.02em; }
+  .mast .date { font-family: var(--font-mono); font-size: 12px; color: var(--muted); }
+  .keybar { display: grid; grid-template-columns: 1fr 2fr 2fr 2fr 2fr 2fr; height: 5px; border-radius: 3px; overflow: hidden; }
+  .keybar span:nth-child(1) { background: var(--human); }
+  .keybar span:nth-child(2) { background: var(--board); }
+  .keybar span:nth-child(3) { background: var(--newsroom); }
+  .keybar span:nth-child(4) { background: var(--strat); }
+  .keybar span:nth-child(5) { background: var(--desk); }
+  .keybar span:nth-child(6) { background: var(--newsdesk); }
+
+  .hero { padding: 52px 0 40px; border-bottom: 1px solid var(--rule); }
+  .hero .lede { font-size: 20px; color: var(--muted); margin-top: 20px; max-width: 58ch; }
+  .hero .kicker { margin-top: 26px; display: flex; gap: 10px; flex-wrap: wrap; }
+  .pill {
+    display: inline-flex; align-items: center; gap: 8px;
+    border: 1px solid color-mix(in srgb, var(--c) 45%, var(--rule)); border-radius: 999px; padding: 6px 12px 6px 9px;
+    font-family: var(--font-mono); font-size: 12.5px; color: var(--ink);
+    background: color-mix(in srgb, var(--c) 10%, var(--panel));
+  }
+  .pill .ic { color: var(--c); width: 16px; height: 16px; }
+
+  /* Stat strip */
+  .stats { display: grid; grid-template-columns: repeat(6, 1fr); gap: 12px; margin: 36px 0 0; }
+  .stat { background: var(--panel); border: 1px solid var(--rule); border-top: 4px solid var(--c); border-radius: 10px; padding: 14px 16px 16px; }
+  .stat .ic { color: var(--c); width: 22px; height: 22px; }
+  .stat .n { font-family: var(--font-display); font-size: 34px; font-weight: 700; font-variant-numeric: tabular-nums; line-height: 1; margin-top: 10px; }
+  .stat .l { font-size: 13px; color: var(--muted); margin-top: 8px; }
+
+  section { padding: 48px 0; border-bottom: 1px solid var(--rule); }
+  .sec-head { display: grid; grid-template-columns: 1fr; gap: 10px; margin-bottom: 24px; }
+  .two { display: grid; grid-template-columns: 1.1fr 0.9fr; gap: 36px; align-items: start; }
+
+  .legend { display: flex; flex-wrap: wrap; gap: 8px 18px; font-size: 13px; color: var(--muted); margin: 4px 0 16px; }
+  .legend span { display: inline-flex; align-items: center; gap: 7px; }
+  .legend i { width: 14px; height: 14px; border-radius: 4px; background: var(--c); display: inline-block; }
+
+  figure { margin: 0; }
+  figure svg { max-width: 100%; height: auto; display: block; color: var(--ink); }
+  .fig { background: var(--panel); border: 1px solid var(--rule); border-radius: 12px; padding: 18px; overflow-x: auto; }
+  figcaption { font-size: 14px; color: var(--muted); margin-top: 12px; max-width: 70ch; }
+
+  .cards { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
+  .card { background: var(--panel); border: 1px solid var(--rule); border-radius: 12px; padding: 20px; display: grid; grid-template-columns: 48px 1fr; gap: 14px; align-items: start; }
+  .card .badge { width: 48px; height: 48px; border-radius: 12px; display: grid; place-items: center; background: color-mix(in srgb, var(--c) 14%, var(--panel)); color: var(--c); }
+  .card h3 { margin-bottom: 6px; font-size: 17px; }
+  .card p { font-size: 15px; color: var(--muted); }
+  .card .tag { font-family: var(--font-mono); font-size: 11px; color: var(--c); letter-spacing: 0.06em; text-transform: uppercase; margin-bottom: 6px; display: block; }
+
+  .roster { display: grid; grid-template-columns: repeat(2, 1fr); gap: 28px; }
+  .roster h3 { padding-bottom: 8px; border-bottom: 3px solid var(--c); margin-bottom: 6px; display: flex; align-items: center; gap: 10px; }
+  .roster h3 .ic { color: var(--c); width: 22px; height: 22px; }
+  .roster dl { margin: 0; }
+  .roster dt { font-weight: 600; padding-top: 12px; display: flex; align-items: center; gap: 9px; }
+  .roster dt .ic { color: var(--c); }
+  .roster dd { margin: 2px 0 0 27px; color: var(--muted); font-size: 15.5px; padding-bottom: 10px; border-bottom: 1px solid var(--rule); }
+  .roster dd.paused::after { content: " (on the bench)"; font-family: var(--font-mono); font-size: 12px; }
+
+  ul.rules { list-style: none; padding: 0; margin: 0; display: grid; gap: 14px; max-width: 72ch; }
+  ul.rules li { display: grid; grid-template-columns: 40px 1fr; gap: 14px; align-items: start; }
+  ul.rules li .badge { width: 40px; height: 40px; border-radius: 10px; display: grid; place-items: center; background: color-mix(in srgb, var(--c) 14%, var(--panel)); color: var(--c); }
+  ul.rules li strong { font-weight: 600; }
+
+  .quote { border-left: 3px solid var(--human); padding: 6px 0 6px 18px; font-family: var(--font-display); font-size: 22px; font-weight: 500; max-width: 40ch; }
+
+  .links { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
+  .links a { display: grid; grid-template-columns: 44px 1fr; gap: 12px; background: var(--panel); border: 1px solid var(--rule); border-top: 4px solid var(--c); border-radius: 12px; padding: 16px 18px; text-decoration: none; color: var(--ink); }
+  .links a:hover { border-color: var(--c); }
+  .links .badge { width: 44px; height: 44px; border-radius: 10px; display: grid; place-items: center; background: color-mix(in srgb, var(--c) 14%, var(--panel)); color: var(--c); }
+  .links .where { font-family: var(--font-mono); font-size: 12px; color: var(--muted); margin-top: 4px; }
+  .links p { margin-top: 8px; font-size: 14.5px; color: var(--muted); }
+
+  footer { padding: 36px 0 60px; color: var(--muted); font-size: 14px; }
+  footer .mono { font-family: var(--font-mono); font-size: 12.5px; }
+
+  @media (max-width: 860px) {
+    .stats { grid-template-columns: repeat(3, 1fr); }
+    .two, .roster, .cards, .links { grid-template-columns: 1fr; }
+  }
+  @media (max-width: 480px) {
+    .stats { grid-template-columns: repeat(2, 1fr); }
+    body { font-size: 16px; }
+  }
+  @media (prefers-reduced-motion: no-preference) {
+    .hero h1 { animation: rise 500ms ease-out both; }
+    @keyframes rise { from { opacity: 0.6; transform: translateY(4px); } to { opacity: 1; transform: none; } }
+  }
+</style>
+</head>
+<body>
+
+<!-- Icon set. Every role and every place it works has one mark, reused in the diagrams and the text. -->
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <defs>
+    <symbol id="i-user" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="4"></circle><path d="M4 21v-1a6 6 0 0 1 6-6h4a6 6 0 0 1 6 6v1"></path></symbol>
+    <symbol id="i-users" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="8" r="3.5"></circle><path d="M2 20v-1a5 5 0 0 1 5-5h4a5 5 0 0 1 5 5v1"></path><circle cx="17" cy="8" r="3"></circle><path d="M17 14a5 5 0 0 1 5 5v1"></path></symbol>
+    <symbol id="i-layers" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 3 2 8 12 13 22 8 12 3"></polygon><polyline points="2 13 12 18 22 13"></polyline></symbol>
+    <symbol id="i-columns" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"></rect><line x1="12" y1="3" x2="12" y2="21"></line><line x1="3" y1="12" x2="21" y2="12"></line></symbol>
+    <symbol id="i-chip" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="6" y="6" width="12" height="12" rx="2"></rect><rect x="10" y="10" width="4" height="4"></rect><path d="M9 2v4M15 2v4M9 18v4M15 18v4M2 9h4M2 15h4M18 9h4M18 15h4"></path></symbol>
+    <symbol id="i-shield" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2l8 4v6c0 5-3.5 8.5-8 10-4.5-1.5-8-5-8-10V6l8-4z"></path><polyline points="9 12 11 14 15 10"></polyline></symbol>
+    <symbol id="i-database" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><ellipse cx="12" cy="5" rx="8" ry="3"></ellipse><path d="M4 5v14c0 1.7 3.6 3 8 3s8-1.3 8-3V5"></path><path d="M4 12c0 1.7 3.6 3 8 3s8-1.3 8-3"></path></symbol>
+    <symbol id="i-code" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="8 6 2 12 8 18"></polyline><polyline points="16 6 22 12 16 18"></polyline></symbol>
+    <symbol id="i-pen" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20h9"></path><path d="M16.5 3.5a2.1 2.1 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"></path></symbol>
+    <symbol id="i-audit" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="7"></circle><line x1="21" y1="21" x2="16.5" y2="16.5"></line><polyline points="8 11 10 13 14 9"></polyline></symbol>
+    <symbol id="i-book" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"></path><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"></path></symbol>
+    <symbol id="i-megaphone" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 11v2a1 1 0 0 0 1 1h2l5 4V6L6 10H4a1 1 0 0 0-1 1z"></path><path d="M15 9a4 4 0 0 1 0 6"></path><path d="M18 6a8 8 0 0 1 0 12"></path></symbol>
+    <symbol id="i-trend" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="3 17 9 11 13 15 21 7"></polyline><polyline points="15 7 21 7 21 13"></polyline></symbol>
+    <symbol id="i-globe" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"></circle><line x1="3" y1="12" x2="21" y2="12"></line><path d="M12 3a14 14 0 0 1 0 18"></path><path d="M12 3a14 14 0 0 0 0 18"></path></symbol>
+    <symbol id="i-bars" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 20V11M10 20V5M15 20V14M20 20V8"></path><line x1="3" y1="21" x2="22" y2="21"></line></symbol>
+    <symbol id="i-ship" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 19c2 1.3 4 1.3 6 0s4-1.3 6 0 4 1.3 6 0"></path><path d="M4 16l1.5-5h13L20 16"></path><path d="M8 11V7h8v4"></path></symbol>
+    <symbol id="i-drop" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3s-6 7-6 11a6 6 0 0 0 12 0c0-4-6-11-6-11z"></path></symbol>
+    <symbol id="i-bank" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 10l9-6 9 6"></path><line x1="4" y1="10" x2="20" y2="10"></line><path d="M6 10v8M10 10v8M14 10v8M18 10v8"></path><line x1="3" y1="21" x2="21" y2="21"></line></symbol>
+    <symbol id="i-pie" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"></circle><path d="M12 3v9l6.4 6.4"></path></symbol>
+    <symbol id="i-route" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="5" cy="6" r="2.5"></circle><circle cx="19" cy="18" r="2.5"></circle><path d="M7.5 6H15a3 3 0 0 1 0 6H9a3 3 0 0 0 0 6h7.5"></path></symbol>
+    <symbol id="i-news" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="16" rx="2"></rect><rect x="7" y="8" width="4" height="4"></rect><path d="M14 8h3M14 12h3M7 16h10"></path></symbol>
+    <symbol id="i-check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"></circle><polyline points="8 12 11 15 16 9"></polyline></symbol>
+    <symbol id="i-archive" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="4" rx="1"></rect><path d="M5 8v11a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V8"></path><line x1="10" y1="13" x2="14" y2="13"></line></symbol>
+    <symbol id="i-cloud" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 18a4 4 0 0 1-.5-8A6 6 0 0 1 18 9a4 4 0 0 1 0 9h-1"></path><polyline points="9 15 12 18 15 15"></polyline><line x1="12" y1="11" x2="12" y2="18"></line></symbol>
+    <symbol id="i-file" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8l-6-6z"></path><polyline points="14 2 14 8 20 8"></polyline><path d="M8 13h8M8 17h8"></path></symbol>
+    <symbol id="i-share" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="18" cy="5" r="3"></circle><circle cx="6" cy="12" r="3"></circle><circle cx="18" cy="19" r="3"></circle><line x1="8.6" y1="13.5" x2="15.4" y2="17.5"></line><line x1="15.4" y1="6.5" x2="8.6" y2="10.5"></line></symbol>
+    <symbol id="i-eye" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 12s4-7 10-7 10 7 10 7-4 7-10 7-10-7-10-7z"></path><circle cx="12" cy="12" r="3"></circle></symbol>
+    <symbol id="i-ticket" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 8a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2v2a2 2 0 0 0 0 4v2a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-2a2 2 0 0 0 0-4V8z"></path><line x1="13" y1="6" x2="13" y2="18" stroke-dasharray="2 2"></line></symbol>
+    <symbol id="i-merge" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="6" cy="5" r="2.5"></circle><circle cx="6" cy="19" r="2.5"></circle><circle cx="18" cy="12" r="2.5"></circle><path d="M6 7.5v9"></path><path d="M6 8c0 4 4 4 9.5 4"></path></symbol>
+    <symbol id="i-rocket" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2c4 3 5 8 4 12l-4 3-4-3c-1-4 0-9 4-12z"></path><circle cx="12" cy="9" r="1.5"></circle><path d="M8 14l-3 2 1 3M16 14l3 2-1 3"></path></symbol>
+    <symbol id="i-lock" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="11" width="16" height="10" rx="2"></rect><path d="M8 11V7a4 4 0 0 1 8 0v4"></path></symbol>
+    <symbol id="i-unlock" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="11" width="16" height="10" rx="2"></rect><path d="M8 11V7a4 4 0 0 1 7.5-2"></path></symbol>
+    <symbol id="i-list" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="3 6 5 8 8 5"></polyline><polyline points="3 12 5 14 8 11"></polyline><polyline points="3 18 5 20 8 17"></polyline><path d="M11 6h10M11 12h10M11 18h10"></path></symbol>
+    <symbol id="i-help" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"></circle><path d="M9.5 9.5a2.5 2.5 0 0 1 5 0c0 2-2.5 2-2.5 4"></path><line x1="12" y1="17" x2="12" y2="17.5"></line></symbol>
+    <symbol id="i-refresh" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12a9 9 0 1 1-3-6.7"></path><polyline points="21 3 21 9 15 9"></polyline></symbol>
+    <symbol id="i-clock" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"></circle><polyline points="12 7 12 12 15 14"></polyline></symbol>
+    <symbol id="i-split" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="3" x2="12" y2="21"></line><rect x="3" y="7" width="6" height="10" rx="1"></rect><rect x="15" y="7" width="6" height="10" rx="1"></rect></symbol>
+    <symbol id="i-heart" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21s-8-5.3-8-11a4.5 4.5 0 0 1 8-2.8A4.5 4.5 0 0 1 20 10c0 5.7-8 11-8 11z"></path></symbol>
+    <symbol id="i-map" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="3 6 9 3 15 6 21 3 21 18 15 21 9 18 3 21"></polygon><line x1="9" y1="3" x2="9" y2="18"></line><line x1="15" y1="6" x2="15" y2="21"></line></symbol>
+  </defs>
+</svg>
+
+<div class="wrap">
+
+  <div class="mast">
+    <div class="brand">CORTICORP</div>
+    <div class="date">Finance and News. Team sheet as of 29 October 2026</div>
+  </div>
+  <div class="keybar" aria-hidden="true"><span></span><span></span><span></span><span></span><span></span><span></span></div>
+
+  <header class="hero">
+    <div class="eyebrow" style="--c:var(--human); margin-top:34px">What one person and a virtual team can run</div>
+    <h1>Anyone can build an app in a weekend.<br>We built a staff.</h1>
+    <p class="lede">Corticorp Finance and Corticorp News are two public sites written, checked, audited and improved every day by a team of AI roles who work with each other, argue with each other, and report to one human. The human merges. Everything else, the team does.</p>
+    <div class="kicker">
+      <span class="pill" style="--c:var(--human)"><svg class="ic"><use href="#i-user"></use></svg>1 human, holds the only merge</span>
+      <span class="pill" style="--c:var(--board)"><svg class="ic"><use href="#i-layers"></use></svg>5 on the Board</span>
+      <span class="pill" style="--c:var(--newsroom)"><svg class="ic"><use href="#i-pen"></use></svg>7 in the Newsroom</span>
+      <span class="pill" style="--c:var(--strat)"><svg class="ic"><use href="#i-trend"></use></svg>44 simulated fund managers</span>
+      <span class="pill" style="--c:var(--desk)"><svg class="ic"><use href="#i-bars"></use></svg>7 market desks</span>
+      <span class="pill" style="--c:var(--newsdesk)"><svg class="ic"><use href="#i-news"></use></svg>3 news desks</span>
+    </div>
+
+    <div class="stats">
+      <div class="stat" style="--c:var(--human)"><svg class="ic"><use href="#i-user"></use></svg><div class="n">1</div><div class="l">human on staff</div></div>
+      <div class="stat" style="--c:var(--newsdesk)"><svg class="ic"><use href="#i-globe"></use></svg><div class="n">2</div><div class="l">public sites, one build</div></div>
+      <div class="stat" style="--c:var(--newsroom)"><svg class="ic"><use href="#i-users"></use></svg><div class="n">12</div><div class="l">named AI roles</div></div>
+      <div class="stat" style="--c:var(--strat)"><svg class="ic"><use href="#i-trend"></use></svg><div class="n">44</div><div class="l">simulated strategies trading daily</div></div>
+      <div class="stat" style="--c:var(--board)"><svg class="ic"><use href="#i-ticket"></use></svg><div class="n">760+</div><div class="l">work items the team filed on itself</div></div>
+      <div class="stat" style="--c:var(--board)"><svg class="ic"><use href="#i-merge"></use></svg><div class="n">580+</div><div class="l">pull requests, every one human-merged</div></div>
+    </div>
+  </header>
+
+  <section id="org">
+    <div class="sec-head">
+      <div class="eyebrow" style="--c:var(--board)">The org chart</div>
+      <h2>Two wings, one decision point</h2>
+      <p>The team is split by what it is allowed to see. The Board reads the code and never the live data. The Newsroom reads the data and never the code. The operator sits above both and is the only one who can put anything into production.</p>
+    </div>
+    <div class="legend" aria-label="Colour key">
+      <span style="--c:var(--human)"><i></i>the human</span>
+      <span style="--c:var(--board)"><i></i>the Board</span>
+      <span style="--c:var(--newsroom)"><i></i>the Newsroom</span>
+      <span style="--c:var(--strat)"><i></i>strategists</span>
+      <span style="--c:var(--desk)"><i></i>market desks</span>
+      <span style="--c:var(--newsdesk)"><i></i>news desks</span>
+    </div>
+
+    <figure class="fig">
+      <svg viewBox="0 0 1040 700" role="img" aria-label="Org chart: one human operator above two wings, the Board which reads the code and the Newsroom which reads the data; under them sit 44 simulated strategists, seven market desks and three news desks" xmlns="http://www.w3.org/2000/svg" font-family="IBM Plex Sans, Segoe UI, Arial, sans-serif" font-size="13">
+        <defs>
+          <marker id="arr" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+            <path d="M0,0 L10,5 L0,10 z" fill="currentColor"></path>
+          </marker>
+          <marker id="arrT" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+            <path d="M0,0 L10,5 L0,10 z" fill="#1a8f8f"></path>
+          </marker>
+        </defs>
+
+        <!-- Operator -->
+        <rect x="400" y="16" width="240" height="56" rx="28" fill="#e35d1f"></rect>
+        <use href="#i-user" x="420" y="34" width="20" height="20" color="#ffffff"></use>
+        <text x="450" y="38" fill="#ffffff" font-weight="600" font-size="15">The Operator</text>
+        <text x="450" y="57" fill="#ffffff" font-size="11.5">the one human. merges and directs</text>
+
+        <!-- trunk from operator -->
+        <line x1="520" y1="72" x2="520" y2="100" stroke="currentColor" stroke-width="1.5"></line>
+        <line x1="250" y1="100" x2="770" y2="100" stroke="currentColor" stroke-width="1.5"></line>
+        <line x1="290" y1="100" x2="290" y2="138" stroke="currentColor" stroke-width="1.5" marker-end="url(#arr)"></line>
+        <line x1="250" y1="138" x2="250" y2="104" stroke="#6b5cd6" stroke-width="1.5" stroke-dasharray="4 4" marker-end="url(#arr)"></line>
+        <line x1="770" y1="100" x2="770" y2="138" stroke="currentColor" stroke-width="1.5" marker-end="url(#arr)"></line>
+        <text x="298" y="124" font-size="11" fill="currentColor" opacity="0.7">asks, merges</text>
+        <text x="242" y="124" text-anchor="end" font-size="11" fill="#6b5cd6">proposes work, opens PRs</text>
+        <text x="778" y="124" font-size="11" fill="currentColor" opacity="0.7">sets direction, reads every edition</text>
+
+        <!-- Board group -->
+        <rect x="40" y="140" width="460" height="190" rx="14" fill="#6b5cd6" fill-opacity="0.08" stroke="#6b5cd6" stroke-width="1.5"></rect>
+        <use href="#i-layers" x="60" y="152" width="18" height="18" color="#6b5cd6"></use>
+        <text x="84" y="166" font-weight="600" font-size="15" fill="currentColor">The Board</text>
+        <text x="60" y="186" font-size="11.5" fill="currentColor" opacity="0.7">reads the code, never the live site. proposes, never ships.</text>
+
+        <g stroke="#6b5cd6" stroke-width="1.5" fill="#ffffff" fill-opacity="0.5">
+          <rect x="60" y="204" width="140" height="36" rx="18"></rect>
+          <rect x="206" y="204" width="140" height="36" rx="18"></rect>
+          <rect x="352" y="204" width="140" height="36" rx="18"></rect>
+          <rect x="60" y="254" width="140" height="36" rx="18"></rect>
+        </g>
+        <rect x="206" y="254" width="286" height="36" rx="18" fill="#6b5cd6"></rect>
+        <use href="#i-columns" x="70" y="213" width="18" height="18" color="#6b5cd6"></use>
+        <use href="#i-chip" x="216" y="213" width="18" height="18" color="#6b5cd6"></use>
+        <use href="#i-shield" x="362" y="213" width="18" height="18" color="#6b5cd6"></use>
+        <use href="#i-database" x="70" y="263" width="18" height="18" color="#6b5cd6"></use>
+        <use href="#i-code" x="216" y="263" width="18" height="18" color="#ffffff"></use>
+        <g fill="currentColor" font-size="12.5">
+          <text x="94" y="227">System Architect</text>
+          <text x="240" y="227">AI Architect</text>
+          <text x="386" y="227">Security Expert</text>
+          <text x="94" y="277">Data Steward</text>
+        </g>
+        <text x="240" y="277" fill="#ffffff" font-weight="600" font-size="12.5">Software Engineer, writes the code</text>
+
+        <!-- Newsroom group -->
+        <rect x="540" y="140" width="460" height="190" rx="14" fill="#1a8f8f" fill-opacity="0.08" stroke="#1a8f8f" stroke-width="1.5"></rect>
+        <use href="#i-news" x="560" y="152" width="18" height="18" color="#1a8f8f"></use>
+        <text x="584" y="166" font-weight="600" font-size="15" fill="currentColor">The Newsroom</text>
+        <text x="560" y="186" font-size="11.5" fill="currentColor" opacity="0.7">lives inside the site, reads the data, never the code.</text>
+
+        <rect x="640" y="204" width="260" height="36" rx="18" fill="#1a8f8f"></rect>
+        <use href="#i-pen" x="652" y="213" width="18" height="18" color="#ffffff"></use>
+        <text x="676" y="227" fill="#ffffff" font-weight="600" font-size="12.5">The Editor, chief of the desks</text>
+
+        <g stroke="#1a8f8f" stroke-width="1.5" fill="#ffffff" fill-opacity="0.5">
+          <rect x="560" y="254" width="130" height="36" rx="18"></rect>
+          <rect x="705" y="254" width="130" height="36" rx="18"></rect>
+          <rect x="850" y="254" width="130" height="36" rx="18"></rect>
+        </g>
+        <use href="#i-audit" x="570" y="263" width="18" height="18" color="#1a8f8f"></use>
+        <use href="#i-book" x="715" y="263" width="18" height="18" color="#1a8f8f"></use>
+        <use href="#i-megaphone" x="860" y="263" width="18" height="18" color="#1a8f8f"></use>
+        <g fill="currentColor" font-size="12.5">
+          <text x="594" y="277">Auditor</text>
+          <text x="739" y="277">Librarian</text>
+          <text x="884" y="277">Marketer</text>
+        </g>
+        <g fill="currentColor" font-size="10.5" opacity="0.7">
+          <text x="560" y="308">reads the record</text>
+          <text x="705" y="308">the only route to the web</text>
+          <text x="850" y="308">previews and metadata</text>
+        </g>
+
+        <!-- Editor to desks -->
+        <line x1="770" y1="330" x2="770" y2="362" stroke="currentColor" stroke-width="1.5"></line>
+        <line x1="540" y1="362" x2="870" y2="362" stroke="currentColor" stroke-width="1.5"></line>
+        <line x1="540" y1="362" x2="540" y2="396" stroke="currentColor" stroke-width="1.5" marker-end="url(#arr)"></line>
+        <line x1="870" y1="362" x2="870" y2="396" stroke="currentColor" stroke-width="1.5" marker-end="url(#arr)"></line>
+        <text x="778" y="350" font-size="11" fill="currentColor" opacity="0.7">directs by note, reviews every edition</text>
+
+        <!-- Auditor to strategists -->
+        <polyline points="560,272 520,272 520,345 190,345 190,394" fill="none" stroke="#1a8f8f" stroke-width="1.5" stroke-dasharray="4 4" marker-end="url(#arrT)"></polyline>
+        <text x="200" y="337" font-size="11" fill="#1a8f8f">reads every decision on the record</text>
+
+        <!-- Strategists group -->
+        <rect x="40" y="400" width="300" height="256" rx="14" fill="#2f9e60" fill-opacity="0.08" stroke="#2f9e60" stroke-width="1.5"></rect>
+        <use href="#i-trend" x="60" y="412" width="18" height="18" color="#2f9e60"></use>
+        <text x="84" y="426" font-weight="600" font-size="15" fill="currentColor">The Strategists</text>
+        <text x="60" y="446" font-size="11.5" fill="currentColor" opacity="0.7">44 simulated fund managers, one style each</text>
+        <g fill="#ffffff" fill-opacity="0.5" stroke="#2f9e60" stroke-width="1.5">
+          <rect x="60" y="460" width="86" height="30" rx="15"></rect>
+          <rect x="153" y="460" width="86" height="30" rx="15"></rect>
+          <rect x="246" y="460" width="86" height="30" rx="15"></rect>
+          <rect x="60" y="496" width="86" height="30" rx="15"></rect>
+          <rect x="153" y="496" width="86" height="30" rx="15"></rect>
+          <rect x="246" y="496" width="86" height="30" rx="15"></rect>
+          <rect x="60" y="532" width="86" height="30" rx="15"></rect>
+          <rect x="153" y="532" width="86" height="30" rx="15"></rect>
+          <rect x="246" y="532" width="86" height="30" rx="15"></rect>
+        </g>
+        <g fill="currentColor" font-size="11" text-anchor="middle">
+          <text x="103" y="479">Momentum</text>
+          <text x="196" y="479">Contrarian</text>
+          <text x="289" y="479">Macro regime</text>
+          <text x="103" y="515">Risk parity</text>
+          <text x="196" y="515">Hard assets</text>
+          <text x="289" y="515">Dividend</text>
+          <text x="103" y="551">Small caps</text>
+          <text x="196" y="551">Vol target</text>
+          <text x="289" y="551">+ 36 more</text>
+        </g>
+        <g fill="currentColor" font-size="11.5" opacity="0.7">
+          <text x="60" y="596">each decides daily and writes its reasons;</text>
+          <text x="60" y="612">all scored on the public record</text>
+        </g>
+        <use href="#i-list" x="60" y="624" width="16" height="16" color="#2f9e60"></use>
+        <text x="82" y="637" font-size="11" fill="#2f9e60">every rationale is published</text>
+
+        <!-- Market desks group -->
+        <rect x="360" y="400" width="360" height="256" rx="14" fill="#d9931a" fill-opacity="0.08" stroke="#d9931a" stroke-width="1.5"></rect>
+        <use href="#i-bars" x="380" y="412" width="18" height="18" color="#d9931a"></use>
+        <text x="404" y="426" font-weight="600" font-size="15" fill="currentColor">Market Pulse desks</text>
+        <text x="380" y="446" font-size="11.5" fill="currentColor" opacity="0.7">seven writing desks, a daily edition each</text>
+        <g fill="#ffffff" fill-opacity="0.5" stroke="#d9931a" stroke-width="1.5">
+          <rect x="380" y="460" width="100" height="30" rx="15"></rect>
+          <rect x="490" y="460" width="100" height="30" rx="15"></rect>
+          <rect x="600" y="460" width="100" height="30" rx="15"></rect>
+          <rect x="380" y="496" width="100" height="30" rx="15"></rect>
+          <rect x="490" y="496" width="100" height="30" rx="15"></rect>
+          <rect x="600" y="496" width="100" height="30" rx="15"></rect>
+          <rect x="380" y="532" width="100" height="30" rx="15"></rect>
+        </g>
+        <g color="#d9931a">
+          <use href="#i-globe" x="388" y="468" width="14" height="14"></use>
+          <use href="#i-bars" x="498" y="468" width="14" height="14"></use>
+          <use href="#i-ship" x="608" y="468" width="14" height="14"></use>
+          <use href="#i-drop" x="388" y="504" width="14" height="14"></use>
+          <use href="#i-bank" x="498" y="504" width="14" height="14"></use>
+          <use href="#i-pie" x="608" y="504" width="14" height="14"></use>
+          <use href="#i-route" x="388" y="540" width="14" height="14"></use>
+        </g>
+        <g fill="currentColor" font-size="11">
+          <text x="407" y="479">Overview</text>
+          <text x="517" y="479">Broad market</text>
+          <text x="627" y="479">Physical</text>
+          <text x="407" y="515">Commodities</text>
+          <text x="517" y="515">Macro</text>
+          <text x="627" y="515">Anatomy</text>
+          <text x="407" y="551">Supply Lines</text>
+        </g>
+        <g fill="currentColor" font-size="11.5" opacity="0.7">
+          <text x="380" y="596">each desk owns a tool, a chart of the day</text>
+          <text x="380" y="612">and a share card</text>
+        </g>
+        <g color="#d9931a">
+          <use href="#i-trend" x="380" y="624" width="16" height="16"></use>
+          <use href="#i-share" x="402" y="624" width="16" height="16"></use>
+          <use href="#i-map" x="424" y="624" width="16" height="16"></use>
+        </g>
+        <text x="448" y="637" font-size="11" fill="#d9931a">chart, card, map</text>
+
+        <!-- News desks group -->
+        <rect x="740" y="400" width="260" height="256" rx="14" fill="#2f72d6" fill-opacity="0.08" stroke="#2f72d6" stroke-width="1.5"></rect>
+        <use href="#i-news" x="760" y="412" width="18" height="18" color="#2f72d6"></use>
+        <text x="784" y="426" font-weight="600" font-size="15" fill="currentColor">News desks</text>
+        <text x="760" y="446" font-size="11.5" fill="currentColor" opacity="0.7">the world, read and checked daily</text>
+        <g fill="#ffffff" fill-opacity="0.5" stroke="#2f72d6" stroke-width="1.5">
+          <rect x="760" y="460" width="220" height="30" rx="15"></rect>
+          <rect x="760" y="496" width="220" height="30" rx="15"></rect>
+          <rect x="760" y="532" width="220" height="30" rx="15"></rect>
+        </g>
+        <g color="#2f72d6">
+          <use href="#i-globe" x="768" y="468" width="14" height="14"></use>
+          <use href="#i-check" x="768" y="504" width="14" height="14"></use>
+          <use href="#i-archive" x="768" y="540" width="14" height="14"></use>
+        </g>
+        <g fill="currentColor" font-size="11">
+          <text x="787" y="479">World and local digests</text>
+          <text x="787" y="515">Claim verification</text>
+          <text x="787" y="551">Highlights, archive, search</text>
+        </g>
+        <g fill="currentColor" font-size="11.5" opacity="0.7">
+          <text x="760" y="596">every claim links to the story</text>
+          <text x="760" y="612">that made it</text>
+        </g>
+        <use href="#i-file" x="760" y="624" width="16" height="16" color="#2f72d6"></use>
+        <text x="782" y="637" font-size="11" fill="#2f72d6">sourced, always</text>
+
+        <text x="520" y="684" text-anchor="middle" font-size="11.5" fill="currentColor" opacity="0.7">Three more roles, the Judge, the Scientist and the Treasurer, sit on the bench until the advanced strategies they oversaw return.</text>
+      </svg>
+      <figcaption>Who reports to whom. Orange is the one human; every other colour is a wing of the AI team. The Board can propose anything and ship nothing. The Newsroom can publish prose and touch no code. Only the operator crosses the line between them.</figcaption>
+    </figure>
+  </section>
+
+  <section id="day">
+    <div class="sec-head">
+      <div class="eyebrow" style="--c:var(--desk)">A day in the building</div>
+      <h2>How the sites get written</h2>
+      <p>Every edition starts from stored numbers, not from a model's memory. The desks and the strategists work from the same history, the Editor reads what they wrote, the Auditor reads the record, and only then does a page go out with its chart and its share card.</p>
+    </div>
+
+    <figure class="fig">
+      <svg viewBox="0 0 1000 320" role="img" aria-label="Flow of a day: free public data is stored with history, strategists decide and desks write from it, the Editor reviews and the Auditor checks, pages and share cards publish; the Librarian answers research questions from the side" xmlns="http://www.w3.org/2000/svg" font-family="IBM Plex Sans, Segoe UI, Arial, sans-serif" font-size="13">
+        <defs>
+          <marker id="arr2" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+            <path d="M0,0 L10,5 L0,10 z" fill="currentColor"></path>
+          </marker>
+          <marker id="arr2T" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+            <path d="M0,0 L10,5 L0,10 z" fill="#1a8f8f"></path>
+          </marker>
+        </defs>
+
+        <!-- 1 Public data -->
+        <rect x="20" y="88" width="150" height="84" rx="10" fill="#2f72d6" fill-opacity="0.08" stroke="#2f72d6" stroke-width="1.5"></rect>
+        <use href="#i-cloud" x="86" y="96" width="18" height="18" color="#2f72d6"></use>
+        <text x="95" y="132" text-anchor="middle" font-weight="600" fill="currentColor">Public data</text>
+        <text x="95" y="150" text-anchor="middle" font-size="11.5" fill="currentColor" opacity="0.7">dozens of free feeds</text>
+        <text x="95" y="164" text-anchor="middle" font-size="11.5" fill="currentColor" opacity="0.7">no paid terminals</text>
+
+        <line x1="170" y1="130" x2="210" y2="130" stroke="currentColor" stroke-width="1.5" marker-end="url(#arr2)"></line>
+        <text x="190" y="118" text-anchor="middle" font-size="10.5" fill="currentColor" opacity="0.7">pulls</text>
+
+        <!-- 2 The record -->
+        <rect x="212" y="88" width="150" height="84" rx="10" fill="#2f72d6" fill-opacity="0.08" stroke="#2f72d6" stroke-width="1.5"></rect>
+        <use href="#i-database" x="278" y="96" width="18" height="18" color="#2f72d6"></use>
+        <text x="287" y="132" text-anchor="middle" font-weight="600" fill="currentColor">The record</text>
+        <text x="287" y="150" text-anchor="middle" font-size="11.5" fill="currentColor" opacity="0.7">every number kept</text>
+        <text x="287" y="164" text-anchor="middle" font-size="11.5" fill="currentColor" opacity="0.7">with its history</text>
+
+        <!-- fork -->
+        <line x1="362" y1="130" x2="392" y2="130" stroke="currentColor" stroke-width="1.5"></line>
+        <line x1="392" y1="58" x2="392" y2="204" stroke="currentColor" stroke-width="1.5"></line>
+        <line x1="392" y1="58" x2="420" y2="58" stroke="currentColor" stroke-width="1.5" marker-end="url(#arr2)"></line>
+        <line x1="392" y1="204" x2="420" y2="204" stroke="currentColor" stroke-width="1.5" marker-end="url(#arr2)"></line>
+
+        <!-- 3a strategists -->
+        <rect x="422" y="20" width="160" height="76" rx="10" fill="#2f9e60" fill-opacity="0.08" stroke="#2f9e60" stroke-width="1.5"></rect>
+        <use href="#i-trend" x="432" y="32" width="16" height="16" color="#2f9e60"></use>
+        <text x="454" y="45" font-weight="600" fill="currentColor">44 strategists</text>
+        <text x="432" y="64" font-size="11.5" fill="currentColor" opacity="0.7">decide, and say why,</text>
+        <text x="432" y="78" font-size="11.5" fill="currentColor" opacity="0.7">in writing, on the record</text>
+
+        <!-- 3b desks -->
+        <rect x="422" y="166" width="160" height="76" rx="10" fill="#d9931a" fill-opacity="0.08" stroke="#d9931a" stroke-width="1.5"></rect>
+        <use href="#i-pen" x="432" y="178" width="16" height="16" color="#d9931a"></use>
+        <text x="454" y="191" font-weight="600" fill="currentColor">7 desks write</text>
+        <text x="432" y="210" font-size="11.5" fill="currentColor" opacity="0.7">from the chart of the day;</text>
+        <text x="432" y="224" font-size="11.5" fill="currentColor" opacity="0.7">people named only from the news</text>
+
+        <!-- join -->
+        <line x1="582" y1="58" x2="612" y2="58" stroke="currentColor" stroke-width="1.5"></line>
+        <line x1="582" y1="204" x2="612" y2="204" stroke="currentColor" stroke-width="1.5"></line>
+        <line x1="612" y1="58" x2="612" y2="204" stroke="currentColor" stroke-width="1.5"></line>
+        <line x1="612" y1="130" x2="640" y2="130" stroke="currentColor" stroke-width="1.5" marker-end="url(#arr2)"></line>
+
+        <!-- 4 Editor and Auditor -->
+        <rect x="642" y="88" width="150" height="84" rx="10" fill="#1a8f8f"></rect>
+        <use href="#i-pen" x="654" y="100" width="16" height="16" color="#ffffff"></use>
+        <text x="676" y="113" font-weight="600" fill="#ffffff">Editor reviews</text>
+        <use href="#i-audit" x="654" y="126" width="16" height="16" color="#ffffff"></use>
+        <text x="676" y="139" font-weight="600" fill="#ffffff">Auditor checks</text>
+        <text x="654" y="161" font-size="11" fill="#ffffff">before anything publishes</text>
+
+        <line x1="792" y1="130" x2="830" y2="130" stroke="currentColor" stroke-width="1.5" marker-end="url(#arr2)"></line>
+        <text x="811" y="118" text-anchor="middle" font-size="10.5" fill="currentColor" opacity="0.7">publishes</text>
+
+        <!-- 5 The pages -->
+        <rect x="832" y="88" width="150" height="84" rx="10" fill="#1a8f8f" fill-opacity="0.08" stroke="#1a8f8f" stroke-width="1.5"></rect>
+        <g color="#1a8f8f">
+          <use href="#i-file" x="876" y="96" width="18" height="18"></use>
+          <use href="#i-trend" x="898" y="96" width="18" height="18"></use>
+          <use href="#i-share" x="920" y="96" width="18" height="18"></use>
+        </g>
+        <text x="907" y="132" text-anchor="middle" font-weight="600" fill="currentColor">The pages</text>
+        <text x="907" y="150" text-anchor="middle" font-size="11.5" fill="currentColor" opacity="0.7">prose, chart, share card</text>
+        <text x="907" y="164" text-anchor="middle" font-size="11.5" fill="currentColor" opacity="0.7">Marketer tunes the preview</text>
+
+        <!-- Librarian -->
+        <rect x="212" y="250" width="150" height="60" rx="10" fill="#ffffff" fill-opacity="0.5" stroke="#1a8f8f" stroke-width="1.5" stroke-dasharray="5 4"></rect>
+        <use href="#i-book" x="222" y="262" width="16" height="16" color="#1a8f8f"></use>
+        <text x="244" y="275" font-weight="600" fill="currentColor">The Librarian</text>
+        <text x="222" y="293" font-size="11" fill="currentColor" opacity="0.7">research desk. only route to the web</text>
+        <polyline points="362,280 405,280 405,222 420,222" fill="none" stroke="#1a8f8f" stroke-width="1.3" stroke-dasharray="3 4" marker-end="url(#arr2T)"></polyline>
+        <polyline points="405,222 405,40 420,40" fill="none" stroke="#1a8f8f" stroke-width="1.3" stroke-dasharray="3 4" marker-end="url(#arr2T)"></polyline>
+        <text x="412" y="302" font-size="11" fill="#1a8f8f">answers the desks' and the strategists' research questions</text>
+      </svg>
+      <figcaption>The route a number takes to the page. Nothing is written from memory. A desk that cannot find a cause in the record asks the Librarian, and a line that still has no cause does not lead the edition.</figcaption>
+    </figure>
+
+    <div class="cards" style="margin-top:24px">
+      <div class="card" style="--c:var(--human)">
+        <div class="badge"><svg class="ic lg"><use href="#i-users"></use></svg></div>
+        <div>
+          <span class="tag">Rule of the house</span>
+          <h3>Numbers measure the market. People move it.</h3>
+          <p>Every line on the finance side names who did what, and the name comes only from a story the newsroom has actually read. Nobody on staff is allowed to invent a person.</p>
+        </div>
+      </div>
+      <div class="card" style="--c:var(--newsroom)">
+        <div class="badge"><svg class="ic lg"><use href="#i-help"></use></svg></div>
+        <div>
+          <span class="tag">Rule of the house</span>
+          <h3>Reasons, never "no reason".</h3>
+          <p>A move with no explanation in our data is handed to the Librarian. If nobody can source a cause, the fact runs lower down with why it matters, and never a shrug.</p>
+        </div>
+      </div>
+      <div class="card" style="--c:var(--newsdesk)">
+        <div class="badge"><svg class="ic lg"><use href="#i-unlock"></use></svg></div>
+        <div>
+          <span class="tag">Rule of the house</span>
+          <h3>Free, public, kept forever.</h3>
+          <p>The whole operation runs on open public data, much of it federal. Everything fetched is stored with its history, so the team's work is reproducible and nobody's paywall can switch it off.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="loop">
+    <div class="two">
+      <div>
+        <div class="eyebrow" style="--c:var(--board)">The part that is actually new</div>
+        <h2 style="margin:10px 0 16px">The team improves the team</h2>
+        <p>Weekend apps stop improving when the weekend ends. This one files tickets on itself. The Board reads the codebase on a schedule, finds what is weak, writes it up as a work item with a rationale and a definition of done, and the Engineer builds it in a branch with tests. Then it stops, because it cannot merge.</p>
+        <p>That is the design, not a limitation. Specialists propose, one decision point approves. The operator reads the pull request, runs the gates, and merges. Over seven hundred and sixty items have gone through that loop, and the Board page on the site shows every one of them, including the ones the operator declined.</p>
+        <p class="quote" style="margin-top:22px">The experts are there to say no to the founder before the founder builds the wrong thing.</p>
+      </div>
+
+      <figure class="fig">
+        <svg viewBox="0 0 440 420" role="img" aria-label="Improvement loop: the Board reviews the site, files a work item, the Engineer builds and tests in a branch, the human merges, the change ships, and the Board reviews again" xmlns="http://www.w3.org/2000/svg" font-family="IBM Plex Sans, Segoe UI, Arial, sans-serif" font-size="12.5">
+          <defs>
+            <marker id="arr3" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+              <path d="M0,0 L10,5 L0,10 z" fill="currentColor"></path>
+            </marker>
+          </defs>
+          <circle cx="220" cy="210" r="140" fill="none" stroke="currentColor" stroke-width="1.2" stroke-dasharray="2 5" opacity="0.5"></circle>
+
+          <!-- 1 Board reviews -->
+          <rect x="150" y="30" width="140" height="48" rx="10" fill="#6b5cd6" fill-opacity="0.1" stroke="#6b5cd6" stroke-width="1.5"></rect>
+          <use href="#i-eye" x="160" y="42" width="16" height="16" color="#6b5cd6"></use>
+          <text x="182" y="50" font-weight="600" fill="currentColor">1. Board reviews</text>
+          <text x="160" y="68" font-size="11" fill="currentColor" opacity="0.7">code, data, security, AI</text>
+
+          <!-- 2 Files an item -->
+          <rect x="296" y="150" width="138" height="48" rx="10" fill="#6b5cd6" fill-opacity="0.1" stroke="#6b5cd6" stroke-width="1.5"></rect>
+          <use href="#i-ticket" x="306" y="162" width="16" height="16" color="#6b5cd6"></use>
+          <text x="328" y="170" font-weight="600" fill="currentColor">2. Files an item</text>
+          <text x="306" y="188" font-size="11" fill="currentColor" opacity="0.7">rationale, done-when</text>
+
+          <!-- 3 Engineer builds -->
+          <rect x="240" y="300" width="150" height="48" rx="10" fill="#6b5cd6" fill-opacity="0.1" stroke="#6b5cd6" stroke-width="1.5"></rect>
+          <use href="#i-code" x="250" y="312" width="16" height="16" color="#6b5cd6"></use>
+          <text x="272" y="320" font-weight="600" fill="currentColor">3. Engineer builds</text>
+          <text x="250" y="338" font-size="11" fill="currentColor" opacity="0.7">branch, tests, pull request</text>
+
+          <!-- 4 Human merges -->
+          <rect x="45" y="300" width="160" height="48" rx="10" fill="#e35d1f"></rect>
+          <use href="#i-merge" x="55" y="312" width="16" height="16" color="#ffffff"></use>
+          <text x="77" y="320" font-weight="600" fill="#ffffff">4. Human merges</text>
+          <text x="55" y="338" font-size="11" fill="#ffffff">only gate to production</text>
+
+          <!-- 5 Ships -->
+          <rect x="10" y="150" width="130" height="48" rx="10" fill="#2f9e60" fill-opacity="0.1" stroke="#2f9e60" stroke-width="1.5"></rect>
+          <use href="#i-rocket" x="20" y="162" width="16" height="16" color="#2f9e60"></use>
+          <text x="42" y="170" font-weight="600" fill="currentColor">5. Ships</text>
+          <text x="20" y="188" font-size="11" fill="currentColor" opacity="0.7">live on both sites</text>
+
+          <path d="M292,78 Q340,100 352,148" fill="none" stroke="currentColor" stroke-width="1.5" marker-end="url(#arr3)"></path>
+          <path d="M380,200 Q380,270 340,298" fill="none" stroke="currentColor" stroke-width="1.5" marker-end="url(#arr3)"></path>
+          <line x1="238" y1="324" x2="208" y2="324" stroke="currentColor" stroke-width="1.5" marker-end="url(#arr3)"></line>
+          <path d="M100,298 Q60,270 70,200" fill="none" stroke="currentColor" stroke-width="1.5" marker-end="url(#arr3)"></path>
+          <path d="M88,148 Q100,100 148,78" fill="none" stroke="currentColor" stroke-width="1.5" marker-end="url(#arr3)"></path>
+
+          <use href="#i-clock" x="209" y="178" width="22" height="22" color="#6b5cd6"></use>
+          <text x="220" y="218" text-anchor="middle" font-weight="600" font-size="14" fill="currentColor">daily</text>
+          <text x="220" y="236" text-anchor="middle" font-size="11" fill="currentColor" opacity="0.7">760+ trips round</text>
+
+          <use href="#i-lock" x="112" y="389" width="14" height="14" color="#e35d1f"></use>
+          <text x="132" y="400" font-size="11" fill="currentColor" opacity="0.7">No AI role can merge, push to production, or hold a key.</text>
+        </svg>
+        <figcaption>The improvement loop. Four of the five steps are the team's. The fifth is the human's, and it is the only one that reaches production.</figcaption>
+      </figure>
+    </div>
+  </section>
+
+  <section id="roster">
+    <div class="sec-head">
+      <div class="eyebrow" style="--c:var(--newsroom)">The staff list</div>
+      <h2>Who is on the team</h2>
+    </div>
+    <div class="roster">
+      <div style="--c:var(--board)">
+        <h3><svg class="ic"><use href="#i-layers"></use></svg>The Board (reads the code)</h3>
+        <dl>
+          <dt><svg class="ic"><use href="#i-columns"></use></svg>System Architect</dt><dd>Owns the shape of the application: data model, boundaries, schedule, performance. Reviews what the others file.</dd>
+          <dt><svg class="ic"><use href="#i-chip"></use></svg>AI Architect</dt><dd>Owns how the AI roles think: what each is shown, what it is asked, how its answers are scored against ground truth.</dd>
+          <dt><svg class="ic"><use href="#i-shield"></use></svg>Security Expert</dt><dd>Standing audit of secrets, the admin surface, every outbound fetch, and every place a model's words reach a page.</dd>
+          <dt><svg class="ic"><use href="#i-database"></use></svg>Data Steward</dt><dd>Finds free public sources, reads their terms, checks the resilience of everything we hold, and files each gap with a proposed fix.</dd>
+          <dt><svg class="ic"><use href="#i-code"></use></svg>Software Engineer</dt><dd>The only role that writes code. Builds filed items in a branch with tests and opens a pull request. Never merges.</dd>
+        </dl>
+      </div>
+      <div style="--c:var(--newsroom)">
+        <h3><svg class="ic"><use href="#i-news"></use></svg>The Newsroom (reads the data)</h3>
+        <dl>
+          <dt><svg class="ic"><use href="#i-pen"></use></svg>The Editor</dt><dd>Chief of the writing desks. Directs them by note, reads every edition, and keeps the house rules on voice, facts and named people.</dd>
+          <dt><svg class="ic"><use href="#i-audit"></use></svg>The Auditor</dt><dd>Reads the record, not the prose: stale feeds, unsupported claims, rationales that cite research nobody did.</dd>
+          <dt><svg class="ic"><use href="#i-book"></use></svg>The Librarian</dt><dd>The research desk, and the newsroom's one route to the web. Checks what we already know before anyone looks outside.</dd>
+          <dt><svg class="ic"><use href="#i-megaphone"></use></svg>The Marketer</dt><dd>Discoverability: page metadata, previews, how an edition looks when it lands in a feed.</dd>
+          <dt><svg class="ic"><use href="#i-clock"></use></svg>The Judge, Scientist and Treasurer</dt><dd class="paused">Reviewed the advanced strategies for evenness, experiment quality and spend.</dd>
+          <dt style="--c:var(--strat)"><svg class="ic"><use href="#i-trend"></use></svg>44 Strategists</dt><dd>Simulated fund managers, one style each, from conservative to leveraged momentum. Each decides daily, in writing, and is scored on the public record.</dd>
+        </dl>
+      </div>
+    </div>
+  </section>
+
+  <section id="different">
+    <div class="sec-head">
+      <div class="eyebrow" style="--c:var(--strat)">Why this is not a weekend app</div>
+      <h2>What took the time</h2>
+    </div>
+    <ul class="rules">
+      <li style="--c:var(--board)"><div class="badge"><svg class="ic"><use href="#i-split"></use></svg></div><div><strong>Separation of powers.</strong> The roles that read the live data cannot touch the code, and the roles that read the code cannot touch the live data. Each sees exactly what its job needs.</div></li>
+      <li style="--c:var(--newsroom)"><div class="badge"><svg class="ic"><use href="#i-list"></use></svg></div><div><strong>Accountability in public.</strong> Every strategist's reasons, every Board finding, and every item the operator declined are published on the site. The team is scored on what it said, not what it meant.</div></li>
+      <li style="--c:var(--human)"><div class="badge"><svg class="ic"><use href="#i-lock"></use></svg></div><div><strong>A chain of command that holds.</strong> "Propose, never ship" is enforced, not requested. The merge, the deploy and the production keys are out of every AI role's reach by construction.</div></li>
+      <li style="--c:var(--desk)"><div class="badge"><svg class="ic"><use href="#i-heart"></use></svg></div><div><strong>Integrity over cleverness.</strong> No invented people, no "no reason", no headline from a single unverified data point, no model choosing which chart to draw. Those rules exist because each one was broken once and the fix was written down.</div></li>
+      <li style="--c:var(--strat)"><div class="badge"><svg class="ic"><use href="#i-refresh"></use></svg></div><div><strong>Built to keep running.</strong> Free public data with stored history, a research desk that checks our own corpus before the web, and a Board that notices a stale feed the same day.</div></li>
+    </ul>
+  </section>
+
+  <section id="visit">
+    <div class="sec-head">
+      <div class="eyebrow" style="--c:var(--newsdesk)">See it working</div>
+      <h2>The team's output is public. Go and read it.</h2>
+    </div>
+    <div class="links">
+      <a href="https://finance.corticorp.com/markets/overview" style="--c:var(--desk)">
+        <div class="badge"><svg class="ic lg"><use href="#i-bars"></use></svg></div>
+        <div>
+          <strong>Corticorp Finance</strong>
+          <div class="where">finance.corticorp.com</div>
+          <p>Market Pulse: seven desks, a chart of the day each, and the Situation Map.</p>
+        </div>
+      </a>
+      <a href="https://news.corticorp.com/" style="--c:var(--newsdesk)">
+        <div class="badge"><svg class="ic lg"><use href="#i-news"></use></svg></div>
+        <div>
+          <strong>Corticorp News</strong>
+          <div class="where">news.corticorp.com</div>
+          <p>World and local digests, with every claim traced to its source story.</p>
+        </div>
+      </a>
+      <a href="https://finance.corticorp.com/markets/methodology" style="--c:var(--board)">
+        <div class="badge"><svg class="ic lg"><use href="#i-layers"></use></svg></div>
+        <div>
+          <strong>The Board and the methodology</strong>
+          <div class="where">Strategy, then Oversight</div>
+          <p>Every member, what they have said, what they have filed, and how the strategies are scored.</p>
+        </div>
+      </a>
+    </div>
+  </section>
+
+  <footer>
+    <p>Corticorp Finance and Corticorp News are built and run by one person with a virtual team of AI roles. The sites are non-commercial, the strategies are simulated, and nothing here is investment advice.</p>
+    <p class="mono" style="margin-top:14px">This page describes what the team does and who is on it. How each role is briefed, scheduled and wired together is deliberately not written down here.</p>
+  </footer>
+
+</div>
+</body>
+</html>
