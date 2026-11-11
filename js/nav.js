@@ -16,16 +16,16 @@
     'nav .nav-inner{position:relative}' +
     'nav .nav-links{display:flex;align-items:center;white-space:nowrap;flex-shrink:0}' +
     'nav .nav-toggle{display:none;align-items:center;gap:8px;height:36px;padding:0 12px;' +
-      'background:transparent;border:1px solid var(--border,#2a2620);border-radius:8px;' +
-      'color:var(--text,#e8e2d6);font:inherit;font-size:.9rem;cursor:pointer}' +
-    'nav .nav-toggle:hover{border-color:var(--muted,#8a8478)}' +
+      'background:transparent;border:1px solid var(--border,#30444f);border-radius:8px;' +
+      'color:var(--text,#e6edf1);font:inherit;font-size:.9rem;cursor:pointer}' +
+    'nav .nav-toggle:hover{border-color:var(--muted,#9db0ba)}' +
     'nav .nav-toggle svg{display:block}' +
     'nav.nav-collapsed .nav-toggle{display:inline-flex}' +
     'nav.nav-collapsed .nav-links{display:none}' +
     'nav.nav-collapsed.nav-open .nav-links{display:flex;flex-direction:column;align-items:stretch;' +
       'position:absolute;top:100%;left:0;right:0;white-space:normal;padding:6px 0 10px;' +
       'max-height:calc(100vh - 56px);overflow-y:auto;' +
-      'border-top:1px solid var(--border,#2a2620);border-bottom:1px solid var(--border,#2a2620);' +
+      'border-top:1px solid var(--border,#30444f);border-bottom:1px solid var(--border,#30444f);' +
       'box-shadow:0 18px 30px rgba(0,0,0,.45)}' +
     'nav.nav-collapsed.nav-open .nav-links a{margin:0;padding:13px 24px;font-size:1rem}';
   var style = document.createElement('style');
@@ -47,7 +47,7 @@
   var m = /rgba?\((\d+)[, ]+(\d+)[, ]+(\d+)/.exec(getComputedStyle(nav).backgroundColor || '');
   var solid = m && (+m[1] + +m[2] + +m[3] > 0 || /rgb\(/.test(getComputedStyle(nav).backgroundColor))
     ? 'rgb(' + m[1] + ',' + m[2] + ',' + m[3] + ')'
-    : '#0c0a08';
+    : '#101923';
 
   function setOpen(open) {
     nav.classList.toggle('nav-open', open);

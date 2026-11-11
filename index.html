@@ -3,18 +3,24 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>CortiCorp — Software & AI Solutions</title>
-<meta name="description" content="CortiCorp builds AI-powered applications, audio tools, and data systems: Corticorp News, Corticorp Finance, World's Eye View, AlgoRythmic, the Open Page Document and a line of VST3 plugins. 25+ years of software engineering, now focused on what AI makes possible.">
-<meta property="og:title" content="CortiCorp — Software & AI Solutions">
-<meta property="og:description" content="Four live web products, an open document format in build, and a line of VST3 audio plugins. AI-powered applications, audio tools, and data systems by Cort.">
+<title>CortiCorp — We build organizations, not applications</title>
+<meta name="description" content="CortiCorp engineers coordinated organizations of specialized AI agents that research, write, audit and operate real products, each with a defined role and one human decision point. See them working: Corticorp News, Corticorp Finance, World's Eye View, the Open Page Document, AlgoRythmic and a line of VST3 plugins.">
+<meta property="og:title" content="CortiCorp — We build organizations, not applications">
+<meta property="og:description" content="Coordinated organizations of specialized AI agents, directed by one engineer, running real products in public: four live web products, an open document format in build, and a line of VST3 audio plugins.">
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://corticorp.com/">
+<meta name="theme-color" content="#101923">
 <link rel="canonical" href="https://corticorp.com/">
 <style>
+  /* ---- TOKENS: Midnight Laboratory ----
+     Teal marks the system. Amber is kept for the human decision point (and a
+     price), so it stays rare. Green means live and nothing else. */
   :root {
-    --bg: #0c0a08; --surface: #141210; --surface2: #1c1915; --border: #2a241c;
-    --text: #e8e0d4; --muted: #9a8e7a; --accent: #d4a555; --accent2: #e7c878;
-    --green: #6fae6a; --teal: #35d0c0; --blue: #5b8fd4; --maxw: 1000px;
+    --bg: #101923; --surface: #1c2c38; --surface2: #243744; --border: #30444f; --slate: #344c58;
+    --panel: #14202b;
+    --text: #e6edf1; --muted: #9db0ba; --accent: #49a6a3; --accent2: #8fd3ce; --amber: #d8a75b;
+    --green: #6fae6a; --teal: #35d0c0; --blue: #5b8fd4; --maxw: 1040px;
+    --mono: ui-monospace, "SF Mono", "Cascadia Mono", Consolas, "Liberation Mono", Menlo, monospace;
   }
   * { box-sizing: border-box; margin: 0; padding: 0 }
   html { scroll-behavior: smooth }
@@ -25,467 +31,601 @@
   }
   a { color: var(--accent2); text-decoration: none }
   a:hover { text-decoration: underline }
+  a:focus-visible, button:focus-visible { outline: 2px solid var(--accent2); outline-offset: 3px; border-radius: 4px }
+  [id] { scroll-margin-top: 72px }
   .wrap { max-width: var(--maxw); margin: 0 auto; padding: 0 24px }
+  .skip { position: absolute; left: -9999px }
+  .skip:focus { left: 16px; top: 12px; z-index: 20; padding: 8px 14px; background: var(--surface2); border-radius: 6px }
 
   /* ---- NAV ---- */
   nav {
     position: sticky; top: 0; z-index: 10;
-    background: rgba(12,10,8,.92); backdrop-filter: blur(8px);
+    background: rgba(16,25,35,.92); backdrop-filter: blur(8px);
     border-bottom: 1px solid var(--border);
   }
   .nav-inner {
     display: flex; align-items: center; justify-content: space-between;
     max-width: var(--maxw); margin: 0 auto; padding: 0 24px; height: 56px;
   }
-  .brand { font-weight: 800; font-size: 1.1rem; color: var(--accent2); letter-spacing: .03em }
-  .nav-links a { margin-left: 18px; color: var(--muted); font-size: .9rem; transition: color .15s }
+  .brand { display: inline-flex; align-items: center; gap: 9px; font-weight: 800; font-size: 1.08rem; color: var(--text); letter-spacing: .03em }
+  .brand:hover { text-decoration: none }
+  .nav-links a { margin-left: 20px; color: var(--muted); font-size: .9rem; transition: color .15s }
   .nav-links a:hover { color: var(--text); text-decoration: none }
 
-  /* ---- HERO ---- */
-  .hero {
-    padding: 100px 0 80px; text-align: center;
-    background: linear-gradient(180deg, #15120e 0%, var(--bg) 100%);
-  }
-  .hero h1 { font-size: clamp(2rem, 5vw, 3rem); color: var(--accent2); margin-bottom: 12px }
-  .hero p { font-size: 1.15rem; color: var(--muted); max-width: 600px; margin: 0 auto }
-  .hero .subtitle { margin-top: 28px; font-size: .95rem }
-  .hero .subtitle span {
-    display: inline-block; padding: 5px 14px; margin: 4px;
-    background: var(--surface2); border: 1px solid var(--border); border-radius: 6px;
-    font-size: .85rem; color: var(--text);
-  }
-
-  /* ---- SECTIONS ---- */
-  section { padding: 72px 0; border-top: 1px solid #1a1610 }
+  /* ---- TYPE ---- */
+  section { padding: 76px 0; border-top: 1px solid #1b2a35 }
   .eyebrow {
-    text-transform: uppercase; letter-spacing: .2em; font-size: .72rem;
-    color: var(--muted); margin-bottom: 8px;
+    font-family: var(--mono); text-transform: uppercase; letter-spacing: .18em; font-size: .72rem;
+    color: var(--accent); margin-bottom: 10px;
   }
-  h2 { font-size: clamp(1.4rem, 3vw, 1.9rem); color: var(--accent2); margin-bottom: 24px }
-  h3 { font-size: 1.2rem; color: var(--accent); margin-bottom: 6px }
+  h2 { font-size: clamp(1.5rem, 3.2vw, 2.05rem); line-height: 1.2; letter-spacing: -.01em; margin-bottom: 14px }
+  h3 { font-size: 1.25rem; line-height: 1.3; margin-bottom: 6px }
+  .intro { color: var(--muted); max-width: 720px; margin-bottom: 32px }
+  .intro strong, .desc strong { color: var(--text); font-weight: 600 }
 
-  /* ---- PROJECT CARDS ---- */
-  .projects { display: flex; flex-direction: column; gap: 32px }
+  /* ---- HERO ---- */
+  .hero { position: relative; padding: 104px 0 64px; border-top: none; overflow: hidden }
+  .hero::before {
+    content: ""; position: absolute; inset: 0; pointer-events: none;
+    background-image: linear-gradient(rgba(52,76,88,.28) 1px, transparent 1px),
+                      linear-gradient(90deg, rgba(52,76,88,.28) 1px, transparent 1px);
+    background-size: 56px 56px; background-position: center top;
+    -webkit-mask-image: radial-gradient(120% 90% at 70% 0%, #000 0%, transparent 72%);
+            mask-image: radial-gradient(120% 90% at 70% 0%, #000 0%, transparent 72%);
+  }
+  .hero .wrap { position: relative }
+  .hero h1 { font-size: clamp(2.3rem, 6.4vw, 4.4rem); line-height: 1.04; letter-spacing: -.025em; margin-bottom: 24px }
+  .hero h1 .dim { color: #7d929d }
+  @media (min-width: 700px) { .hero h1 .dim { display: block } }
+  .hero .lede { font-size: clamp(1.08rem, 1.7vw, 1.3rem); color: var(--text); max-width: 700px; line-height: 1.55 }
+  .hero .qualifier { margin-top: 14px; color: var(--muted); max-width: 640px; font-size: 1rem }
+  .hero .qualifier b { color: var(--amber); font-weight: 600 }
+  .cta { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 32px }
+  .btn {
+    display: inline-block; padding: 11px 22px; border-radius: 8px; font-weight: 600; font-size: .95rem;
+    border: 1px solid var(--slate); color: var(--text); background: transparent; transition: background .15s, border-color .15s;
+  }
+  .btn:hover { background: var(--surface); text-decoration: none }
+  .btn.primary { background: var(--accent); border-color: var(--accent); color: #06201f }
+  .btn.primary:hover { background: #5bb5b1; border-color: #5bb5b1 }
+
+  /* proof readout */
+  .proof {
+    display: grid; grid-template-columns: repeat(6, 1fr); margin-top: 60px;
+    border: 1px solid var(--border); border-radius: 12px; background: rgba(20,32,43,.82); overflow: hidden;
+  }
+  .proof a { display: block; padding: 18px 16px 16px; color: inherit; border-left: 1px solid var(--border); transition: background .15s }
+  .proof a:first-child { border-left: none }
+  .proof a:hover { background: var(--surface); text-decoration: none }
+  .proof .n { display: block; font-size: 1.7rem; font-weight: 700; line-height: 1.1; letter-spacing: -.01em; font-variant-numeric: tabular-nums }
+  .proof .l { display: block; margin-top: 6px; font-size: .8rem; line-height: 1.35; color: var(--muted) }
+  .proof .human .n { color: var(--amber) }
+  .proof-note { margin-top: 10px; font-family: var(--mono); font-size: .7rem; letter-spacing: .04em; color: #7d929d }
+  @media (max-width: 860px) {
+    .proof { grid-template-columns: repeat(3, 1fr) }
+    .proof a:nth-child(4) { border-left: none }
+    .proof a:nth-child(n+4) { border-top: 1px solid var(--border) }
+  }
+  @media (max-width: 520px) {
+    .proof { grid-template-columns: repeat(2, 1fr) }
+    .proof a:nth-child(4) { border-left: 1px solid var(--border) }
+    .proof a:nth-child(odd) { border-left: none }
+    .proof a:nth-child(n+3) { border-top: 1px solid var(--border) }
+  }
+
+  /* ---- HOW IT WORKS: the organization as a system diagram ---- */
+  .org { border: 1px solid var(--border); border-radius: 14px; background: var(--panel); padding: 28px }
+  .tier { display: grid; grid-template-columns: 150px 1fr; gap: 20px; align-items: start }
+  .tier-label { font-family: var(--mono); font-size: .7rem; letter-spacing: .14em; text-transform: uppercase; color: var(--muted); padding-top: 16px }
+  .tier-label b { color: var(--accent); font-weight: 600; margin-right: 8px }
+  .node { display: block; border: 1px solid var(--border); background: var(--surface); border-radius: 10px; padding: 14px 18px; color: var(--text) }
+  .node h4 { font-size: 1rem; line-height: 1.3 }
+  .node h4 small { display: block; font-family: var(--mono); font-weight: 400; font-size: .7rem; letter-spacing: .04em; color: var(--accent2); margin-top: 3px }
+  .node p { color: var(--muted); font-size: .9rem; line-height: 1.5; margin-top: 6px }
+  .node.human { border-color: rgba(216,167,91,.5); box-shadow: inset 3px 0 0 var(--amber) }
+  .node.human h4 small { color: var(--amber) }
+  .flow {
+    margin-left: 198px; padding: 12px 0 12px 18px; border-left: 1px solid var(--slate);
+    display: flex; flex-wrap: wrap; gap: 4px 28px;
+    font-family: var(--mono); font-size: .72rem; letter-spacing: .03em; color: var(--muted);
+  }
+  .flow span::before { color: var(--accent2); margin-right: 7px }
+  .flow .dn::before { content: "\2193" }
+  .flow .up::before { content: "\2191" }
+  .wings { display: grid; grid-template-columns: 1fr 38px 1fr }
+  .wall { position: relative }
+  .wall::before { content: ""; position: absolute; left: 50%; top: 0; bottom: 0; border-left: 1px dashed var(--slate) }
+  .wall span {
+    position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%) rotate(-90deg); white-space: nowrap;
+    background: var(--panel); padding: 0 8px; font-family: var(--mono); font-size: .62rem; letter-spacing: .14em;
+    text-transform: uppercase; color: #7d929d;
+  }
+  .chips { list-style: none; display: flex; flex-wrap: wrap; gap: 6px; margin-top: 10px }
+  .chips li { font-size: .78rem; line-height: 1.3; padding: 3px 9px; border: 1px solid var(--border); border-radius: 4px; background: var(--surface2) }
+  .chips li.group { border-style: dashed; background: transparent; color: var(--muted) }
+  .products { display: grid; grid-template-columns: 1fr 1fr; gap: 12px }
+  a.node { transition: border-color .15s }
+  a.node:hover { border-color: var(--accent); text-decoration: none }
+  a.node .where { display: block; font-family: var(--mono); font-size: .72rem; color: var(--muted); margin-top: 2px }
+  .org figcaption { margin: 20px 0 0 170px; color: var(--muted); font-size: .88rem; max-width: 640px }
+  .principles { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; margin-top: 20px }
+  .principle { border-top: 2px solid var(--slate); padding-top: 14px }
+  .principle h3 { font-size: 1rem; margin-bottom: 6px }
+  .principle h3 span { font-family: var(--mono); font-weight: 400; font-size: .72rem; color: var(--accent); margin-right: 8px }
+  .principle p { color: var(--muted); font-size: .9rem; line-height: 1.55 }
+  @media (max-width: 860px) { .principles { grid-template-columns: 1fr 1fr } }
+  @media (max-width: 760px) {
+    .org { padding: 18px }
+    .tier { grid-template-columns: 1fr; gap: 8px }
+    .tier-label { padding-top: 0 }
+    .flow { margin-left: 22px }
+    .wings { grid-template-columns: 1fr }
+    .wall { height: 34px }
+    .wall::before { left: 0; right: 0; top: 50%; bottom: auto; border-left: none; border-top: 1px dashed var(--slate) }
+    .wall span { transform: translate(-50%, -50%) }
+    .products { grid-template-columns: 1fr }
+    .org figcaption { margin-left: 0 }
+  }
+  @media (max-width: 520px) { .principles { grid-template-columns: 1fr } }
+
+  /* ---- STATUS: one vocabulary for every card ---- */
+  .status {
+    display: inline-flex; align-items: center; gap: 8px; padding: 3px 11px; border-radius: 999px;
+    font-family: var(--mono); font-size: .68rem; font-weight: 600; letter-spacing: .1em; text-transform: uppercase;
+    background: var(--surface2); border: 1px solid var(--slate); color: var(--muted);
+  }
+  .status.live { background: #16281f; border-color: #2c4f3a; color: var(--green) }
+  .status.build { background: #1a2540; border-color: #2f4170; color: #8da2fb }
+  .status.free { background: #16281f; border-color: #2c4f3a; color: var(--green) }
+  .status.paid { background: #2c2617; border-color: #5a4a26; color: var(--amber) }
+  .dot { width: 7px; height: 7px; border-radius: 50%; background: currentColor }
+  .status.live .dot { animation: pulse 2.4s infinite }
+  @keyframes pulse {
+    0% { box-shadow: 0 0 0 0 rgba(111,174,106,.5) }
+    70% { box-shadow: 0 0 0 7px rgba(111,174,106,0) }
+    100% { box-shadow: 0 0 0 0 rgba(111,174,106,0) }
+  }
+  .statusline { display: flex; flex-wrap: wrap; align-items: center; gap: 10px; margin-bottom: 12px }
+  .statusline .where { font-family: var(--mono); font-size: .74rem; color: var(--muted) }
+
+  /* ---- TAGS, LINKS ---- */
+  .project-meta { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 14px }
+  .tag {
+    display: inline-block; padding: 3px 10px; border-radius: 4px; font-size: .75rem;
+    background: var(--surface2); border: 1px solid var(--border); color: var(--muted);
+  }
+  .tag.ai { border-color: #2c4f40; color: var(--green) }
+  .tag.audio { border-color: #5a4a26; color: var(--amber) }
+  .tag.web { border-color: #1f4a4a; color: var(--teal) }
+  .tag.fin { border-color: #2c4f3a; color: var(--green) }
+  .tag.opd { border-color: #2f4170; color: #8da2fb }
+  .tag.cam { border-color: #1f4466; color: #38bdf8 }
+  .actions { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 18px }
+  .project-link {
+    display: inline-block; padding: 8px 18px; border-radius: 7px;
+    font-weight: 600; font-size: .9rem; border: 1px solid var(--slate);
+    background: var(--surface2); color: var(--accent2); transition: background .15s, border-color .15s;
+  }
+  .project-link:hover { background: #2b4150; border-color: var(--accent); text-decoration: none }
+  .desc { color: var(--muted); margin-top: 6px }
+
+  /* ---- PRODUCT FEATURES ---- */
+  .features { display: flex; flex-direction: column; gap: 28px }
+  .feature {
+    display: grid; grid-template-columns: 1.35fr 1fr; gap: 36px; align-items: center;
+    background: var(--surface); border: 1px solid var(--border); border-radius: 14px; padding: 30px;
+    transition: border-color .2s;
+  }
+  .feature:hover { border-color: #44606f }
+  .feature.flip { grid-template-columns: 1fr 1.35fr }
+  .np-name .c, .fin-name .c { color: var(--text) } .np-name .n { color: var(--blue) }
+  .fin-name .f { color: var(--green) }
+  .opd-name .o { color: #8da2fb } .opd-name .d { color: var(--text); font-weight: 400 }
+  .wev-name .v { color: #38bdf8; font-weight: 400 }
+  .opd-head { display: flex; align-items: center; gap: 14px }
+  .opd-head img { width: 56px; height: 56px; border-radius: 50%; flex: none }
+  .opd-head h3 { margin: 0 }
+  /* collage of framed app windows: a behind, c low left, b in front */
+  .collage { position: relative; height: 372px }
+  .win {
+    position: absolute; border-radius: 10px; overflow: hidden; border: 1px solid #3a4f5c;
+    background: #121c26; box-shadow: 0 20px 44px rgba(5,10,16,.6);
+  }
+  .win .bar { display: flex; align-items: center; gap: 6px; height: 24px; padding: 0 10px;
+    background: #22323f; border-bottom: 1px solid #3a4f5c }
+  .win .bar i { flex: none; width: 8px; height: 8px; border-radius: 50%; background: #3a4048 }
+  .win .bar i.r { background: #e0605e } .win .bar i.y { background: #e0b24e } .win .bar i.g { background: #5fb85f }
+  .win .bar span { margin-left: 6px; font-size: .6rem; color: #9db0ba; letter-spacing: .03em; white-space: nowrap; overflow: hidden; text-overflow: ellipsis }
+  .win img { display: block; width: 100%; object-fit: cover; object-position: top center }
+  .win.a { width: 64%; left: 0; top: 24px; z-index: 1 }
+  .win.a img { height: 204px }
+  .win.b { width: 49%; right: 0; top: 100px; z-index: 3 }
+  .win.b img { height: 230px }
+  .win.c { width: 42%; left: 5%; bottom: 0; z-index: 2 }
+  .win.c img { height: 116px }
+  .opd-logo-badge { position: absolute; right: 6px; bottom: 0; width: 118px; height: 118px; z-index: 4; border-radius: 50%; box-shadow: 0 14px 34px rgba(5,10,16,.65) }
+  @media (max-width: 760px) {
+    .feature, .feature.flip { grid-template-columns: 1fr; gap: 22px; padding: 20px }
+    .collage { height: 320px }
+  }
+
+  /* ---- PLUGINS HUB ---- */
+  .hub {
+    background: var(--surface); border: 1px solid var(--border); border-radius: 12px;
+    padding: 30px; transition: border-color .2s;
+  }
+  .hub:hover { border-color: #44606f }
+  .hub > p { color: var(--muted); max-width: 720px }
+  .plugin-strip { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; margin: 24px 0 4px }
+  .plugin-thumb {
+    display: block; background: var(--surface2); border: 1px solid var(--border);
+    border-radius: 10px; overflow: hidden; transition: border-color .2s, transform .12s; color: var(--text);
+  }
+  .plugin-thumb:hover { border-color: var(--accent); transform: translateY(-2px); text-decoration: none }
+  .plugin-thumb img { width: 100%; aspect-ratio: 16/10; object-fit: cover; display: block; border-bottom: 1px solid var(--border) }
+  .plugin-thumb img.contain { object-fit: contain; background: #0a1119 }
+  .plugin-thumb .pt-body { padding: 12px 14px 14px }
+  .plugin-thumb .pt-name { font-weight: 700; font-size: 1rem }
+  .plugin-thumb .pt-desc { color: var(--muted); font-size: .82rem; margin: 2px 0 10px }
+  @media (max-width: 640px) { .plugin-strip { grid-template-columns: 1fr } }
+
+  /* ---- MORE PROJECTS ---- */
+  .projects { display: flex; flex-direction: column; gap: 28px }
   .project-card {
     display: grid; grid-template-columns: 1fr 1fr; gap: 32px; align-items: center;
     background: var(--surface); border: 1px solid var(--border); border-radius: 12px;
-    padding: 32px; transition: border-color .2s;
+    padding: 30px; transition: border-color .2s;
   }
-  .project-card:hover { border-color: #3a3228 }
+  .project-card:hover { border-color: #44606f }
   .project-card.reverse { direction: rtl }
   .project-card.reverse > * { direction: ltr }
   .project-img {
     width: 100%; border-radius: 8px; border: 1px solid var(--border);
     aspect-ratio: 16/10; object-fit: cover; background: var(--surface2);
   }
-  .project-meta { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 12px }
-  .tag {
-    display: inline-block; padding: 3px 10px; border-radius: 4px; font-size: .75rem;
-    background: var(--surface2); border: 1px solid var(--border); color: var(--muted);
-  }
-  .tag.ai { border-color: #3a4a2a; color: var(--green) }
-  .tag.audio { border-color: #3a2a1a; color: var(--accent) }
-  .tag.web { border-color: #1a3a3a; color: var(--teal) }
-  .project-link {
-    display: inline-block; margin-top: 16px; padding: 8px 20px; border-radius: 7px;
-    font-weight: 600; font-size: .9rem; border: 1px solid var(--border);
-    background: var(--surface2); color: var(--accent2); transition: background .15s;
-  }
-  .project-link:hover { background: #241e14; text-decoration: none }
-  .badge {
-    display: inline-block; padding: 4px 12px; border-radius: 4px;
-    font-size: .72rem; font-weight: 700; letter-spacing: .08em; text-transform: uppercase;
-    background: #1a2a3a; border: 1px solid #2a4a5a; color: #5bb8d4; margin-bottom: 8px;
-  }
-
-  /* Tighten the gap between the plugins and projects sections */
-  #plugins { padding-bottom: 36px }
-  #projects { padding-top: 44px }
-
-  /* ---- FEATURED / NEWS ---- */
-  #news { border-top: none; padding-top: 40px; padding-bottom: 40px }
-  .featured-badge {
-    display: inline-flex; align-items: center; gap: 8px; margin-bottom: 12px;
-    padding: 4px 12px; border-radius: 999px; font-size: .72rem; font-weight: 700;
-    letter-spacing: .1em; text-transform: uppercase;
-    background: #16281a; border: 1px solid #2c4a30; color: var(--green);
-  }
-  .dot { width: 8px; height: 8px; border-radius: 50%; background: var(--green);
-    animation: pulse 2s infinite }
-  @keyframes pulse {
-    0% { box-shadow: 0 0 0 0 rgba(111,174,106,.5) }
-    70% { box-shadow: 0 0 0 7px rgba(111,174,106,0) }
-    100% { box-shadow: 0 0 0 0 rgba(111,174,106,0) }
-  }
-  .news-feature {
-    display: grid; grid-template-columns: 1.35fr 1fr; gap: 36px; align-items: center;
-    background: var(--surface); border: 1px solid var(--border); border-radius: 14px; padding: 30px;
-    transition: border-color .2s;
-  }
-  .news-feature:hover { border-color: #3a3228 }
-  .news-feature .np-name .c { color: var(--accent2) } .news-feature .np-name .n { color: var(--blue) }
-  /* collage of framed app windows */
-  .news-collage { position: relative; height: 372px }
-  .win {
-    position: absolute; border-radius: 10px; overflow: hidden; border: 1px solid #2c313a;
-    background: #14171c; box-shadow: 0 20px 44px rgba(0,0,0,.55);
-  }
-  .win .bar { display: flex; align-items: center; gap: 6px; height: 24px; padding: 0 10px;
-    background: #20242b; border-bottom: 1px solid #2c313a }
-  .win .bar i { width: 8px; height: 8px; border-radius: 50%; background: #3a4048 }
-  .win .bar i.r { background: #e0605e } .win .bar i.y { background: #e0b24e } .win .bar i.g { background: #5fb85f }
-  .win .bar span { margin-left: 6px; font-size: .6rem; color: #8b93a0; letter-spacing: .03em }
-  .win img { display: block; width: 100%; object-fit: cover; object-position: top center }
-  .win-situation { width: 66%; left: 0; top: 22px; z-index: 1 }
-  .win-situation img { height: 208px }
-  .win-feed { width: 48%; right: 0; top: 104px; z-index: 3 }
-  .win-feed img { height: 236px }
-  .win-analytics { width: 42%; left: 5%; bottom: 0; z-index: 2 }
-  .win-analytics img { height: 118px }
-  @media (max-width: 760px) {
-    .news-feature { grid-template-columns: 1fr; gap: 22px; padding: 20px }
-    .news-collage { height: 320px }
-  }
-
-  /* ---- CORTICORP FINANCE ----
-     Its own product on its own domain since late August 2026, though one
-     codebase still serves it and News. It sits directly under News because
-     that is where it came from, and it is mirrored (copy left, collage right)
-     so three feature cards in a row do not read as one repeated block. */
-  #finance { padding-top: 40px; padding-bottom: 40px }
-  .feature-flip { grid-template-columns: 1fr 1.35fr }
-  .fin-name .c { color: var(--accent2) } .fin-name .f { color: var(--green) }
-  .fin-collage { position: relative; height: 372px }
-  .win-fin-strategies { width: 64%; left: 0; top: 24px; z-index: 1 }
-  .win-fin-strategies img { height: 204px }
-  .win-fin-pulse { width: 49%; right: 0; top: 100px; z-index: 3 }
-  .win-fin-pulse img { height: 230px }
-  .win-fin-categories { width: 42%; left: 5%; bottom: 0; z-index: 2 }
-  .win-fin-categories img { height: 116px }
-  .tag.fin { border-color: #2c4a30; color: var(--green) }
-  @media (max-width: 760px) { .fin-collage { height: 320px } }
-
-  /* ---- OPD, THE OPEN PAGE DOCUMENT ----
-     The newest project, so it leads the page. Same collage pattern as the
-     others, with its own name colours because the app itself is blue on
-     slate rather than gold on black. */
-  #opd { padding-top: 40px; padding-bottom: 40px }
-  .opd-name .o { color: #8da2fb } .opd-name .d { color: var(--text); font-weight: 400 }
-  .opd-collage { position: relative; height: 372px }
-  .win-opd-viewer { width: 64%; left: 0; top: 24px; z-index: 1 }
-  .win-opd-viewer img { height: 204px }
-  .win-opd-form { width: 49%; right: 0; top: 100px; z-index: 3 }
-  .win-opd-form img { height: 230px }
-  .win-opd-import { width: 42%; left: 5%; bottom: 0; z-index: 2 }
-  .win-opd-import img { height: 116px }
-  .opd-logo-badge { position: absolute; right: 6px; bottom: 0; width: 118px; height: 118px; z-index: 4; border-radius: 50%; box-shadow: 0 14px 34px rgba(0,0,0,.6) }
-  .opd-head { display: flex; align-items: center; gap: 14px }
-  .opd-head img { width: 56px; height: 56px; border-radius: 50%; flex: none }
-  .tag.opd { border-color: #2a3a5a; color: #8da2fb }
-  .featured-badge.build { background: #1a2238; border-color: #2a3a5a; color: #8da2fb }
-  .featured-badge.build .dot { background: #8da2fb; animation: none }
-  @media (max-width: 760px) { .opd-collage { height: 320px } }
-
-  /* ---- WORLD'S EYE VIEW ----
-     Its own product on its own domain; it sits below Finance purely because
-     that's where it reads best on the page. */
-  #worlds-eye-view { padding-top: 40px; padding-bottom: 44px }
-  .wev-name .w { color: var(--text) } .wev-name .v { color: #38bdf8; font-weight: 400 }
-  .wev-collage { position: relative; height: 372px }
-  .win-wev-world { width: 64%; left: 0; top: 24px; z-index: 1 }
-  .win-wev-world img { height: 204px }
-  .win-wev-city { width: 49%; right: 0; top: 100px; z-index: 3 }
-  .win-wev-city img { height: 230px }
-  .win-wev-volcano { width: 42%; left: 5%; bottom: 0; z-index: 2 }
-  .win-wev-volcano img { height: 116px }
-  .tag.cam { border-color: #1a3350; color: #38bdf8 }
-  @media (max-width: 760px) {
-    .feature-flip { grid-template-columns: 1fr }
-    .wev-collage { height: 320px }
-  }
-
-  /* ---- PLUGINS HUB (home) ---- */
-  .plugin-hub {
-    background: var(--surface); border: 1px solid var(--border); border-radius: 12px;
-    padding: 32px; transition: border-color .2s;
-  }
-  .plugin-hub:hover { border-color: #3a3228 }
-  .plugin-hub > p { color: var(--muted); max-width: 720px }
-  .plugin-strip {
-    display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; margin: 24px 0 4px;
-  }
-  .plugin-thumb {
-    display: block; background: var(--surface2); border: 1px solid var(--border);
-    border-radius: 10px; overflow: hidden; transition: border-color .2s, transform .12s;
-    color: var(--text);
-  }
-  .plugin-thumb:hover { border-color: #4a3f2c; transform: translateY(-2px); text-decoration: none }
-  .plugin-thumb img {
-    width: 100%; aspect-ratio: 16/10; object-fit: cover; display: block;
-    border-bottom: 1px solid var(--border);
-  }
-  .plugin-thumb .pt-body { padding: 12px 14px 14px }
-  .plugin-thumb .pt-name { font-weight: 700; color: var(--accent2); font-size: 1rem }
-  .plugin-thumb .pt-desc { color: var(--muted); font-size: .82rem; margin-top: 2px }
-  .pt-status {
-    display: inline-block; margin-top: 8px; padding: 2px 9px; border-radius: 4px;
-    font-size: .68rem; font-weight: 700; letter-spacing: .06em; text-transform: uppercase;
-  }
-  .pt-status.free { background: #16281a; border: 1px solid #2c4a30; color: var(--green) }
-  .pt-status.soon { background: #1a2a3a; border: 1px solid #2a4a5a; color: #5bb8d4 }
-  .pt-status.paid { background: #2a2410; border: 1px solid #4a3f1a; color: var(--accent2) }
-  .plugin-thumb img.contain { object-fit: contain; background: #0a1119 }
-  @media (max-width: 640px) { .plugin-strip { grid-template-columns: 1fr } }
 
   /* ---- ABOUT ---- */
-  .about-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 28px }
-  .about-card {
-    background: var(--surface); border: 1px solid var(--border); border-radius: 10px;
-    padding: 24px;
-  }
-  .about-card h3 { margin-bottom: 8px }
+  .about-lead { max-width: 720px; margin-bottom: 32px }
+  .about-lead p { color: var(--muted); margin-bottom: 14px }
+  .about-lead p:first-child { color: var(--text); font-size: 1.1rem }
+  .about-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px }
+  .about-card { background: var(--surface); border: 1px solid var(--border); border-radius: 10px; padding: 24px }
+  .about-card h3 { font-size: 1.08rem; margin-bottom: 8px }
   .about-card p { color: var(--muted); font-size: .95rem }
-
-  /* ---- SKILLS ---- */
   .skills-grid { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 8px }
-  .skill {
-    padding: 6px 14px; background: var(--surface); border: 1px solid var(--border);
-    border-radius: 6px; font-size: .85rem; color: var(--text);
-  }
+  .skill { padding: 5px 13px; border: 1px solid var(--border); border-radius: 6px; font-size: .84rem; color: var(--muted) }
 
-  /* ---- CONTACT ---- */
+  /* ---- CONTACT, FOOTER ---- */
   .contact-row { display: flex; flex-wrap: wrap; gap: 20px; margin-top: 12px }
   .contact-item { color: var(--muted); font-size: .95rem }
-  .contact-item a { color: var(--accent2) }
+  footer { padding: 32px 0; border-top: 1px solid var(--border); color: var(--muted); font-size: .82rem }
+  footer .wrap { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 12px 24px }
+  .foot-links { display: flex; flex-wrap: wrap; gap: 6px 18px }
+  footer a { color: var(--muted) }
+  footer a:hover { color: var(--text) }
 
-  /* ---- FOOTER ---- */
-  footer {
-    padding: 32px 0; border-top: 1px solid var(--border);
-    text-align: center; color: var(--muted); font-size: .8rem;
-  }
-
-  /* ---- RESPONSIVE ---- */
   @media (max-width: 700px) {
+    section { padding: 56px 0 }
     .project-card { grid-template-columns: 1fr; padding: 20px }
     .project-card.reverse { direction: ltr }
     .about-grid { grid-template-columns: 1fr }
-    .hero { padding: 60px 0 50px }
+    .hero { padding: 64px 0 48px }
+    .proof { margin-top: 44px }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    html { scroll-behavior: auto }
+    .status.live .dot { animation: none }
+    .plugin-thumb:hover { transform: none }
   }
 </style>
 </head>
 <body>
+<a class="skip" href="#main">Skip to content</a>
 
-<nav>
+<nav aria-label="Main">
   <div class="nav-inner">
-    <div class="brand">CortiCorp</div>
+    <a class="brand" href="#top" aria-label="CortiCorp, top of page">
+      <svg width="20" height="20" viewBox="0 0 20 20" aria-hidden="true">
+        <path d="M10 5v8M10 10H4v4M10 10h6v4" fill="none" stroke="#4d6b7b" stroke-width="1.5"/>
+        <circle cx="10" cy="4" r="3" fill="#d8a75b"/><circle cx="4" cy="15.5" r="2.5" fill="#49a6a3"/>
+        <circle cx="10" cy="15.5" r="2.5" fill="#49a6a3"/><circle cx="16" cy="15.5" r="2.5" fill="#49a6a3"/>
+      </svg>
+      CortiCorp
+    </a>
     <div class="nav-links">
-      <a href="#news">News</a>
-      <a href="#finance">Finance</a>
-      <a href="team.html">The team</a>
-      <a href="#opd">opd</a>
+      <a href="#how">How it works</a>
+      <a href="#products">Products</a>
       <a href="#plugins">Plugins</a>
       <a href="#projects">Projects</a>
-      <a href="#coming-soon">Coming soon</a>
+      <a href="team.html">The team</a>
       <a href="updates/">Updates</a>
-      <a href="journal.html">Highlights</a>
-      <a href="projects.html">Registry</a>
       <a href="#about">About</a>
       <a href="#contact">Contact</a>
     </div>
   </div>
 </nav>
 
-<!-- ==================== HERO ==================== -->
-<section class="hero">
+<main id="main">
+
+<!-- ==================== HERO: what we believe ==================== -->
+<section class="hero" id="top">
   <div class="wrap">
-    <h1>Software that thinks.</h1>
-    <p>I build AI-powered applications, audio instruments, and data systems.
-       25+ years of engineering, now focused on what AI makes possible.</p>
-    <div class="subtitle">
-      <span>AI Applications</span>
-      <span>Data Engineering</span>
-      <span>Audio / DSP</span>
-      <span>Full Stack</span>
+    <p class="eyebrow">CortiCorp &middot; software that thinks</p>
+    <h1>We build organizations, <span class="dim">not applications.</span></h1>
+    <p class="lede">Autonomous systems of specialized AI agents that research, create, coordinate, and
+       operate real-world projects&mdash;continuously.</p>
+    <p class="qualifier">Specialists that divide the work, check each other, and answer to
+       <b>human judgment</b>.</p>
+    <div class="cta">
+      <a class="btn primary" href="#how">See how it works</a>
+      <a class="btn" href="#products">Open the working products</a>
     </div>
+
+    <div class="proof" aria-label="The organization in numbers">
+      <a class="human" href="team.html"><span class="n">1</span><span class="l">human, who holds the only merge</span></a>
+      <a href="team.html#roster"><span class="n">12</span><span class="l">named AI roles on staff</span></a>
+      <a href="#finance"><span class="n">44</span><span class="l">simulated funds deciding daily, in public</span></a>
+      <a href="team.html"><span class="n">580+</span><span class="l">pull requests, every one human-merged</span></a>
+      <a href="#worlds-eye-view"><span class="n">53,000</span><span class="l">public webcams on one live map</span></a>
+      <a href="#products"><span class="n">4</span><span class="l">live web products, open to anyone</span></a>
+    </div>
+    <p class="proof-note">Counts as published on the team page and the products themselves, November 2026.</p>
   </div>
 </section>
 
-<!-- ==================== NEWS (featured) ==================== -->
-<section id="news">
+<!-- ==================== HOW IT WORKS ==================== -->
+<section id="how">
   <div class="wrap">
-    <p class="eyebrow">Live now</p>
-    <h2>Corticorp News</h2>
-    <div class="news-feature">
-      <div class="news-collage">
-        <div class="win win-situation">
-          <div class="bar"><i class="r"></i><i class="y"></i><i class="g"></i><span>Situation Room &mdash; live map</span></div>
-          <img src="projects/news/img/situation.jpg" alt="Live Situation Room satellite map of the Russia-Ukraine war with front-line overlay">
-        </div>
-        <div class="win win-analytics">
-          <div class="bar"><i class="r"></i><i class="y"></i><i class="g"></i><span>Verification Desk</span></div>
-          <img src="projects/news/img/verification.jpg" alt="Corticorp News Verification Desk showing claim statuses and evidence">
-        </div>
-        <div class="win win-feed">
-          <div class="bar"><i class="r"></i><i class="y"></i><i class="g"></i><span>Top stories</span></div>
-          <img src="projects/news/img/top-stories.jpg" alt="The Corticorp News front page, a grid of top stories with photos and a Share control on every card">
-        </div>
-      </div>
-      <div class="news-copy">
-        <span class="featured-badge"><span class="dot"></span> Live</span>
-        <h3 style="font-size:1.25rem"><span class="np-name"><span class="c">Corticorp</span> <span class="n">News</span></span></h3>
-        <p style="color:var(--muted); margin-top:6px">An AI-curated digest that reads dozens of paywall-free
-           outlets and gives you <strong>one synthesized summary per real-world event</strong> &mdash; not ten
-           near-duplicate headlines. Circulating claims get checked by a transparent
-           <strong>Verification Desk</strong>, and ongoing conflicts get their own live, map-driven
-           situation rooms, with full-text search over every event ever published. Since October 2026
-           the front page is <strong>Top stories</strong>, and every story, section and situation room
-           can be shared with its own preview card. The markets side of the app has since moved out to
-           its own domain as <a href="#finance">Corticorp Finance</a>.</p>
-        <div class="project-meta">
-          <span class="tag ai">Claude API</span>
-          <span class="tag web">Next.js 16</span>
-          <span class="tag">SQLite</span>
-          <span class="tag">Leaflet maps</span>
-        </div>
-        <a class="project-link" href="projects/news/">Learn more &rarr;</a>
-        <a class="project-link" href="https://news.corticorp.com" target="_blank" rel="noopener"
-           style="margin-left:8px">Open live &rarr;</a>
-      </div>
-    </div>
-  </div>
-</section>
+    <p class="eyebrow">How it works</p>
+    <h2>A staff with a chain of command, not one model with a long prompt</h2>
+    <p class="intro">The things that make a human organization dependable also work for AI agents:
+       narrow jobs, limited access, written hand-offs, review by someone else, and a record of who
+       said what. This is the organization that writes, checks and improves Corticorp News and
+       Corticorp Finance every day.</p>
 
-<!-- ==================== CORTICORP FINANCE (split out of News, own domain) ==================== -->
-<section id="finance">
-  <div class="wrap">
-    <p class="eyebrow">Now its own product</p>
-    <h2>Corticorp Finance</h2>
-    <div class="news-feature feature-flip">
-      <div class="news-copy">
-        <span class="featured-badge"><span class="dot"></span> Live</span>
-        <h3 style="font-size:1.25rem"><span class="fin-name"><span class="c">Corticorp</span> <span class="f">Finance</span></span></h3>
-        <p style="color:var(--muted); margin-top:6px">The markets work that grew up inside News now
-           stands on its own domain. <strong>Forty-four simulated funds</strong> run side by side on
-           the same market, each with its own stated discipline, each publishing every decision along
-           with the reasoning and the exact inputs behind it. Around them: a <strong>Market Pulse</strong>
-           that has become a daily markets newspaper with seven editions and four desk tools, a share
-           card for every edition carrying a chart that fits what it says, 1,239 persisted data series,
-           an earnings and macro calendar, and an <strong>AI Board</strong> that reviews the roster in
-           public. Simulated, and not investment advice.</p>
-        <div class="project-meta">
-          <span class="tag ai">Claude API</span>
-          <span class="tag web">Next.js 16</span>
-          <span class="tag fin">44 funds</span>
-          <span class="tag">SQLite</span>
-        </div>
-        <a class="project-link" href="projects/finance/">Learn more &rarr;</a>
-        <a class="project-link" href="https://finance.corticorp.com" target="_blank" rel="noopener"
-           style="margin-left:8px">Open live &rarr;</a>
-        <a class="project-link" href="team.html" style="margin-left:8px">Meet the virtual team &rarr;</a>
-      </div>
-      <div class="fin-collage">
-        <div class="win win-fin-strategies">
-          <div class="bar"><i class="r"></i><i class="y"></i><i class="g"></i><span>The roster against the index</span></div>
-          <img src="projects/finance/img/performance.jpg" alt="Every fund's return since inception plotted against the S&P 500, with 26 of 26 ranked funds ahead of the index">
-        </div>
-        <div class="win win-fin-categories">
-          <div class="bar"><i class="r"></i><i class="y"></i><i class="g"></i><span>The Board</span></div>
-          <img src="projects/finance/img/board.jpg" alt="The Board page's chain of command diagram, from the operator down through the Judge, Librarian and nine specialist roles">
-        </div>
-        <div class="win win-fin-pulse">
-          <div class="bar"><i class="r"></i><i class="y"></i><i class="g"></i><span>Market Pulse, Sector edition</span></div>
-          <img src="projects/finance/img/edition.jpg" alt="A dated Sector edition of the Market Pulse with its headline and a 60-session Energy chart drawn from the stored numbers">
+    <figure class="org" aria-label="How the organization behind Corticorp News and Finance is arranged: one human operator directs two groups of specialized AI roles, the Board which reads the code and the Newsroom which reads the data, and their work reaches two public products">
+      <div class="tier">
+        <div class="tier-label"><b>01</b>Direction</div>
+        <div class="node human">
+          <h4>The operator <small>one human</small></h4>
+          <p>Sets priorities, reads what the team proposes, accepts or declines it, and holds the
+             only merge, the deploy and the production keys.</p>
         </div>
       </div>
-    </div>
-  </div>
-</section>
+      <div class="flow"><span class="dn">priorities and decisions</span><span class="up">findings, work items, pull requests</span></div>
 
-<!-- ==================== OPD (newest project) ==================== -->
-<section id="opd">
-  <div class="wrap">
-    <p class="eyebrow">Newest project, in build</p>
-    <h2>The Open Page Document</h2>
-    <div class="news-feature">
-      <div class="opd-collage">
-        <div class="win win-opd-viewer">
-          <div class="bar"><i class="r"></i><i class="y"></i><i class="g"></i><span>Viewer, a Market Pulse edition opened by link</span></div>
-          <img src="projects/opd/img/viewer-pulse.jpg" alt="The opd viewer showing a Corticorp Finance Market Pulse edition with its share card chart, an outline, and a provenance bar naming where the file came from">
+      <div class="tier">
+        <div class="tier-label"><b>02</b>Specialists</div>
+        <div class="wings">
+          <div class="node">
+            <h4>The Board <small>reads the code, never the live data</small></h4>
+            <ul class="chips">
+              <li>System Architect</li><li>AI Architect</li><li>Security Expert</li><li>Data Steward</li><li>Software Engineer</li>
+            </ul>
+            <p>Audits the system and files what it finds. Only the Engineer writes code, in a
+               branch, as a pull request. Nobody here merges.</p>
+          </div>
+          <div class="wall" aria-hidden="true"><span>separated</span></div>
+          <div class="node">
+            <h4>The Newsroom <small>reads the data, never the code</small></h4>
+            <ul class="chips">
+              <li>Editor</li><li>Auditor</li><li>Librarian</li><li>Marketer</li>
+              <li class="group">7 market desks</li><li class="group">3 news desks</li><li class="group">44 strategists</li>
+            </ul>
+            <p>The Editor directs the writing desks by note. The Auditor reads the record for stale
+               feeds and unsupported claims. The Librarian is the one route to the web.</p>
+          </div>
         </div>
-        <div class="win win-opd-import">
-          <div class="bar"><i class="r"></i><i class="y"></i><i class="g"></i><span>Import a PDF</span></div>
-          <img src="projects/opd/img/import.jpg" alt="The opd PDF import page, which processes every PDF on the device and offers to keep the original page layout">
-        </div>
-        <div class="win win-opd-form">
-          <div class="bar"><i class="r"></i><i class="y"></i><i class="g"></i><span>Editor, a filled form</span></div>
-          <img src="projects/opd/img/editor-form.jpg" alt="The opd editor with a volunteer application form filled in, seven of seven fields complete, and a Save filled copy button">
-        </div>
-        <img class="opd-logo-badge" src="projects/opd/img/logo.png" alt="The opd logo, an open book whose pages form a butterfly&rsquo;s wings above the letters OPD" width="118" height="118">
       </div>
-      <div class="news-copy">
-        <span class="featured-badge build"><span class="dot"></span> In build, pre-alpha</span>
-        <div class="opd-head"><img src="projects/opd/img/logo-128.png" alt="" width="56" height="56"><h3 style="font-size:1.25rem;margin:0"><span class="opd-name"><span class="o">opd</span> <span class="d">the Open Page Document</span></span></h3></div>
-        <p style="color:var(--muted); margin-top:6px">An open file format meant to replace PDF in the common
-           case: one <strong>.opd</strong> file carries a clean, reflowable source in a strict subset of
-           HTML, its fonts, and optionally a frozen copy of the exact pages, bound to the source by hash.
-           Around it, a <strong>viewer, an editor and a PDF importer</strong> that are each a single HTML
-           file, run offline from any folder, and never phone home. Write a document, add form fields,
-           send it, have it filled and signed, and collect the returned copies. It opens Word and PDF
-           files and downloads as Word, OpenDocument or PDF.</p>
-        <div class="project-meta">
-          <span class="tag opd">Open format</span>
-          <span class="tag web">TypeScript</span>
-          <span class="tag">Single-file apps</span>
-          <span class="tag">Ed25519 signatures</span>
+      <div class="flow"><span class="dn">merged code</span><span class="dn">daily editions, fund decisions, verified claims</span><span class="up">the public record, read back and audited</span></div>
+
+      <div class="tier">
+        <div class="tier-label"><b>03</b>Working products</div>
+        <div class="products">
+          <a class="node" href="#news"><h4>Corticorp News</h4><span class="where">news.corticorp.com</span></a>
+          <a class="node" href="#finance"><h4>Corticorp Finance</h4><span class="where">finance.corticorp.com</span></a>
         </div>
-        <a class="project-link" href="projects/opd/">Learn more &rarr;</a>
-        <a class="project-link" href="https://docs.corticorp.com" target="_blank" rel="noopener"
-           style="margin-left:8px">Open the app &rarr;</a>
+      </div>
+      <figcaption>Simplified from the full chart. This is one organization, not a template: each
+         project gets the structure its work needs.
+         <a href="team.html">Meet the whole team &rarr;</a></figcaption>
+    </figure>
+
+    <div class="principles">
+      <div class="principle">
+        <h3><span>A</span>Delegation</h3>
+        <p>Each role has one job and sees only what that job needs. One role writes code. One role
+           reaches the web. Nobody does everything.</p>
+      </div>
+      <div class="principle">
+        <h3><span>B</span>Coordination</h3>
+        <p>Work moves in writing. A finding becomes a work item, a work item becomes a pull request,
+           and the team has filed more than 760 items on itself.</p>
+      </div>
+      <div class="principle">
+        <h3><span>C</span>Oversight</h3>
+        <p>Propose, never ship. The merge, the deploy and the production keys are out of every AI
+           role&rsquo;s reach by construction, not by request.</p>
+      </div>
+      <div class="principle">
+        <h3><span>D</span>Accountability</h3>
+        <p>Every fund&rsquo;s reasoning, every Board finding and every item the operator declined is
+           published. The team is scored on what it said.</p>
       </div>
     </div>
   </div>
 </section>
 
-<!-- ==================== WORLD'S EYE VIEW (separate product, own domain) ==================== -->
-<section id="worlds-eye-view">
+<!-- ==================== PRODUCTS: the proof ==================== -->
+<section id="products">
   <div class="wrap">
-    <p class="eyebrow">Also live</p>
-    <h2>World&rsquo;s Eye View</h2>
-    <div class="news-feature">
-      <div class="wev-collage">
-        <div class="win win-wev-world">
-          <div class="bar"><i class="r"></i><i class="y"></i><i class="g"></i><span>53,361 cameras worldwide</span></div>
-          <img src="projects/worlds-eye-view/img/world-2026-10.jpg" alt="World's Eye View zoomed out over the Atlantic, live webcam thumbnails on a satellite map and a counter reading 53,361 cameras worldwide">
+    <p class="eyebrow">Proof</p>
+    <h2>Working products, open to anyone</h2>
+    <p class="intro">News and Finance are written, checked and audited every day by the organization
+       above. Everything here is running software you can open now and judge for yourself.</p>
+
+    <div class="features">
+
+      <!-- NEWS -->
+      <article class="feature" id="news">
+        <div class="collage">
+          <div class="win a">
+            <div class="bar"><i class="r"></i><i class="y"></i><i class="g"></i><span>Situation Room &mdash; live map</span></div>
+            <img src="projects/news/img/situation.jpg" alt="Live Situation Room satellite map of the Russia-Ukraine war with front-line overlay">
+          </div>
+          <div class="win c">
+            <div class="bar"><i class="r"></i><i class="y"></i><i class="g"></i><span>Verification Desk</span></div>
+            <img src="projects/news/img/verification.jpg" alt="Corticorp News Verification Desk showing claim statuses and evidence">
+          </div>
+          <div class="win b">
+            <div class="bar"><i class="r"></i><i class="y"></i><i class="g"></i><span>Top stories</span></div>
+            <img src="projects/news/img/top-stories.jpg" alt="The Corticorp News front page, a grid of top stories with photos and a Share control on every card">
+          </div>
         </div>
-        <div class="win win-wev-volcano">
-          <div class="bar"><i class="r"></i><i class="y"></i><i class="g"></i><span>Volcano cams</span></div>
-          <img src="projects/worlds-eye-view/img/volcano.jpg" alt="Alaska Volcano Observatory cameras strung along the Aleutian arc">
+        <div>
+          <div class="statusline"><span class="status live"><span class="dot"></span>Live</span><span class="where">news.corticorp.com</span></div>
+          <h3><span class="np-name"><span class="c">Corticorp</span> <span class="n">News</span></span></h3>
+          <p class="desc">An AI-curated digest that reads dozens of paywall-free
+             outlets and gives you <strong>one synthesized summary per real-world event</strong> &mdash; not ten
+             near-duplicate headlines. Circulating claims get checked by a transparent
+             <strong>Verification Desk</strong>, and ongoing conflicts get their own live, map-driven
+             situation rooms, with full-text search over every event ever published. Since October 2026
+             the front page is <strong>Top stories</strong>, and every story, section and situation room
+             can be shared with its own preview card. The markets side of the app has since moved out to
+             its own domain as <a href="#finance">Corticorp Finance</a>.</p>
+          <div class="project-meta">
+            <span class="tag ai">Claude API</span>
+            <span class="tag web">Next.js 16</span>
+            <span class="tag">SQLite</span>
+            <span class="tag">Leaflet maps</span>
+          </div>
+          <div class="actions">
+            <a class="project-link" href="https://news.corticorp.com" target="_blank" rel="noopener">Open live &rarr;</a>
+            <a class="project-link" href="projects/news/">Learn more &rarr;</a>
+          </div>
         </div>
-        <div class="win win-wev-city">
-          <div class="bar"><i class="r"></i><i class="y"></i><i class="g"></i><span>Tampa Bay at night</span></div>
-          <img src="projects/worlds-eye-view/img/city.jpg" alt="Dozens of live traffic camera thumbnails covering Tampa Bay at night">
+      </article>
+
+      <!-- FINANCE (split out of News, own domain; mirrored so the cards do not read as one repeated block) -->
+      <article class="feature flip" id="finance">
+        <div>
+          <div class="statusline"><span class="status live"><span class="dot"></span>Live</span><span class="where">finance.corticorp.com</span></div>
+          <h3><span class="fin-name"><span class="c">Corticorp</span> <span class="f">Finance</span></span></h3>
+          <p class="desc">The markets work that grew up inside News now
+             stands on its own domain. <strong>Forty-four simulated funds</strong> run side by side on
+             the same market, each with its own stated discipline, each publishing every decision along
+             with the reasoning and the exact inputs behind it. Around them: a <strong>Market Pulse</strong>
+             that has become a daily markets newspaper with seven editions and four desk tools, a share
+             card for every edition carrying a chart that fits what it says, 1,239 persisted data series,
+             an earnings and macro calendar, and an <strong>AI Board</strong> that reviews the roster in
+             public. Simulated, and not investment advice.</p>
+          <div class="project-meta">
+            <span class="tag ai">Claude API</span>
+            <span class="tag web">Next.js 16</span>
+            <span class="tag fin">44 funds</span>
+            <span class="tag">SQLite</span>
+          </div>
+          <div class="actions">
+            <a class="project-link" href="https://finance.corticorp.com" target="_blank" rel="noopener">Open live &rarr;</a>
+            <a class="project-link" href="projects/finance/">Learn more &rarr;</a>
+            <a class="project-link" href="team.html">Meet the virtual team &rarr;</a>
+          </div>
         </div>
-      </div>
-      <div class="news-copy">
-        <span class="featured-badge"><span class="dot"></span> Live</span>
-        <h3 style="font-size:1.25rem"><span class="wev-name"><span class="w">World&rsquo;s Eye</span> <span class="v">View</span></span></h3>
-        <p style="color:var(--muted); margin-top:6px">Around <strong>53,000 public webcams</strong>
-           from traffic authorities, observatories and weather networks on five continents, quilted
-           onto one satellite map as live thumbnails: volcanoes, harbours, city streets, ocean buoys
-           and an Antarctic research station. Zoom in and a city fills with windows; watch one full
-           screen, send several to a <strong>multicam wall</strong>, follow the cameras along a driving
-           route, or share a view and the link carries a live preview. Frames refresh on their own
-           schedules, so the map drifts through the day with the world.</p>
-        <div class="project-meta">
-          <span class="tag web">Next.js 16</span>
-          <span class="tag cam">Leaflet</span>
-          <span class="tag">Esri imagery</span>
-          <span class="tag">53,000 cameras</span>
+        <div class="collage">
+          <div class="win a">
+            <div class="bar"><i class="r"></i><i class="y"></i><i class="g"></i><span>The roster against the index</span></div>
+            <img loading="lazy" decoding="async" src="projects/finance/img/performance.jpg" alt="Every fund's return since inception plotted against the S&P 500, with 26 of 26 ranked funds ahead of the index">
+          </div>
+          <div class="win c">
+            <div class="bar"><i class="r"></i><i class="y"></i><i class="g"></i><span>The Board</span></div>
+            <img loading="lazy" decoding="async" src="projects/finance/img/board.jpg" alt="The Board page's chain of command diagram, from the operator down through the Judge, Librarian and nine specialist roles">
+          </div>
+          <div class="win b">
+            <div class="bar"><i class="r"></i><i class="y"></i><i class="g"></i><span>Market Pulse, Sector edition</span></div>
+            <img loading="lazy" decoding="async" src="projects/finance/img/edition.jpg" alt="A dated Sector edition of the Market Pulse with its headline and a 60-session Energy chart drawn from the stored numbers">
+          </div>
         </div>
-        <a class="project-link" href="projects/worlds-eye-view/">Learn more &rarr;</a>
-        <a class="project-link" href="https://cams.corticorp.com" target="_blank" rel="noopener"
-           style="margin-left:8px">Open live &rarr;</a>
-      </div>
+      </article>
+
+      <!-- OPD -->
+      <article class="feature" id="opd">
+        <div class="collage">
+          <div class="win a">
+            <div class="bar"><i class="r"></i><i class="y"></i><i class="g"></i><span>Viewer, a Market Pulse edition opened by link</span></div>
+            <img loading="lazy" decoding="async" src="projects/opd/img/viewer-pulse.jpg" alt="The opd viewer showing a Corticorp Finance Market Pulse edition with its share card chart, an outline, and a provenance bar naming where the file came from">
+          </div>
+          <div class="win c">
+            <div class="bar"><i class="r"></i><i class="y"></i><i class="g"></i><span>Import a PDF</span></div>
+            <img loading="lazy" decoding="async" src="projects/opd/img/import.jpg" alt="The opd PDF import page, which processes every PDF on the device and offers to keep the original page layout">
+          </div>
+          <div class="win b">
+            <div class="bar"><i class="r"></i><i class="y"></i><i class="g"></i><span>Editor, a filled form</span></div>
+            <img loading="lazy" decoding="async" src="projects/opd/img/editor-form.jpg" alt="The opd editor with a volunteer application form filled in, seven of seven fields complete, and a Save filled copy button">
+          </div>
+          <img class="opd-logo-badge" loading="lazy" decoding="async" src="projects/opd/img/logo.png" alt="The opd logo, an open book whose pages form a butterfly&rsquo;s wings above the letters OPD" width="118" height="118">
+        </div>
+        <div>
+          <div class="statusline"><span class="status build"><span class="dot"></span>Pre-alpha, in build</span><span class="where">docs.corticorp.com</span></div>
+          <div class="opd-head"><img loading="lazy" decoding="async" src="projects/opd/img/logo-128.png" alt="" width="56" height="56"><h3><span class="opd-name"><span class="o">opd</span> <span class="d">the Open Page Document</span></span></h3></div>
+          <p class="desc">An open file format meant to replace PDF in the common
+             case: one <strong>.opd</strong> file carries a clean, reflowable source in a strict subset of
+             HTML, its fonts, and optionally a frozen copy of the exact pages, bound to the source by hash.
+             Around it, a <strong>viewer, an editor and a PDF importer</strong> that are each a single HTML
+             file, run offline from any folder, and never phone home. Write a document, add form fields,
+             send it, have it filled and signed, and collect the returned copies. It opens Word and PDF
+             files and downloads as Word, OpenDocument or PDF.</p>
+          <div class="project-meta">
+            <span class="tag opd">Open format</span>
+            <span class="tag web">TypeScript</span>
+            <span class="tag">Single-file apps</span>
+            <span class="tag">Ed25519 signatures</span>
+          </div>
+          <div class="actions">
+            <a class="project-link" href="https://docs.corticorp.com" target="_blank" rel="noopener">Open the app &rarr;</a>
+            <a class="project-link" href="projects/opd/">Learn more &rarr;</a>
+          </div>
+        </div>
+      </article>
+
+      <!-- WORLD'S EYE VIEW -->
+      <article class="feature flip" id="worlds-eye-view">
+        <div>
+          <div class="statusline"><span class="status live"><span class="dot"></span>Live</span><span class="where">cams.corticorp.com</span></div>
+          <h3><span class="wev-name">World&rsquo;s Eye <span class="v">View</span></span></h3>
+          <p class="desc">Around <strong>53,000 public webcams</strong>
+             from traffic authorities, observatories and weather networks on five continents, quilted
+             onto one satellite map as live thumbnails: volcanoes, harbours, city streets, ocean buoys
+             and an Antarctic research station. Zoom in and a city fills with windows; watch one full
+             screen, send several to a <strong>multicam wall</strong>, follow the cameras along a driving
+             route, or share a view and the link carries a live preview. Frames refresh on their own
+             schedules, so the map drifts through the day with the world.</p>
+          <div class="project-meta">
+            <span class="tag web">Next.js 16</span>
+            <span class="tag cam">Leaflet</span>
+            <span class="tag">Esri imagery</span>
+            <span class="tag">53,000 cameras</span>
+          </div>
+          <div class="actions">
+            <a class="project-link" href="https://cams.corticorp.com" target="_blank" rel="noopener">Open live &rarr;</a>
+            <a class="project-link" href="projects/worlds-eye-view/">Learn more &rarr;</a>
+          </div>
+        </div>
+        <div class="collage">
+          <div class="win a">
+            <div class="bar"><i class="r"></i><i class="y"></i><i class="g"></i><span>53,361 cameras worldwide</span></div>
+            <img loading="lazy" decoding="async" src="projects/worlds-eye-view/img/world-2026-10.jpg" alt="World's Eye View zoomed out over the Atlantic, live webcam thumbnails on a satellite map and a counter reading 53,361 cameras worldwide">
+          </div>
+          <div class="win c">
+            <div class="bar"><i class="r"></i><i class="y"></i><i class="g"></i><span>Volcano cams</span></div>
+            <img loading="lazy" decoding="async" src="projects/worlds-eye-view/img/volcano.jpg" alt="Alaska Volcano Observatory cameras strung along the Aleutian arc">
+          </div>
+          <div class="win b">
+            <div class="bar"><i class="r"></i><i class="y"></i><i class="g"></i><span>Tampa Bay at night</span></div>
+            <img loading="lazy" decoding="async" src="projects/worlds-eye-view/img/city.jpg" alt="Dozens of live traffic camera thumbnails covering Tampa Bay at night">
+          </div>
+        </div>
+      </article>
+
     </div>
   </div>
 </section>
@@ -493,13 +633,10 @@
 <!-- ==================== PLUGINS ==================== -->
 <section id="plugins">
   <div class="wrap">
-    <p class="eyebrow">Audio software</p>
+    <p class="eyebrow">Portfolio &middot; audio software</p>
     <h2>Plugins</h2>
-    <p style="color:var(--muted); margin-bottom:28px; max-width:680px">
-      A growing line of VST3 instruments and effects, built in C++ with JUCE.
-    </p>
-    <!-- Plugins hub -->
-    <div class="plugin-hub">
+    <p class="intro">A growing line of VST3 instruments and effects, built in C++ with JUCE.</p>
+    <div class="hub">
       <h3>CortiCorp Plugins</h3>
       <p>Real-time audio plugins with hand-crafted interfaces and zero-allocation engines.
          Three have their own pages so far. Behind them are five more in build, including
@@ -508,27 +645,27 @@
 
       <div class="plugin-strip">
         <a class="plugin-thumb" href="music/plugins/CortSynth/">
-          <img src="music/plugins/CortSynth/img/main.png" alt="CortSynth VST3 synthesizer">
+          <img loading="lazy" decoding="async" src="music/plugins/CortSynth/img/main.png" alt="CortSynth VST3 synthesizer">
           <div class="pt-body">
             <div class="pt-name">CortSynth</div>
             <div class="pt-desc">Synth, sampler &amp; drum machine in one plugin.</div>
-            <span class="pt-status free">Free</span>
+            <span class="status free">Free</span>
           </div>
         </a>
         <a class="plugin-thumb" href="music/plugins/CortVerb/">
-          <img class="contain" src="music/plugins/CortVerb/img/main.png" alt="CortVerb VST3 reverb — dials and center console">
+          <img class="contain" loading="lazy" decoding="async" src="music/plugins/CortVerb/img/main.png" alt="CortVerb VST3 reverb — dials and center console">
           <div class="pt-body">
             <div class="pt-name">CortVerb</div>
             <div class="pt-desc">Hybrid-FDN reverb with live visualization.</div>
-            <span class="pt-status paid">$99</span>
+            <span class="status paid">$99</span>
           </div>
         </a>
         <a class="plugin-thumb" href="music/plugins/Ironclad/">
-          <img src="music/plugins/Ironclad/img/main.png" alt="Ironclad distortion plugin">
+          <img loading="lazy" decoding="async" src="music/plugins/Ironclad/img/main.png" alt="Ironclad distortion plugin">
           <div class="pt-body">
             <div class="pt-name">Ironclad</div>
             <div class="pt-desc">Amp-style distortion with four voicings.</div>
-            <span class="pt-status soon">Coming Soon</span>
+            <span class="status">Coming soon</span>
           </div>
         </a>
       </div>
@@ -539,65 +676,26 @@
         <span class="tag">DSP</span>
         <span class="tag">VST3</span>
       </div>
-      <a class="project-link" href="plugins/">Explore all plugins &rarr;</a>
+      <div class="actions"><a class="project-link" href="plugins/">Explore all plugins &rarr;</a></div>
     </div>
   </div>
 </section>
 
-<!-- ==================== PROJECTS ==================== -->
+<!-- ==================== MORE PROJECTS ==================== -->
 <section id="projects">
   <div class="wrap">
-    <p class="eyebrow">Recent work</p>
+    <p class="eyebrow">Portfolio &middot; more projects</p>
     <h2>Projects</h2>
     <div class="projects">
 
-      <!-- Apartment Finder -->
-      <div class="project-card">
-        <img class="project-img" src="img/apartment-finder.png"
-             alt="Apartment Finder dashboard with map">
-        <div>
-          <h3>Apartment Finder</h3>
-          <p>An AI-powered rental aggregator that scrapes listings from Craigslist,
-             Zillow, Apartments.com, and more. Gemini Vision scores photo quality and identifies
-             flooring, natural light, and kitchen style. Interactive map + filterable dashboard
-             with work-commute scoring.</p>
-          <div class="project-meta">
-            <span class="tag ai">Gemini API</span>
-            <span class="tag web">Python</span>
-            <span class="tag">Web Scraping</span>
-            <span class="tag">Leaflet</span>
-          </div>
-          <a class="project-link" href="projects/apartment-finder/">Learn more &rarr;</a>
-        </div>
-      </div>
-
-      <!-- CatfishCheck -->
-      <div class="project-card reverse">
-        <img class="project-img" src="img/catfishcheck.png"
-             alt="CatfishCheck investigation interface">
-        <div>
-          <h3>CatfishCheck</h3>
-          <p>A self-service investigation tool for verifying online identities. Upload photos,
-             phone numbers, social handles, and messages about a suspected scammer and get a
-             report highlighting red flags. Includes reverse image search, carrier lookup,
-             and a geo-verification beacon.</p>
-          <div class="project-meta">
-            <span class="tag ai">AI Analysis</span>
-            <span class="tag web">JavaScript</span>
-            <span class="tag">OSINT</span>
-            <span class="tag">Privacy</span>
-          </div>
-          <a class="project-link" href="projects/catfishcheck/">Learn more &rarr;</a>
-        </div>
-      </div>
-
       <!-- AlgoRythmic -->
       <div class="project-card">
-        <img class="project-img" src="img/algorythmic.svg"
+        <img class="project-img" loading="lazy" decoding="async" src="img/algorythmic.svg"
              alt="AlgoRythmic: a plain-English description compiles to editable rules, generates a queue you preview free, then saves to YouTube Music">
         <div>
+          <div class="statusline"><span class="status live"><span class="dot"></span>Live</span><span class="where">music.corticorp.com</span></div>
           <h3>AlgoRythmic</h3>
-          <p>A playlist builder for YouTube Music. Describe a vibe in plain English and it
+          <p class="desc">A playlist builder for YouTube Music. Describe a vibe in plain English and it
              compiles to selection rules you can actually edit &mdash; era, length, no live
              versions, never the same artist twice. Or seed it with one song and weight what
              &ldquo;similar&rdquo; means: same band, same era, same country, similar mood.
@@ -609,9 +707,52 @@
             <span class="tag">Postgres</span>
             <span class="tag">YouTube Data API</span>
           </div>
-          <a class="project-link" href="projects/algorythmic/">Learn more &rarr;</a>
-          <a class="project-link" href="https://music.corticorp.com" target="_blank" rel="noopener"
-             style="margin-left:8px">Try it &rarr;</a>
+          <div class="actions">
+            <a class="project-link" href="https://music.corticorp.com" target="_blank" rel="noopener">Try it &rarr;</a>
+            <a class="project-link" href="projects/algorythmic/">Learn more &rarr;</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Apartment Finder -->
+      <div class="project-card reverse">
+        <img class="project-img" loading="lazy" decoding="async" src="img/apartment-finder.png"
+             alt="Apartment Finder dashboard with map">
+        <div>
+          <div class="statusline"><span class="status">Demo</span><span class="where">June 2026 snapshot</span></div>
+          <h3>Apartment Finder</h3>
+          <p class="desc">An AI-powered rental aggregator that scrapes listings from Craigslist,
+             Zillow, Apartments.com, and more. Gemini Vision scores photo quality and identifies
+             flooring, natural light, and kitchen style. Interactive map + filterable dashboard
+             with work-commute scoring.</p>
+          <div class="project-meta">
+            <span class="tag ai">Gemini API</span>
+            <span class="tag web">Python</span>
+            <span class="tag">Web Scraping</span>
+            <span class="tag">Leaflet</span>
+          </div>
+          <div class="actions"><a class="project-link" href="projects/apartment-finder/">Learn more &rarr;</a></div>
+        </div>
+      </div>
+
+      <!-- CatfishCheck -->
+      <div class="project-card">
+        <img class="project-img" loading="lazy" decoding="async" src="img/catfishcheck.png"
+             alt="CatfishCheck investigation interface">
+        <div>
+          <div class="statusline"><span class="status">Browser tool</span><span class="where">runs on this site</span></div>
+          <h3>CatfishCheck</h3>
+          <p class="desc">A self-service investigation tool for verifying online identities. Upload photos,
+             phone numbers, social handles, and messages about a suspected scammer and get a
+             report highlighting red flags. Includes reverse image search, carrier lookup,
+             and a geo-verification beacon.</p>
+          <div class="project-meta">
+            <span class="tag ai">AI Analysis</span>
+            <span class="tag web">JavaScript</span>
+            <span class="tag">OSINT</span>
+            <span class="tag">Privacy</span>
+          </div>
+          <div class="actions"><a class="project-link" href="projects/catfishcheck/">Learn more &rarr;</a></div>
         </div>
       </div>
 
@@ -622,13 +763,13 @@
 <!-- ==================== COMING SOON ==================== -->
 <section id="coming-soon">
   <div class="wrap">
-    <p class="eyebrow">Coming soon</p>
+    <p class="eyebrow">Portfolio &middot; coming soon</p>
     <h2>Taglish Live: Tagalog to English, as you speak</h2>
-    <div class="plugin-hub">
-      <span class="featured-badge build"><span class="dot"></span> Built, first trials next</span>
-      <p style="margin-top:10px">Real-time transcription of Tagalog and Taglish speech, with an English translation a beat behind.
+    <div class="hub">
+      <div class="statusline"><span class="status build"><span class="dot"></span>Built, first trials next</span></div>
+      <p>Real-time transcription of Tagalog and Taglish speech, with an English translation a beat behind.
          The software is built and, in theory, ready to use; it goes live here once it has been tried on real speech.</p>
-      <a class="project-link" href="projects/tagalog-translator/">Details &rarr;</a>
+      <div class="actions"><a class="project-link" href="projects/tagalog-translator/">Details &rarr;</a></div>
     </div>
   </div>
 </section>
@@ -638,19 +779,29 @@
   <div class="wrap">
     <p class="eyebrow">Background</p>
     <h2>About</h2>
-    <p style="color:var(--muted); margin-bottom:28px; max-width:680px">
-      I'm Cort &mdash; a software engineer with 25+ years building systems for Fortune 500
-      companies and startups across finance, energy, healthcare, and marketing. These days I'm
-      focused on what happens when you put AI at the center of an application, not bolted on
-      as an afterthought.
-    </p>
+    <div class="about-lead">
+      <p>I&rsquo;m Cort &mdash; a software engineer with 25+ years building systems for Fortune 500
+         companies and startups across finance, energy, healthcare, and marketing.</p>
+      <p>For most of that time the work was conventional engineering: design the system, build it,
+         test it, ship it, keep it running. When AI models got good enough to do real work, I
+         started by putting one at the center of an application instead of bolting it on: a model
+         scoring rental photos in Apartment Finder, another writing one summary per real-world event
+         in Corticorp News. Then the projects outgrew a single model. Finance became 44 simulated
+         fund managers, each with its own discipline and its own published reasons, and keeping two
+         sites honest every day became the job of a staff: a Board that reads the code, a Newsroom
+         that reads the data, and me deciding what ships.</p>
+      <p>That is what CortiCorp builds now. When this site says &ldquo;we&rdquo;, it means me and
+         the organizations I direct, not a large human staff. And none of it works without the old
+         disciplines: data models, tests, audits, deploy paths and someone accountable for every
+         change. The agents do the work. The engineering is what makes the work worth trusting.</p>
+    </div>
 
     <div class="about-grid">
       <div class="about-card">
-        <h3>AI & Automation</h3>
-        <p>Building applications where Claude, Gemini, and vision models do real work &mdash;
-           generating content, scoring data, analyzing images, and driving decisions
-           that would take a human team days.</p>
+        <h3>AI organizations</h3>
+        <p>Systems where Claude models hold defined roles &mdash; writing,
+           scoring, auditing and reviewing each other&rsquo;s work &mdash; with a human decision
+           point and a public record of what each one said.</p>
       </div>
       <div class="about-card">
         <h3>Data Engineering</h3>
@@ -715,23 +866,33 @@
   <div class="wrap">
     <p class="eyebrow">Get in touch</p>
     <h2>Contact</h2>
-    <p style="color:var(--muted); margin-bottom:16px">
+    <p class="intro" style="margin-bottom:16px">
       Interested in working together, or have a question about one of my projects?
     </p>
     <div class="contact-row">
       <div class="contact-item">
         Email: <a href="mailto:info@corticorp.com">info@corticorp.com</a>
       </div>
-<div class="contact-item">
+      <div class="contact-item">
         CortSynth: <a href="mailto:cortsynth@corticorp.com">cortsynth@corticorp.com</a>
       </div>
     </div>
   </div>
 </section>
 
+</main>
+
 <footer>
   <div class="wrap">
-    &copy; <span id="year">2026</span> CortiCorp, LLC &middot; Clearwater, FL
+    <div>&copy; <span id="year">2026</span> CortiCorp, LLC &middot; Clearwater, FL</div>
+    <div class="foot-links">
+      <a href="team.html">The team</a>
+      <a href="updates/">Updates</a>
+      <a href="journal.html">Highlights</a>
+      <a href="projects.html">Registry</a>
+      <a href="#coming-soon">Coming soon</a>
+      <a href="#contact">Contact</a>
+    </div>
   </div>
 </footer>
 
