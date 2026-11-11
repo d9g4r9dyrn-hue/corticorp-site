@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>A staff, not a script: three weeks of the AI organization at work · CortiCorp</title>
+<meta name="description" content="Since October 19: the virtual team behind Corticorp News and Finance got its own public page, the Editor took charge of the writing desks, the Market Pulse tools became explorers, every page got a share button, News stories got fuller and the time filter reaches all the way back, opd learned Word, equations and review comments, and corticorp.com relaunched around one idea.">
+<meta property="og:title" content="A staff, not a script: three weeks of the AI organization at work">
+<meta property="og:description" content="The virtual team behind News and Finance in public, an Editor in charge of the writing desks, explorer tools, shares everywhere, fuller stories, opd learning Word, and a relaunched corticorp.com.">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://corticorp.com/updates/2026-11-11-a-staff-not-a-script.html">
+<meta property="og:image" content="https://corticorp.com/img/team-share.png">
+<meta property="og:image:alt" content="Corticorp's virtual team: one human operator above the Board and the Newsroom">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="A staff, not a script: three weeks of the AI organization at work">
+<meta name="twitter:description" content="The virtual team behind News and Finance in public, an Editor in charge of the writing desks, explorer tools, shares everywhere, fuller stories, opd learning Word, and a relaunched corticorp.com.">
+<meta name="twitter:image" content="https://corticorp.com/img/team-share.png">
+<link rel="canonical" href="https://corticorp.com/updates/2026-11-11-a-staff-not-a-script.html">
+<style>
+  :root {
+    --bg: #101923; --surface: #1c2c38; --surface2: #243744; --border: #30444f; --slate: #344c58;
+    --text: #e6edf1; --muted: #9db0ba; --accent: #49a6a3; --accent2: #8fd3ce; --amber: #d8a75b;
+    --green: #6fae6a; --maxw: 880px;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0 }
+  body {
+    background: var(--bg); color: var(--text);
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    line-height: 1.65; font-size: 17px; -webkit-font-smoothing: antialiased;
+  }
+  a { color: var(--accent2); text-decoration: none }
+  a:hover { text-decoration: underline }
+  .wrap { max-width: var(--maxw); margin: 0 auto; padding: 0 24px }
+
+  nav { position: sticky; top: 0; z-index: 10; background: rgba(16,25,35,.92);
+    backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px); border-bottom: 1px solid var(--border); }
+  .nav-inner { display: flex; align-items: center; justify-content: space-between;
+    max-width: var(--maxw); margin: 0 auto; padding: 0 24px; height: 56px; }
+  .brand { font-weight: 800; font-size: 1.1rem; color: var(--text); letter-spacing: .03em }
+  .nav-links a { margin-left: 24px; color: var(--muted); font-size: .9rem }
+  .nav-links a:hover { color: var(--text); text-decoration: none }
+
+  .hero { padding: 56px 0 40px; }
+  .kicker { display: inline-block; text-transform: uppercase; letter-spacing: .18em; font-size: .72rem;
+    color: var(--accent); border: 1px solid var(--border); background: var(--surface2);
+    padding: 6px 14px; border-radius: 999px; margin-bottom: 22px;
+    font-family: ui-monospace, "SF Mono", "Cascadia Mono", Consolas, monospace; }
+  .hero h1 { font-size: clamp(1.9rem, 4.5vw, 2.7rem); line-height: 1.15; margin-bottom: 16px; letter-spacing: -.015em }
+  .hero .lede { color: var(--text); max-width: 700px; font-size: 1.08rem; }
+  .hero .lede + .lede { margin-top: 14px; color: var(--muted) }
+
+  .cta-row { margin-top: 30px; display: flex; gap: 12px; flex-wrap: wrap }
+  .btn { display: inline-block; padding: 12px 24px; border-radius: 9px; font-weight: 700;
+    font-size: .95rem; border: 1px solid var(--slate); transition: background .15s ease; }
+  .btn:hover { text-decoration: none; background: var(--surface) }
+  .btn-primary { background: var(--accent); color: #06201f; border-color: var(--accent) }
+  .btn-primary:hover { background: #5bb5b1 }
+  .btn-ghost { background: var(--surface2); color: var(--accent2) }
+
+  section { padding: 44px 0; border-top: 1px solid #1b2a35 }
+  .eyebrow { text-transform: uppercase; letter-spacing: .18em; font-size: .72rem; color: var(--accent); margin-bottom: 10px;
+    font-family: ui-monospace, "SF Mono", "Cascadia Mono", Consolas, monospace; }
+  h2 { font-size: 1.45rem; line-height: 1.25; margin-bottom: 14px }
+  h3 { font-size: 1.05rem; margin-bottom: 6px }
+  section p { color: var(--muted) }
+  section p strong { color: var(--text) }
+  section p + p { margin-top: 14px }
+
+  .win { border-radius: 11px; overflow: hidden; border: 1px solid #3a4f5c;
+    background: #121c26; box-shadow: 0 22px 50px rgba(5,10,16,.55) }
+  .win .bar { display:flex; align-items:center; gap:6px; height:26px; padding:0 11px;
+    background:#22323f; border-bottom:1px solid #3a4f5c }
+  .win .bar i { width:9px; height:9px; border-radius:50%; background:#3a4048 }
+  .win .bar i.r{background:#e0605e} .win .bar i.y{background:#e0b24e} .win .bar i.g{background:#5fb85f}
+  .win .bar span { margin-left:7px; font-size:.64rem; color:#9db0ba }
+  .win img { display:block; width:100%; height:auto }
+
+  .roundup { display: grid; gap: 18px; margin-top: 8px }
+  .item { background: var(--surface); border: 1px solid var(--border); border-radius: 12px; padding: 20px 22px }
+  .item p { font-size: .95rem }
+  .item .links { margin-top: 12px; font-size: .9rem; font-weight: 600 }
+  .item .links a { margin-right: 16px }
+  .disclosure { margin-top: 8px; font-size: .85rem; font-style: italic }
+
+  footer { padding: 40px 0 56px; border-top: 1px solid var(--border); text-align: center; color: var(--muted); font-size: .85rem }
+  footer a { color: var(--muted) }
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-inner">
+    <a class="brand" href="/">CortiCorp</a>
+    <div class="nav-links">
+      <a href="/updates/">Updates</a>
+      <a href="/#projects">Projects</a>
+      <a href="/#contact">Contact</a>
+    </div>
+  </div>
+</nav>
+
+<div class="wrap hero">
+  <p class="kicker">Product update &middot; November 11, 2026</p>
+  <h1>A staff, not a script: three weeks of the AI organization at work</h1>
+  <p class="lede">Since the last update, the virtual team that writes, checks and improves
+    <strong>Corticorp News</strong> and <strong>Corticorp Finance</strong> got a public page of its own,
+    and the work it shipped in those three weeks is the best argument for it: about 175 changes to the
+    two sites, each one filed, built and reviewed by the team.</p>
+  <p class="lede">The Editor took charge of the writing desks, the Market Pulse tools became explorers,
+    a share button reached every page that has something worth sharing, and News stories got fuller.
+    The Open Page Document learned to read Word files, equations and review comments. And today
+    corticorp.com relaunched around the idea underneath all of it.</p>
+  <div class="cta-row">
+    <a class="btn btn-primary" href="/team.html">Meet the virtual team &rarr;</a>
+    <a class="btn btn-ghost" href="/">The new corticorp.com</a>
+  </div>
+</div>
+
+<section>
+  <div class="wrap">
+    <p class="eyebrow">The team</p>
+    <h2>The organization, in public</h2>
+    <p>On October 30 the <a href="/team.html">team page</a> went up: one human operator, a
+      <strong>Board</strong> of five roles that reads the code and never the live data, and a
+      <strong>Newsroom</strong> that reads the data and never the code, with the market desks, news desks
+      and simulated fund managers beneath them. It shows how a day's editions get written, how the team
+      files work on itself, and the rules that took the longest to get right: separation of powers,
+      accountability in public, and a chain of command where the merge, the deploy and the production
+      keys are out of every AI role's reach.</p>
+    <p>Two changes to the team itself came on October 25. <strong>The Editor became chief of the writing
+      desks</strong>, directing them by written note and holding the house rules on voice, facts and named
+      people. And the daily jobs moved to the newest generation of Claude models.</p>
+    <div class="win" style="margin:24px 0 4px">
+      <div class="bar"><i class="r"></i><i class="y"></i><i class="g"></i><span>corticorp.com/team.html</span></div>
+      <img src="/img/team-share.png" loading="lazy"
+        alt="Corticorp's virtual team: one human operator above the Board, which reads the code, and the Newsroom, which reads the data">
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <p class="eyebrow">Finance</p>
+    <h2>Tools you can walk through, and a story before the chart</h2>
+    <p>The four Market Pulse desk tools were rebuilt as <strong>explorers</strong> between October 28 and 29.
+      Market Anatomy opens on the day's standout name, the Commodity Explorer and Sector Supply Lines
+      follow the relationships between markets (gas, crude and grains paths were added on October 31),
+      and the Macro board became a single poster with a related-figure explorer around it. Each tool
+      names its day, links across to the others, and can be shared.</p>
+    <p>The share cards changed how they are made. Since November 4 the line that goes with a card is
+      written <strong>from the day's story first</strong>, and the picture is chosen to support it, not
+      the other way round. Since November 9 those lines also vary in form, so a week of posts does not
+      read as one sentence repeated. Composite charts gained a proper legend.</p>
+    <p>Behind the scenes the data underneath grew a great deal. Finance now stores, with history, a
+      physical-world batch (port traffic, river levels, drought, hurricanes and quakes), market-structure
+      feeds (Treasury auctions, repo rates, positioning), precious-metals holdings and trade, and its own
+      seven-input sentiment composite, which replaced a third-party fear and greed index. And the Pulse no longer
+      leads with a move it cannot explain.</p>
+    <p class="disclosure">Simulated portfolios. A research experiment, not investment advice.</p>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <p class="eyebrow">Elsewhere</p>
+    <h2>What changed on everything else</h2>
+    <div class="roundup">
+      <div class="item">
+        <h3>Corticorp News: fuller stories, the whole archive, and quicker taps</h3>
+        <p>A <strong>Highlights</strong> tab collects every story tagged by feel, with one filter for each.
+          Taps answer at once, and pages weigh about a third less. Since November 9 the time-range picker
+          searches the full history instead of only the newest stories, and since November 10 a story that
+          arrived as a single thin paragraph is rewritten from its source article, keeping every name the
+          original carried. New sources include Wikipedia's current events, Statistics Canada, the UK's
+          ONS, Carbon Brief, Mongabay and VOA.</p>
+        <div class="links">
+          <a href="/projects/news/">Project page &rarr;</a>
+          <a href="https://news.corticorp.com" target="_blank" rel="noopener">Open live &rarr;</a>
+        </div>
+      </div>
+      <div class="item">
+        <h3>opd: Word files, equations and review comments</h3>
+        <p>In the week after the last update the Open Page Document moved to version 1.4 of its format,
+          with page setup by section, numbered lists and annotations. The editor reads Word documents,
+          handles equations and charts, takes review comments and tracked suggestions, and can redact. It
+          downloads as Word, OpenDocument or PDF. Imports are now checked against the original with a visual
+          yardstick. Still pre-alpha.</p>
+        <div class="links">
+          <a href="/projects/opd/">Project page &rarr;</a>
+          <a href="https://docs.corticorp.com" target="_blank" rel="noopener">Open the app &rarr;</a>
+        </div>
+      </div>
+      <div class="item">
+        <h3>corticorp.com: organizations, not applications</h3>
+        <p>The site you are reading relaunched today with a new home page and a new palette. It leads with
+          what CortiCorp now builds, coordinated organizations of specialized AI agents. It explains how
+          the one behind News and Finance is arranged, then shows the working products as the proof.</p>
+        <div class="links"><a href="/#how">See how it works &rarr;</a></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap" style="text-align:center; padding: 8px 0 4px">
+    <h2>Take a look</h2>
+    <p style="max-width:560px; margin: 0 auto 24px">
+      Everything above is running now. The team's output is public, so judge it by what it wrote.
+    </p>
+    <div class="cta-row" style="justify-content:center">
+      <a class="btn btn-primary" href="https://finance.corticorp.com" target="_blank" rel="noopener">Open finance.corticorp.com &rarr;</a>
+      <a class="btn btn-ghost" href="https://news.corticorp.com" target="_blank" rel="noopener">news.corticorp.com &rarr;</a>
+      <a class="btn btn-ghost" href="https://docs.corticorp.com" target="_blank" rel="noopener">The opd app &rarr;</a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <p>CortiCorp &middot; <a href="/">corticorp.com</a> &middot; <a href="/updates/">More updates</a></p>
+  </div>
+</footer>
+
+<script src="/js/nav.js" defer></script>
+</body>
+</html>
