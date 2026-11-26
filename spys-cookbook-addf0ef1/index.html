@@ -148,6 +148,8 @@ mark.unsure::after { content: "?"; font-family: var(--typer); font-size: .72em; 
 .exhibit:nth-child(even) { transform: rotate(1.8deg); }
 .exhibit img { display: block; width: 100%; aspect-ratio: 3 / 3.7; object-fit: cover; }
 .exhibit .type { display: block; font-size: calc(var(--pt)*6); padding-top: calc(var(--pt)*3); text-align: center; color: var(--ink); }
+.exhibit.still { cursor: default; }
+.credit { font-size: .82em; font-style: italic; color: var(--ink-soft); margin-top: calc(var(--pt)*9) !important; }
 .exhibit:focus-visible { outline: 2px solid var(--stamp); outline-offset: 2px; }
 
 .serves { font-family: var(--typer); font-size: calc(var(--pt)*8); letter-spacing: .06em; text-transform: uppercase; color: var(--ink-soft); margin: calc(var(--pt)*-7) 0 calc(var(--pt)*11) !important; }
@@ -243,13 +245,13 @@ dialog#lightbox::backdrop { background: rgba(20,24,21,.78); }
 <header class="bar"><div class="bar-in">
 <a class="bar-title" href="#cover">The Spy’s Cookbook</a>
 <label class="bar-jump"><span>Go to</span>
-<select id="jump"><option value="cover">Cover</option><option value="about">How to read these recipes</option><option value="contents">Contents</option><option value="ch-starters">Appetizers &amp; Salads</option><option value="ch-meat">Beef, Pork &amp; Lamb</option><option value="ch-chicken">Chicken &amp; Fish</option><option value="ch-veg">Vegetables &amp; Breads</option><option value="ch-main">Main Dish</option><option value="ch-sweets">Cakes &amp; Sweets</option><option value="ch-loose">Loose in the Notebook</option><option value="menus">Her menus</option><option value="clippings">Clippings</option><option value="index">A to Z</option></select></label>
+<select id="jump"><option value="cover">Cover</option><option value="about">How to read these recipes</option><option value="contents">Contents</option><option value="ch-starters">Appetizers &amp; Salads</option><option value="ch-meat">Beef, Pork &amp; Lamb</option><option value="ch-chicken">Chicken &amp; Fish</option><option value="ch-veg">Vegetables &amp; Breads</option><option value="ch-main">Main Dish</option><option value="ch-sweets">Cakes &amp; Sweets</option><option value="ch-loose">Loose in the Notebook</option><option value="ch-clips">Clippings She Kept</option><option value="menus">Her menus</option><option value="clippings">Clippings</option><option value="index">A to Z</option></select></label>
 </div></header>
 <main class="book">
 <section class="page cover" id="cover"><div class="sheet">
 <img class="bleed" src="plate/cover.jpg" alt="A green notebook on a kitchen table with measuring spoons, a wooden spoon, reading glasses, a key and a tied envelope.">
 <div class="cover-block">
-<p class="type">File copy &middot; 57 recipes</p>
+<p class="type">File copy &middot; 57 recipes &middot; 22 clippings</p>
 <h1>The Spy&rsquo;s<br>Cookbook</h1>
 <p class="sub">Recipes from the handwritten notebook of my grandmother, Dorothea Chilldon</p>
 </div>
@@ -257,18 +259,18 @@ dialog#lightbox::backdrop { background: rgba(20,24,21,.78); }
 </div></section><section class="page endpaper" aria-hidden="true"><div class="sheet"><div class="rule-lines"></div></div></section><section class="page titlepage"><div class="sheet">
 <p class="type">File copy</p>
 <h1>The Spy&rsquo;s Cookbook</h1>
-<p class="sub">57 recipes from the handwritten notebook of Dorothea Delores Adams Chilldon, 1915&ndash;1997, and the loose cards and slips kept inside it</p>
+<p class="sub">57 recipes from the handwritten notebook of Dorothea Delores Adams Chilldon, 1915&ndash;1997, with the cards, slips and 22 clippings kept inside it</p>
 <div class="title-foot"><p class="type">Mock-up edition &middot; November 2026</p></div>
 </div></section><section class="page text about" id="about"><div class="sheet"><div class="body">
 <p class="type">About this file</p>
 <h2>How to read these recipes</h2>
 <div class="about-cols">
 <div>
-<p>Every recipe here was copied from a photograph of her own page. The words are hers. Abbreviations have been written out and the method broken into steps, and nothing else has been changed: no quantities filled in, no steps added.</p>
+<p>Every handwritten recipe here was copied from a photograph of her own page. The words are hers. Abbreviations have been written out and the method broken into steps, and nothing else has been changed: no quantities filled in, no steps added.</p>
 <p>She wrote for herself, so some recipes are a list and an oven temperature and no more. Those are printed as she left them.</p>
 <p>Each recipe carries a small photograph of the original page, marked <span class="type">Exhibit</span>. If the print and the handwriting ever disagree, the handwriting wins.</p>
 <h3>Marks you will see</h3>
-<p><mark class="unsure">a word like this</mark> is a reading we could not confirm. 11 of the 57 recipes have at least one. Check the exhibit before you cook.</p>
+<p><mark class="unsure">a word like this</mark> is a reading we could not confirm. 11 of her 57 recipes have at least one. Check the exhibit before you cook.</p>
 <p><span class="redact">illegible</span> is a word that could not be read at all.</p>
 <p>Oven temperatures are Fahrenheit. Measures are American cups and spoons.</p>
 </div>
@@ -278,7 +280,7 @@ dialog#lightbox::backdrop { background: rgba(20,24,21,.78); }
 <h3>The pictures</h3>
 <p>The photographs of finished dishes were made for this mock-up with an image generator, in the style of a 1960s cookbook plate. They show the kind of dish, not her own. The exhibits are real.</p>
 <h3>The clippings</h3>
-<p>Printed recipes she cut out and tucked in are listed at the back with her marks on them. They are not reprinted: those words belong to the papers and magazines they came from.</p>
+<p>The printed recipes she cut out have a section of their own. Their ingredients are as printed. Their methods are retold in plain words, because the original wording belongs to the papers and magazines they came from. Her marks on them are noted.</p>
 </div>
 </div>
 </div><footer class="folio"><span>The Spy’s Cookbook</span><span>About this file</span><b>2</b></footer></div></section><section class="page text story" id="her-story"><div class="sheet"><div class="body">
@@ -299,14 +301,14 @@ dialog#lightbox::backdrop { background: rgba(20,24,21,.78); }
 </div><footer class="folio"><span>The Spy’s Cookbook</span><span>Her story</span><b>3</b></footer></div></section><section class="page text contents" id="contents"><div class="sheet"><div class="body">
 <p class="type">Index of files</p>
 <h2>Contents</h2>
-<ol class="toc"><li><a href="#ch-starters"><span class="c-num">01</span><span class="c-title">Appetizers &amp; Salads</span><span class="c-count">14 recipes</span><span class="c-page">5</span></a></li><li><a href="#ch-meat"><span class="c-num">02</span><span class="c-title">Beef, Pork &amp; Lamb</span><span class="c-count">4 recipes</span><span class="c-page">20</span></a></li><li><a href="#ch-chicken"><span class="c-num">03</span><span class="c-title">Chicken &amp; Fish</span><span class="c-count">6 recipes</span><span class="c-page">25</span></a></li><li><a href="#ch-veg"><span class="c-num">04</span><span class="c-title">Vegetables &amp; Breads</span><span class="c-count">9 recipes</span><span class="c-page">32</span></a></li><li><a href="#ch-main"><span class="c-num">05</span><span class="c-title">Main Dish</span><span class="c-count">5 recipes</span><span class="c-page">42</span></a></li><li><a href="#ch-sweets"><span class="c-num">06</span><span class="c-title">Cakes &amp; Sweets</span><span class="c-count">14 recipes</span><span class="c-page">48</span></a></li><li><a href="#ch-loose"><span class="c-num">07</span><span class="c-title">Loose in the Notebook</span><span class="c-count">5 recipes</span><span class="c-page">63</span></a></li>
-<li><a href="#menus"><span class="c-num">&mdash;</span><span class="c-title">Three dinners she planned</span><span class="c-count"></span><span class="c-page">69</span></a></li>
-<li><a href="#clippings"><span class="c-num">&mdash;</span><span class="c-title">Clippings she kept</span><span class="c-count"></span><span class="c-page">70</span></a></li>
-<li><a href="#index"><span class="c-num">A&ndash;Z</span><span class="c-title">Every recipe by name</span><span class="c-count"></span><span class="c-page">71</span></a></li></ol>
+<ol class="toc"><li><a href="#ch-starters"><span class="c-num">01</span><span class="c-title">Appetizers &amp; Salads</span><span class="c-count">14 recipes</span><span class="c-page">5</span></a></li><li><a href="#ch-meat"><span class="c-num">02</span><span class="c-title">Beef, Pork &amp; Lamb</span><span class="c-count">4 recipes</span><span class="c-page">20</span></a></li><li><a href="#ch-chicken"><span class="c-num">03</span><span class="c-title">Chicken &amp; Fish</span><span class="c-count">6 recipes</span><span class="c-page">25</span></a></li><li><a href="#ch-veg"><span class="c-num">04</span><span class="c-title">Vegetables &amp; Breads</span><span class="c-count">9 recipes</span><span class="c-page">32</span></a></li><li><a href="#ch-main"><span class="c-num">05</span><span class="c-title">Main Dish</span><span class="c-count">5 recipes</span><span class="c-page">42</span></a></li><li><a href="#ch-sweets"><span class="c-num">06</span><span class="c-title">Cakes &amp; Sweets</span><span class="c-count">14 recipes</span><span class="c-page">48</span></a></li><li><a href="#ch-loose"><span class="c-num">07</span><span class="c-title">Loose in the Notebook</span><span class="c-count">5 recipes</span><span class="c-page">63</span></a></li><li><a href="#ch-clips"><span class="c-num">08</span><span class="c-title">Clippings She Kept</span><span class="c-count">22 recipes</span><span class="c-page">69</span></a></li>
+<li><a href="#menus"><span class="c-num">&mdash;</span><span class="c-title">Three dinners she planned</span><span class="c-count"></span><span class="c-page">92</span></a></li>
+<li><a href="#clippings"><span class="c-num">&mdash;</span><span class="c-title">The clippings, listed</span><span class="c-count"></span><span class="c-page">93</span></a></li>
+<li><a href="#index"><span class="c-num">A&ndash;Z</span><span class="c-title">Every recipe by name</span><span class="c-count"></span><span class="c-page">94</span></a></li></ol>
 </div><footer class="folio"><span>The Spy’s Cookbook</span><span>Contents</span><b>4</b></footer></div></section><section class="page opener" id="ch-starters"><div class="sheet">
 <img class="plate-img" src="plate/starters.jpg" alt="">
 <div class="opener-body">
-<p class="type">Section 01 of 07 &middot; 14 recipes</p>
+<p class="type">Section 01 of 08 &middot; 14 recipes</p>
 <h2>Appetizers &amp; Salads</h2>
 <ol class="opener-list"><li><a href="#r3829"><span>Caviar-Cream Cheese Spread</span><b>6</b></a></li><li><a href="#r3844"><span>Grecian Green Salad</span><b>7</b></a></li><li><a href="#r3845"><span>Salad Supreme (“Green Stuff”)</span><b>8</b></a></li><li><a href="#r3846"><span>Spiced Peach Mold</span><b>9</b></a></li><li><a href="#r3847"><span>Crunchy Salmon Salad</span><b>10</b></a></li><li><a href="#r3848"><span>Chicken Fruit Salad</span><b>11</b></a></li><li><a href="#r3851"><span>Tropical Chicken Boats for Two</span><b>12</b></a></li><li><a href="#r3852"><span>Herbed Tomatoes</span><b>13</b></a></li><li><a href="#r3854"><span>Sour Cream Potato Salad</span><b>14</b></a></li><li><a href="#r3855"><span>Rice Salad</span><b>15</b></a></li><li><a href="#r3856"><span>Hearts of Palm Salad</span><b>16</b></a></li><li><a href="#r3857"><span>Tomato &amp; Mozzarella Platter with Basil</span><b>17</b></a></li><li><a href="#r3858"><span>Green Bean Salad</span><b>18</b></a></li><li><a href="#r3865"><span>Easy Marinated Asparagus</span><b>19</b></a></li></ol>
 </div>
@@ -468,7 +470,7 @@ dialog#lightbox::backdrop { background: rgba(20,24,21,.78); }
 </div></section><section class="page opener" id="ch-meat"><div class="sheet">
 <img class="plate-img" src="plate/meat.jpg" alt="">
 <div class="opener-body">
-<p class="type">Section 02 of 07 &middot; 4 recipes</p>
+<p class="type">Section 02 of 08 &middot; 4 recipes</p>
 <h2>Beef, Pork &amp; Lamb</h2>
 <ol class="opener-list"><li><a href="#r3830"><span>Pepper Steak / Rice</span><b>21</b></a></li><li><a href="#r3832"><span>Oriental Beef &amp; Snow Peas</span><b>22</b></a></li><li><a href="#r3834"><span>Pork Medallions (Tarragon Sauce)</span><b>23</b></a></li><li><a href="#r3843"><span>Lamb Shanks Dinner</span><b>24</b></a></li></ol>
 </div>
@@ -520,7 +522,7 @@ dialog#lightbox::backdrop { background: rgba(20,24,21,.78); }
 </div></section><section class="page opener" id="ch-chicken"><div class="sheet">
 <img class="plate-img" src="plate/chicken.jpg" alt="">
 <div class="opener-body">
-<p class="type">Section 03 of 07 &middot; 6 recipes</p>
+<p class="type">Section 03 of 08 &middot; 6 recipes</p>
 <h2>Chicken &amp; Fish</h2>
 <ol class="opener-list"><li><a href="#r3835"><span>Szechuan Chicken</span><b>26</b></a></li><li><a href="#r3836"><span>Chicken Supremes with Sherry Sauce</span><b>27</b></a></li><li><a href="#r3837"><span>Fried Chicken Breasts</span><b>28</b></a></li><li><a href="#r3838"><span>Sesame Chicken</span><b>29</b></a></li><li><a href="#r3839"><span>Grecian Baked Cod</span><b>30</b></a></li><li><a href="#r3859"><span>Hot Chicken Salad (Country-Club style)</span><b>31</b></a></li></ol>
 </div>
@@ -594,7 +596,7 @@ dialog#lightbox::backdrop { background: rgba(20,24,21,.78); }
 </div></section><section class="page opener" id="ch-veg"><div class="sheet">
 <img class="plate-img" src="plate/veg.jpg" alt="">
 <div class="opener-body">
-<p class="type">Section 04 of 07 &middot; 9 recipes</p>
+<p class="type">Section 04 of 08 &middot; 9 recipes</p>
 <h2>Vegetables &amp; Breads</h2>
 <ol class="opener-list"><li><a href="#r3860"><span>Zesty Broccoli Casserole</span><b>33</b></a></li><li><a href="#r3861"><span>Corn Fritters</span><b>34</b></a></li><li><a href="#r3862"><span>Corn Pudding</span><b>35</b></a></li><li><a href="#r3863"><span>Ratatouille</span><b>36</b></a></li><li><a href="#r3864"><span>Easy Corn Casserole</span><b>37</b></a></li><li><a href="#r3866"><span>Coconut-Orange Sweet Potatoes</span><b>38</b></a></li><li><a href="#r3867"><span>Green Beans with Almonds</span><b>39</b></a></li><li><a href="#r3873"><span>Fruit &amp; Pecan Dressing (for Turkey)</span><b>40</b></a></li><li><a href="#r3874"><span>Hoecake</span><b>41</b></a></li></ol>
 </div>
@@ -701,7 +703,7 @@ dialog#lightbox::backdrop { background: rgba(20,24,21,.78); }
 </div></section><section class="page opener" id="ch-main"><div class="sheet">
 <img class="plate-img" src="plate/main.jpg" alt="">
 <div class="opener-body">
-<p class="type">Section 05 of 07 &middot; 5 recipes</p>
+<p class="type">Section 05 of 08 &middot; 5 recipes</p>
 <h2>Main Dish</h2>
 <ol class="opener-list"><li><a href="#r3842"><span>Welsh Rabbit</span><b>43</b></a></li><li><a href="#r3869"><span>Pasta Prima Vera</span><b>44</b></a></li><li><a href="#r3870"><span>Pesto Sauce for Spaghetti</span><b>45</b></a></li><li><a href="#r3871"><span>White Clam Sauce</span><b>46</b></a></li><li><a href="#r3872"><span>Sophia Loren’s Pasta alla Putanesca</span><b>47</b></a></li></ol>
 </div>
@@ -764,7 +766,7 @@ dialog#lightbox::backdrop { background: rgba(20,24,21,.78); }
 </div></section><section class="page opener" id="ch-sweets"><div class="sheet">
 <img class="plate-img" src="plate/sweets.jpg" alt="">
 <div class="opener-body">
-<p class="type">Section 06 of 07 &middot; 14 recipes</p>
+<p class="type">Section 06 of 08 &middot; 14 recipes</p>
 <h2>Cakes &amp; Sweets</h2>
 <ol class="opener-list"><li><a href="#r3814"><span>Ginger Pound Cake</span><b>49</b></a></li><li><a href="#r3815"><span>Rum Cake</span><b>50</b></a></li><li><a href="#r3816"><span>Mrs. Harvey’s White Fruit Cake</span><b>51</b></a></li><li><a href="#r3817"><span>Crunchy Chocolate Bars</span><b>52</b></a></li><li><a href="#r3818"><span>Cherry Ambrosia</span><b>53</b></a></li><li><a href="#r38182"><span>Festive Fruit Bowl</span><b>54</b></a></li><li><a href="#r3819"><span>Chocolate Fudgies</span><b>55</b></a></li><li><a href="#r3821"><span>Peach Cobbler</span><b>56</b></a></li><li><a href="#r3822"><span>Apple Brown Betty</span><b>57</b></a></li><li><a href="#r3823"><span>Ting-a-Lings</span><b>58</b></a></li><li><a href="#r3824"><span>Lemon Tea Cake</span><b>59</b></a></li><li><a href="#r3825"><span>Sponge Cake</span><b>60</b></a></li><li><a href="#r3826"><span>Fruitcake (best)</span><b>61</b></a></li><li><a href="#r3853"><span>Cantaloupe Balls a l’Orange</span><b>62</b></a></li></ol>
 </div>
@@ -926,7 +928,7 @@ dialog#lightbox::backdrop { background: rgba(20,24,21,.78); }
 </div></section><section class="page opener" id="ch-loose"><div class="sheet">
 <img class="plate-img" src="plate/loose.jpg" alt="">
 <div class="opener-body">
-<p class="type">Section 07 of 07 &middot; 5 recipes</p>
+<p class="type">Section 07 of 08 &middot; 5 recipes</p>
 <h2>Loose in the Notebook</h2>
 <ol class="opener-list"><li><a href="#r3875"><span>Spinach Apple Walnut Salad</span><b>64</b></a></li><li><a href="#r3882"><span>Mustard Greens</span><b>65</b></a></li><li><a href="#r3886"><span>Lemon Ice</span><b>66</b></a></li><li><a href="#r3890"><span>Brandied Pumpkin Pie</span><b>67</b></a></li><li><a href="#r3891"><span>Barbecued Spareribs or Country Ribs</span><b>68</b></a></li></ol>
 </div>
@@ -986,6 +988,256 @@ dialog#lightbox::backdrop { background: rgba(20,24,21,.78); }
 </div>
 </div>
 <footer class="folio"><span>The Spy’s Cookbook</span><span>Loose in the Notebook</span><b>68</b></footer>
+</div></section><section class="page opener" id="ch-clips"><div class="sheet">
+<img class="plate-img" src="plate/clips.jpg" alt="">
+<div class="opener-body dense">
+<p class="type">Section 08 of 08 &middot; 22 recipes</p>
+<h2>Clippings She Kept</h2>
+<ol class="opener-list"><li><a href="#c38893"><span>Spinach Tortellini in Creamy Tomato Sauce</span><b>70</b></a></li><li><a href="#c3889"><span>Pears in Red Wine</span><b>71</b></a></li><li><a href="#c38892"><span>Speedy Antipasto</span><b>72</b></a></li><li><a href="#c38872"><span>Curried Fried Rice with Scallion and Peanuts</span><b>73</b></a></li><li><a href="#c38873"><span>Tomato Paella with Spicy Squid and Peas</span><b>74</b></a></li><li><a href="#c38874"><span>Warm Hoppin’ John and Brown Rice Salad</span><b>75</b></a></li><li><a href="#c3898"><span>Nutty Cranberries</span><b>76</b></a></li><li><a href="#c3897"><span>Pasta e Fagioli</span><b>77</b></a></li><li><a href="#c3884"><span>Hoe Cakes</span><b>78</b></a></li><li><a href="#c3893"><span>Old-Fashioned Bread Pudding</span><b>79</b></a></li><li><a href="#c38932"><span>Rice Pudding</span><b>80</b></a></li><li><a href="#c3877"><span>Spoon Bread</span><b>81</b></a></li><li><a href="#c3892"><span>Key Biscayne Lime Pie</span><b>82</b></a></li><li><a href="#c3841"><span>Raspberry Holiday Mold</span><b>83</b></a></li><li><a href="#c3828"><span>Vegetable Dip</span><b>84</b></a></li><li><a href="#c38282"><span>Cheese Ball</span><b>85</b></a></li><li><a href="#c3878"><span>Zippy Vegetable Dip</span><b>86</b></a></li><li><a href="#c3883"><span>Baked Custard</span><b>87</b></a></li><li><a href="#c3894"><span>Herb Vinegar</span><b>88</b></a></li><li><a href="#c3896"><span>Ginger Crisps</span><b>89</b></a></li><li><a href="#c3885"><span>Mama’s Collard Green Soup (Verzada)</span><b>90</b></a></li><li><a href="#c3879"><span>Chilled Tomato and Cucumber Soup</span><b>91</b></a></li></ol>
+</div>
+<footer class="folio"><span>The Spy’s Cookbook</span><span>Clippings She Kept</span><b>69</b></footer>
+</div></section><section class="page text recipe" id="c38893" data-fit="0"><div class="sheet">
+<figure class="plate"><img src="dish/c38893.jpg" alt=""></figure>
+<div class="body">
+<p class="type fileline"><span>File 058</span><span>Clipping</span><span>Magazine spread, “Good Food”</span></p>
+<h2>Spinach Tortellini in Creamy Tomato Sauce</h2><p class="serves">Serves 4</p>
+<div class="cols">
+<div class="ing"><h3>Ingredients</h3><ul><li>1 Tb. olive oil</li><li>¼ cup finely chopped onion</li><li>1 can (28 oz.) Italian plum tomatoes</li><li>1 sprig fresh basil or ½ tsp. dried</li><li>½ cup heavy cream, room temperature</li><li>Salt and freshly ground pepper to taste</li><li>2 pkg. (9-oz. size) fresh or thawed frozen cheese-filled spinach tortellini</li><li>2 cups (packed) spinach leaves, stems trimmed, rinsed well</li><li>¼ to ½ cup freshly grated Parmesan cheese</li></ul><div class="exhibits"><span class="exhibit still"><img src="clip/IMG_3889.jpg" alt="The clipping as she kept it"><span class="type">Exhibit 058</span></span></div></div>
+<div class="method"><h3>Method, retold</h3><ol class="steps"><li>Put a large pot of water on to boil.</li><li>Soften the onion in the oil over low heat, about 5 minutes. Add the tomatoes with their juice and the basil, and cook uncovered over medium heat about 15 minutes, breaking up the tomatoes, until thick.</li><li>Stir in the cream and cook about 5 minutes until thick again. Season and keep warm.</li><li>Salt the water and boil the tortellini 6 minutes. Add the spinach and cook about 2 minutes more. Drain well.</li><li>Turn into a wide bowl, spoon the sauce over and finish with the Parmesan.</li></ol><div class="notes"><p class="type">On the page</p><p>She wrote “Keep this” in pencil above it, ticked the spinach line, and circled the step about seasoning the sauce and keeping it warm.</p></div><p class="credit">Retold from the clipping. Ingredients as printed; original wording belongs to its publisher (Magazine spread, “Good Food”).</p></div>
+</div>
+</div>
+<footer class="folio"><span>The Spy’s Cookbook</span><span>Clippings She Kept</span><b>70</b></footer>
+</div></section><section class="page text recipe" id="c3889" data-fit="0"><div class="sheet">
+<figure class="plate"><img src="dish/c3889.jpg" alt=""></figure>
+<div class="body">
+<p class="type fileline"><span>File 059</span><span>Clipping</span><span>Magazine spread, “Good Food”</span></p>
+<h2>Pears in Red Wine</h2><p class="serves">Serves 4</p>
+<div class="cols">
+<div class="ing"><h3>Ingredients</h3><ul><li>2 cans (16-oz. size) pear halves in syrup</li><li>1 cup red wine, such as Chianti Classico</li><li>1 strip (2x½ in.) orange zest (colored part of peel)</li><li>½ vanilla bean or ½ tsp. vanilla extract</li></ul><div class="exhibits"><span class="exhibit still"><img src="clip/IMG_3889.jpg" alt="The clipping as she kept it"><span class="type">Exhibit 059</span></span></div></div>
+<div class="method"><h3>Method, retold</h3><ol class="steps"><li>Drain the pears, catching the syrup in a wide saucepan. Put the pears in a small deep bowl.</li><li>Add the wine to the syrup and boil it down by half, about 10 minutes.</li><li>Add the orange zest and vanilla to the pears and pour the hot syrup over. Cool, then chill, spooning the syrup over now and then.</li></ol><div class="notes"><p class="type">On the page</p><p>On the same spread as the tortellini she marked “Keep this”. Her yellow-paper menu lists pears, red wine and orange for dessert.</p></div><p class="credit">Retold from the clipping. Ingredients as printed; original wording belongs to its publisher (Magazine spread, “Good Food”).</p></div>
+</div>
+</div>
+<footer class="folio"><span>The Spy’s Cookbook</span><span>Clippings She Kept</span><b>71</b></footer>
+</div></section><section class="page text recipe" id="c38892" data-fit="0"><div class="sheet">
+<figure class="plate"><img src="dish/c38892.jpg" alt=""></figure>
+<div class="body">
+<p class="type fileline"><span>File 060</span><span>Clipping</span><span>Magazine spread, “Good Food”</span></p>
+<h2>Speedy Antipasto</h2><p class="serves">Serves 4</p>
+<div class="cols">
+<div class="ing"><h3>Ingredients</h3><ul><li>⅓ cup olive oil</li><li>2 Tb. red wine vinegar</li><li>1 tsp. coarsely chopped fresh oregano leaves or ¼ tsp. dried</li><li>1 small clove garlic, crushed through press</li><li>⅛ tsp. freshly ground pepper</li><li>1 jar (6 oz.) marinated artichoke hearts, drained</li><li>1 jar (7 oz.) roasted red peppers, drained</li><li>½ cup brine-cured olives, black or green</li><li>1 bulb fresh fennel (about 8 oz.), trimmed, cut into 6 wedges</li><li>4 oz. sharp provolone cheese, cut into cubes</li><li>2 oz. thinly sliced Genoa salami</li><li>Breadsticks</li></ul><div class="exhibits"><span class="exhibit still"><img src="clip/IMG_3889.jpg" alt="The clipping as she kept it"><span class="type">Exhibit 060</span></span></div></div>
+<div class="method"><h3>Method, retold</h3><ol class="steps"><li>Whisk the oil, vinegar, oregano, garlic and pepper in a bowl.</li><li>Turn the artichoke hearts in the dressing and lift them out onto a platter. Do the same with the peppers, then the olives.</li><li>Add the fennel, cheese and salami to the platter, pour over what dressing is left, and serve with breadsticks.</li></ol><div class="notes"><p class="type">On the page</p><p>Her yellow-paper menu lists this antipasto item by item.</p></div><p class="credit">Retold from the clipping. Ingredients as printed; original wording belongs to its publisher (Magazine spread, “Good Food”).</p></div>
+</div>
+</div>
+<footer class="folio"><span>The Spy’s Cookbook</span><span>Clippings She Kept</span><b>72</b></footer>
+</div></section><section class="page text recipe" id="c38872" data-fit="0"><div class="sheet">
+<figure class="plate"><img src="dish/c38872.jpg" alt=""></figure>
+<div class="body">
+<p class="type fileline"><span>File 061</span><span>Clipping</span><span>Gourmet, January 1992</span></p>
+<h2>Curried Fried Rice with Scallion and Peanuts</h2><p class="serves">Serves 6</p>
+<div class="cols">
+<div class="ing"><h3>Ingredients</h3><ul><li>3 tablespoons chicken broth or water</li><li>1 teaspoon salt</li><li>½ teaspoon black pepper</li><li>¼ cup vegetable oil</li><li>1 large onion, chopped</li><li>1½ tablespoons curry powder</li><li>⅔ cup chopped scallion</li><li>⅔ cup dry-roasted peanuts</li><li>¼ cup minced fresh coriander</li><li>6 cups cold cooked long- or medium-grain white rice</li></ul><div class="exhibits"><span class="exhibit still"><img src="clip/IMG_3887.jpg" alt="The clipping as she kept it"><span class="type">Exhibit 061</span></span></div></div>
+<div class="method"><h3>Method, retold</h3><ol class="steps"><li>Mix the broth, salt and pepper. Heat the oil in a large skillet over fairly high heat and cook the onion until soft. Stir in the curry powder for a few seconds.</li><li>Add the scallion, peanuts, coriander and cold rice. Stir-fry, breaking up the rice, until evenly mixed.</li><li>Pour in the broth mixture and cook 1 minute more.</li></ol><div class="notes"><p class="type">On the page</p><p>She wrote “very good” in pencil up the margin, underlined, and bracketed the title. It is the only recipe on the page she marked.</p></div><p class="credit">Retold from the clipping. Ingredients as printed; original wording belongs to its publisher (Gourmet, January 1992).</p></div>
+</div>
+</div>
+<footer class="folio"><span>The Spy’s Cookbook</span><span>Clippings She Kept</span><b>73</b></footer>
+</div></section><section class="page text recipe" id="c38873" data-fit="0"><div class="sheet">
+<figure class="plate"><img src="dish/c38873.jpg" alt=""></figure>
+<div class="body">
+<p class="type fileline"><span>File 062</span><span>Clipping</span><span>Gourmet, January 1992</span></p>
+<h2>Tomato Paella with Spicy Squid and Peas</h2><p class="serves">Serves 4 to 6</p>
+<div class="cols">
+<div class="ing"><h3>Ingredients</h3><ul><li>1 pound squid, cleaned and cut into ¼-inch slices</li><li>¼ cup plus 2 tablespoons vegetable oil</li><li>2 cups chicken broth</li><li>1 cup tomato juice</li><li>1 cup water</li><li>1 teaspoon paprika</li><li>1 teaspoon ground cumin</li><li>2 garlic cloves, minced</li><li>1½ cups paella, Arborio or other medium-grain rice</li><li>1½ cups thawed frozen peas</li><li>lemon wedges</li></ul><div class="exhibits"><span class="exhibit still"><img src="clip/IMG_3887.jpg" alt="The clipping as she kept it"><span class="type">Exhibit 062</span></span></div></div>
+<div class="method"><h3>Method, retold</h3><ol class="steps"><li>Dry the squid. In a wide heavy skillet, fry it in ¼ cup of the oil over fairly high heat for about a minute, until golden. Drain on paper towels.</li><li>Bring the broth, tomato juice, water, paprika and cumin to a boil in a saucepan.</li><li>Wipe the skillet. Soften the garlic in the remaining 2 tablespoons oil over low heat, add the rice and stir 3 minutes.</li><li>Add the hot liquid. Simmer uncovered 5 minutes, stirring now and then. Season, then simmer 10 minutes without stirring.</li><li>Scatter the squid on top, cover and cook 5 minutes on low. Add the peas, cover, and cook 5 minutes more.</li><li>Off the heat, cover with a folded kitchen towel and let it steam 5 minutes. Serve with lemon wedges.</li></ol><div class="notes"><p class="type">On the page</p><p>The magazine page also explains how to clean squid; that part is not retold here.</p></div><p class="credit">Retold from the clipping. Ingredients as printed; original wording belongs to its publisher (Gourmet, January 1992).</p></div>
+</div>
+</div>
+<footer class="folio"><span>The Spy’s Cookbook</span><span>Clippings She Kept</span><b>74</b></footer>
+</div></section><section class="page text recipe" id="c38874" data-fit="0"><div class="sheet">
+<figure class="plate"><img src="dish/c38874.jpg" alt=""></figure>
+<div class="body">
+<p class="type fileline"><span>File 063</span><span>Clipping</span><span>Gourmet, January 1992</span></p>
+<h2>Warm Hoppin’ John and Brown Rice Salad</h2><p class="serves">Serves 8</p>
+<div class="cols">
+<div class="ing"><h3>Ingredients</h3><ul><li>1 pound dried black-eyed peas</li><li>1 large onion, stuck with 3 cloves</li><li>½ bay leaf</li><li>8 cups cold water</li><li>½ pound ham steak, in ¼-inch dice</li><li>3 tablespoons white-wine vinegar</li><li><mark class="unsure" title="Unconfirmed reading. Check the original.">¾</mark> teaspoon salt</li><li>2 tablespoons minced pickled jalapeño peppers</li><li>⅓ cup vegetable oil</li><li>2 tablespoons fresh lemon juice</li><li>2 cups chopped scallion</li><li>1 cup minced celery</li><li>1½ cups brown rice</li></ul><div class="exhibits"><span class="exhibit still"><img src="clip/IMG_3887.jpg" alt="The clipping as she kept it"><span class="type">Exhibit 063</span></span></div></div>
+<div class="method"><h3>Method, retold</h3><ol class="steps"><li>Cover the peas with water by 2 inches, boil 2 minutes, then leave off the heat for 1 hour. Drain and rinse.</li><li>Return them to the pot with the clove-studded onion, the bay leaf and the 8 cups water. Simmer 15 minutes, add the ham, and simmer about 10 minutes more, until just tender.</li><li>Drain, saving the cooking liquid. Discard the bay leaf and cloves, chop the onion, and keep the peas warm.</li><li>Whisk the vinegar, salt and jalapeños, then whisk in the oil. Toss the warm peas in this dressing with the lemon juice, scallion, celery and seasoning, and let stand.</li><li>Boil the saved liquid with a pinch of salt, add the rice, cover and simmer 35 to 40 minutes until tender. Drain. Serve the peas over the rice.</li></ol><div class="notes"><p class="type">On the page</p><p>The printed method never says when the chopped onion goes back in.</p></div><p class="credit">Retold from the clipping. Ingredients as printed; original wording belongs to its publisher (Gourmet, January 1992).</p></div>
+</div>
+</div>
+<footer class="folio"><span>The Spy’s Cookbook</span><span>Clippings She Kept</span><b>75</b></footer>
+</div></section><section class="page text recipe" id="c3898" data-fit="0"><div class="sheet">
+<figure class="plate"><img src="dish/c3898.jpg" alt=""></figure>
+<div class="body">
+<p class="type fileline"><span>File 064</span><span>Clipping</span><span>Southern Living</span></p>
+<h2>Nutty Cranberries</h2><p class="serves">10 to 12 servings</p>
+<div class="cols">
+<div class="ing"><h3>Ingredients</h3><ul><li>1 cup sugar</li><li>2 cups orange juice</li><li>1 (1-pound) bag fresh cranberries</li><li>2 cups walnut halves or pieces</li></ul><div class="exhibits"><span class="exhibit still"><img src="clip/IMG_3898.jpg" alt="The clipping as she kept it"><span class="type">Exhibit 064</span></span></div></div>
+<div class="method"><h3>Method, retold</h3><ol class="steps"><li>Dissolve the sugar in the orange juice over low heat. Add the cranberries, bring to a boil and boil 5 minutes.</li><li>Stir in the walnuts, take off the heat and cool.</li></ol><div class="notes"><p class="type">On the page</p><p>A check mark in blue ink in the margin.</p></div><p class="credit">Retold from the clipping. Ingredients as printed; original wording belongs to its publisher (Southern Living).</p></div>
+</div>
+</div>
+<footer class="folio"><span>The Spy’s Cookbook</span><span>Clippings She Kept</span><b>76</b></footer>
+</div></section><section class="page text recipe" id="c3897" data-fit="0"><div class="sheet">
+<figure class="plate"><img src="dish/c3897.jpg" alt=""></figure>
+<div class="body">
+<p class="type fileline"><span>File 065</span><span>Clipping</span><span>The Tampa Tribune, 1990</span></p>
+<h2>Pasta e Fagioli</h2><p class="serves">Serves 6</p>
+<div class="cols">
+<div class="ing"><h3>Ingredients</h3><ul><li>3 tablespoons olive oil</li><li>1 large onion, chopped</li><li>2 carrots, sliced into half moons</li><li>2 celery stalks, sliced</li><li>2 garlic cloves, minced</li><li>2 small zucchini, sliced into half moons</li><li>½ pound spinach (or 5 leaves of chard, tough stems removed, and coarsely chopped)</li><li>3 cups chopped plum tomatoes with liquid (28-ounce can)</li><li>1 can (15 ounces) cannellini (white kidney beans) with liquid</li><li>¼ cup chopped fresh parsley</li><li>2 tablespoons chopped fresh basil leaves (1 teaspoon dried)</li><li>Oregano, optional</li><li>Freshly ground black pepper, to taste</li><li>1 pound short, chunky pasta (ziti, spirals or shells)</li><li>Grated Parmesan, optional</li><li>Olive oil, optional</li></ul><div class="exhibits"><span class="exhibit still"><img src="clip/IMG_3897.jpg" alt="The clipping as she kept it"><span class="type">Exhibit 065</span></span></div></div>
+<div class="method"><h3>Method, retold</h3><ol class="steps"><li>Heat the oil in a large pot and cook the onion, carrots and celery a few minutes. Add the garlic, zucchini and any dried herbs.</li><li>After a few minutes more, add the spinach or chard and cook until wilted.</li><li>Add the tomatoes and the beans with their liquid, and water until it is as thick as you like. Add the parsley, fresh herbs and pepper. Simmer gently 15 to 20 minutes.</li><li>Meanwhile boil the pasta until just tender, and drain. Serve the pasta in bowls with the bean soup ladled over, with Parmesan and a little olive oil if wanted.</li></ol><div class="notes"><p class="type">On the page</p><p>She kept it. The clipping was photographed twice.</p></div><p class="credit">Retold from the clipping. Ingredients as printed; original wording belongs to its publisher (The Tampa Tribune, 1990).</p></div>
+</div>
+</div>
+<footer class="folio"><span>The Spy’s Cookbook</span><span>Clippings She Kept</span><b>77</b></footer>
+</div></section><section class="page text recipe" id="c3884" data-fit="0"><div class="sheet">
+<figure class="plate"><img src="dish/c3884.jpg" alt=""></figure>
+<div class="body">
+<p class="type fileline"><span>File 066</span><span>Clipping</span><span>The Tampa Tribune, 1992</span></p>
+<h2>Hoe Cakes</h2>
+<div class="cols">
+<div class="ing"><h3>Ingredients</h3><ul><li>1½ cups self-rising flour</li><li>¾ cup water</li><li>2 tablespoons oil</li></ul><div class="exhibits"><span class="exhibit still"><img src="clip/IMG_3884.jpg" alt="The clipping as she kept it"><span class="type">Exhibit 066</span></span></div></div>
+<div class="method"><h3>Method, retold</h3><ol class="steps"><li>Stir the flour and water into a thick batter. Heat the oil in a heavy skillet, pour in the batter, and cook over low heat so it cooks through.</li><li>When the top bubbles and the edge looks set, flip it and cook until lightly browned. Cut in wedges.</li></ol><div class="notes"><p class="type">On the page</p><p>Three small ink ticks along the bottom of the clipping. Her own Hoecake, made with cornmeal, is in Vegetables &amp; Breads.</p></div><p class="credit">Retold from the clipping. Ingredients as printed; original wording belongs to its publisher (The Tampa Tribune, 1992).</p></div>
+</div>
+</div>
+<footer class="folio"><span>The Spy’s Cookbook</span><span>Clippings She Kept</span><b>78</b></footer>
+</div></section><section class="page text recipe" id="c3893" data-fit="0"><div class="sheet">
+<figure class="plate"><img src="dish/c3893.jpg" alt=""></figure>
+<div class="body">
+<p class="type fileline"><span>File 067</span><span>Clipping</span><span>The Tampa Tribune, “Recipes Lost and Found”</span></p>
+<h2>Old-Fashioned Bread Pudding</h2><p class="serves">About 12 servings</p>
+<div class="cols">
+<div class="ing"><h3>Ingredients</h3><ul><li>8 to 10 heels of bread</li><li>3 eggs</li><li>1½ cups sugar</li><li>1 teaspoon cinnamon</li><li>½ teaspoon nutmeg</li><li>4 cups milk</li><li>1 teaspoon vanilla</li><li>1 cup raisins</li><li>Butter</li></ul><div class="exhibits"><span class="exhibit still"><img src="clip/IMG_3893.jpg" alt="The clipping as she kept it"><span class="type">Exhibit 067</span></span></div></div>
+<div class="method"><h3>Method, retold</h3><ol class="steps"><li>Wet the bread, squeeze it dry and crumble it. Mix in the raisins.</li><li>Beat the eggs with the sugar, spices, milk and vanilla. Pour over the bread and stir well.</li><li>Turn into a greased 14x14-inch dish, dot with butter, and bake at 350° until set and browned.</li></ol><div class="notes"><p class="type">On the page</p><p>From a readers’ exchange column. The rice pudding below it came in the same letter.</p></div><p class="credit">Retold from the clipping. Ingredients as printed; original wording belongs to its publisher (The Tampa Tribune, “Recipes Lost and Found”).</p></div>
+</div>
+</div>
+<footer class="folio"><span>The Spy’s Cookbook</span><span>Clippings She Kept</span><b>79</b></footer>
+</div></section><section class="page text recipe" id="c38932" data-fit="0"><div class="sheet">
+<figure class="plate"><img src="dish/c38932.jpg" alt=""></figure>
+<div class="body">
+<p class="type fileline"><span>File 068</span><span>Clipping</span><span>The Tampa Tribune, “Recipes Lost and Found”</span></p>
+<h2>Rice Pudding</h2><p class="serves">Serves 6</p>
+<div class="cols">
+<div class="ing"><h3>Ingredients</h3><ul><li>3 cups milk</li><li>½ cup rice</li><li>⅓ cup raisins</li><li>¼ teaspoon salt</li><li>Butter</li><li>¼ cup sugar</li><li>¼ teaspoon ground cinnamon</li></ul><div class="exhibits"><span class="exhibit still"><img src="clip/IMG_3893.jpg" alt="The clipping as she kept it"><span class="type">Exhibit 068</span></span></div></div>
+<div class="method"><h3>Method, retold</h3><ol class="steps"><li>Bring the milk to a boil in a heavy pan. Stir in the rice, raisins and salt a little at a time.</li><li>Cover and cook on low 30 to 45 minutes, stirring occasionally, until creamy and most of the milk is taken up.</li><li>Spoon into dishes, dot with butter, and sprinkle with the sugar and cinnamon mixed.</li></ol><div class="notes"><p class="type">On the page</p><p>A third recipe on the column, for caramel rolls, is torn off after its title.</p></div><p class="credit">Retold from the clipping. Ingredients as printed; original wording belongs to its publisher (The Tampa Tribune, “Recipes Lost and Found”).</p></div>
+</div>
+</div>
+<footer class="folio"><span>The Spy’s Cookbook</span><span>Clippings She Kept</span><b>80</b></footer>
+</div></section><section class="page text recipe" id="c3877" data-fit="0"><div class="sheet">
+<figure class="plate"><img src="dish/c3877.jpg" alt=""></figure>
+<div class="body">
+<p class="type fileline"><span>File 069</span><span>Clipping</span><span>Newspaper readers’ column</span></p>
+<h2>Spoon Bread</h2><p class="serves">Serves 6</p>
+<div class="cols">
+<div class="ing"><h3>Ingredients</h3><ul><li>1½ cups scalded milk</li><li>1 cup corn meal</li><li>1 teaspoon salt</li><li>1 cup cold milk</li><li>4 eggs</li><li>2 tablespoons butter</li></ul><div class="exhibits"><span class="exhibit still"><img src="clip/IMG_3877.jpg" alt="The clipping as she kept it"><span class="type">Exhibit 069</span></span></div></div>
+<div class="method"><h3>Method, retold</h3><ol class="steps"><li>Cook the cornmeal, salt, scalded milk and cold milk over medium heat, stirring all the while, about 5 minutes until thick. Off the heat, stir in the butter.</li><li>Separate the eggs. Beat the yolks until pale and mix them in. Whip the whites stiff and fold them in.</li><li>Bake in a well-buttered casserole, uncovered, at 350° for 50 minutes. Keep the oven shut, and serve at once.</li></ol><div class="notes"><p class="type">On the page</p><p>One of her red tabs reads “Spoon Bread”. It sits at her Hoecake page, where this clipping was kept.</p></div><p class="credit">Retold from the clipping. Ingredients as printed; original wording belongs to its publisher (Newspaper readers’ column).</p></div>
+</div>
+</div>
+<footer class="folio"><span>The Spy’s Cookbook</span><span>Clippings She Kept</span><b>81</b></footer>
+</div></section><section class="page text recipe" id="c3892" data-fit="0"><div class="sheet">
+<figure class="plate"><img src="dish/c3892.jpg" alt=""></figure>
+<div class="body">
+<p class="type fileline"><span>File 070</span><span>Clipping</span><span>Parade</span></p>
+<h2>Key Biscayne Lime Pie</h2>
+<div class="cols">
+<div class="ing"><h3>Ingredients</h3><ul><li>4 eggs, separated (reserve 3 whites for meringue)</li><li>1 can (14 ounce) sweetened condensed milk</li><li>½ cup lime juice</li><li>2 to 3 teaspoons grated lime peel</li><li>Few drops green food coloring</li><li>1 baked 9-inch pastry shell</li><li>½ teaspoon cream of tartar</li><li>½ cup sugar</li></ul><div class="exhibits"><span class="exhibit still"><img src="clip/IMG_3892.jpg" alt="The clipping as she kept it"><span class="type">Exhibit 070</span></span></div></div>
+<div class="method"><h3>Method, retold</h3><ol class="steps"><li>Beat the yolks and stir in the condensed milk, lime juice, peel and coloring. Whip one egg white stiff and fold it in. Fill the baked shell.</li><li>Whip the other three whites with the cream of tartar until foamy, then add the sugar gradually until stiff.</li><li>Spread over the filling right to the crust. Bake at 350° about 15 minutes, until golden. Cool, then chill.</li></ol><div class="notes"><p class="type">On the page</p><p>Pencil scribbles on the clipping, no words. The top is torn through the introduction.</p></div><p class="credit">Retold from the clipping. Ingredients as printed; original wording belongs to its publisher (Parade).</p></div>
+</div>
+</div>
+<footer class="folio"><span>The Spy’s Cookbook</span><span>Clippings She Kept</span><b>82</b></footer>
+</div></section><section class="page text recipe" id="c3841" data-fit="0"><div class="sheet">
+<figure class="plate"><img src="dish/c3841.jpg" alt=""></figure>
+<div class="body">
+<p class="type fileline"><span>File 071</span><span>Clipping</span><span>Magazine</span></p>
+<h2>Raspberry Holiday Mold</h2><p class="serves">16 servings</p>
+<div class="cols">
+<div class="ing"><h3>Ingredients</h3><ul><li>1 (20-ounce) can pineapple chunks, undrained</li><li>2 (10-ounce) packages frozen raspberries, thawed</li><li>2 (6-ounce) packages raspberry-flavored gelatin</li><li>3½ cups boiling water</li><li>2 tablespoons lemon juice</li><li>1 teaspoon hot sauce</li><li>½ teaspoon salt</li><li>1 cup chopped celery</li><li>1 cup chopped walnuts</li><li>1 (8-ounce) package cream cheese, softened</li><li>½ cup mayonnaise</li><li>Finely chopped walnuts</li></ul><div class="exhibits"><span class="exhibit still"><img src="clip/IMG_3841.jpg" alt="The clipping as she kept it"><span class="type">Exhibit 071</span></span></div></div>
+<div class="method"><h3>Method, retold</h3><ol class="steps"><li>Drain the pineapple and the raspberries, keeping both juices. Sieve the raspberries to a seedless puree.</li><li>Dissolve the gelatin in the boiling water. Add both juices, the lemon juice, hot sauce and salt, and chill until syrupy, like raw egg white.</li><li>Fold in the pineapple, puree, celery and the cup of walnuts. Pour into an oiled 10-cup ring mold and chill until set.</li><li>Beat the cream cheese with the mayonnaise. Unmold, fill the center with it and scatter with chopped walnuts.</li></ol><div class="notes"><p class="type">On the page</p><p>Tucked in at her Welsh Rabbit page. It was photographed twice.</p></div><p class="credit">Retold from the clipping. Ingredients as printed; original wording belongs to its publisher (Magazine).</p></div>
+</div>
+</div>
+<footer class="folio"><span>The Spy’s Cookbook</span><span>Clippings She Kept</span><b>83</b></footer>
+</div></section><section class="page text recipe" id="c3828" data-fit="0"><div class="sheet">
+<figure class="plate"><img src="dish/c3828.jpg" alt=""></figure>
+<div class="body">
+<p class="type fileline"><span>File 072</span><span>Clipping</span><span>Newsprint column</span></p>
+<h2>Vegetable Dip</h2><p class="serves">About 2 cups</p>
+<div class="cols">
+<div class="ing"><h3>Ingredients</h3><ul><li>1 cup mayonnaise</li><li>1 tablespoon lemon juice</li><li>½ teaspoon salt</li><li>½ teaspoon paprika</li><li>2 tablespoons instant minced onion</li><li>½ tablespoon frozen chopped chives, thawed</li><li>½ teaspoon curry powder</li><li>½ teaspoon Worcestershire sauce</li><li>1 cup commercial sour cream</li><li>Chopped green onions (optional)</li></ul><div class="exhibits"><span class="exhibit still"><img src="clip/IMG_3828.jpg" alt="The clipping as she kept it"><span class="type">Exhibit 072</span></span></div></div>
+<div class="method"><h3>Method, retold</h3><ol class="steps"><li>Stir everything but the green onions together and chill. Top with green onions if you like. Serve with raw vegetables.</li></ol><div class="notes"><p class="type">On the page</p><p>On the same clipping as the Cheese Ball.</p></div><p class="credit">Retold from the clipping. Ingredients as printed; original wording belongs to its publisher (Newsprint column).</p></div>
+</div>
+</div>
+<footer class="folio"><span>The Spy’s Cookbook</span><span>Clippings She Kept</span><b>84</b></footer>
+</div></section><section class="page text recipe" id="c38282" data-fit="0"><div class="sheet">
+<figure class="plate"><img src="dish/c38282.jpg" alt=""></figure>
+<div class="body">
+<p class="type fileline"><span>File 073</span><span>Clipping</span><span>Newsprint column</span></p>
+<h2>Cheese Ball</h2><p class="serves">1 cheese ball</p>
+<div class="cols">
+<div class="ing"><h3>Ingredients</h3><ul><li>2½ cups (10 ounces) shredded sharp Cheddar cheese</li><li>1 (8-ounce) jar process cheese spread</li><li>1 (8-ounce) package cream cheese, softened</li><li>1 tablespoon mayonnaise</li><li>1 tablespoon Worcestershire sauce</li><li>1 teaspoon frozen chopped chives, thawed</li><li>⅛ teaspoon garlic powder</li><li>⅛ teaspoon onion powder</li><li>½ cup chopped pecans</li></ul><div class="exhibits"><span class="exhibit still"><img src="clip/IMG_3828.jpg" alt="The clipping as she kept it"><span class="type">Exhibit 073</span></span></div></div>
+<div class="method"><h3>Method, retold</h3><ol class="steps"><li>Beat everything except the pecans with a mixer until smooth, then chill 2 hours.</li><li>Form a ball and roll it in the pecans. Serve with crackers.</li></ol><p class="credit">Retold from the clipping. Ingredients as printed; original wording belongs to its publisher (Newsprint column).</p></div>
+</div>
+</div>
+<footer class="folio"><span>The Spy’s Cookbook</span><span>Clippings She Kept</span><b>85</b></footer>
+</div></section><section class="page text recipe" id="c3878" data-fit="0"><div class="sheet">
+<figure class="plate"><img src="dish/c3878.jpg" alt=""></figure>
+<div class="body">
+<p class="type fileline"><span>File 074</span><span>Clipping</span><span>Magazine</span></p>
+<h2>Zippy Vegetable Dip</h2><p class="serves">About 2¼ cups</p>
+<div class="cols">
+<div class="ing"><h3>Ingredients</h3><ul><li>1 cup mayonnaise</li><li>1 cup cream-style cottage cheese</li><li>¼ cup grated onion</li><li>1 teaspoon Worcestershire sauce</li><li>½ teaspoon caraway seeds</li><li>½ teaspoon dry mustard</li><li>½ teaspoon pepper</li><li>¼ teaspoon salt</li><li>⅛ teaspoon garlic salt</li><li>¼ teaspoon celery seeds</li><li>⅛ teaspoon hot sauce</li></ul><div class="exhibits"><span class="exhibit still"><img src="clip/IMG_3878.jpg" alt="The clipping as she kept it"><span class="type">Exhibit 074</span></span></div></div>
+<div class="method"><h3>Method, retold</h3><ol class="steps"><li>Mix everything together and chill 1 to 2 hours. Serve with raw vegetables.</li></ol><p class="credit">Retold from the clipping. Ingredients as printed; original wording belongs to its publisher (Magazine).</p></div>
+</div>
+</div>
+<footer class="folio"><span>The Spy’s Cookbook</span><span>Clippings She Kept</span><b>86</b></footer>
+</div></section><section class="page text recipe" id="c3883" data-fit="0"><div class="sheet">
+<figure class="plate"><img src="dish/c3883.jpg" alt=""></figure>
+<div class="body">
+<p class="type fileline"><span>File 075</span><span>Clipping</span><span>Magazine</span></p>
+<h2>Baked Custard</h2><p class="serves">4 servings</p>
+<div class="cols">
+<div class="ing"><h3>Ingredients</h3><ul><li>3 eggs, slightly beaten</li><li>½ cup sugar</li><li>¼ teaspoon salt</li><li>2 cups scalded milk</li><li>1 teaspoon vanilla extract</li><li>Ground nutmeg</li></ul><div class="exhibits"><span class="exhibit still"><img src="clip/IMG_3883.jpg" alt="The clipping as she kept it"><span class="type">Exhibit 075</span></span></div></div>
+<div class="method"><h3>Method, retold</h3><ol class="steps"><li>Mix the eggs, sugar and salt. Stir in the hot milk slowly, then the vanilla.</li><li>Pour into a 1-quart dish or custard cups, dust with nutmeg, and set in a pan holding a little water.</li><li>Bake at 325° for 30 to 40 minutes, until a knife put in halfway to the center comes out clean. Good warm or cold.</li></ol><p class="credit">Retold from the clipping. Ingredients as printed; original wording belongs to its publisher (Magazine).</p></div>
+</div>
+</div>
+<footer class="folio"><span>The Spy’s Cookbook</span><span>Clippings She Kept</span><b>87</b></footer>
+</div></section><section class="page text recipe" id="c3894" data-fit="0"><div class="sheet">
+<figure class="plate"><img src="dish/c3894.jpg" alt=""></figure>
+<div class="body">
+<p class="type fileline"><span>File 076</span><span>Clipping</span><span>Magazine</span></p>
+<h2>Herb Vinegar</h2><p class="serves">Makes 2 cups</p>
+<div class="cols">
+<div class="ing"><h3>Ingredients</h3><ul><li>2 cups tightly packed fresh tarragon or other herb leaves or sprigs (thyme, dill, mint, or basil)</li><li>2 cups white vinegar</li><li>Fresh tarragon or other herb sprig (optional)</li></ul><div class="exhibits"><span class="exhibit still"><img src="clip/IMG_3894.jpg" alt="The clipping as she kept it"><span class="type">Exhibit 076</span></span></div></div>
+<div class="method"><h3>Method, retold</h3><ol class="steps"><li>Pack the herbs into a hot, clean quart jar. Heat the vinegar in a stainless or enamel pan until hot but not boiling, and pour it over. Cover loosely with a lid that is not metal until cool, then close tightly.</li><li>Leave in a cool, dark place for a week. Strain into a clean pint bottle, add a fresh sprig if you like, and label. Keeps about 3 months.</li></ol><p class="credit">Retold from the clipping. Ingredients as printed; original wording belongs to its publisher (Magazine).</p></div>
+</div>
+</div>
+<footer class="folio"><span>The Spy’s Cookbook</span><span>Clippings She Kept</span><b>88</b></footer>
+</div></section><section class="page text recipe" id="c3896" data-fit="0"><div class="sheet">
+<figure class="plate"><img src="dish/c3896.jpg" alt=""></figure>
+<div class="body">
+<p class="type fileline"><span>File 077</span><span>Clipping</span><span>Printed page, in two pieces</span></p>
+<h2>Ginger Crisps</h2><p class="serves">About 5 dozen</p>
+<div class="cols">
+<div class="ing"><h3>Ingredients</h3><ul><li>½ cup butter or margarine, softened</li><li>¾ cup sugar</li><li>3 tablespoons light molasses</li><li>1 egg</li><li>2½ cups all-purpose flour</li><li>1½ teaspoons ground ginger</li><li>1½ teaspoons ground cinnamon</li><li>1 teaspoon baking soda</li><li>½ teaspoon ground allspice</li></ul><div class="exhibits"><span class="exhibit still"><img src="clip/IMG_3896.jpg" alt="The clipping as she kept it"><span class="type">Exhibit 077</span></span></div></div>
+<div class="method"><h3>Method, retold</h3><ol class="steps"><li>Beat the butter, sugar, molasses and egg until fluffy. Mix in the flour, spices and soda at low speed.</li><li>Shape into a ball, wrap and chill 2 to 3 hours. Heat the oven to 375° and lightly grease two cookie sheets. Roll half the dough ⅛ inch thick on a floured surface, keeping the rest cold.</li><li>Cut 3-inch squares, then halve each into triangles. Score four light lines across each with the back of a knife.</li><li>Bake 8 minutes, until the edges are firm. Cool on racks. Repeat with the rest of the dough and the trimmings.</li><li>Store airtight, or freeze for up to a month.</li></ol><div class="notes"><p class="type">On the page</p><p>She kept both pieces of the cut page together.</p></div><p class="credit">Retold from the clipping. Ingredients as printed; original wording belongs to its publisher (Printed page, in two pieces).</p></div>
+</div>
+</div>
+<footer class="folio"><span>The Spy’s Cookbook</span><span>Clippings She Kept</span><b>89</b></footer>
+</div></section><section class="page text recipe" id="c3885" data-fit="0"><div class="sheet">
+<figure class="plate"><img src="dish/c3885.jpg" alt=""></figure>
+<div class="body">
+<p class="type fileline"><span>File 078</span><span>Clipping</span><span>Clipping pasted to a ruled sheet</span></p>
+<h2>Mama’s Collard Green Soup (Verzada)</h2>
+<div class="cols">
+<div class="ing"><h3>Ingredients</h3><ul><li>1½ lbs. dried Great Northern beans</li><li>1 ham bone or ham hock</li><li>2 packages frozen collard greens</li><li>2 onions</li><li>½ lb. white bacon</li><li>¼ lb. Italian sausage</li><li>2 cloves garlic, finely chopped</li><li>pinch of saffron</li></ul><div class="exhibits"><span class="exhibit still"><img src="clip/IMG_3885.jpg" alt="The clipping as she kept it"><span class="type">Exhibit 078</span></span></div></div>
+<div class="method"><h3>Method, retold</h3><ol class="steps"><li>Soak the beans overnight in plenty of water. Drain, cover with about a gallon of fresh water, add the ham bone and garlic, and boil 3 to 4 hours until tender.</li><li>Slice the white bacon and fry it crisp, add the sliced onions and cook them soft. Tip the whole pan, fat included, into the beans.</li><li>Fry the sausage in small pieces and add it the same way. Cook the collards as the package says, about 20 minutes, and stir them in with the saffron. Simmer 10 minutes more. Thin with water if it is too thick.</li><li>Finish each bowl with a splash of vinegar and olive oil.</li></ol><div class="notes"><p class="type">On the page</p><p>The only clipping she pasted down. A small ink slash is marked in the method.</p></div><p class="credit">Retold from the clipping. Ingredients as printed; original wording belongs to its publisher (Clipping pasted to a ruled sheet).</p></div>
+</div>
+</div>
+<footer class="folio"><span>The Spy’s Cookbook</span><span>Clippings She Kept</span><b>90</b></footer>
+</div></section><section class="page text recipe" id="c3879" data-fit="0"><div class="sheet">
+<figure class="plate"><img src="dish/c3879.jpg" alt=""></figure>
+<div class="body">
+<p class="type fileline"><span>File 079</span><span>Clipping</span><span>Magazine tear-out card</span></p>
+<h2>Chilled Tomato and Cucumber Soup</h2><p class="serves">6 servings</p>
+<div class="cols">
+<div class="ing"><h3>Ingredients</h3><ul><li>2 cloves garlic, crushed</li><li>2 pounds medium-size tomatoes (about 6), peeled and chopped</li><li>1 medium-size cucumber, pared and cut in chunks</li><li>1 large green pepper, seeded and chopped</li><li>2 slices white bread, trimmed and crumbled (1 cup)</li><li>¼ cup red wine vinegar</li><li>2 cups tomato juice</li><li>1 cup water</li><li>¼ cup olive or vegetable oil</li><li>½ teaspoon salt</li><li>¼ teaspoon freshly ground black pepper</li><li>Cucumber slices (optional)</li><li>½ cup chopped green onions</li><li>½ cup packaged garlic croutons</li><li>½ cup chopped green pepper</li></ul><div class="exhibits"><span class="exhibit still"><img src="clip/IMG_3879.jpg" alt="The clipping as she kept it"><span class="type">Exhibit 079</span></span></div></div>
+<div class="method"><h3>Method, retold</h3><ol class="steps"><li>Blend the garlic, tomatoes, cucumber chunks, the large green pepper, bread and vinegar until smooth, then push through a sieve.</li><li>Stir in the tomato juice, water, oil, salt and pepper. Chill thoroughly.</li><li>Serve in cold bowls, with the cucumber slices, green onions, croutons and chopped green pepper to scatter on top.</li></ol><div class="notes"><p class="type">On the page</p><p>The name of the soup is on the other side of the card, which was not photographed. The title here is a description.</p></div><p class="credit">Retold from the clipping. Ingredients as printed; original wording belongs to its publisher (Magazine tear-out card).</p></div>
+</div>
+</div>
+<footer class="folio"><span>The Spy’s Cookbook</span><span>Clippings She Kept</span><b>91</b></footer>
 </div></section><section class="page text menus" id="menus"><div class="sheet"><div class="body">
 <p class="type">Also in the file</p>
 <h2>Three dinners she planned</h2>
@@ -994,18 +1246,22 @@ dialog#lightbox::backdrop { background: rgba(20,24,21,.78); }
 <p class="type">On yellow legal paper, in pencil</p><div class="ing"><h4>Antipasto</h4><ul><li>artichoke hearts (1 jar)</li><li>roasted peppers (1 jar)</li><li><s>fresh fennel bulb</s></li><li><s>provolone cheese</s></li><li><s>Genoa salami</s></li><li>breadsticks</li></ul><h4>Entree</h4><ul><li><mark class="unsure" title="Unconfirmed reading. Check the original.">Loren’s</mark> Putanesca</li><li>spaghetti</li><li><s>plum tomatoes</s></li><li><s>anchovies</s></li><li><s>ripe olives</s></li><li>Parm. cheese</li></ul><h4>Dessert</h4><ul><li>3 pears</li><li>red wine</li><li>orange</li></ul></div><p class="menu-note">Six items are struck through. A word before “pears” could not be read. The entree is in Main Dish.</p></div><div class="menu"><button class="exhibit" type="button" data-full="hand/IMG_3895.jpg" aria-label="Enlarge the original: a dinner menu"><img src="hand/IMG_3895.jpg" alt="The original page: a dinner menu"><span class="type">Exhibit M-B</span></button>
 <p class="type">On ruled paper, in pencil</p><div class="ing"><h4>Main</h4><ul><li>lamb roast</li><li>rice</li></ul><h4>Salad</h4><ul><li>hearts of palm</li><li>tomato</li><li>lettuce</li></ul><h4>Fruit dessert</h4><ul><li>pineapple</li><li>peaches</li><li><mark class="unsure" title="Unconfirmed reading. Check the original.">cantaloupe</mark></li><li>kiwi</li><li>melon</li></ul></div><p class="menu-note">One word above “Lamb roast” is crossed out. Hearts of Palm Salad is in Appetizers &amp; Salads.</p></div><div class="menu"><button class="exhibit" type="button" data-full="hand/IMG_3886.jpg" aria-label="Enlarge the original: a dinner menu"><img src="hand/IMG_3886.jpg" alt="The original page: a dinner menu"><span class="type">Exhibit M-C</span></button>
 <p class="type">Upside down on the Lemon Ice sheet, in pencil</p><div class="ing"><h4>Dinner</h4><ul><li>oriental beef / rice</li><li>gr. beans salad</li><li>fruit cup / kirsch</li></ul><h4>To get</h4><ul><li>check melon</li><li>peppermint sticks (2 kinds)</li><li>cant. melon</li><li>honey dew</li></ul></div><p class="menu-note">Oriental Beef &amp; Snow Peas and Green Bean Salad are both in this book.</p></div></div>
-</div><footer class="folio"><span>The Spy’s Cookbook</span><span>Her menus</span><b>69</b></footer></div></section><section class="page text clippings" id="clippings"><div class="sheet"><div class="body">
+</div><footer class="folio"><span>The Spy’s Cookbook</span><span>Her menus</span><b>92</b></footer></div></section><section class="page text clippings" id="clippings"><div class="sheet"><div class="body">
 <p class="type">Also in the file</p>
-<h2>Clippings she kept</h2>
-<p class="lede">23 printed recipes were tucked into the notebook. Several come from The Tampa Tribune; the dated ones run from 1988 to 1992. The full text of each is in the transcript that goes with this book.</p>
-<div class="clip-wrap"><table class="clips"><thead><tr><th>Recipe</th><th>From</th><th>Her mark</th></tr></thead><tbody><tr><td>Spinach Tortellini in Creamy Tomato Sauce</td><td>Magazine spread, “Good Food”</td><td>“Keep this” in pencil above it; one step circled</td></tr><tr><td>Pears in Red Wine</td><td>Same spread</td><td></td></tr><tr><td>Speedy Antipasto</td><td>Same spread</td><td></td></tr><tr><td>Curried Fried Rice with Scallion and Peanuts</td><td>Gourmet, January 1992</td><td>“very good”, underlined, in the margin</td></tr><tr><td>Tomato Paella with Spicy Squid and Peas</td><td>Same page</td><td></td></tr><tr><td>Warm Hoppin’ John and Brown Rice Salad</td><td>Same page</td><td></td></tr><tr><td>Nutty Cranberries</td><td>Southern Living</td><td>A check mark in blue ink</td></tr><tr><td>Pasta e Fagioli</td><td>The Tampa Tribune, 1990</td><td></td></tr><tr><td>Hoe Cakes</td><td>The Tampa Tribune, 1992</td><td>Three ink ticks</td></tr><tr><td>Old-Fashioned Bread Pudding</td><td>The Tampa Tribune, “Recipes Lost and Found”</td><td></td></tr><tr><td>Rice Pudding</td><td>Same column</td><td></td></tr><tr><td>Spoon Bread</td><td>Newspaper readers’ column</td><td>A red tab in the notebook reads “Spoon Bread”</td></tr><tr><td>Key Biscayne Lime Pie</td><td>Parade</td><td>Pencil scribbles, no words</td></tr><tr><td>Raspberry Holiday Mold</td><td>Magazine</td><td>Photographed twice</td></tr><tr><td>Vegetable Dip and Cheese Ball</td><td>Newsprint column</td><td></td></tr><tr><td>Zippy Vegetable Dip</td><td>Magazine</td><td></td></tr><tr><td>Baked Custard</td><td>Magazine</td><td></td></tr><tr><td>Herb Vinegar</td><td>Magazine</td><td></td></tr><tr><td>Ginger Crisps</td><td>Printed page, in two pieces</td><td></td></tr><tr><td>Mama’s Collard Green Soup (Verzada)</td><td>Clipping pasted to a ruled sheet</td><td>A small ink slash in the method</td></tr><tr><td>Mushroom Soup en Croute</td><td>Magazine, December 1988</td><td>Runs off the page</td></tr><tr><td>Rainy-Day Soup</td><td>Magazine</td><td>Cut off mid-list</td></tr><tr><td>A chilled tomato and cucumber soup</td><td>Tear-out card; title is on the other side</td><td></td></tr></tbody></table></div>
-</div><footer class="folio"><span>The Spy’s Cookbook</span><span>Clippings</span><b>70</b></footer></div></section><section class="page text indexpage" id="index"><div class="sheet"><div class="body">
+<h2>The clippings, listed</h2>
+<p class="lede">23 printed recipes were tucked into the notebook. Several come from The Tampa Tribune; the dated ones run from 1988 to 1992. The 22 complete ones are in the section before this page. Two are cut off part-way and are listed here only.</p>
+<div class="clip-wrap"><table class="clips"><thead><tr><th>Recipe</th><th>From</th><th>Her mark</th></tr></thead><tbody><tr><td>Spinach Tortellini in Creamy Tomato Sauce</td><td>Magazine spread, “Good Food”</td><td>“Keep this” in pencil above it; one step circled</td></tr><tr><td>Pears in Red Wine</td><td>Same spread</td><td></td></tr><tr><td>Speedy Antipasto</td><td>Same spread</td><td></td></tr><tr><td>Curried Fried Rice with Scallion and Peanuts</td><td>Gourmet, January 1992</td><td>“very good”, underlined, in the margin</td></tr><tr><td>Tomato Paella with Spicy Squid and Peas</td><td>Same page</td><td></td></tr><tr><td>Warm Hoppin’ John and Brown Rice Salad</td><td>Same page</td><td></td></tr><tr><td>Nutty Cranberries</td><td>Southern Living</td><td>A check mark in blue ink</td></tr><tr><td>Pasta e Fagioli</td><td>The Tampa Tribune, 1990</td><td></td></tr><tr><td>Hoe Cakes</td><td>The Tampa Tribune, 1992</td><td>Three ink ticks</td></tr><tr><td>Old-Fashioned Bread Pudding</td><td>The Tampa Tribune, “Recipes Lost and Found”</td><td></td></tr><tr><td>Rice Pudding</td><td>Same column</td><td></td></tr><tr><td>Spoon Bread</td><td>Newspaper readers’ column</td><td>A red tab in the notebook reads “Spoon Bread”</td></tr><tr><td>Key Biscayne Lime Pie</td><td>Parade</td><td>Pencil scribbles, no words</td></tr><tr><td>Raspberry Holiday Mold</td><td>Magazine</td><td>Photographed twice</td></tr><tr><td>Vegetable Dip and Cheese Ball</td><td>Newsprint column</td><td></td></tr><tr><td>Zippy Vegetable Dip</td><td>Magazine</td><td></td></tr><tr><td>Baked Custard</td><td>Magazine</td><td></td></tr><tr><td>Herb Vinegar</td><td>Magazine</td><td></td></tr><tr><td>Ginger Crisps</td><td>Printed page, in two pieces</td><td></td></tr><tr><td>Mama’s Collard Green Soup (Verzada)</td><td>Clipping pasted to a ruled sheet</td><td>A small ink slash in the method</td></tr><tr><td>Mushroom Soup en Croute</td><td>Magazine, December 1988</td><td>Runs off the page</td></tr><tr><td>Rainy-Day Soup</td><td>Magazine</td><td>Cut off mid-list</td></tr><tr><td>Chilled Tomato and Cucumber Soup</td><td>Tear-out card; title is on the other side</td><td></td></tr></tbody></table></div>
+</div><footer class="folio"><span>The Spy’s Cookbook</span><span>Clippings</span><b>93</b></footer></div></section><section class="page text indexpage" id="index"><div class="sheet"><div class="body">
 <p class="type">A to Z</p>
 <h2>Every recipe by name</h2>
-<ol class="az"><li><a href="#r3822"><span>Apple Brown Betty</span><b>57</b></a></li><li><a href="#r3891"><span>Barbecued Spareribs or Country Ribs</span><b>68</b></a></li><li><a href="#r3890"><span>Brandied Pumpkin Pie</span><b>67</b></a></li><li><a href="#r3853"><span>Cantaloupe Balls a l’Orange</span><b>62</b></a></li><li><a href="#r3829"><span>Caviar-Cream Cheese Spread</span><b>6</b></a></li><li><a href="#r3818"><span>Cherry Ambrosia</span><b>53</b></a></li><li><a href="#r3848"><span>Chicken Fruit Salad</span><b>11</b></a></li><li><a href="#r3836"><span>Chicken Supremes with Sherry Sauce</span><b>27</b></a></li><li><a href="#r3819"><span>Chocolate Fudgies</span><b>55</b></a></li><li><a href="#r3866"><span>Coconut-Orange Sweet Potatoes</span><b>38</b></a></li><li><a href="#r3861"><span>Corn Fritters</span><b>34</b></a></li><li><a href="#r3862"><span>Corn Pudding</span><b>35</b></a></li><li><a href="#r3817"><span>Crunchy Chocolate Bars</span><b>52</b></a></li><li><a href="#r3847"><span>Crunchy Salmon Salad</span><b>10</b></a></li><li><a href="#r3864"><span>Easy Corn Casserole</span><b>37</b></a></li><li><a href="#r3865"><span>Easy Marinated Asparagus</span><b>19</b></a></li><li><a href="#r38182"><span>Festive Fruit Bowl</span><b>54</b></a></li><li><a href="#r3837"><span>Fried Chicken Breasts</span><b>28</b></a></li><li><a href="#r3873"><span>Fruit &amp; Pecan Dressing (for Turkey)</span><b>40</b></a></li><li><a href="#r3826"><span>Fruitcake (best)</span><b>61</b></a></li><li><a href="#r3814"><span>Ginger Pound Cake</span><b>49</b></a></li><li><a href="#r3839"><span>Grecian Baked Cod</span><b>30</b></a></li><li><a href="#r3844"><span>Grecian Green Salad</span><b>7</b></a></li><li><a href="#r3858"><span>Green Bean Salad</span><b>18</b></a></li><li><a href="#r3867"><span>Green Beans with Almonds</span><b>39</b></a></li><li><a href="#r3856"><span>Hearts of Palm Salad</span><b>16</b></a></li><li><a href="#r3852"><span>Herbed Tomatoes</span><b>13</b></a></li><li><a href="#r3874"><span>Hoecake</span><b>41</b></a></li><li><a href="#r3859"><span>Hot Chicken Salad (Country-Club style)</span><b>31</b></a></li><li><a href="#r3843"><span>Lamb Shanks Dinner</span><b>24</b></a></li><li><a href="#r3886"><span>Lemon Ice</span><b>66</b></a></li><li><a href="#r3824"><span>Lemon Tea Cake</span><b>59</b></a></li><li><a href="#r3816"><span>Mrs. Harvey’s White Fruit Cake</span><b>51</b></a></li><li><a href="#r3882"><span>Mustard Greens</span><b>65</b></a></li><li><a href="#r3832"><span>Oriental Beef &amp; Snow Peas</span><b>22</b></a></li><li><a href="#r3869"><span>Pasta Prima Vera</span><b>44</b></a></li><li><a href="#r3821"><span>Peach Cobbler</span><b>56</b></a></li><li><a href="#r3830"><span>Pepper Steak / Rice</span><b>21</b></a></li><li><a href="#r3870"><span>Pesto Sauce for Spaghetti</span><b>45</b></a></li><li><a href="#r3834"><span>Pork Medallions (Tarragon Sauce)</span><b>23</b></a></li><li><a href="#r3863"><span>Ratatouille</span><b>36</b></a></li><li><a href="#r3855"><span>Rice Salad</span><b>15</b></a></li><li><a href="#r3815"><span>Rum Cake</span><b>50</b></a></li><li><a href="#r3845"><span>Salad Supreme (“Green Stuff”)</span><b>8</b></a></li><li><a href="#r3838"><span>Sesame Chicken</span><b>29</b></a></li><li><a href="#r3872"><span>Sophia Loren’s Pasta alla Putanesca</span><b>47</b></a></li><li><a href="#r3854"><span>Sour Cream Potato Salad</span><b>14</b></a></li><li><a href="#r3846"><span>Spiced Peach Mold</span><b>9</b></a></li><li><a href="#r3875"><span>Spinach Apple Walnut Salad</span><b>64</b></a></li><li><a href="#r3825"><span>Sponge Cake</span><b>60</b></a></li><li><a href="#r3835"><span>Szechuan Chicken</span><b>26</b></a></li><li><a href="#r3823"><span>Ting-a-Lings</span><b>58</b></a></li><li><a href="#r3857"><span>Tomato &amp; Mozzarella Platter with Basil</span><b>17</b></a></li><li><a href="#r3851"><span>Tropical Chicken Boats for Two</span><b>12</b></a></li><li><a href="#r3842"><span>Welsh Rabbit</span><b>43</b></a></li><li><a href="#r3871"><span>White Clam Sauce</span><b>46</b></a></li><li><a href="#r3860"><span>Zesty Broccoli Casserole</span><b>33</b></a></li></ol>
-</div><footer class="folio"><span>The Spy’s Cookbook</span><span>Index</span><b>71</b></footer></div></section><section class="page back"><div class="sheet">
+<ol class="az"><li><a href="#r3822"><span>Apple Brown Betty</span><b>57</b></a></li><li><a href="#c3883"><span>Baked Custard</span><b>87</b></a></li><li><a href="#r3891"><span>Barbecued Spareribs or Country Ribs</span><b>68</b></a></li><li><a href="#r3890"><span>Brandied Pumpkin Pie</span><b>67</b></a></li><li><a href="#r3853"><span>Cantaloupe Balls a l’Orange</span><b>62</b></a></li><li><a href="#r3829"><span>Caviar-Cream Cheese Spread</span><b>6</b></a></li><li><a href="#c38282"><span>Cheese Ball</span><b>85</b></a></li><li><a href="#r3818"><span>Cherry Ambrosia</span><b>53</b></a></li><li><a href="#r3848"><span>Chicken Fruit Salad</span><b>11</b></a></li><li><a href="#r3836"><span>Chicken Supremes with Sherry Sauce</span><b>27</b></a></li><li><a href="#c3879"><span>Chilled Tomato and Cucumber Soup</span><b>91</b></a></li><li><a href="#r3819"><span>Chocolate Fudgies</span><b>55</b></a></li><li><a href="#r3866"><span>Coconut-Orange Sweet Potatoes</span><b>38</b></a></li><li><a href="#r3861"><span>Corn Fritters</span><b>34</b></a></li><li><a href="#r3862"><span>Corn Pudding</span><b>35</b></a></li><li><a href="#r3817"><span>Crunchy Chocolate Bars</span><b>52</b></a></li><li><a href="#r3847"><span>Crunchy Salmon Salad</span><b>10</b></a></li><li><a href="#c38872"><span>Curried Fried Rice with Scallion and Peanuts</span><b>73</b></a></li><li><a href="#r3864"><span>Easy Corn Casserole</span><b>37</b></a></li><li><a href="#r3865"><span>Easy Marinated Asparagus</span><b>19</b></a></li><li><a href="#r38182"><span>Festive Fruit Bowl</span><b>54</b></a></li><li><a href="#r3837"><span>Fried Chicken Breasts</span><b>28</b></a></li><li><a href="#r3873"><span>Fruit &amp; Pecan Dressing (for Turkey)</span><b>40</b></a></li><li><a href="#r3826"><span>Fruitcake (best)</span><b>61</b></a></li><li><a href="#c3896"><span>Ginger Crisps</span><b>89</b></a></li><li><a href="#r3814"><span>Ginger Pound Cake</span><b>49</b></a></li><li><a href="#r3839"><span>Grecian Baked Cod</span><b>30</b></a></li><li><a href="#r3844"><span>Grecian Green Salad</span><b>7</b></a></li><li><a href="#r3858"><span>Green Bean Salad</span><b>18</b></a></li><li><a href="#r3867"><span>Green Beans with Almonds</span><b>39</b></a></li><li><a href="#r3856"><span>Hearts of Palm Salad</span><b>16</b></a></li><li><a href="#c3894"><span>Herb Vinegar</span><b>88</b></a></li><li><a href="#r3852"><span>Herbed Tomatoes</span><b>13</b></a></li><li><a href="#c3884"><span>Hoe Cakes</span><b>78</b></a></li><li><a href="#r3874"><span>Hoecake</span><b>41</b></a></li><li><a href="#r3859"><span>Hot Chicken Salad (Country-Club style)</span><b>31</b></a></li><li><a href="#c3892"><span>Key Biscayne Lime Pie</span><b>82</b></a></li><li><a href="#r3843"><span>Lamb Shanks Dinner</span><b>24</b></a></li><li><a href="#r3886"><span>Lemon Ice</span><b>66</b></a></li><li><a href="#r3824"><span>Lemon Tea Cake</span><b>59</b></a></li><li><a href="#c3885"><span>Mama’s Collard Green Soup (Verzada)</span><b>90</b></a></li><li><a href="#r3816"><span>Mrs. Harvey’s White Fruit Cake</span><b>51</b></a></li><li><a href="#r3882"><span>Mustard Greens</span><b>65</b></a></li><li><a href="#c3898"><span>Nutty Cranberries</span><b>76</b></a></li><li><a href="#c3893"><span>Old-Fashioned Bread Pudding</span><b>79</b></a></li><li><a href="#r3832"><span>Oriental Beef &amp; Snow Peas</span><b>22</b></a></li><li><a href="#c3897"><span>Pasta e Fagioli</span><b>77</b></a></li><li><a href="#r3869"><span>Pasta Prima Vera</span><b>44</b></a></li><li><a href="#r3821"><span>Peach Cobbler</span><b>56</b></a></li><li><a href="#c3889"><span>Pears in Red Wine</span><b>71</b></a></li><li><a href="#r3830"><span>Pepper Steak / Rice</span><b>21</b></a></li><li><a href="#r3870"><span>Pesto Sauce for Spaghetti</span><b>45</b></a></li><li><a href="#r3834"><span>Pork Medallions (Tarragon Sauce)</span><b>23</b></a></li><li><a href="#c3841"><span>Raspberry Holiday Mold</span><b>83</b></a></li><li><a href="#r3863"><span>Ratatouille</span><b>36</b></a></li><li><a href="#c38932"><span>Rice Pudding</span><b>80</b></a></li><li><a href="#r3855"><span>Rice Salad</span><b>15</b></a></li><li><a href="#r3815"><span>Rum Cake</span><b>50</b></a></li></ol>
+</div><footer class="folio"><span>The Spy’s Cookbook</span><span>Index</span><b>94</b></footer></div></section><section class="page text indexpage"><div class="sheet"><div class="body">
+<p class="type">A to Z</p>
+<h2>Every recipe by name</h2>
+<ol class="az"><li><a href="#r3845"><span>Salad Supreme (“Green Stuff”)</span><b>8</b></a></li><li><a href="#r3838"><span>Sesame Chicken</span><b>29</b></a></li><li><a href="#r3872"><span>Sophia Loren’s Pasta alla Putanesca</span><b>47</b></a></li><li><a href="#r3854"><span>Sour Cream Potato Salad</span><b>14</b></a></li><li><a href="#c38892"><span>Speedy Antipasto</span><b>72</b></a></li><li><a href="#r3846"><span>Spiced Peach Mold</span><b>9</b></a></li><li><a href="#r3875"><span>Spinach Apple Walnut Salad</span><b>64</b></a></li><li><a href="#c38893"><span>Spinach Tortellini in Creamy Tomato Sauce</span><b>70</b></a></li><li><a href="#r3825"><span>Sponge Cake</span><b>60</b></a></li><li><a href="#c3877"><span>Spoon Bread</span><b>81</b></a></li><li><a href="#r3835"><span>Szechuan Chicken</span><b>26</b></a></li><li><a href="#r3823"><span>Ting-a-Lings</span><b>58</b></a></li><li><a href="#r3857"><span>Tomato &amp; Mozzarella Platter with Basil</span><b>17</b></a></li><li><a href="#c38873"><span>Tomato Paella with Spicy Squid and Peas</span><b>74</b></a></li><li><a href="#r3851"><span>Tropical Chicken Boats for Two</span><b>12</b></a></li><li><a href="#c3828"><span>Vegetable Dip</span><b>84</b></a></li><li><a href="#c38874"><span>Warm Hoppin’ John and Brown Rice Salad</span><b>75</b></a></li><li><a href="#r3842"><span>Welsh Rabbit</span><b>43</b></a></li><li><a href="#r3871"><span>White Clam Sauce</span><b>46</b></a></li><li><a href="#r3860"><span>Zesty Broccoli Casserole</span><b>33</b></a></li><li><a href="#c3878"><span>Zippy Vegetable Dip</span><b>86</b></a></li></ol>
+</div><footer class="folio"><span>The Spy’s Cookbook</span><span>Index</span><b>95</b></footer></div></section><section class="page back"><div class="sheet">
 <p class="back-quote">She kept two kinds of secrets.<br>These are the ones she wrote down.</p>
-<p class="type">57 recipes &middot; 7 sections &middot; every one with its original page</p>
+<p class="type">57 recipes in her hand &middot; 22 clippings she kept &middot; every one with its original</p>
 <div class="stamp">Declassified<br>for the family</div>
 </div></section>
 </main>
