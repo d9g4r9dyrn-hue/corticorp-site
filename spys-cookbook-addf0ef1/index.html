@@ -1,0 +1,1049 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="robots" content="noindex,nofollow,noarchive"></head><body><title>The Spy’s Cookbook</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Caprasimo&family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,600;1,6..72,400&family=Special+Elite&display=swap">
+<style>
+/* Layout: a printed book, 7.5 x 9.25 in. Every page is a fixed sheet measured in
+   "u" (calc(var(--pt)*1) = 1pt at trim size; build.py expands Nu to calc(var(--pt)*N)), shown as
+   spreads on a desk when wide, single pages when medium, and reflowed text on a phone. */
+:root {
+  --paper: #efecdf;        /* cookbook stock, leaning green-grey */
+  --paper-2: #e4e0cf;
+  --ink: #22262b;          /* blue-black fountain ink */
+  --ink-soft: #565b5e;
+  --green: #2f5d3a;        /* her notebook cover, deepened for type */
+  --green-cover: #6d9a55;  /* the cover itself */
+  --rule: #86a9c9;         /* ruled-paper blue */
+  --stamp: #b3261e;        /* rubber-stamp red */
+  --manila: #d8b874;       /* file folder */
+  --desk: #c5ccc0;
+  --desk-ink: #22262b;
+  --bar: #e9ebe4;
+  --bar-line: #aab3a6;
+  --display: "Caprasimo", "Cooper Black", Georgia, serif;
+  --text: "Newsreader", "Iowan Old Style", Georgia, serif;
+  --typer: "Special Elite", "Courier New", Courier, monospace;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) { --desk: #1b201c; --desk-ink: #e6e8e1; --bar: #232a25; --bar-line: #3c463e; color-scheme: dark; }
+}
+:root[data-theme="dark"] { --desk: #1b201c; --desk-ink: #e6e8e1; --bar: #232a25; --bar-line: #3c463e; color-scheme: dark; }
+
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; scroll-padding-top: calc(env(safe-area-inset-top, 0px) + 56px); }
+body { background: var(--desk); color: var(--desk-ink); font-family: var(--text); }
+body::before { content: ""; position: fixed; inset: 0 0 auto; height: env(safe-area-inset-top, 0px); z-index: 10; background: var(--bar); }
+
+.bar { position: sticky; top: env(safe-area-inset-top, 0px); z-index: 9; background: var(--bar); border-bottom: 1px solid var(--bar-line); }
+.bar-in { display: flex; gap: 12px 20px; align-items: center; justify-content: space-between; flex-wrap: wrap;
+  max-width: 1240px; margin: 0 auto; padding-block: 8px;
+  padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px)); }
+.bar-title { font-family: var(--display); font-size: 18px; color: var(--desk-ink); text-decoration: none; }
+.bar-jump { display: flex; gap: 8px; align-items: center; font-family: var(--typer); font-size: 12px; letter-spacing: .06em; text-transform: uppercase; min-width: 0; }
+.bar-jump select { font: 15px var(--text); padding: 5px 8px; max-width: 60vw; border: 1px solid var(--bar-line); border-radius: 3px; background: var(--bar); color: var(--desk-ink); }
+:focus-visible { outline: 2px solid var(--stamp); outline-offset: 2px; }
+
+.book { display: grid; grid-template-columns: minmax(0, 1fr); gap: 28px; max-width: 640px; margin: 0 auto; padding-block: 28px 64px;
+  padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px)); }
+@media (min-width: 1100px) {
+  .book { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 36px 0; max-width: 1240px; }
+  .page.cover { grid-column: 2; }
+}
+
+/* ---------- the sheet ---------- */
+.page { container-type: inline-size; aspect-ratio: 540 / 666; background: var(--paper); color: var(--ink);
+  box-shadow: 0 1px 2px rgba(0,0,0,.25), 0 10px 28px rgba(0,0,0,.18); position: relative; overflow: hidden; min-width: 0; }
+.sheet { --pt: calc(100cqw / 540); position: absolute; inset: 0; display: flex; flex-direction: column;
+  font-size: calc(var(--pt)*10.4); line-height: 1.42; }
+.sheet .body { flex: 1; min-height: 0; padding: calc(var(--pt)*30) calc(var(--pt)*40) 0; overflow: hidden; }
+.type { font-family: var(--typer); font-size: calc(var(--pt)*7.6); letter-spacing: .09em; text-transform: uppercase; color: var(--ink-soft); margin: 0; }
+.sheet h2 { font-family: var(--display); font-weight: 400; font-size: calc(var(--pt)*27); line-height: 1.04; color: var(--green); margin: calc(var(--pt)*5) 0 calc(var(--pt)*12); text-wrap: balance; }
+.sheet h3 { font-family: var(--typer); font-weight: 400; font-size: calc(var(--pt)*7.6); letter-spacing: .12em; text-transform: uppercase; color: var(--stamp); margin: 0 0 calc(var(--pt)*6); }
+.sheet h4 { font-family: var(--text); font-style: italic; font-weight: 400; font-size: 1em; margin: calc(var(--pt)*8) 0 calc(var(--pt)*2); color: var(--green); }
+.sheet p { margin: 0 0 calc(var(--pt)*7); }
+.sheet a { color: inherit; text-decoration: none; }
+.fr { font-variant-numeric: diagonal-fractions; font-feature-settings: "frac"; white-space: nowrap; margin-left: .08em; }
+mark.unsure { background: none; color: inherit; text-decoration: underline wavy var(--stamp); text-decoration-thickness: calc(var(--pt)*.9); text-underline-offset: calc(var(--pt)*2.2); }
+mark.unsure::after { content: "?"; font-family: var(--typer); font-size: .72em; color: var(--stamp); vertical-align: super; margin-left: .1em; }
+.redact { background: var(--ink); color: var(--ink); border-radius: calc(var(--pt)*1); padding: 0 .3em; font-size: .8em; user-select: none; }
+.folio { display: flex; gap: calc(var(--pt)*10); align-items: baseline; padding: 0 calc(var(--pt)*40); height: calc(var(--pt)*34); flex: none;
+  font-family: var(--typer); font-size: calc(var(--pt)*6.8); letter-spacing: .1em; text-transform: uppercase; color: var(--ink-soft); }
+.folio span:first-child::after { content: "/"; margin-left: calc(var(--pt)*10); opacity: .5; }
+.folio b { margin-left: auto; font-weight: 400; font-size: calc(var(--pt)*8.4); color: var(--ink); font-variant-numeric: tabular-nums; }
+
+/* ---------- cover ---------- */
+.bleed { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+.cover-block { position: absolute; left: 0; right: 0; bottom: 0; padding: 0 calc(var(--pt)*40) calc(var(--pt)*44); color: var(--ink); }
+.cover-block::before { content: ""; position: absolute; inset: calc(var(--pt)*-90) 0 0; z-index: 0;
+  background: linear-gradient(to bottom, rgba(239,236,223,0), rgba(239,236,223,.9) 34%, rgba(239,236,223,.97)); }
+.cover-block > * { position: relative; z-index: 1; }
+.cover h1, .titlepage h1 { font-family: var(--display); font-weight: 400; color: var(--green); margin: 0; line-height: .92; letter-spacing: -.01em; }
+.cover h1 { font-size: calc(var(--pt)*74); margin: calc(var(--pt)*8) 0 calc(var(--pt)*12); }
+.cover .sub { font-size: calc(var(--pt)*14); font-style: italic; margin: 0; max-width: calc(var(--pt)*300); line-height: 1.25; }
+.stamp { position: absolute; font-family: var(--typer); text-transform: uppercase; letter-spacing: .14em; line-height: 1.15; text-align: center;
+  color: var(--stamp); border: calc(var(--pt)*2.4) solid var(--stamp); border-radius: calc(var(--pt)*4); padding: calc(var(--pt)*8) calc(var(--pt)*12) calc(var(--pt)*5); font-size: calc(var(--pt)*12); transform: rotate(-9deg); opacity: .86;
+  mix-blend-mode: multiply; }
+.cover .stamp { right: calc(var(--pt)*34); bottom: calc(var(--pt)*150); }
+
+/* ---------- endpaper, title, back ---------- */
+.endpaper { background: var(--green-cover); }
+.rule-lines { position: absolute; inset: 0; opacity: .16;
+  background: repeating-linear-gradient(to bottom, transparent 0 calc(var(--pt)*21), var(--paper) calc(var(--pt)*21) calc(var(--pt)*22)); }
+.titlepage .sheet { padding: calc(var(--pt)*150) calc(var(--pt)*48) 0; }
+.titlepage h1 { font-size: calc(var(--pt)*54); margin: calc(var(--pt)*10) 0 calc(var(--pt)*18); }
+.titlepage .sub { font-size: calc(var(--pt)*13); font-style: italic; max-width: calc(var(--pt)*300); line-height: 1.3; }
+.title-foot { margin-top: auto; padding-bottom: calc(var(--pt)*40); border-top: calc(var(--pt)*1) solid var(--rule); padding-top: calc(var(--pt)*10); }
+.back { background: var(--green); color: var(--paper); }
+.back .sheet { padding: 0 calc(var(--pt)*54); justify-content: center; gap: calc(var(--pt)*18); }
+.back-quote { font-family: var(--display); font-size: calc(var(--pt)*25); line-height: 1.16; margin: 0; text-wrap: balance; }
+.back .type { color: var(--paper); opacity: .8; }
+.back .stamp { right: calc(var(--pt)*44); bottom: calc(var(--pt)*70); color: var(--manila); border-color: var(--manila); mix-blend-mode: normal; }
+
+/* ---------- front matter ---------- */
+.about-cols { display: grid; grid-template-columns: 1.12fr 1fr; gap: calc(var(--pt)*26); }
+.about-cols h3 { margin-top: calc(var(--pt)*12); }
+.about-cols > div > h3:first-child { margin-top: 0; }
+.gloss { display: grid; grid-template-columns: auto 1fr; gap: calc(var(--pt)*3) calc(var(--pt)*10); margin: 0 0 calc(var(--pt)*6); font-size: .94em; }
+.gloss dt { font-family: var(--typer); font-size: .86em; color: var(--green); white-space: nowrap; }
+.gloss dd { margin: 0; }
+.facts { font-size: 1.04em; gap: calc(var(--pt)*6) calc(var(--pt)*16); margin: calc(var(--pt)*6) 0 calc(var(--pt)*22); max-width: calc(var(--pt)*400); }
+.reserved { border: calc(var(--pt)*1) dashed var(--ink-soft); padding: calc(var(--pt)*22) calc(var(--pt)*24) calc(var(--pt)*16); margin-top: calc(var(--pt)*10); max-width: calc(var(--pt)*360); }
+.reserved .type { color: var(--stamp); margin-bottom: calc(var(--pt)*10); }
+.toc { list-style: none; margin: calc(var(--pt)*14) 0 0; padding: 0; border-top: calc(var(--pt)*1) solid var(--rule); }
+.toc a { display: grid; grid-template-columns: calc(var(--pt)*34) 1fr auto calc(var(--pt)*28); gap: calc(var(--pt)*8); align-items: baseline; padding: calc(var(--pt)*8.5) 0 calc(var(--pt)*6.5); border-bottom: calc(var(--pt)*1) solid var(--rule); }
+.c-num, .c-count { font-family: var(--typer); font-size: calc(var(--pt)*7.6); letter-spacing: .08em; text-transform: uppercase; color: var(--ink-soft); }
+.c-title { font-family: var(--display); font-size: calc(var(--pt)*15); color: var(--green); }
+.c-page { text-align: right; font-variant-numeric: tabular-nums; }
+
+/* ---------- chapter opener ---------- */
+.opener .plate-img { width: 100%; height: calc(var(--pt)*318); object-fit: cover; flex: none; display: block; }
+.opener .plate-img.none { background: var(--green-cover); }
+.opener-body { flex: 1; min-height: 0; padding: calc(var(--pt)*20) calc(var(--pt)*40) 0; overflow: hidden; }
+.opener h2 { font-size: calc(var(--pt)*40); margin: calc(var(--pt)*4) 0 calc(var(--pt)*12); }
+.opener-list { list-style: none; margin: 0; padding: 0; columns: 2; column-gap: calc(var(--pt)*26); font-size: calc(var(--pt)*9.6); }
+.opener-list a, .az a { display: flex; gap: calc(var(--pt)*6); align-items: baseline; border-bottom: calc(var(--pt)*.6) solid var(--rule); padding: calc(var(--pt)*2.6) 0 calc(var(--pt)*1.4); break-inside: avoid; }
+.opener-list b, .az b { margin-left: auto; font-weight: 400; font-variant-numeric: tabular-nums; color: var(--ink-soft); }
+.opener-body.dense h2 { font-size: calc(var(--pt)*32); margin-bottom: calc(var(--pt)*8); }
+.opener-body.dense .opener-list { font-size: calc(var(--pt)*8.6); columns: 3; column-gap: calc(var(--pt)*16); }
+.opener:has(.dense) .plate-img { height: calc(var(--pt)*250); }
+
+/* ---------- recipe ---------- */
+.plate { margin: 0; flex: none; height: calc(var(--pt)*232); overflow: hidden; }
+.plate img { width: 100%; height: 100%; object-fit: cover; display: block; }
+.recipe .body { padding-top: calc(var(--pt)*16); }
+.fileline { display: flex; gap: calc(var(--pt)*14); flex-wrap: wrap; }
+.fileline span + span::before { content: "\00b7"; margin-right: calc(var(--pt)*14); }
+.fileline span:empty { display: none; }
+.cols { display: grid; grid-template-columns: calc(var(--pt)*172) minmax(0, 1fr); gap: calc(var(--pt)*24); }
+.ing ul { list-style: none; margin: 0; padding: 0; }
+.ing li { padding: calc(var(--pt)*2.4) 0 calc(var(--pt)*1.6); border-bottom: calc(var(--pt)*.6) solid var(--rule); break-inside: avoid; }
+.steps { margin: 0; padding: 0; list-style: none; counter-reset: s; }
+.steps li { counter-increment: s; position: relative; padding-left: calc(var(--pt)*17); margin-bottom: calc(var(--pt)*5.5); }
+.steps li::before { content: counter(s); position: absolute; left: 0; top: .12em; font-family: var(--typer); font-size: .8em; color: var(--stamp); }
+.nomethod { text-transform: none; letter-spacing: .02em; font-size: calc(var(--pt)*8.6); }
+.notes { margin-top: calc(var(--pt)*10); padding: calc(var(--pt)*8) calc(var(--pt)*10) calc(var(--pt)*3); background: var(--paper-2); border-left: calc(var(--pt)*2) solid var(--manila); font-size: .93em; font-style: italic; }
+.notes .type { font-style: normal; margin-bottom: calc(var(--pt)*4); }
+.exhibits { display: flex; gap: calc(var(--pt)*8); margin-top: calc(var(--pt)*14); flex-wrap: wrap; }
+.exhibit { all: unset; cursor: zoom-in; display: block; width: calc(var(--pt)*118); background: #fff; padding: calc(var(--pt)*4) calc(var(--pt)*4) calc(var(--pt)*3); transform: rotate(-2.2deg);
+  box-shadow: 0 calc(var(--pt)*.6) calc(var(--pt)*1.4) rgba(0,0,0,.3), 0 calc(var(--pt)*3) calc(var(--pt)*8) rgba(0,0,0,.16); }
+.exhibit:nth-child(even) { transform: rotate(1.8deg); }
+.exhibit img { display: block; width: 100%; aspect-ratio: 3 / 3.7; object-fit: cover; }
+.exhibit .type { display: block; font-size: calc(var(--pt)*6); padding-top: calc(var(--pt)*3); text-align: center; color: var(--ink); }
+.exhibit:focus-visible { outline: 2px solid var(--stamp); outline-offset: 2px; }
+
+.serves { font-family: var(--typer); font-size: calc(var(--pt)*8); letter-spacing: .06em; text-transform: uppercase; color: var(--ink-soft); margin: calc(var(--pt)*-7) 0 calc(var(--pt)*11) !important; }
+.checks { margin-top: calc(var(--pt)*8); padding: calc(var(--pt)*7) calc(var(--pt)*10) calc(var(--pt)*2); border: calc(var(--pt)*1) solid var(--stamp); font-size: .93em; }
+.checks .type { color: var(--stamp); margin-bottom: calc(var(--pt)*4); }
+s { text-decoration-color: var(--ink-soft); color: var(--ink-soft); }
+
+/* ---------- menus and clippings ---------- */
+.lede { font-size: 1.06em; max-width: calc(var(--pt)*380); margin-bottom: calc(var(--pt)*14) !important; }
+.menu-cols { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: calc(var(--pt)*18); }
+.menu .exhibit { width: 100%; box-sizing: border-box; margin-bottom: calc(var(--pt)*12); }
+.menu .exhibit img { aspect-ratio: 3 / 2; }
+.menus .sheet { font-size: calc(var(--pt)*9.3); line-height: 1.34; }
+.menus .ing li { padding: calc(var(--pt)*1.8) 0 calc(var(--pt)*1.2); }
+.menus .sheet h4 { margin-top: calc(var(--pt)*6); }
+.menu .type { color: var(--stamp); margin-bottom: calc(var(--pt)*4); }
+.menu-note { font-style: italic; font-size: .9em; margin-top: calc(var(--pt)*9) !important; color: var(--ink-soft); }
+.clip-wrap { overflow-x: auto; }
+.clips { width: 100%; border-collapse: collapse; font-size: calc(var(--pt)*8.5); line-height: 1.25; }
+.clips th { font-family: var(--typer); font-weight: 400; font-size: calc(var(--pt)*6.8); letter-spacing: .1em; text-transform: uppercase; text-align: left; color: var(--stamp); padding: 0 calc(var(--pt)*8) calc(var(--pt)*4) 0; border-bottom: calc(var(--pt)*1) solid var(--ink-soft); }
+.clips td { padding: calc(var(--pt)*3.4) calc(var(--pt)*8) calc(var(--pt)*2.4) 0; border-bottom: calc(var(--pt)*.6) solid var(--rule); vertical-align: top; }
+.clips td:first-child { color: var(--green); font-weight: 600; width: 42%; }
+.clips td:last-child { font-style: italic; padding-right: 0; }
+.clippings .exhibits { margin-top: calc(var(--pt)*12); gap: calc(var(--pt)*10); flex-wrap: nowrap; }
+.clippings .exhibit { width: calc(var(--pt)*70); }
+
+/* fit steps: book.js raises data-fit until the text fits its sheet */
+.recipe[data-fit="1"] .plate { height: calc(var(--pt)*176); }
+.recipe[data-fit="2"] .plate { height: calc(var(--pt)*128); }
+.recipe[data-fit="2"] .sheet { font-size: calc(var(--pt)*9.7); }
+.recipe[data-fit="3"] .plate { height: calc(var(--pt)*92); }
+.recipe[data-fit="3"] .sheet { font-size: calc(var(--pt)*9); line-height: 1.36; }
+.recipe[data-fit="3"] .exhibit { width: calc(var(--pt)*74); }
+.recipe[data-fit="4"] .plate { height: calc(var(--pt)*60); }
+.recipe[data-fit="4"] .sheet { font-size: calc(var(--pt)*8.4); line-height: 1.33; }
+.recipe[data-fit="4"] .exhibit { width: calc(var(--pt)*60); }
+.recipe[data-fit="4"] h2 { font-size: calc(var(--pt)*22); margin-bottom: calc(var(--pt)*8); }
+.recipe[data-fit="5"] .plate { display: none; }
+.recipe[data-fit="5"] .sheet { font-size: calc(var(--pt)*7.9); line-height: 1.3; }
+.recipe[data-fit="5"] .exhibit { width: calc(var(--pt)*54); }
+.recipe[data-fit="5"] h2 { font-size: calc(var(--pt)*20); margin-bottom: calc(var(--pt)*6); }
+.recipe[data-fit="5"] .body { padding-top: calc(var(--pt)*26); }
+.recipe[data-fit="5"] .cols { grid-template-columns: calc(var(--pt)*150) minmax(0, 1fr); gap: calc(var(--pt)*18); }
+.recipe[data-fit="5"] .steps li { margin-bottom: calc(var(--pt)*3); }
+
+/* ---------- index ---------- */
+.az { list-style: none; margin: calc(var(--pt)*10) 0 0; padding: 0; columns: 2; column-gap: calc(var(--pt)*28); font-size: calc(var(--pt)*9); }
+
+/* ---------- lightbox ---------- */
+dialog#lightbox { border: 0; padding: 12px; background: #fff; max-width: min(94vw, 760px); max-height: 94vh; box-shadow: 0 20px 60px rgba(0,0,0,.5); }
+dialog#lightbox::backdrop { background: rgba(20,24,21,.78); }
+#lb-img { display: block; max-width: 100%; max-height: calc(94vh - 70px); margin: 0 auto; }
+.lb-close { font: 13px var(--typer); letter-spacing: .1em; text-transform: uppercase; background: #22262b; color: #efecdf; border: 0; padding: 8px 14px 6px; margin-bottom: 10px; cursor: pointer; }
+
+/* ---------- phone: text pages reflow, picture pages stay sheets ---------- */
+@media (max-width: 640px) {
+  .book { gap: 18px; padding-block: 18px 48px; }
+  .page.text { aspect-ratio: auto; overflow: visible; }
+  .page.text .sheet { --pt: 1.52px; position: static; }
+  .page.text .sheet .body { overflow: visible; padding: 22px 20px 6px; }
+  .page.text .sheet h2 { font-size: 30px; }
+  .page.text .folio { padding: 0 20px; height: 40px; }
+  .page.text .plate { height: auto; aspect-ratio: 3 / 2; }
+  .cols, .about-cols { grid-template-columns: minmax(0, 1fr); gap: 20px; }
+  .exhibit { width: 128px; }
+  .az, .opener-list, .opener-body.dense .opener-list { columns: 1; }
+  .menu-cols { grid-template-columns: minmax(0, 1fr); gap: 28px; }
+  .menu .exhibit { width: 190px; }
+  .clips { font-size: 13px; min-width: 460px; }
+  .clippings .exhibits { flex-wrap: wrap; }
+  .page.opener { aspect-ratio: auto; }
+  .page.opener .sheet { position: static; --pt: 1.52px; }
+  .opener .plate-img, .opener:has(.dense) .plate-img { height: auto; aspect-ratio: 5 / 4; }
+  .opener-body, .opener-body.dense { overflow: visible; padding: 18px 20px 4px; }
+  .opener h2, .opener-body.dense h2 { font-size: 34px; }
+  .opener .folio { padding: 0 20px; height: 40px; }
+  .toc a { grid-template-columns: 34px 1fr 28px; }
+  .c-count { display: none; }
+}
+
+/* ---------- print: one sheet per page at trim size ---------- */
+@page { size: 7.5in 9.25in; margin: 0; }
+@media print {
+  html, body { background: #fff; }
+  body::before, .bar, dialog { display: none !important; }
+  .book { display: block; max-width: none; margin: 0; padding: 0; }
+  .page { width: 7.5in; height: 9.25in; aspect-ratio: auto; box-shadow: none; break-after: page; break-inside: avoid; }
+  * { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+}
+@media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
+
+</style>
+<header class="bar"><div class="bar-in">
+<a class="bar-title" href="#cover">The Spy’s Cookbook</a>
+<label class="bar-jump"><span>Go to</span>
+<select id="jump"><option value="cover">Cover</option><option value="about">How to read these recipes</option><option value="contents">Contents</option><option value="ch-starters">Appetizers &amp; Salads</option><option value="ch-meat">Beef, Pork &amp; Lamb</option><option value="ch-chicken">Chicken &amp; Fish</option><option value="ch-veg">Vegetables &amp; Breads</option><option value="ch-main">Main Dish</option><option value="ch-sweets">Cakes &amp; Sweets</option><option value="ch-loose">Loose in the Notebook</option><option value="menus">Her menus</option><option value="clippings">Clippings</option><option value="index">A to Z</option></select></label>
+</div></header>
+<main class="book">
+<section class="page cover" id="cover"><div class="sheet">
+<img class="bleed" src="plate/cover.jpg" alt="A green notebook on a kitchen table with measuring spoons, a wooden spoon, reading glasses, a key and a tied envelope.">
+<div class="cover-block">
+<p class="type">File copy &middot; 57 recipes</p>
+<h1>The Spy&rsquo;s<br>Cookbook</h1>
+<p class="sub">Recipes from the handwritten notebook of my grandmother, Dorothea Chilldon</p>
+</div>
+<div class="stamp">Family<br>eyes only</div>
+</div></section><section class="page endpaper" aria-hidden="true"><div class="sheet"><div class="rule-lines"></div></div></section><section class="page titlepage"><div class="sheet">
+<p class="type">File copy</p>
+<h1>The Spy&rsquo;s Cookbook</h1>
+<p class="sub">57 recipes from the handwritten notebook of Dorothea Delores Adams Chilldon, 1915&ndash;1997, and the loose cards and slips kept inside it</p>
+<div class="title-foot"><p class="type">Mock-up edition &middot; November 2026</p></div>
+</div></section><section class="page text about" id="about"><div class="sheet"><div class="body">
+<p class="type">About this file</p>
+<h2>How to read these recipes</h2>
+<div class="about-cols">
+<div>
+<p>Every recipe here was copied from a photograph of her own page. The words are hers. Abbreviations have been written out and the method broken into steps, and nothing else has been changed: no quantities filled in, no steps added.</p>
+<p>She wrote for herself, so some recipes are a list and an oven temperature and no more. Those are printed as she left them.</p>
+<p>Each recipe carries a small photograph of the original page, marked <span class="type">Exhibit</span>. If the print and the handwriting ever disagree, the handwriting wins.</p>
+<h3>Marks you will see</h3>
+<p><mark class="unsure">a word like this</mark> is a reading we could not confirm. 11 of the 57 recipes have at least one. Check the exhibit before you cook.</p>
+<p><span class="redact">illegible</span> is a word that could not be read at all.</p>
+<p>Oven temperatures are Fahrenheit. Measures are American cups and spoons.</p>
+</div>
+<div>
+<h3>Her shorthand</h3>
+<dl class="gloss"><dt>c.</dt><dd>cup</dd><dt>tsp. / tbs.</dt><dd>teaspoon / tablespoon</dd><dt>oleo</dt><dd>margarine</dd><dt>soda</dt><dd>baking soda</dd><dt>gr.</dt><dd>ground, granulated or green, by context</dd><dt>com. sour cream</dt><dd>commercial (bought) sour cream</dd><dt>abt.</dt><dd>about</dd><dt>(6)</dt><dd>a bare number at the end is how many it serves</dd><dt>〃</dt><dd>ditto: same measure as the line above</dd></dl>
+<h3>The pictures</h3>
+<p>The photographs of finished dishes were made for this mock-up with an image generator, in the style of a 1960s cookbook plate. They show the kind of dish, not her own. The exhibits are real.</p>
+<h3>The clippings</h3>
+<p>Printed recipes she cut out and tucked in are listed at the back with her marks on them. They are not reprinted: those words belong to the papers and magazines they came from.</p>
+</div>
+</div>
+</div><footer class="folio"><span>The Spy’s Cookbook</span><span>About this file</span><b>2</b></footer></div></section><section class="page text story" id="her-story"><div class="sheet"><div class="body">
+<p class="type">The cook</p>
+<h2>Dorothea Chilldon</h2>
+<dl class="gloss facts">
+<dt>Name</dt><dd>Dorothea Delores Adams Chilldon</dd>
+<dt>Born</dt><dd>January 5, 1915, Blakely, Georgia</dd>
+<dt>Died</dt><dd>February 25, 1997, Tampa General Hospital, Tampa, Florida, aged 82</dd>
+<dt>Home</dt><dd>The Tampa area. The newspaper clippings in her notebook are from The Tampa Tribune.</dd>
+<dt>Service</dt><dd>Records requested. Not yet received.</dd>
+</dl>
+<div class="reserved">
+<p class="type">This space is held for her story.</p>
+<p>Her service record goes here when it arrives, with a photograph of her and whatever the family wants said: where she served, what she would and would not say about it, and what was on the table when she came home.</p>
+<p>Nothing about her service has been invented for this mock-up. Until the records come, the recipes are the record.</p>
+</div>
+</div><footer class="folio"><span>The Spy’s Cookbook</span><span>Her story</span><b>3</b></footer></div></section><section class="page text contents" id="contents"><div class="sheet"><div class="body">
+<p class="type">Index of files</p>
+<h2>Contents</h2>
+<ol class="toc"><li><a href="#ch-starters"><span class="c-num">01</span><span class="c-title">Appetizers &amp; Salads</span><span class="c-count">14 recipes</span><span class="c-page">5</span></a></li><li><a href="#ch-meat"><span class="c-num">02</span><span class="c-title">Beef, Pork &amp; Lamb</span><span class="c-count">4 recipes</span><span class="c-page">20</span></a></li><li><a href="#ch-chicken"><span class="c-num">03</span><span class="c-title">Chicken &amp; Fish</span><span class="c-count">6 recipes</span><span class="c-page">25</span></a></li><li><a href="#ch-veg"><span class="c-num">04</span><span class="c-title">Vegetables &amp; Breads</span><span class="c-count">9 recipes</span><span class="c-page">32</span></a></li><li><a href="#ch-main"><span class="c-num">05</span><span class="c-title">Main Dish</span><span class="c-count">5 recipes</span><span class="c-page">42</span></a></li><li><a href="#ch-sweets"><span class="c-num">06</span><span class="c-title">Cakes &amp; Sweets</span><span class="c-count">14 recipes</span><span class="c-page">48</span></a></li><li><a href="#ch-loose"><span class="c-num">07</span><span class="c-title">Loose in the Notebook</span><span class="c-count">5 recipes</span><span class="c-page">63</span></a></li>
+<li><a href="#menus"><span class="c-num">&mdash;</span><span class="c-title">Three dinners she planned</span><span class="c-count"></span><span class="c-page">69</span></a></li>
+<li><a href="#clippings"><span class="c-num">&mdash;</span><span class="c-title">Clippings she kept</span><span class="c-count"></span><span class="c-page">70</span></a></li>
+<li><a href="#index"><span class="c-num">A&ndash;Z</span><span class="c-title">Every recipe by name</span><span class="c-count"></span><span class="c-page">71</span></a></li></ol>
+</div><footer class="folio"><span>The Spy’s Cookbook</span><span>Contents</span><b>4</b></footer></div></section><section class="page opener" id="ch-starters"><div class="sheet">
+<img class="plate-img" src="plate/starters.jpg" alt="">
+<div class="opener-body">
+<p class="type">Section 01 of 07 &middot; 14 recipes</p>
+<h2>Appetizers &amp; Salads</h2>
+<ol class="opener-list"><li><a href="#r3829"><span>Caviar-Cream Cheese Spread</span><b>6</b></a></li><li><a href="#r3844"><span>Grecian Green Salad</span><b>7</b></a></li><li><a href="#r3845"><span>Salad Supreme (“Green Stuff”)</span><b>8</b></a></li><li><a href="#r3846"><span>Spiced Peach Mold</span><b>9</b></a></li><li><a href="#r3847"><span>Crunchy Salmon Salad</span><b>10</b></a></li><li><a href="#r3848"><span>Chicken Fruit Salad</span><b>11</b></a></li><li><a href="#r3851"><span>Tropical Chicken Boats for Two</span><b>12</b></a></li><li><a href="#r3852"><span>Herbed Tomatoes</span><b>13</b></a></li><li><a href="#r3854"><span>Sour Cream Potato Salad</span><b>14</b></a></li><li><a href="#r3855"><span>Rice Salad</span><b>15</b></a></li><li><a href="#r3856"><span>Hearts of Palm Salad</span><b>16</b></a></li><li><a href="#r3857"><span>Tomato &amp; Mozzarella Platter with Basil</span><b>17</b></a></li><li><a href="#r3858"><span>Green Bean Salad</span><b>18</b></a></li><li><a href="#r3865"><span>Easy Marinated Asparagus</span><b>19</b></a></li></ol>
+</div>
+<footer class="folio"><span>The Spy’s Cookbook</span><span>Appetizers &amp; Salads</span><b>5</b></footer>
+</div></section><section class="page text recipe" id="r3829" data-fit="0"><div class="sheet">
+<figure class="plate"><img src="dish/r3829.jpg" alt=""></figure>
+<div class="body">
+<p class="type fileline"><span>File 001</span><span>Appetizers &amp; Salads</span><span>Notebook, black ink</span></p>
+<h2>Caviar-Cream Cheese Spread</h2><p class="serves">24 to 30 appetizers</p>
+<div class="cols">
+<div class="ing"><h3>Ingredients</h3><ul><li>2 (8 oz.) packages cream cheese, softened</li><li>1 (3 oz.) package cream cheese, softened</li><li>1 cup mayo</li><li>1 small onion, grated</li><li>1 tablespoon Worcestershire sauce</li><li>1 tablespoon lemon juice</li><li>Dash of hot sauce</li><li>1 (3½ oz.) jar black caviar</li><li>4 hard cooked eggs, finely chopped</li><li>1 cup chopped fresh parsley</li></ul><div class="exhibits"><button class="exhibit" type="button" data-full="hand/IMG_3829.jpg" aria-label="Enlarge the original: Caviar-Cream Cheese Spread"><img src="hand/IMG_3829.jpg" alt="The original page: Caviar-Cream Cheese Spread"><span class="type">Exhibit 001</span></button></div></div>
+<div class="method"><h3>Method</h3><ol class="steps"><li>Beat cream cheese with an electric mixer until smooth. Add mayo, onion, Worcestershire sauce, lemon juice and hot sauce; beat well.</li><li>Spoon cream cheese mixture into shallow serving dish; top with caviar, eggs and parsley.</li><li>Serve spread with assorted crackers.</li></ol><div class="notes"><p class="type">On the page</p><p>Her page is headed “Appetizers”, with a small star.</p></div></div>
+</div>
+</div>
+<footer class="folio"><span>The Spy’s Cookbook</span><span>Appetizers &amp; Salads</span><b>6</b></footer>
+</div></section><section class="page text recipe" id="r3844" data-fit="0"><div class="sheet">
+<figure class="plate"><img src="dish/r3844.jpg" alt=""></figure>
+<div class="body">
+<p class="type fileline"><span>File 002</span><span>Appetizers &amp; Salads</span><span>Notebook, blue ink</span></p>
+<h2>Grecian Green Salad</h2><p class="serves">Serves 10–12</p>
+<div class="cols">
+<div class="ing"><h3>Ingredients</h3><ul><li>2 large heads romaine lettuce, torn into bite size pieces</li><li>2 medium cucumbers, thinly sliced</li><li>2 green peppers, chopped</li><li>1 cup thinly sliced radishes</li><li>¾ cup crumbled feta cheese</li><li>Olive oil dressing</li></ul><h4>Olive Oil Dressing</h4><ul><li>½ cup olive oil</li><li>3 tablespoons lemon juice</li><li>¼ teaspoon salt</li><li>¼ teaspoon pepper</li></ul><div class="exhibits"><button class="exhibit" type="button" data-full="hand/IMG_3844.jpg" aria-label="Enlarge the original: Grecian Green Salad"><img src="hand/IMG_3844.jpg" alt="The original page: Grecian Green Salad"><span class="type">Exhibit 002</span></button></div></div>
+<div class="method"><h3>Method</h3><ol class="steps"><li>Combine lettuce etc. Toss with olive oil dressing just before serving.</li></ol><div class="notes"><p class="type">On the page</p><p>She drew a box around the dressing and gave it no method.</p></div></div>
+</div>
+</div>
+<footer class="folio"><span>The Spy’s Cookbook</span><span>Appetizers &amp; Salads</span><b>7</b></footer>
+</div></section><section class="page text recipe" id="r3845" data-fit="0"><div class="sheet">
+<figure class="plate"><img src="dish/r3845.jpg" alt=""></figure>
+<div class="body">
+<p class="type fileline"><span>File 003</span><span>Appetizers &amp; Salads</span><span>Notebook, black ink</span></p>
+<h2>Salad Supreme (“Green Stuff”)</h2>
+<div class="cols">
+<div class="ing"><h3>Ingredients</h3><ul><li>large can of crushed pineapple</li><li>water</li><li>6-ounce package of lime gelatin</li><li>1 cup cold water</li><li>large package of cream cheese</li><li>½ cup chopped pecans</li><li>½ pint whipping cream</li></ul><div class="exhibits"><button class="exhibit" type="button" data-full="hand/IMG_3845.jpg" aria-label="Enlarge the original: Salad Supreme (&quot;Green Stuff&quot;)"><img src="hand/IMG_3845.jpg" alt="The original page: Salad Supreme (&quot;Green Stuff&quot;)"><span class="type">Exhibit 003</span></button></div></div>
+<div class="method"><h3>Method</h3><ol class="steps"><li>Drain large can of crushed pineapple, and measure juice; there should be about a cup. Add water to make 2 cups.</li><li>Heat to boiling and dissolve a 6-ounce package of lime gelatin in the liquid. Add 1 cup cold water. Pour into oblong pan.</li><li>Crumble a large package of cream cheese into the hot gelatin, using fork to mix in cream cheese until it has almost completely dissolved.</li><li>Place in refrigerator until partially congealed. Remove and add pineapple and ½ cup chopped pecans.</li><li>Beat ½ pint whipping cream until stiff. Carefully fold cream into gelatin.</li><li>Return to refrigerator until congealed.</li></ol><div class="notes"><p class="type">On the page</p><p>“Green Stuff” is her own subtitle.</p><p>The page is headed SALADS, in capitals.</p></div></div>
+</div>
+</div>
+<footer class="folio"><span>The Spy’s Cookbook</span><span>Appetizers &amp; Salads</span><b>8</b></footer>
+</div></section><section class="page text recipe" id="r3846" data-fit="0"><div class="sheet">
+<figure class="plate"><img src="dish/r3846.jpg" alt=""></figure>
+<div class="body">
+<p class="type fileline"><span>File 004</span><span>Appetizers &amp; Salads</span><span>Notebook, black ink</span></p>
+<h2>Spiced Peach Mold</h2><p class="serves">10–12 servings</p>
+<div class="cols">
+<div class="ing"><h3>Ingredients</h3><ul><li>1 8 to 9 ounce can pineapple slices</li><li>1 1-pound 13-ounce jar spiced peaches</li><li>2 3-ounce packages orange-pineapple gelatin</li><li>2 tablespoons lemon juice</li><li>¼ teaspoon salt</li><li>2 7-ounce bottles (2 cups) ginger ale, chilled</li></ul><div class="exhibits"><button class="exhibit" type="button" data-full="hand/IMG_3846.jpg" aria-label="Enlarge the original: Spiced Peach Mold"><img src="hand/IMG_3846.jpg" alt="The original page: Spiced Peach Mold"><span class="type">Exhibit 004</span></button></div></div>
+<div class="method"><h3>Method</h3><ol class="steps"><li>Drain and halve pineapple slices. Drain peaches, reserving syrup. Remove pits.</li><li>Add water to syrup to make 2 cups. In saucepan, combine peach syrup and gelatin; heat and stir until dissolved. Add lemon juice and salt. Chill till cold but not set.</li><li>Pour ginger ale carefully into gelatin; stir with up-down motion.</li><li>Pour about half the gelatin into a 6½ cup ring mold; chill both portions of gelatin till partially set.</li><li>Arrange peaches and pineapple around mold, gently placing the fruits in the gelatin. Chill till almost firm.</li><li>Cut remaining peaches and pineapple and fold into reserved gelatin.</li><li>Pour carefully over gelatin and fruit in mold. Chill till set or overnight. Unmold on crisp greens.</li></ol><div class="notes"><p class="type">On the page</p><p>“(Thanksgiving)” is written after the title.</p><p>She crossed out “juice” and wrote “syrup”.</p></div></div>
+</div>
+</div>
+<footer class="folio"><span>The Spy’s Cookbook</span><span>Appetizers &amp; Salads</span><b>9</b></footer>
+</div></section><section class="page text recipe" id="r3847" data-fit="0"><div class="sheet">
+<figure class="plate"><img src="dish/r3847.jpg" alt=""></figure>
+<div class="body">
+<p class="type fileline"><span>File 005</span><span>Appetizers &amp; Salads</span><span>Notebook, black ink</span></p>
+<h2>Crunchy Salmon Salad</h2><p class="serves">Serves 6</p>
+<div class="cols">
+<div class="ing"><h3>Ingredients</h3><ul><li>1 15-ounce can red salmon</li><li>1 cup diced celery</li><li>2 tablespoons chopped sweet pickle</li><li>1 tablespoon chopped green pepper</li><li>1 teaspoon chopped fresh chives</li><li>½ cup mayonnaise</li><li>2 tablespoons lemon juice</li><li>lettuce leaves, tomato wedges</li></ul><div class="exhibits"><button class="exhibit" type="button" data-full="hand/IMG_3847.jpg" aria-label="Enlarge the original: Crunchy Salmon Salad"><img src="hand/IMG_3847.jpg" alt="The original page: Crunchy Salmon Salad"><span class="type">Exhibit 005</span></button></div></div>
+<div class="method"><h3>Method</h3><ol class="steps"><li>Drain salmon, remove skin and bones; flake salmon with fork.</li><li>Add celery, pickle, green pepper and chives; mix well. Combine mayo and lemon juice; add to salmon, stir well.</li><li>Chill 2-3 hours, serve on lettuce leaves with tomato wedges.</li></ol></div>
+</div>
+</div>
+<footer class="folio"><span>The Spy’s Cookbook</span><span>Appetizers &amp; Salads</span><b>10</b></footer>
+</div></section><section class="page text recipe" id="r3848" data-fit="0"><div class="sheet">
+<figure class="plate"><img src="dish/r3848.jpg" alt=""></figure>
+<div class="body">
+<p class="type fileline"><span>File 006</span><span>Appetizers &amp; Salads</span><span>Notebook, black ink</span></p>
+<h2>Chicken Fruit Salad</h2>
+<div class="cols">
+<div class="ing"><h3>Ingredients</h3><ul><li>1 16-ounce can pineapple chunks</li><li>1 apple, cored and sliced</li><li>1 cup seedless grapes</li><li>3 cups diced cooked chicken</li><li>Whipped Cream Fruit Dressing</li><li>Lettuce</li><li>⅓ cup toasted slivered almonds</li></ul><h4>Whipped Cream Fruit Dressing</h4><ul><li>3 tablespoons butter or margarine</li><li>3 tablespoons all-purpose flour</li><li>¼ cup sugar</li><li>⅓ cup lemon juice</li><li>⅓ cup pineapple juice</li><li>½ cup whipping cream, whipped</li></ul><div class="exhibits"><button class="exhibit" type="button" data-full="hand/IMG_3848.jpg" aria-label="Enlarge the original: Chicken Fruit Salad"><img src="hand/IMG_3848.jpg" alt="The original page: Chicken Fruit Salad"><span class="type">Exhibit 006</span></button></div></div>
+<div class="method"><h3>Method</h3><ol class="steps"><li>Drain pineapple chunks, reserving juice. Dip apple slices in pineapple juice. Combine fruit and chicken; chill.</li><li>Add Whipped Cream dressing, and toss lightly. Serve on lettuce, and top with almonds.</li></ol><div class="notes"><p class="type">On the page</p><p>The “(?)” under the dressing is hers. The page gives no method for the dressing.</p></div></div>
+</div>
+</div>
+<footer class="folio"><span>The Spy’s Cookbook</span><span>Appetizers &amp; Salads</span><b>11</b></footer>
+</div></section><section class="page text recipe" id="r3851" data-fit="0"><div class="sheet">
+<figure class="plate"><img src="dish/r3851.jpg" alt=""></figure>
+<div class="body">
+<p class="type fileline"><span>File 007</span><span>Appetizers &amp; Salads</span><span>Notebook, black ink</span></p>
+<h2>Tropical Chicken Boats for Two</h2><p class="serves">Serves 2</p>
+<div class="cols">
+<div class="ing"><h3>Ingredients</h3><ul><li>1 (8-ounce) can pineapple chunks</li><li>1 cup cooked chicken</li><li>½ cup sliced almonds, toasted</li><li>¼ cup sour cream</li><li>½ cup chopped celery</li><li>½ teaspoon honey</li><li>1 large ripe avocado, peeled and halved</li><li>Lettuce leaves</li></ul><div class="exhibits"><button class="exhibit" type="button" data-full="hand/IMG_3851.jpg" aria-label="Enlarge the original: Tropical Chicken Boats for Two"><img src="hand/IMG_3851.jpg" alt="The original page: Tropical Chicken Boats for Two"><span class="type">Exhibit 007</span></button></div></div>
+<div class="method"><h3>Method</h3><ol class="steps"><li>Drain pineapple, reserving ¼ cup juice. Combine pineapple, chicken, almonds and celery; mix well.</li><li>Add sour cream, reserved pineapple juice, and honey; stir well.</li><li>Fill avocado halves with chicken mixture. Arrange on lettuce leaves.</li></ol><div class="notes"><p class="type">On the page</p><p>The 2 is circled.</p></div></div>
+</div>
+</div>
+<footer class="folio"><span>The Spy’s Cookbook</span><span>Appetizers &amp; Salads</span><b>12</b></footer>
+</div></section><section class="page text recipe" id="r3852" data-fit="0"><div class="sheet">
+<figure class="plate"><img src="dish/r3852.jpg" alt=""></figure>
+<div class="body">
+<p class="type fileline"><span>File 008</span><span>Appetizers &amp; Salads</span><span>Notebook, black ink</span></p>
+<h2>Herbed Tomatoes</h2><p class="serves">Serves 6</p>
+<div class="cols">
+<div class="ing"><h3>Ingredients</h3><ul><li>⅔ cup salad oil</li><li>¼ cup vinegar</li><li>Pinch of thyme</li><li>½ cup chopped parsley</li><li>½ cup chopped chives (or green onion tops)</li><li>salt and pepper</li><li>6-7 tomatoes, quartered</li><li>lettuce</li></ul><div class="exhibits"><button class="exhibit" type="button" data-full="hand/IMG_3852.jpg" aria-label="Enlarge the original: Herbed Tomatoes"><img src="hand/IMG_3852.jpg" alt="The original page: Herbed Tomatoes"><span class="type">Exhibit 008</span></button></div></div>
+<div class="method"><h3>Method</h3><ol class="steps"><li>Combine oil, vinegar and seasonings. Place tomatoes in shallow dish, add dressing; cover and refrigerate overnight.</li><li>Remove tomatoes from dressing and serve on bed of lettuce. Spoon on small amount of dressing.</li></ol></div>
+</div>
+</div>
+<footer class="folio"><span>The Spy’s Cookbook</span><span>Appetizers &amp; Salads</span><b>13</b></footer>
+</div></section><section class="page text recipe" id="r3854" data-fit="0"><div class="sheet">
+<figure class="plate"><img src="dish/r3854.jpg" alt=""></figure>
+<div class="body">
+<p class="type fileline"><span>File 009</span><span>Appetizers &amp; Salads</span><span>Notebook, black ink</span></p>
+<h2>Sour Cream Potato Salad</h2><p class="serves">Serves 6</p>
+<div class="cols">
+<div class="ing"><h3>Ingredients</h3><ul><li>4 to 4½ cups peeled and sliced potatoes</li><li>2 stalks celery, finely chopped</li><li>12 small radishes, thinly sliced</li><li>1 small onion, finely chopped</li><li>2 hard boiled eggs, sliced</li><li>½ cup sour cream</li><li>¾ cup mayo</li><li>½ teaspoon dill seeds</li><li>1¼ teaspoons prepared mustard</li><li>1½ teaspoons salt</li><li>½ teaspoon seasoned salt</li></ul><div class="exhibits"><button class="exhibit" type="button" data-full="hand/IMG_3854.jpg" aria-label="Enlarge the original: Sour Cream Potato Salad"><img src="hand/IMG_3854.jpg" alt="The original page: Sour Cream Potato Salad"><span class="type">Exhibit 009</span></button></div></div>
+<div class="method"><h3>Method</h3><ol class="steps"><li>Cook potatoes in boiling water for 10-15 minutes, or until tender. Drain; chill thoroughly.</li><li>Combine potatoes, celery, radishes, onion and egg slices in large mixing bowl. Set aside.</li><li>Combine remaining ingredients in a small bowl; mix well and pour over vegetables. Toss lightly.</li></ol><div class="notes"><p class="type">On the page</p><p>On the egg line she crossed out “chopped” and wrote “sliced”.</p></div><div class="checks"><p class="type">Check the exhibit</p><p>Mustard reads 1¼ teaspoons and salt 1½. Either could be the plain fraction with a stray stroke in front.</p></div></div>
+</div>
+</div>
+<footer class="folio"><span>The Spy’s Cookbook</span><span>Appetizers &amp; Salads</span><b>14</b></footer>
+</div></section><section class="page text recipe" id="r3855" data-fit="0"><div class="sheet">
+<figure class="plate"><img src="dish/r3855.jpg" alt=""></figure>
+<div class="body">
+<p class="type fileline"><span>File 010</span><span>Appetizers &amp; Salads</span><span>Notebook, blue ink</span></p>
+<h2>Rice Salad</h2>
+<div class="cols">
+<div class="ing"><h3>Ingredients</h3><ul><li>1 package chicken flavor Rice-a-Roni</li><li>2 cups water</li><li>a little oil</li><li>2 jars drained artichoke hearts</li><li>⅓ cup mayo</li><li>1 teaspoon curry (or to taste)</li><li>½ green chopped pepper</li><li>3 or 4 green onions, chopped</li><li>6 green stuffed sliced olives</li></ul><div class="exhibits"><button class="exhibit" type="button" data-full="hand/IMG_3855.jpg" aria-label="Enlarge the original: Rice Salad"><img src="hand/IMG_3855.jpg" alt="The original page: Rice Salad"><span class="type">Exhibit 010</span></button></div></div>
+<div class="method"><h3>Method</h3><ol class="steps"><li>Cook Rice-a-Roni as directed except 2 cups water and no butter (a little oil).</li><li>2 jars drained artichoke hearts mixed with ⅓ cup mayo and 1 teaspoon curry (or to taste). Add above to cool rice.</li><li>Add ½ green chopped pepper, 3 or 4 green onions, chopped, 6 green stuffed sliced olives.</li></ol><div class="notes"><p class="type">On the page</p><p>Her aside at the end: “Can use sliced pimentos or a can of shrimp with this.”</p></div></div>
+</div>
+</div>
+<footer class="folio"><span>The Spy’s Cookbook</span><span>Appetizers &amp; Salads</span><b>15</b></footer>
+</div></section><section class="page text recipe" id="r3856" data-fit="0"><div class="sheet">
+<figure class="plate"><img src="dish/r3856.jpg" alt=""></figure>
+<div class="body">
+<p class="type fileline"><span>File 011</span><span>Appetizers &amp; Salads</span><span>Notebook, black ink</span></p>
+<h2>Hearts of Palm Salad</h2><p class="serves">Serves 4</p>
+<div class="cols">
+<div class="ing"><h3>Ingredients</h3><ul><li>¼ cup salad oil</li><li>1 tablespoon finely chopped onion</li><li>1 tablespoon snipped parsley</li><li>1 tablespoon vinegar</li><li>1 teaspoon lemon juice</li><li>¼ teaspoon salt</li><li>⅛ teaspoon dry mustard</li><li>1 hard cooked egg, finely chopped</li><li>1 tablespoon chopped pimiento</li><li>1 14-ounce can hearts of palm, chilled, drained and cut in strips</li></ul><div class="exhibits"><button class="exhibit" type="button" data-full="hand/IMG_3856.jpg" aria-label="Enlarge the original: Hearts of Palm Salad"><img src="hand/IMG_3856.jpg" alt="The original page: Hearts of Palm Salad"><span class="type">Exhibit 011</span></button></div></div>
+<div class="method"><h3>Method</h3><ol class="steps"><li>In screw top jar, combine oil, onion, parsley, vinegar, lemon juice, salt and dry mustard. Cover, shake vigorously to blend.</li><li>Add chopped egg and pimiento; stir well. Line salad plates with lettuce; top with hearts of palm. Pour on dressing.</li></ol><div class="notes"><p class="type">On the page</p><p>Lettuce turns up in the method but not in her list.</p></div></div>
+</div>
+</div>
+<footer class="folio"><span>The Spy’s Cookbook</span><span>Appetizers &amp; Salads</span><b>16</b></footer>
+</div></section><section class="page text recipe" id="r3857" data-fit="0"><div class="sheet">
+<figure class="plate"><img src="dish/r3857.jpg" alt=""></figure>
+<div class="body">
+<p class="type fileline"><span>File 012</span><span>Appetizers &amp; Salads</span><span>Notebook, blue ink</span></p>
+<h2>Tomato &amp; Mozzarella Platter with Basil</h2><p class="serves">Serves 4</p>
+<div class="cols">
+<div class="ing"><h3>Ingredients</h3><ul><li>⅓ cup well seasoned bottled oil/vinegar dressing</li><li>1 tablespoon chopped fresh basil (or 1 teaspoon dried)</li><li>12 ounces mozzarella cheese, sliced</li><li>2 large tomatoes, sliced</li><li>fresh basil leaves for garnish</li></ul><div class="exhibits"><button class="exhibit" type="button" data-full="hand/IMG_3857.jpg" aria-label="Enlarge the original: Tomato &amp; Mozzarella Platter with Basil"><img src="hand/IMG_3857.jpg" alt="The original page: Tomato &amp; Mozzarella Platter with Basil"><span class="type">Exhibit 012</span></button></div></div>
+<div class="method"><h3>Method</h3><ol class="steps"><li>Arrange tomatoes and cheese alternately on platter. Drizzle with dressing.</li><li>Let stand in ’fridge 30 minutes or longer. Garnish.</li></ol><div class="notes"><p class="type">On the page</p><p>Her title: “Tomato/Mozzarella Platter/Basil”. A red-tab page.</p><p>She never says when the basil goes on.</p></div></div>
+</div>
+</div>
+<footer class="folio"><span>The Spy’s Cookbook</span><span>Appetizers &amp; Salads</span><b>17</b></footer>
+</div></section><section class="page text recipe" id="r3858" data-fit="0"><div class="sheet">
+<figure class="plate"><img src="dish/r3858.jpg" alt=""></figure>
+<div class="body">
+<p class="type fileline"><span>File 013</span><span>Appetizers &amp; Salads</span><span>Notebook, dark blue-black ink</span></p>
+<h2>Green Bean Salad</h2><p class="serves">Serves 4</p>
+<div class="cols">
+<div class="ing"><h3>Ingredients</h3><ul><li>1 1-pound can cut green beans, drained</li><li>1 small sweet onion, diced (½ cup)</li><li>¼ cup bottled Italian dressing</li><li>½ teaspoon dried oregano leaves</li><li>Lettuce leaves</li><li>Bacon bits (optional)</li></ul><div class="exhibits"><button class="exhibit" type="button" data-full="hand/IMG_3858.jpg" aria-label="Enlarge the original: Green Bean Salad"><img src="hand/IMG_3858.jpg" alt="The original page: Green Bean Salad"><span class="type">Exhibit 013</span></button></div></div>
+<div class="method"><h3>Method</h3><ol class="steps"><li>In large bowl combine beans, onion, dressing and oregano. Toss gently. Serve on lettuce leaves.</li></ol></div>
+</div>
+</div>
+<footer class="folio"><span>The Spy’s Cookbook</span><span>Appetizers &amp; Salads</span><b>18</b></footer>
+</div></section><section class="page text recipe" id="r3865" data-fit="0"><div class="sheet">
+<figure class="plate"><img src="dish/r3865.jpg" alt=""></figure>
+<div class="body">
+<p class="type fileline"><span>File 014</span><span>Appetizers &amp; Salads</span><span>Notebook, black ink</span></p>
+<h2>Easy Marinated Asparagus</h2><p class="serves">Serves 6–8</p>
+<div class="cols">
+<div class="ing"><h3>Ingredients</h3><ul><li>2 (14½ oz.) cans asparagus spears, drained</li><li>1 green pepper, chopped</li><li>1 small bunch green onions with tops, chopped</li><li>1 stalk celery, chopped fine</li><li>¾ cup vegetable oil</li><li>½ cup red wine vinegar</li><li>½ cup sugar</li><li>½ clove garlic, minced</li><li>¼ teaspoon paprika</li><li>Pimiento strips</li></ul><div class="exhibits"><button class="exhibit" type="button" data-full="hand/IMG_3865.jpg" aria-label="Enlarge the original: Easy Marinated Asparagus"><img src="hand/IMG_3865.jpg" alt="The original page: Easy Marinated Asparagus"><span class="type">Exhibit 014</span></button></div></div>
+<div class="method"><h3>Method</h3><ol class="steps"><li>Place asparagus in 13 x 9 x 2 inch baking dish. Combine next 8 ingredients; mix well and pour over asparagus. Chill 4 hours or overnight. Drain marinade before serving. Garnish with pimiento.</li></ol><div class="notes"><p class="type">On the page</p><p>She wrote “(Salad)” at the top, though the page sits among the vegetables.</p></div></div>
+</div>
+</div>
+<footer class="folio"><span>The Spy’s Cookbook</span><span>Appetizers &amp; Salads</span><b>19</b></footer>
+</div></section><section class="page opener" id="ch-meat"><div class="sheet">
+<img class="plate-img" src="plate/meat.jpg" alt="">
+<div class="opener-body">
+<p class="type">Section 02 of 07 &middot; 4 recipes</p>
+<h2>Beef, Pork &amp; Lamb</h2>
+<ol class="opener-list"><li><a href="#r3830"><span>Pepper Steak / Rice</span><b>21</b></a></li><li><a href="#r3832"><span>Oriental Beef &amp; Snow Peas</span><b>22</b></a></li><li><a href="#r3834"><span>Pork Medallions (Tarragon Sauce)</span><b>23</b></a></li><li><a href="#r3843"><span>Lamb Shanks Dinner</span><b>24</b></a></li></ol>
+</div>
+<footer class="folio"><span>The Spy’s Cookbook</span><span>Beef, Pork &amp; Lamb</span><b>20</b></footer>
+</div></section><section class="page text recipe" id="r3830" data-fit="0"><div class="sheet">
+<figure class="plate"><img src="dish/r3830.jpg" alt=""></figure>
+<div class="body">
+<p class="type fileline"><span>File 015</span><span>Beef, Pork &amp; Lamb</span><span>Notebook, black ink</span></p>
+<h2>Pepper Steak / Rice</h2><p class="serves">Serves 6</p>
+<div class="cols">
+<div class="ing"><h3>Ingredients</h3><ul><li>3 cups hot cooked rice</li><li>1 lb. lean beef round steak, ½&quot; thick</li><li>1 tablespoon paprika</li><li>2 tablespoons butter or oleo</li><li>2 cloves garlic, crushed</li><li>1½ cups beef broth</li><li>1 cup sliced green onions</li><li>2 green peppers, strips</li><li>2 tablespoons cornstarch</li><li>¼ cup each water and soy sauce</li><li>2 large fresh tomatoes, cut ⅛’s</li></ul><div class="exhibits"><button class="exhibit" type="button" data-full="hand/IMG_3830.jpg" aria-label="Enlarge the original: Pepper Steak / Rice"><img src="hand/IMG_3830.jpg" alt="The original page: Pepper Steak / Rice"><span class="type">Exhibit 015</span></button></div></div>
+<div class="method"><h3>Method</h3><ol class="steps"><li>Pound steak to ¼“. Cut into ¼” wide strips. Sprinkle meat with paprika and let stand while preparing other ingredients.</li><li>In large skillet, brown meat in butter. Add garlic and broth. Cover and simmer 30 min. Stir in onions and green peppers. Cover and cook 5 min. more.</li><li>Blend cornstarch, water and soy sauce. Stir into meat mixture.</li><li>Cook, stirring, until clear and thickened - about 2 min. Add tomatoes and stir. Serve over rice.</li></ol><div class="notes"><p class="type">On the page</p><p>Headed “Beef”.</p></div></div>
+</div>
+</div>
+<footer class="folio"><span>The Spy’s Cookbook</span><span>Beef, Pork &amp; Lamb</span><b>21</b></footer>
+</div></section><section class="page text recipe" id="r3832" data-fit="0"><div class="sheet">
+<figure class="plate"><img src="dish/r3832.jpg" alt=""></figure>
+<div class="body">
+<p class="type fileline"><span>File 016</span><span>Beef, Pork &amp; Lamb</span><span>Notebook, black ink</span></p>
+<h2>Oriental Beef &amp; Snow Peas</h2><p class="serves">Serves 4</p>
+<div class="cols">
+<div class="ing"><h3>Ingredients</h3><ul><li>1 pound boneless round steak</li><li>5 tablespoons soy sauce, divided</li><li>1 tablespoon sherry</li><li>4 teaspoons cornstarch</li><li>½ cup vegetable oil, divided</li><li>1 (6 oz.) package frozen snow peas</li><li>1 clove garlic, crushed</li><li>¾ teaspoon sugar</li><li>Hot cooked rice</li></ul><div class="exhibits"><button class="exhibit" type="button" data-full="hand/IMG_3832.jpg" aria-label="Enlarge the original: Oriental Beef &amp; Snow Peas"><img src="hand/IMG_3832.jpg" alt="The original page: Oriental Beef &amp; Snow Peas"><span class="type">Exhibit 016-A</span></button><button class="exhibit" type="button" data-full="hand/IMG_3831.jpg" aria-label="Enlarge the original: Oriental Beef &amp; Snow Peas"><img src="hand/IMG_3831.jpg" alt="The original page: Oriental Beef &amp; Snow Peas"><span class="type">Exhibit 016-B</span></button></div></div>
+<div class="method"><h3>Method</h3><ol class="steps"><li>Partially freeze meat; cut into ¼&quot; thick slices, 2″ long. Combine 1 tablespoon soy sauce, sherry and cornstarch; stir vigorously until cornstarch is dissolved. Coat beef with soy mixture.</li><li>Heat oil (6 tablespoons) over high heat in wok or skillet. Add meat, and stir fry until meat is browned. Remove meat and set aside.</li><li>Add remaining 2 tablespoons oil to wok; add snow peas and stir-fry over high heat 2 minutes.</li><li>Add meat, garlic, remaining soy sauce and sugar to wok; cook until thickened and bubbly. Serve over hot rice.</li></ol><div class="notes"><p class="type">On the page</p><p>Finished on the facing page.</p></div></div>
+</div>
+</div>
+<footer class="folio"><span>The Spy’s Cookbook</span><span>Beef, Pork &amp; Lamb</span><b>22</b></footer>
+</div></section><section class="page text recipe" id="r3834" data-fit="0"><div class="sheet">
+<figure class="plate"><img src="dish/r3834.jpg" alt=""></figure>
+<div class="body">
+<p class="type fileline"><span>File 017</span><span>Beef, Pork &amp; Lamb</span><span>Notebook, blue ink</span></p>
+<h2>Pork Medallions (Tarragon Sauce)</h2>
+<div class="cols">
+<div class="ing"><h3>Ingredients</h3><ul><li>1½ lb. pork tenderloin cut in ½&quot; thick slices and slightly flattened</li><li>1 tablespoon Dijon mustard</li><li>2 tablespoons butter</li><li>⅛ teaspoon salt</li><li>½ cup beef broth</li><li>½ cup half and half</li><li>½ teaspoon dried tarragon, crumbled</li><li>Pepper to taste</li></ul><div class="exhibits"><button class="exhibit" type="button" data-full="hand/IMG_3834.jpg" aria-label="Enlarge the original: Pork Medallions (Tarragon Sauce)"><img src="hand/IMG_3834.jpg" alt="The original page: Pork Medallions (Tarragon Sauce)"><span class="type">Exhibit 017-A</span></button><button class="exhibit" type="button" data-full="hand/IMG_3833.jpg" aria-label="Enlarge the original: Pork Medallions (Tarragon Sauce)"><img src="hand/IMG_3833.jpg" alt="The original page: Pork Medallions (Tarragon Sauce)"><span class="type">Exhibit 017-B</span></button></div></div>
+<div class="method"><h3>Method</h3><ol class="steps"><li>Spread one side of meat slices with mustard. Melt butter in heavy skillet over medium heat. Add pork, mustard side down. Sprinkle with salt.</li><li>Reduce heat to low and cook 5 min. on each side or until no longer pink.</li><li>Remove pork to heated dish; keep warm. Add broth and tarragon to pan drippings, stirring.</li><li>Simmer about 2 min. or until about ½ liquid remains. Add half and half.</li><li>Simmer until sauce is slightly thickened. Pour over pork slices.</li><li>Serve with fettucini; sliced cooked carrots.</li></ol><div class="notes"><p class="type">On the page</p><p>The half and half was added afterwards, squeezed between two lines with an arrow.</p></div></div>
+</div>
+</div>
+<footer class="folio"><span>The Spy’s Cookbook</span><span>Beef, Pork &amp; Lamb</span><b>23</b></footer>
+</div></section><section class="page text recipe" id="r3843" data-fit="0"><div class="sheet">
+<figure class="plate"><img src="dish/r3843.jpg" alt=""></figure>
+<div class="body">
+<p class="type fileline"><span>File 018</span><span>Beef, Pork &amp; Lamb</span><span>Notebook, black ink</span></p>
+<h2>Lamb Shanks Dinner</h2>
+<div class="cols">
+<div class="ing"><h3>Ingredients</h3><ul><li>2 tablespoons oil</li><li>4 lamb shanks</li><li>1 carrot, chopped</li><li>1 small onion, chopped</li><li>1 rib celery, chopped</li><li>Salt and pepper</li><li>¼ teaspoon thyme or oregano</li><li>1½ cups chicken broth or water</li><li>¾ cup rice</li><li>2 ripe tomatoes, quartered</li></ul><div class="exhibits"><button class="exhibit" type="button" data-full="hand/IMG_3843.jpg" aria-label="Enlarge the original: Lamb Shanks Dinner"><img src="hand/IMG_3843.jpg" alt="The original page: Lamb Shanks Dinner"><span class="type">Exhibit 018</span></button></div></div>
+<div class="method"><h3>Method</h3><ol class="steps"><li>Heat oil in heavy pot. Brown lamb on all sides; remove from pan.</li><li>Add celery, carrot and onion, turn to glaze in fat, then return lamb to pan.</li><li>Add seasonings and broth, cover and cook until lamb is tender, about 1 hour.</li><li>Add rice, raising lamb so that rice is submerged in liquid (add more broth if necessary to cover rice by 1″).</li><li>Add tomatoes and simmer about 30 min.</li></ol><div class="notes"><p class="type">On the page</p><p>“30 min.” is squeezed in above the last line of the page.</p></div></div>
+</div>
+</div>
+<footer class="folio"><span>The Spy’s Cookbook</span><span>Beef, Pork &amp; Lamb</span><b>24</b></footer>
+</div></section><section class="page opener" id="ch-chicken"><div class="sheet">
+<img class="plate-img" src="plate/chicken.jpg" alt="">
+<div class="opener-body">
+<p class="type">Section 03 of 07 &middot; 6 recipes</p>
+<h2>Chicken &amp; Fish</h2>
+<ol class="opener-list"><li><a href="#r3835"><span>Szechuan Chicken</span><b>26</b></a></li><li><a href="#r3836"><span>Chicken Supremes with Sherry Sauce</span><b>27</b></a></li><li><a href="#r3837"><span>Fried Chicken Breasts</span><b>28</b></a></li><li><a href="#r3838"><span>Sesame Chicken</span><b>29</b></a></li><li><a href="#r3839"><span>Grecian Baked Cod</span><b>30</b></a></li><li><a href="#r3859"><span>Hot Chicken Salad (Country-Club style)</span><b>31</b></a></li></ol>
+</div>
+<footer class="folio"><span>The Spy’s Cookbook</span><span>Chicken &amp; Fish</span><b>25</b></footer>
+</div></section><section class="page text recipe" id="r3835" data-fit="0"><div class="sheet">
+<figure class="plate"><img src="dish/r3835.jpg" alt=""></figure>
+<div class="body">
+<p class="type fileline"><span>File 019</span><span>Chicken &amp; Fish</span><span>Notebook, black ink</span></p>
+<h2>Szechuan Chicken</h2><p class="serves">Serves 6</p>
+<div class="cols">
+<div class="ing"><h3>Ingredients</h3><ul><li>¼ cup vegetable oil</li><li>2 cloves garlic</li><li>2 chicken breasts, boned and skinned, cut into thin strips</li><li>¼ cup soy sauce</li><li>2 tablespoons dry sherry</li><li>1 teaspoon sugar</li><li>1 teaspoon cornstarch</li><li>¾ teaspoon ground ginger</li><li>½ teaspoon pepper sauce</li><li>2 cups julienne carrots</li><li>1 package snow peas, thawed and drained</li><li>Cooked rice</li></ul><div class="exhibits"><button class="exhibit" type="button" data-full="hand/IMG_3835.jpg" aria-label="Enlarge the original: Szechuan Chicken"><img src="hand/IMG_3835.jpg" alt="The original page: Szechuan Chicken"><span class="type">Exhibit 019</span></button></div></div>
+<div class="method"><h3>Method</h3><ol class="steps"><li>Heat oil over high heat in wok or skillet. Add garlic, saute one minute.</li><li>Add chicken; stir fry until pieces turn white. Combine soy sauce, sherry, sugar, cornstarch, ginger and pepper sauce. Add to wok with carrots. Stir fry 3 min.</li><li>Add snow peas; stir fry 2 min. longer. Serve with hot rice.</li></ol><div class="notes"><p class="type">On the page</p><p>Headed “Chicken”.</p></div></div>
+</div>
+</div>
+<footer class="folio"><span>The Spy’s Cookbook</span><span>Chicken &amp; Fish</span><b>26</b></footer>
+</div></section><section class="page text recipe" id="r3836" data-fit="0"><div class="sheet">
+<figure class="plate"><img src="dish/r3836.jpg" alt=""></figure>
+<div class="body">
+<p class="type fileline"><span>File 020</span><span>Chicken &amp; Fish</span><span>Notebook, black ink with red underlining</span></p>
+<h2>Chicken Supremes with Sherry Sauce</h2><p class="serves">Serves 6</p>
+<div class="cols">
+<div class="ing"><h3>Ingredients</h3><ul><li>3 boneless whole chicken breasts</li><li>½ teaspoon crumbled leaf thyme</li><li>½ teaspoon salt</li><li>¼ teaspoon pepper</li><li>3 tablespoons butter or margarine</li><li>¼ pound sliced fresh mushrooms</li><li>1 tablespoon butter</li><li>One 1-oz. packet sherry-wine sauce mix</li><li>1 cup light cream or milk</li><li>¼ cup chopped parsley</li><li>Parsley (garnish)</li></ul><div class="exhibits"><button class="exhibit" type="button" data-full="hand/IMG_3836.jpg" aria-label="Enlarge the original: Chicken Supremes with Sherry Sauce"><img src="hand/IMG_3836.jpg" alt="The original page: Chicken Supremes with Sherry Sauce"><span class="type">Exhibit 020</span></button></div></div>
+<div class="method"><h3>Method</h3><ol class="steps"><li>Cut 3 boneless whole chicken breasts in half. Each half is a “supreme”.</li><li>Rub ½ teaspoon crumbled leaf thyme, ½ teaspoon salt and ¼ teaspoon pepper into chicken.</li><li>Melt 3 tablespoons butter or margarine in large skillet. Saute chicken just until done, turning once, about 10 min. Remove to heated serving platter.</li><li>Saute ¼ pound sliced fresh mushrooms in 1 tablespoon butter 3 minutes, or until mushrooms begin to brown.</li><li>Add one 1-oz. packet sherry-wine sauce mix; stir in 1 cup light cream or milk until smooth; cook until thickened, about 3 min.; add ¼ cup chopped parsley; pour over chicken. Garnish with parsley.</li></ol><div class="notes"><p class="type">On the page</p><p>She wrote this one as a single paragraph and underlined the quantities in red. The ingredient list was pulled out of it.</p></div></div>
+</div>
+</div>
+<footer class="folio"><span>The Spy’s Cookbook</span><span>Chicken &amp; Fish</span><b>27</b></footer>
+</div></section><section class="page text recipe" id="r3837" data-fit="0"><div class="sheet">
+<figure class="plate"><img src="dish/r3837.jpg" alt=""></figure>
+<div class="body">
+<p class="type fileline"><span>File 021</span><span>Chicken &amp; Fish</span><span>Notebook, blue ink</span></p>
+<h2>Fried Chicken Breasts</h2>
+<div class="cols">
+<div class="ing"><h3>Ingredients</h3><ul><li>4 whole chicken breasts, halved, boned and skinned</li><li>¼ cup flour</li><li>2 eggs, well beaten</li><li>1¼ cups Italian bread crumbs</li><li>3 tablespoons corn oil</li><li>3 tablespoons corn oil margarine</li></ul><div class="exhibits"><button class="exhibit" type="button" data-full="hand/IMG_3837.jpg" aria-label="Enlarge the original: Fried Chicken Breasts"><img src="hand/IMG_3837.jpg" alt="The original page: Fried Chicken Breasts"><span class="type">Exhibit 021</span></button></div></div>
+<div class="method"><h3>Method</h3><ol class="steps"><li>Pound chicken breasts to flatten. Dust lightly with flour. Dip into egg, then bread crumbs. Chill chicken 30 min.</li><li>Heat oil and cook chicken about 5 min. on each side until golden brown and crisp.</li></ol><div class="notes"><p class="type">On the page</p><p>She crossed out the Accent in pencil, in the list and in the method.</p></div><div class="checks"><p class="type">Check the exhibit</p><p>The margarine line uses ditto marks under “corn oil”. It may mean plain margarine.</p></div></div>
+</div>
+</div>
+<footer class="folio"><span>The Spy’s Cookbook</span><span>Chicken &amp; Fish</span><b>28</b></footer>
+</div></section><section class="page text recipe" id="r3838" data-fit="0"><div class="sheet">
+<figure class="plate"><img src="dish/r3838.jpg" alt=""></figure>
+<div class="body">
+<p class="type fileline"><span>File 022</span><span>Chicken &amp; Fish</span><span>Notebook, black ink</span></p>
+<h2>Sesame Chicken</h2><p class="serves">Serves 6</p>
+<div class="cols">
+<div class="ing"><h3>Ingredients</h3><ul><li>1 egg, beaten</li><li>¼ cup milk</li><li>½ cup fine dry breadcrumbs</li><li>¼ cup sesame seeds</li><li>¾ teaspoon salt</li><li>¼ teaspoon pepper</li><li>3 whole chicken breasts, skinned and boned</li><li>½ cup flour</li><li>Vegetable oil</li></ul><div class="exhibits"><button class="exhibit" type="button" data-full="hand/IMG_3838.jpg" aria-label="Enlarge the original: Sesame Chicken"><img src="hand/IMG_3838.jpg" alt="The original page: Sesame Chicken"><span class="type">Exhibit 022</span></button></div></div>
+<div class="method"><h3>Method</h3><ol class="steps"><li>Combine egg and milk; stir well. Combine breadcrumbs, sesame seeds, salt and pepper, stirring well.</li><li>Dredge chicken in flour; dip in egg mixture, and dredge in bread crumbs.</li><li>Heat 1″ of oil in large skillet to <mark class="unsure" title="Unconfirmed reading. Check the original.">325°</mark>. Add chicken and fry 5 minutes on each side. Drain on paper towels.</li></ol><div class="checks"><p class="type">Check the exhibit</p><p>The oil temperature reads 325°. The middle digit is loosely written and could be a 7.</p></div></div>
+</div>
+</div>
+<footer class="folio"><span>The Spy’s Cookbook</span><span>Chicken &amp; Fish</span><b>29</b></footer>
+</div></section><section class="page text recipe" id="r3839" data-fit="0"><div class="sheet">
+<figure class="plate"><img src="dish/r3839.jpg" alt=""></figure>
+<div class="body">
+<p class="type fileline"><span>File 023</span><span>Chicken &amp; Fish</span><span>Notebook, black ink</span></p>
+<h2>Grecian Baked Cod</h2><p class="serves">Serves 6</p>
+<div class="cols">
+<div class="ing"><h3>Ingredients</h3><ul><li>2 lbs. frozen cod</li><li>2 cups sliced onion</li><li>2 cloves garlic, minced</li><li>½ cup chopped parsley</li><li>¼ cup dry white wine</li><li>2 tablespoons lemon juice</li><li>2 tablespoons olive oil</li><li>1½ teaspoons salt</li><li>½ teaspoon oregano</li><li>¼ teaspoon pepper</li><li>2 medium tomatoes, sliced</li></ul><div class="exhibits"><button class="exhibit" type="button" data-full="hand/IMG_3839.jpg" aria-label="Enlarge the original: Grecian Baked Cod"><img src="hand/IMG_3839.jpg" alt="The original page: Grecian Baked Cod"><span class="type">Exhibit 023</span></button></div></div>
+<div class="method"><h3>Method</h3><ol class="steps"><li>Thaw frozen fillets. Place onion, garlic and parsley in even layer over bottom of shallow 2 qt. baking dish. Arrange fish on vegetables.</li><li>Add wine, lemon juice and olive oil. Sprinkle with ½ of the salt, oregano and pepper. Arrange tomato slices on top.</li><li>Bake in oven at 350° for 35-40 min. or until fish flakes. Baste with pan juices.</li></ol><div class="notes"><p class="type">On the page</p><p>Headed “Fish”, underlined twice.</p><p>The method uses half the salt, oregano and pepper and never says where the rest goes.</p></div></div>
+</div>
+</div>
+<footer class="folio"><span>The Spy’s Cookbook</span><span>Chicken &amp; Fish</span><b>30</b></footer>
+</div></section><section class="page text recipe" id="r3859" data-fit="0"><div class="sheet">
+<figure class="plate"><img src="dish/r3859.jpg" alt=""></figure>
+<div class="body">
+<p class="type fileline"><span>File 024</span><span>Chicken &amp; Fish</span><span>Notebook, black ink</span></p>
+<h2>Hot Chicken Salad (Country-Club style)</h2><p class="serves">6–8 servings</p>
+<div class="cols">
+<div class="ing"><h3>Ingredients</h3><ul><li>4 cups chopped cooked chicken</li><li>2 cups chopped celery</li><li>4 hard-cooked eggs, chopped</li><li>1 2 oz. jar diced pimiento, drained</li><li>1 tablespoon finely chopped onion</li><li>1 cup mayo.</li><li>2 tablespoons lemon juice</li><li>¾ teaspoon salt</li><li>1 cup (4 oz.) shredded cheddar cheese</li><li>⅔ cup sliced almonds, toasted</li></ul><div class="exhibits"><button class="exhibit" type="button" data-full="hand/IMG_3859.jpg" aria-label="Enlarge the original: Hot Chicken Salad (Country-Club style)"><img src="hand/IMG_3859.jpg" alt="The original page: Hot Chicken Salad (Country-Club style)"><span class="type">Exhibit 024</span></button></div></div>
+<div class="method"><h3>Method</h3><ol class="steps"><li>Combine first 8 ingredients; mix well. Spoon into lightly greased 12 x 8 x 2 inch baking dish; cover and bake at 350° for 20 min.</li><li>Sprinkle cheese over casserole; top with almonds. Bake uncovered an additional 3 min. or until cheese melts.</li></ol><div class="notes"><p class="type">On the page</p><p>She wrote “Spoon lightly into greased” and then drew arrows to swap the words.</p></div><div class="checks"><p class="type">Check the exhibit</p><p>“An additional 3 min.” could be 5.</p></div></div>
+</div>
+</div>
+<footer class="folio"><span>The Spy’s Cookbook</span><span>Chicken &amp; Fish</span><b>31</b></footer>
+</div></section><section class="page opener" id="ch-veg"><div class="sheet">
+<img class="plate-img" src="plate/veg.jpg" alt="">
+<div class="opener-body">
+<p class="type">Section 04 of 07 &middot; 9 recipes</p>
+<h2>Vegetables &amp; Breads</h2>
+<ol class="opener-list"><li><a href="#r3860"><span>Zesty Broccoli Casserole</span><b>33</b></a></li><li><a href="#r3861"><span>Corn Fritters</span><b>34</b></a></li><li><a href="#r3862"><span>Corn Pudding</span><b>35</b></a></li><li><a href="#r3863"><span>Ratatouille</span><b>36</b></a></li><li><a href="#r3864"><span>Easy Corn Casserole</span><b>37</b></a></li><li><a href="#r3866"><span>Coconut-Orange Sweet Potatoes</span><b>38</b></a></li><li><a href="#r3867"><span>Green Beans with Almonds</span><b>39</b></a></li><li><a href="#r3873"><span>Fruit &amp; Pecan Dressing (for Turkey)</span><b>40</b></a></li><li><a href="#r3874"><span>Hoecake</span><b>41</b></a></li></ol>
+</div>
+<footer class="folio"><span>The Spy’s Cookbook</span><span>Vegetables &amp; Breads</span><b>32</b></footer>
+</div></section><section class="page text recipe" id="r3860" data-fit="0"><div class="sheet">
+<figure class="plate"><img src="dish/r3860.jpg" alt=""></figure>
+<div class="body">
+<p class="type fileline"><span>File 025</span><span>Vegetables &amp; Breads</span><span>Notebook, black ink</span></p>
+<h2>Zesty Broccoli Casserole</h2><p class="serves">6–8 servings</p>
+<div class="cols">
+<div class="ing"><h3>Ingredients</h3><ul><li>2 10 oz. packages frozen chopped broccoli</li><li>1 10 oz. can cream of mushroom soup, undiluted</li><li>1½ cups shredded Cheddar cheese</li><li>1 egg, beaten</li><li>¼ cup milk</li><li>¼ cup mayonnaise</li><li>1 tablespoon horseradish</li><li>2 tablespoons melted butter or margarine</li><li>¼ cup cracker crumbs</li></ul><div class="exhibits"><button class="exhibit" type="button" data-full="hand/IMG_3860.jpg" aria-label="Enlarge the original: Zesty Broccoli Casserole"><img src="hand/IMG_3860.jpg" alt="The original page: Zesty Broccoli Casserole"><span class="type">Exhibit 025</span></button></div></div>
+<div class="method"><h3>Method</h3><ol class="steps"><li>Cook broccoli per package directions; drain. Combine soup, cheese, egg, milk, mayo, and horseradish; stir into broccoli.</li><li>Spoon into greased 2 quart casserole. Combine melted butter and cracker crumbs; sprinkle over broccoli mixture. Bake 350° - 45 minutes.</li></ol><div class="notes"><p class="type">On the page</p><p>Headed “Vegetables”.</p></div></div>
+</div>
+</div>
+<footer class="folio"><span>The Spy’s Cookbook</span><span>Vegetables &amp; Breads</span><b>33</b></footer>
+</div></section><section class="page text recipe" id="r3861" data-fit="0"><div class="sheet">
+<figure class="plate"><img src="dish/r3861.jpg" alt=""></figure>
+<div class="body">
+<p class="type fileline"><span>File 026</span><span>Vegetables &amp; Breads</span><span>Notebook, black ink</span></p>
+<h2>Corn Fritters</h2><p class="serves">Serves 6</p>
+<div class="cols">
+<div class="ing"><h3>Ingredients</h3><ul><li>Salad oil</li><li>1 16 oz. can whole kernel corn, drained</li><li>1 cup all-purpose flour</li><li>1 teaspoon double acting baking powder</li><li>¾ teaspoon salt</li><li>2 eggs</li><li>¼ cup milk</li><li>Maple-blended syrup, or confectioners’ sugar</li></ul><div class="exhibits"><button class="exhibit" type="button" data-full="hand/IMG_3861.jpg" aria-label="Enlarge the original: Corn Fritters"><img src="hand/IMG_3861.jpg" alt="The original page: Corn Fritters"><span class="type">Exhibit 026</span></button></div></div>
+<div class="method"><h3>Method</h3><ol class="steps"><li>About 30 min. before serving: Heat ½&quot; salad oil in skillet.</li><li>In medium bowl, with fork, stir 1 tablespoon oil and next 6 ingredients just until blended.</li><li>Drop batter by heaping spoonfuls into hot oil; fry 3 to 5 min. until browned, turning once.</li><li>With slotted spoon, remove fritters to paper towels; drain. Serve with syrup or sprinkled sugar.</li></ol></div>
+</div>
+</div>
+<footer class="folio"><span>The Spy’s Cookbook</span><span>Vegetables &amp; Breads</span><b>34</b></footer>
+</div></section><section class="page text recipe" id="r3862" data-fit="0"><div class="sheet">
+<figure class="plate"><img src="dish/r3862.jpg" alt=""></figure>
+<div class="body">
+<p class="type fileline"><span>File 027</span><span>Vegetables &amp; Breads</span><span>Notebook, blue ink</span></p>
+<h2>Corn Pudding</h2><p class="serves">Serves 4–6</p>
+<div class="cols">
+<div class="ing"><h3>Ingredients</h3><ul><li>1 tablespoon melted butter or margarine</li><li>2 eggs</li><li>2 tablespoons sugar</li><li>1 teaspoon salt</li><li>¼ cup flour</li><li>2 cups milk</li><li>2 7 oz. cans whole kernel corn, drained</li></ul><div class="exhibits"><button class="exhibit" type="button" data-full="hand/IMG_3862.jpg" aria-label="Enlarge the original: Corn Pudding"><img src="hand/IMG_3862.jpg" alt="The original page: Corn Pudding"><span class="type">Exhibit 027</span></button></div></div>
+<div class="method"><h3>Method</h3><ol class="steps"><li>Place butter in a 1½ qt. casserole. Combine eggs, sugar, salt and flour, mixing well. Gradually stir in milk. Add corn, mix well.</li><li>Pour mixture into casserole, cover and bake at 350° for 45 min.</li><li>Since pudding will thicken at the bottom during baking, stir several times during first 30 min. by lifting from the bottom.</li><li>Remove cover and continue baking 15 min. or until golden.</li></ol><div class="notes"><p class="type">On the page</p><p>A red-tab page.</p></div></div>
+</div>
+</div>
+<footer class="folio"><span>The Spy’s Cookbook</span><span>Vegetables &amp; Breads</span><b>35</b></footer>
+</div></section><section class="page text recipe" id="r3863" data-fit="0"><div class="sheet">
+<figure class="plate"><img src="dish/r3863.jpg" alt=""></figure>
+<div class="body">
+<p class="type fileline"><span>File 028</span><span>Vegetables &amp; Breads</span><span>Notebook, blue ink</span></p>
+<h2>Ratatouille</h2>
+<div class="cols">
+<div class="ing"><h3>Ingredients</h3><h4>Put into deep skillet or heavy casserole</h4><ul><li>⅓ cup olive oil</li><li>¾ cup thinly sliced onions</li><li>2 cloves garlic</li></ul><h4>Combine in layers with</h4><ul><li><mark class="unsure" title="Unconfirmed reading. Check the original.">4</mark> julienne green peppers</li><li>2½ cups peeled, diced eggplant</li><li>3 cups zucchini in ¼&quot; slices</li><li>2 cups peeled, quartered tomatoes</li></ul><h4>Add to each layer</h4><ul><li>salt and pepper</li></ul><div class="exhibits"><button class="exhibit" type="button" data-full="hand/IMG_3863.jpg" aria-label="Enlarge the original: Ratatouille"><img src="hand/IMG_3863.jpg" alt="The original page: Ratatouille"><span class="type">Exhibit 028</span></button></div></div>
+<div class="method"><h3>Method</h3><ol class="steps"><li>Put into deep skillet or heavy casserole: ⅓ cup olive oil, ¾ cup thinly sliced onions, 2 cloves garlic.</li><li>Remove the onions and garlic from casserole and combine in layers with: <mark class="unsure" title="Unconfirmed reading. Check the original.">4</mark> julienne green peppers, 2½ cups peeled, diced eggplant, 3 cups zucchini in ¼&quot; slices, 2 cups peeled, quartered tomatoes.</li><li>Add to each layer salt and pepper. Sprinkle with olive oil. Simmer covered over very low heat 35-40 min.</li><li>Uncover and continue cooking to reduce amount of liquid.</li></ol><div class="notes"><p class="type">On the page</p><p>List and method run together on her page, the way she would say it.</p><p>There is no step for cooking the onions and garlic before she takes them out.</p></div><div class="checks"><p class="type">Check the exhibit</p><p>The zucchini slices read ¼ inch and could be ½.</p></div></div>
+</div>
+</div>
+<footer class="folio"><span>The Spy’s Cookbook</span><span>Vegetables &amp; Breads</span><b>36</b></footer>
+</div></section><section class="page text recipe" id="r3864" data-fit="0"><div class="sheet">
+<figure class="plate"><img src="dish/r3864.jpg" alt=""></figure>
+<div class="body">
+<p class="type fileline"><span>File 029</span><span>Vegetables &amp; Breads</span><span>Notebook, blue ink</span></p>
+<h2>Easy Corn Casserole</h2><p class="serves">Serves 4</p>
+<div class="cols">
+<div class="ing"><h3>Ingredients</h3><ul><li>1 can white corn (15 oz.)</li><li>1 cup grated cheddar cheese</li><li>1 tablespoon flour</li><li>1 cup milk</li><li>2 tablespoons butter</li><li>1 cup bread crumbs</li><li>2 eggs</li></ul><div class="exhibits"><button class="exhibit" type="button" data-full="hand/IMG_3864.jpg" aria-label="Enlarge the original: Easy Corn Casserole"><img src="hand/IMG_3864.jpg" alt="The original page: Easy Corn Casserole"><span class="type">Exhibit 029</span></button></div></div>
+<div class="method"><h3>Method</h3><ol class="steps"><li>Oven 425°. Beat eggs and mix with rest of ingredients. Pour into greased casserole. 35 min.</li></ol><div class="checks"><p class="type">Check the exhibit</p><p>The oven reads 425°, and clearly. That is hot for this dish, so look at the exhibit.</p></div></div>
+</div>
+</div>
+<footer class="folio"><span>The Spy’s Cookbook</span><span>Vegetables &amp; Breads</span><b>37</b></footer>
+</div></section><section class="page text recipe" id="r3866" data-fit="0"><div class="sheet">
+<figure class="plate"><img src="dish/r3866.jpg" alt=""></figure>
+<div class="body">
+<p class="type fileline"><span>File 030</span><span>Vegetables &amp; Breads</span><span>Notebook, black ink</span></p>
+<h2>Coconut-Orange Sweet Potatoes</h2><p class="serves">Serves 10 to 12</p>
+<div class="cols">
+<div class="ing"><h3>Ingredients</h3><ul><li>4 (17 oz.) cans sweet potatoes, drained and mashed</li><li>4 eggs</li><li>1 cup firmly packed brown sugar</li><li>¼ cup butter or margarine, melted</li><li>¾ teaspoon salt</li><li>½ teaspoon ground cinnamon</li><li>3 tablespoons rum</li><li>1 cup chopped pecans</li><li>1 cup flaked coconut</li><li>2 tablespoons butter, melted</li><li>Orange slices</li></ul><div class="exhibits"><button class="exhibit" type="button" data-full="hand/IMG_3866.jpg" aria-label="Enlarge the original: Coconut-Orange Sweet Potatoes"><img src="hand/IMG_3866.jpg" alt="The original page: Coconut-Orange Sweet Potatoes"><span class="type">Exhibit 030</span></button></div></div>
+<div class="method"><h3>Method</h3><ol class="steps"><li>Combine first 7 ingredients; beat with electric mixer 1-2 min. or until light and fluffy.</li><li>Stir in pecans; spoon into greased 2½ qt. casserole. Bake at 325° for about 35 min.</li><li>Combine coconut and 2 tablespoons butter, stirring well. Sprinkle around edge of casserole; top with orange slices and bake additional 10 min.</li></ol><div class="notes"><p class="type">On the page</p><p>“(Thanksgiving + Christmas)” is written under the title and circled.</p></div><div class="checks"><p class="type">Check the exhibit</p><p>The cans read 17 oz. The 7 could be a 2.</p></div></div>
+</div>
+</div>
+<footer class="folio"><span>The Spy’s Cookbook</span><span>Vegetables &amp; Breads</span><b>38</b></footer>
+</div></section><section class="page text recipe" id="r3867" data-fit="0"><div class="sheet">
+<figure class="plate"><img src="dish/r3867.jpg" alt=""></figure>
+<div class="body">
+<p class="type fileline"><span>File 031</span><span>Vegetables &amp; Breads</span><span>Notebook, black ink</span></p>
+<h2>Green Beans with Almonds</h2><p class="serves">8–10 servings</p>
+<div class="cols">
+<div class="ing"><h3>Ingredients</h3><ul><li>2 pounds fresh green beans</li><li>2 quarts water</li><li>1 teaspoon salt</li><li>¼ cup butter or margarine</li><li>Salt and pepper to taste</li><li>⅔ cup sliced almonds, toasted</li></ul><div class="exhibits"><button class="exhibit" type="button" data-full="hand/IMG_3867.jpg" aria-label="Enlarge the original: Green Beans with Almonds"><img src="hand/IMG_3867.jpg" alt="The original page: Green Beans with Almonds"><span class="type">Exhibit 031</span></button></div></div>
+<div class="method"><h3>Method</h3><ol class="steps"><li>Wash beans; trim end and remove strings. Cut diagonally into 3-inch pieces.</li><li>Combine water and 1 teaspoon salt, and bring to boil. Add beans. Cook uncovered 4 to 5 minutes, or until just tender.</li><li>Drain beans, and plunge into cold water; drain again. Melt butter in large skillet; add beans, and saute 2 to 3 minutes until thoroughly heated.</li><li>Sprinkle with salt, pepper and almonds.</li></ol></div>
+</div>
+</div>
+<footer class="folio"><span>The Spy’s Cookbook</span><span>Vegetables &amp; Breads</span><b>39</b></footer>
+</div></section><section class="page text recipe" id="r3873" data-fit="0"><div class="sheet">
+<figure class="plate"><img src="dish/r3873.jpg" alt=""></figure>
+<div class="body">
+<p class="type fileline"><span>File 032</span><span>Vegetables &amp; Breads</span><span>Notebook, black ink</span></p>
+<h2>Fruit &amp; Pecan Dressing (for Turkey)</h2><p class="serves">10–12 servings</p>
+<div class="cols">
+<div class="ing"><h3>Ingredients</h3><ul><li>2 cups water</li><li>½ cup butter or oleo</li><li>2 8 oz. packages herb-seasoned stuffing mix</li><li>2 large apples, unpeeled, cored and minced</li><li>1 cup chopped pecans</li><li>½ cup raisins or currants</li><li>2 tablespoons grated orange peel</li><li>Fresh parsley (optional)</li><li>Cherry tomatoes (optional)</li></ul><div class="exhibits"><button class="exhibit" type="button" data-full="hand/IMG_3873.jpg" aria-label="Enlarge the original: Fruit &amp; Pecan Dressing (for Turkey)"><img src="hand/IMG_3873.jpg" alt="The original page: Fruit &amp; Pecan Dressing (for Turkey)"><span class="type">Exhibit 032</span></button></div></div>
+<div class="method"><h3>Method</h3><ol class="steps"><li>Combine water and butter in a large Dutch oven; heat until butter melts. Stir in next five ingredients.</li><li>Spoon into lightly greased 13 x 9 x 2″ baking dish. Bake at 350° - 30 min.</li><li>Garnish with parsley and cherry tomatoes, if desired.</li></ol><div class="notes"><p class="type">On the page</p><p>Headed “Miscellaneous”.</p></div></div>
+</div>
+</div>
+<footer class="folio"><span>The Spy’s Cookbook</span><span>Vegetables &amp; Breads</span><b>40</b></footer>
+</div></section><section class="page text recipe" id="r3874" data-fit="0"><div class="sheet">
+<figure class="plate"><img src="dish/r3874.jpg" alt=""></figure>
+<div class="body">
+<p class="type fileline"><span>File 033</span><span>Vegetables &amp; Breads</span><span>Notebook, black ink</span></p>
+<h2>Hoecake</h2>
+<div class="cols">
+<div class="ing"><h3>Ingredients</h3><ul><li>2 cups cornmeal</li><li>½ teaspoon salt</li><li>½ teaspoon baking powder</li><li>1 tablespoon melted fat</li><li>water</li></ul><div class="exhibits"><button class="exhibit" type="button" data-full="hand/IMG_3874.jpg" aria-label="Enlarge the original: Hoecake"><img src="hand/IMG_3874.jpg" alt="The original page: Hoecake"><span class="type">Exhibit 033</span></button></div></div>
+<div class="method"><h3>Method</h3><ol class="steps"><li>Combine 2 cups cornmeal and salt and baking powder. Add fat and stir in water to make a soft dough.</li><li>Shape into small cakes about ½&quot; thick and bake on hot greased griddle until brown. Turn to brown other side.</li></ol><div class="notes"><p class="type">On the page</p><p>Headed “Breads”.</p><p>No quantity for the water. The 2 in the baking powder line is written over an earlier figure.</p></div></div>
+</div>
+</div>
+<footer class="folio"><span>The Spy’s Cookbook</span><span>Vegetables &amp; Breads</span><b>41</b></footer>
+</div></section><section class="page opener" id="ch-main"><div class="sheet">
+<img class="plate-img" src="plate/main.jpg" alt="">
+<div class="opener-body">
+<p class="type">Section 05 of 07 &middot; 5 recipes</p>
+<h2>Main Dish</h2>
+<ol class="opener-list"><li><a href="#r3842"><span>Welsh Rabbit</span><b>43</b></a></li><li><a href="#r3869"><span>Pasta Prima Vera</span><b>44</b></a></li><li><a href="#r3870"><span>Pesto Sauce for Spaghetti</span><b>45</b></a></li><li><a href="#r3871"><span>White Clam Sauce</span><b>46</b></a></li><li><a href="#r3872"><span>Sophia Loren’s Pasta alla Putanesca</span><b>47</b></a></li></ol>
+</div>
+<footer class="folio"><span>The Spy’s Cookbook</span><span>Main Dish</span><b>42</b></footer>
+</div></section><section class="page text recipe" id="r3842" data-fit="0"><div class="sheet">
+<figure class="plate"><img src="dish/r3842.jpg" alt=""></figure>
+<div class="body">
+<p class="type fileline"><span>File 034</span><span>Main Dish</span><span>Notebook, black ink</span></p>
+<h2>Welsh Rabbit</h2><p class="serves">Serves 2</p>
+<div class="cols">
+<div class="ing"><h3>Ingredients</h3><ul><li>1 tablespoon butter</li><li>1 tablespoon flour</li><li>½ cup hot milk</li><li>8 oz. grated sharp cheddar cheese</li><li>2 drops Tabasco</li><li>1 teaspoon Worcestershire</li><li>1 teaspoon paprika</li><li>1 teaspoon hot prepared mustard</li><li>½ cup beer</li><li>1 egg yolk, beaten (optional)</li></ul><div class="exhibits"><button class="exhibit" type="button" data-full="hand/IMG_3842.jpg" aria-label="Enlarge the original: Welsh Rabbit"><img src="hand/IMG_3842.jpg" alt="The original page: Welsh Rabbit"><span class="type">Exhibit 034-A</span></button><button class="exhibit" type="button" data-full="hand/IMG_3840.jpg" aria-label="Enlarge the original: Welsh Rabbit"><img src="hand/IMG_3840.jpg" alt="The original page: Welsh Rabbit"><span class="type">Exhibit 034-B</span></button></div></div>
+<div class="method"><h3>Method</h3><ol class="steps"><li>Make cream sauce by melting butter in small pan and stirring in flour.</li><li>Cook over medium heat and stir constantly as mixture bubbles. Do not let it brown.</li><li>After a minute or so, slowly pour in hot milk, continuing to stir.</li><li>Bring to boil, lower heat and simmer, stirring 2 more minutes. Remove from heat.</li><li>Melt cheese in top of double boiler. Stir in cream sauce until blended, then mix in all remaining ingredients.</li><li>Cook over boiling water, stir constantly for 5 min. (This will be thin.)</li><li>If thicker rabbit is desired, stir in one beaten egg yolk and cook over hot water 2 more minutes. Pour over toast.</li></ol><div class="notes"><p class="type">On the page</p><p>Rabbit, not rarebit, both times she writes it.</p><p>She underlined “thin”.</p></div></div>
+</div>
+</div>
+<footer class="folio"><span>The Spy’s Cookbook</span><span>Main Dish</span><b>43</b></footer>
+</div></section><section class="page text recipe" id="r3869" data-fit="0"><div class="sheet">
+<figure class="plate"><img src="dish/r3869.jpg" alt=""></figure>
+<div class="body">
+<p class="type fileline"><span>File 035</span><span>Main Dish</span><span>Notebook, black ink</span></p>
+<h2>Pasta Prima Vera</h2><p class="serves">6 servings</p>
+<div class="cols">
+<div class="ing"><h3>Ingredients</h3><ul><li>1 package broccoli</li><li>2 small zucchini</li><li>1 package linguini (1 lb.)</li><li>1 large clove garlic, chopped</li><li>1 basket cherry tomatoes (or 2 large tomatoes, cut into eighths)</li><li>¼ cup olive oil</li><li>¼ cup chopped fresh basil, or 1 teaspoon leaf basil, crumbled</li><li>½ lb. fresh mushrooms, sliced</li><li>½ cup frozen green peas (optional)</li><li>¼ cup chopped parsley</li><li>1½ teaspoons salt</li><li>¼ teaspoon pepper</li><li>¼ teaspoon crushed red pepper (optional)</li><li>¼ cup (½ stick) butter or margarine</li><li>¾ cup heavy cream</li><li>⅔ cup Parmesan cheese, grated</li></ul><div class="exhibits"><button class="exhibit" type="button" data-full="hand/IMG_3869.jpg" aria-label="Enlarge the original: Pasta Prima Vera"><img src="hand/IMG_3869.jpg" alt="The original page: Pasta Prima Vera"><span class="type">Exhibit 035-A</span></button><button class="exhibit" type="button" data-full="hand/IMG_3868.jpg" aria-label="Enlarge the original: Pasta Prima Vera"><img src="hand/IMG_3868.jpg" alt="The original page: Pasta Prima Vera"><span class="type">Exhibit 035-B</span></button></div></div>
+<div class="method"><h3>Method</h3><ol class="steps"><li>Cook broccoli re directions; then cut into small pieces. Cook zucchini in very small amount of water; drain. Put in large bowl. Cook and drain linguini.</li><li>Saute garlic and tomatoes in oil about 2 minutes. Stir in basil and mushrooms; cook about 3 min. Stir in peas, parsley, salt and pepper. Add mixture to vegetables in bowl.</li><li>Melt butter in same skillet; stir in cream and cheese. Cook over medium heat, stirring constantly until smooth. Add linguini, toss to coat. Stir in vegetables; heat gently until hot!</li></ol><div class="notes"><p class="type">On the page</p><p>Headed “Main Dish”. “Prima Vera” is two words in her hand.</p><p>The crushed red pepper is in her list and not in her method.</p></div></div>
+</div>
+</div>
+<footer class="folio"><span>The Spy’s Cookbook</span><span>Main Dish</span><b>44</b></footer>
+</div></section><section class="page text recipe" id="r3870" data-fit="0"><div class="sheet">
+<figure class="plate"><img src="dish/r3870.jpg" alt=""></figure>
+<div class="body">
+<p class="type fileline"><span>File 036</span><span>Main Dish</span><span>Notebook, blue ink</span></p>
+<h2>Pesto Sauce for Spaghetti</h2>
+<div class="cols">
+<div class="ing"><h3>Ingredients</h3><ul><li>⅓ cup olive oil</li><li>¼ cup grated Parmesan cheese</li><li>¼ cup chopped parsley</li><li>2 tablespoons basil</li><li>1 teaspoon salt</li><li>¼ teaspoon nutmeg</li><li>1 small garlic clove, quartered</li></ul><div class="exhibits"><button class="exhibit" type="button" data-full="hand/IMG_3870.jpg" aria-label="Enlarge the original: Pesto Sauce for Spaghetti"><img src="hand/IMG_3870.jpg" alt="The original page: Pesto Sauce for Spaghetti"><span class="type">Exhibit 036</span></button></div></div>
+<div class="method"><h3>Method</h3><ol class="steps"><li>Just before serving: In blender container place all ingredients; cover and blend at medium speed until well mixed.</li><li>½ cup enough for six servings of spaghetti.</li></ol><div class="notes"><p class="type">On the page</p><p>For the basil she wrote “tsp.”, crossed it out and wrote “tbs.”</p></div></div>
+</div>
+</div>
+<footer class="folio"><span>The Spy’s Cookbook</span><span>Main Dish</span><b>45</b></footer>
+</div></section><section class="page text recipe" id="r3871" data-fit="0"><div class="sheet">
+<figure class="plate"><img src="dish/r3871.jpg" alt=""></figure>
+<div class="body">
+<p class="type fileline"><span>File 037</span><span>Main Dish</span><span>Notebook, blue ink</span></p>
+<h2>White Clam Sauce</h2><p class="serves">Serves 4</p>
+<div class="cols">
+<div class="ing"><h3>Ingredients</h3><ul><li>3 cans minced clams</li><li>¼ cup olive or salad oil</li><li>1 clove garlic</li><li>¾ cup chopped parsley</li><li>2 tablespoons white wine</li><li>1 teaspoon basil</li><li>½ teaspoon salt</li></ul><div class="exhibits"><button class="exhibit" type="button" data-full="hand/IMG_3871.jpg" aria-label="Enlarge the original: White Clam Sauce"><img src="hand/IMG_3871.jpg" alt="The original page: White Clam Sauce"><span class="type">Exhibit 037</span></button></div></div>
+<div class="method"><h3>Method</h3><ol class="steps"><li>Drain juice from clams, reserving juice. In medium pan over medium heat, in hot oil cook garlic till tender.</li><li>Stir in clam juice and remaining ingredients, except clams. Cook 10 min.</li><li>Stir in clams; cook just until clams are heated thru.</li></ol><div class="notes"><p class="type">On the page</p><p>No can size is given for the clams.</p></div></div>
+</div>
+</div>
+<footer class="folio"><span>The Spy’s Cookbook</span><span>Main Dish</span><b>46</b></footer>
+</div></section><section class="page text recipe" id="r3872" data-fit="0"><div class="sheet">
+<figure class="plate"><img src="dish/r3872.jpg" alt=""></figure>
+<div class="body">
+<p class="type fileline"><span>File 038</span><span>Main Dish</span><span>Notebook, blue ink with pencil brackets and underlining</span></p>
+<h2>Sophia Loren’s Pasta alla Putanesca</h2><p class="serves">Serves 4</p>
+<div class="cols">
+<div class="ing"><h3>Ingredients</h3><ul><li>½ cup olive oil</li><li>1 small onion, chopped</li><li>3 garlic cloves</li><li>1 can (14 oz.) plum tomatoes, drained and quartered</li><li>3 anchovies, minced</li><li>1 teaspoon drained capers</li><li>½ cup pitted Italian ripe olives</li><li>½ teaspoon crushed red pepper flakes</li><li>⅛ teaspoon salt</li><li>⅛ teaspoon oregano</li><li>1 lb. pasta</li><li>3 tablespoons Parmesan cheese</li></ul><div class="exhibits"><button class="exhibit" type="button" data-full="hand/IMG_3872.jpg" aria-label="Enlarge the original: Sophia Loren&#x27;s Pasta alla Putanesca"><img src="hand/IMG_3872.jpg" alt="The original page: Sophia Loren&#x27;s Pasta alla Putanesca"><span class="type">Exhibit 038</span></button></div></div>
+<div class="method"><h3>Method</h3><ol class="steps"><li>Heat oil in skillet. Add onion and garlic; saute until golden.</li><li>Remove garlic; add tomatoes, anchovies and capers. Cook covered over medium heat 15 min.</li><li>Add olives, pepper flakes, salt and oregano; cook 5 min. Cook pasta, drain.</li><li>Toss pasta with sauce, add cheese and toss again. Serve at once.</li></ol><div class="notes"><p class="type">On the page</p><p>Credited in her title to Sophia Loren, and spelled her way.</p><p>Pencil brackets mark the anchovies and the olives. This is the entree on one of her dinner menus at the back of the book.</p></div></div>
+</div>
+</div>
+<footer class="folio"><span>The Spy’s Cookbook</span><span>Main Dish</span><b>47</b></footer>
+</div></section><section class="page opener" id="ch-sweets"><div class="sheet">
+<img class="plate-img" src="plate/sweets.jpg" alt="">
+<div class="opener-body">
+<p class="type">Section 06 of 07 &middot; 14 recipes</p>
+<h2>Cakes &amp; Sweets</h2>
+<ol class="opener-list"><li><a href="#r3814"><span>Ginger Pound Cake</span><b>49</b></a></li><li><a href="#r3815"><span>Rum Cake</span><b>50</b></a></li><li><a href="#r3816"><span>Mrs. Harvey’s White Fruit Cake</span><b>51</b></a></li><li><a href="#r3817"><span>Crunchy Chocolate Bars</span><b>52</b></a></li><li><a href="#r3818"><span>Cherry Ambrosia</span><b>53</b></a></li><li><a href="#r38182"><span>Festive Fruit Bowl</span><b>54</b></a></li><li><a href="#r3819"><span>Chocolate Fudgies</span><b>55</b></a></li><li><a href="#r3821"><span>Peach Cobbler</span><b>56</b></a></li><li><a href="#r3822"><span>Apple Brown Betty</span><b>57</b></a></li><li><a href="#r3823"><span>Ting-a-Lings</span><b>58</b></a></li><li><a href="#r3824"><span>Lemon Tea Cake</span><b>59</b></a></li><li><a href="#r3825"><span>Sponge Cake</span><b>60</b></a></li><li><a href="#r3826"><span>Fruitcake (best)</span><b>61</b></a></li><li><a href="#r3853"><span>Cantaloupe Balls a l’Orange</span><b>62</b></a></li></ol>
+</div>
+<footer class="folio"><span>The Spy’s Cookbook</span><span>Cakes &amp; Sweets</span><b>48</b></footer>
+</div></section><section class="page text recipe" id="r3814" data-fit="0"><div class="sheet">
+<figure class="plate"><img src="dish/r3814.jpg" alt=""></figure>
+<div class="body">
+<p class="type fileline"><span>File 039</span><span>Cakes &amp; Sweets</span><span>Notebook, black ink</span></p>
+<h2>Ginger Pound Cake</h2>
+<div class="cols">
+<div class="ing"><h3>Ingredients</h3><ul><li>1 cup butter or oleo</li><li>1 cup sugar</li><li>2 cups all-purpose flour</li><li>2 teaspoons ground ginger</li><li>5 eggs, slightly beaten</li><li>1 cup light molasses (mild)</li><li>½ cup sour cream</li><li>½ teaspoon soda</li><li>2 teaspoons warm water</li><li>powdered sugar</li></ul><div class="exhibits"><button class="exhibit" type="button" data-full="hand/IMG_3814.jpg" aria-label="Enlarge the original: Ginger Pound Cake"><img src="hand/IMG_3814.jpg" alt="The original page: Ginger Pound Cake"><span class="type">Exhibit 039</span></button></div></div>
+<div class="method"><h3>Method</h3><ol class="steps"><li>Combine butter and sugar; cream until fluffy. Combine flour and ginger, add to creamed mixture, blend well.</li><li>Dissolve soda in water, add to batter, mix well. Pour batter into greased and floured 10″ tube pan, 325° - one hour, or until done. Cool 10 min. before removing. Sprinkle sugar.</li></ol><div class="notes"><p class="type">On the page</p><p>The first page of the notebook.</p><p>Her method never says when the eggs, molasses and sour cream go in.</p></div></div>
+</div>
+</div>
+<footer class="folio"><span>The Spy’s Cookbook</span><span>Cakes &amp; Sweets</span><b>49</b></footer>
+</div></section><section class="page text recipe" id="r3815" data-fit="0"><div class="sheet">
+<figure class="plate"><img src="dish/r3815.jpg" alt=""></figure>
+<div class="body">
+<p class="type fileline"><span>File 040</span><span>Cakes &amp; Sweets</span><span>Notebook, black ink</span></p>
+<h2>Rum Cake</h2>
+<div class="cols">
+<div class="ing"><h3>Ingredients</h3><ul><li>1 cup chopped pecans</li><li>1 18½ oz. package yellow cake mix</li><li>1 3¾ oz. Jello Instant vanilla pudding mix</li><li>4 eggs</li><li>½ cup cold water</li><li>½ cup vegetable oil</li><li>½ cup dark rum</li></ul><h4>Glaze</h4><ul><li>¼ lb. butter</li><li>¼ cup water</li><li>1 cup granulated sugar</li><li>½ cup rum</li></ul><div class="exhibits"><button class="exhibit" type="button" data-full="hand/IMG_3815.jpg" aria-label="Enlarge the original: Rum Cake"><img src="hand/IMG_3815.jpg" alt="The original page: Rum Cake"><span class="type">Exhibit 040</span></button></div></div>
+<div class="method"><h3>Method</h3><ol class="steps"><li>Oven: 325°. Grease and flour 10″ tube pan. Sprinkle nuts over bottom of pan. Mix all ingredients. Pour batter over nuts. Bake 1 hour. Cool. Invert on serving plate. Prick top.</li><li>Drizzle and smooth glaze over top and sides. Repeat glaze. Glaze: Melt butter in saucepan. Stir in water and sugar. Boil 5 min. stirring constantly. Remove from heat - stir in rum.</li></ol><div class="notes"><p class="type">On the page</p><p>She underlined “Inst.” in the pudding mix line.</p></div></div>
+</div>
+</div>
+<footer class="folio"><span>The Spy’s Cookbook</span><span>Cakes &amp; Sweets</span><b>50</b></footer>
+</div></section><section class="page text recipe" id="r3816" data-fit="0"><div class="sheet">
+<figure class="plate"><img src="dish/r3816.jpg" alt=""></figure>
+<div class="body">
+<p class="type fileline"><span>File 041</span><span>Cakes &amp; Sweets</span><span>Notebook, black ink</span></p>
+<h2>Mrs. Harvey’s White Fruit Cake</h2><p class="serves">Makes a 5 lb. cake</p>
+<div class="cols">
+<div class="ing"><h3>Ingredients</h3><ul><li>5 large eggs</li><li>½ lb. butter</li><li>1 cup granulated sugar</li><li>1¾ cups regular flour</li><li>½ teaspoon baking powder</li><li>¾ lb. candied cherries</li><li>1 pound candied pineapple</li><li>4 cups chopped pecans</li><li>½ oz. vanilla extract</li><li>½ oz. lemon extract</li></ul><div class="exhibits"><button class="exhibit" type="button" data-full="hand/IMG_3816.jpg" aria-label="Enlarge the original: Mrs. Harvey&#x27;s White Fruit Cake"><img src="hand/IMG_3816.jpg" alt="The original page: Mrs. Harvey&#x27;s White Fruit Cake"><span class="type">Exhibit 041</span></button></div></div>
+<div class="method"><h3>Method</h3><ol class="steps"><li>Chop nuts and fruits into medium size pieces; dredge with ¼ cup of the flour.</li><li>Cream butter and sugar until light and fluffy. Add well-beaten eggs, blend well.</li><li>Sift remaining flour and baking powder together; fold into egg and butter mixture.</li><li>Add vanilla and lemon extracts; mix well; then add fruits and nuts, blend well.</li><li>Grease 10″ tube pan, line with paper and grease again. Pour batter into pan.</li><li>Place in cold oven and bake at 250° for 3 hrs. Cool in pan on cake rack. (Makes 5 lbs. cake.)</li></ol><div class="notes"><p class="type">On the page</p><p>Credited in her title to Mrs. Harvey.</p><p>She underlined “cold” in “Place in cold oven”.</p></div></div>
+</div>
+</div>
+<footer class="folio"><span>The Spy’s Cookbook</span><span>Cakes &amp; Sweets</span><b>51</b></footer>
+</div></section><section class="page text recipe" id="r3817" data-fit="0"><div class="sheet">
+<figure class="plate"><img src="dish/r3817.jpg" alt=""></figure>
+<div class="body">
+<p class="type fileline"><span>File 042</span><span>Cakes &amp; Sweets</span><span>Notebook, black ink</span></p>
+<h2>Crunchy Chocolate Bars</h2><p class="serves">36 pieces</p>
+<div class="cols">
+<div class="ing"><h3>Ingredients</h3><ul><li>1 12 oz. package semi-sweet chocolate pieces</li><li>¾ cup crunch style peanut butter</li><li>3 cups round oat cereal</li></ul><div class="exhibits"><button class="exhibit" type="button" data-full="hand/IMG_3817.jpg" aria-label="Enlarge the original: Crunchy Chocolate Bars"><img src="hand/IMG_3817.jpg" alt="The original page: Crunchy Chocolate Bars"><span class="type">Exhibit 042</span></button></div></div>
+<div class="method"><h3>Method</h3><ol class="steps"><li>Combine chocolate pieces and peanut butter. Cook over low heat, stirring frequently, til melted and smooth. Remove from heat; stir in cereal.</li><li>Turn into waxed-paper lined 8x8x2″ bake pan; chill and cut into bars, or drop by teaspoonfuls onto waxed paper. (36 pcs.)</li></ol></div>
+</div>
+</div>
+<footer class="folio"><span>The Spy’s Cookbook</span><span>Cakes &amp; Sweets</span><b>52</b></footer>
+</div></section><section class="page text recipe" id="r3818" data-fit="0"><div class="sheet">
+<figure class="plate"><img src="dish/r3818.jpg" alt=""></figure>
+<div class="body">
+<p class="type fileline"><span>File 043</span><span>Cakes &amp; Sweets</span><span>Notebook, black ink</span></p>
+<h2>Cherry Ambrosia</h2><p class="serves">Serves 4–6</p>
+<div class="cols">
+<div class="ing"><h3>Ingredients</h3><ul><li>1 30 oz. can dark, sweet pitted cherries</li><li>1 cup commercial sour cream</li><li>2 tablespoons apricot jam</li><li>2 tablespoons chopped toasted almonds</li><li>¼ cup toasted flaked coconut</li></ul><div class="exhibits"><button class="exhibit" type="button" data-full="hand/IMG_3818.jpg" aria-label="Enlarge the original: Cherry Ambrosia"><img src="hand/IMG_3818.jpg" alt="The original page: Cherry Ambrosia"><span class="type">Exhibit 043</span></button></div></div>
+<div class="method"><h3>Method</h3><ol class="steps"><li>Drain cherries and place on absorbent paper to dry. In bowl thoroughly combine sour cream, jam and almonds. Carefully fold in cherries. Sprinkle coconut over top. Chill 30 minutes. Serves 4-6.</li></ol><div class="notes"><p class="type">On the page</p><p>Shares its page with Festive Fruit Bowl.</p></div></div>
+</div>
+</div>
+<footer class="folio"><span>The Spy’s Cookbook</span><span>Cakes &amp; Sweets</span><b>53</b></footer>
+</div></section><section class="page text recipe" id="r38182" data-fit="0"><div class="sheet">
+<figure class="plate"><img src="dish/r38182.jpg" alt=""></figure>
+<div class="body">
+<p class="type fileline"><span>File 044</span><span>Cakes &amp; Sweets</span><span>Notebook, black ink</span></p>
+<h2>Festive Fruit Bowl</h2><p class="serves">Serves 4</p>
+<div class="cols">
+<div class="ing"><h3>Ingredients</h3><ul><li>1 10 oz. package frozen mixed fruits, thawed</li><li>1 1 lb. can or fresh orange and grapefruit sections</li><li>1 large banana, sliced</li><li>2 tablespoons dry white wine</li></ul><div class="exhibits"><button class="exhibit" type="button" data-full="hand/IMG_3818.jpg" aria-label="Enlarge the original: Festive Fruit Bowl"><img src="hand/IMG_3818.jpg" alt="The original page: Festive Fruit Bowl"><span class="type">Exhibit 044</span></button></div></div>
+<div class="method"><h3>Method</h3><ol class="steps"><li>Combine all ingredients in bowl. Chill 30 min. Serves 4.</li></ol><div class="notes"><p class="type">On the page</p><p>Shares its page with Cherry Ambrosia. She underlined “fresh”.</p></div></div>
+</div>
+</div>
+<footer class="folio"><span>The Spy’s Cookbook</span><span>Cakes &amp; Sweets</span><b>54</b></footer>
+</div></section><section class="page text recipe" id="r3819" data-fit="0"><div class="sheet">
+<figure class="plate"><img src="dish/r3819.jpg" alt=""></figure>
+<div class="body">
+<p class="type fileline"><span>File 045</span><span>Cakes &amp; Sweets</span><span>Notebook, black ink</span></p>
+<h2>Chocolate Fudgies</h2>
+<div class="cols">
+<div class="ing"><h3>Ingredients</h3><ul><li>½ stick butter</li><li>12 oz. package semi-sweet chocolate bits</li><li>1 teaspoon vanilla</li><li>15 oz. can condensed milk</li><li>1 cup flour</li><li>8 oz. (1 cup) chopped pecans</li></ul><div class="exhibits"><button class="exhibit" type="button" data-full="hand/IMG_3819.jpg" aria-label="Enlarge the original: Chocolate Fudgies"><img src="hand/IMG_3819.jpg" alt="The original page: Chocolate Fudgies"><span class="type">Exhibit 045</span></button></div></div>
+<div class="method"><h3>Method</h3><ol class="steps"><li>Melt in top of double boiler the butter and chocolate. Add vanilla and remove from heat.</li><li>Stir in milk and flour and add nuts. Using ice teaspoon, spoon small amounts onto cookie sheet and bake at 350 degrees for seven minutes only. Will be soft until cool.</li></ol></div>
+</div>
+</div>
+<footer class="folio"><span>The Spy’s Cookbook</span><span>Cakes &amp; Sweets</span><b>55</b></footer>
+</div></section><section class="page text recipe" id="r3821" data-fit="0"><div class="sheet">
+<figure class="plate"><img src="dish/r3821.jpg" alt=""></figure>
+<div class="body">
+<p class="type fileline"><span>File 046</span><span>Cakes &amp; Sweets</span><span>Notebook, black ink</span></p>
+<h2>Peach Cobbler</h2>
+<div class="cols">
+<div class="ing"><h3>Ingredients</h3><ul><li>6 to 8 peeled and sliced peaches</li><li>lemon juice</li><li>6 tablespoons cornstarch</li><li>1½ cups sugar</li><li>2 tablespoons butter</li><li>1½ cups flour</li><li>¼ cup sugar</li><li>2 teaspoons baking powder</li><li>½ teaspoon salt</li><li>dash nutmeg</li><li>¼ cup butter or oleo</li><li>½ cup milk</li></ul><div class="exhibits"><button class="exhibit" type="button" data-full="hand/IMG_3821.jpg" aria-label="Enlarge the original: Peach Cobbler"><img src="hand/IMG_3821.jpg" alt="The original page: Peach Cobbler"><span class="type">Exhibit 046-A</span></button><button class="exhibit" type="button" data-full="hand/IMG_3820.jpg" aria-label="Enlarge the original: Peach Cobbler"><img src="hand/IMG_3820.jpg" alt="The original page: Peach Cobbler"><span class="type">Exhibit 046-B</span></button></div></div>
+<div class="method"><h3>Method</h3><ol class="steps"><li>Place peaches in bowl. Sprinkle with lemon. Turn fruit into 3 qt. baking dish.</li><li>Mix cornstarch and 1½ cups sugar, sprinkle over fruit and stir well. Add more sugar, if needed.</li><li>Dot prepared peach mixture with 2 tablespoons butter. Set aside.</li><li>Sift flour with ¼ cup sugar, baking powder, salt and nutmeg into mix bowl.</li><li>Cut in ¼ cup butter using pastry cutter. Stir in milk quickly using fork until it becomes a stiff dough.</li><li>Stir fruit mixture once more before adding topping. Drop batter by tablespoons onto top of prepared fruit, to cover.</li><li>Bake uncovered in preheated oven 400° for 30 min, or until brown and bubbly. Cool to room temp.</li><li>Spoon whipped cream, or ice cream on top if desired.</li></ol><div class="notes"><p class="type">On the page</p><p>She ran out of page, finished on the facing one, and drew an arrow back.</p></div></div>
+</div>
+</div>
+<footer class="folio"><span>The Spy’s Cookbook</span><span>Cakes &amp; Sweets</span><b>56</b></footer>
+</div></section><section class="page text recipe" id="r3822" data-fit="0"><div class="sheet">
+<figure class="plate"><img src="dish/r3822.jpg" alt=""></figure>
+<div class="body">
+<p class="type fileline"><span>File 047</span><span>Cakes &amp; Sweets</span><span>Notebook, black ink</span></p>
+<h2>Apple Brown Betty</h2><p class="serves">Serves 6</p>
+<div class="cols">
+<div class="ing"><h3>Ingredients</h3><ul><li>1 cup sugar</li><li>¼ teaspoon ground cloves</li><li>¼ teaspoon ground cinnamon</li><li>¼ teaspoon ground nutmeg</li><li>¼ teaspoon salt</li><li>3 cups soft breadcrumbs, divided</li><li>4 large tart apples, thinly sliced</li><li>¼ cup melted butter</li><li>whipped cream (optional)</li></ul><div class="exhibits"><button class="exhibit" type="button" data-full="hand/IMG_3822.jpg" aria-label="Enlarge the original: Apple Brown Betty"><img src="hand/IMG_3822.jpg" alt="The original page: Apple Brown Betty"><span class="type">Exhibit 047</span></button></div></div>
+<div class="method"><h3>Method</h3><ol class="steps"><li>Combine sugar, spices and salt; set aside. Sprinkle ¾ cup breadcrumbs in bottom of greased 2-quart casserole dish; add layer of apples and sprinkle with ⅓ of sugar mixture.</li><li>Repeat crumb, apple, sugar layers 2 times. Sprinkle remaining ¾ cup breadcrumbs on top. Pour melted butter over crumbs.</li><li>Bake at 350° about 30 minutes or until apples are soft. Serve warm, with cream.</li></ol><div class="notes"><p class="type">On the page</p><p>One of the pages she marked with a red tab.</p></div></div>
+</div>
+</div>
+<footer class="folio"><span>The Spy’s Cookbook</span><span>Cakes &amp; Sweets</span><b>57</b></footer>
+</div></section><section class="page text recipe" id="r3823" data-fit="0"><div class="sheet">
+<figure class="plate"><img src="dish/r3823.jpg" alt=""></figure>
+<div class="body">
+<p class="type fileline"><span>File 048</span><span>Cakes &amp; Sweets</span><span>Notebook, black ink</span></p>
+<h2>Ting-a-Lings</h2>
+<div class="cols">
+<div class="ing"><h3>Ingredients</h3><ul><li>1 package (6 oz.) chocolate chips</li><li>½ cup Chinese noodles</li><li>½ cup coconut</li><li>½ cup chopped pecans</li><li>½ teaspoon vanilla</li></ul><div class="exhibits"><button class="exhibit" type="button" data-full="hand/IMG_3823.jpg" aria-label="Enlarge the original: Ting-a-Lings"><img src="hand/IMG_3823.jpg" alt="The original page: Ting-a-Lings"><span class="type">Exhibit 048</span></button></div></div>
+<div class="method"><h3>Method</h3><ol class="steps"><li>Melt chocolate chips in double boiler. Add rest of ingredients, mix thoroughly. Drop in mounds on wax paper.</li></ol><div class="notes"><p class="type">On the page</p><p>Another red-tab page.</p></div></div>
+</div>
+</div>
+<footer class="folio"><span>The Spy’s Cookbook</span><span>Cakes &amp; Sweets</span><b>58</b></footer>
+</div></section><section class="page text recipe" id="r3824" data-fit="0"><div class="sheet">
+<figure class="plate"><img src="dish/r3824.jpg" alt=""></figure>
+<div class="body">
+<p class="type fileline"><span>File 049</span><span>Cakes &amp; Sweets</span><span>Notebook, blue ink</span></p>
+<h2>Lemon Tea Cake</h2>
+<div class="cols">
+<div class="ing"><h3>Ingredients</h3><ul><li>½ cup butter or margarine, softened</li><li>1 cup sugar</li><li>2 eggs</li><li>1⅔ cups all-purpose flour</li><li>1 teaspoon baking powder</li><li>½ teaspoon salt</li><li>½ cup milk</li><li>½ cup chopped walnuts</li><li>grated rind of one lemon</li></ul><h4>Glaze</h4><ul><li><mark class="unsure" title="Unconfirmed reading. Check the original.">⅓</mark> cup sifted powdered sugar</li><li>juice of 1 lemon</li></ul><div class="exhibits"><button class="exhibit" type="button" data-full="hand/IMG_3824.jpg" aria-label="Enlarge the original: Lemon Tea Cake"><img src="hand/IMG_3824.jpg" alt="The original page: Lemon Tea Cake"><span class="type">Exhibit 049</span></button></div></div>
+<div class="method"><h3>Method</h3><ol class="steps"><li>Cream butter and sugar until light. Add eggs, one at a time, beating well.</li><li>Combine flour, baking powder and salt; add to creamed mixture alternately with milk, mixing well after each addition. Stir in walnuts and lemon rind.</li><li>Pour batter into greased and floured 9x5x3 inch loaf pan. Bake 350° for 55 min. Pour glaze over bread. Cool 10-15 min. in pan.</li></ol><div class="notes"><p class="type">On the page</p><p>The title says cake. Her method says “Pour glaze over bread”, underlined.</p></div></div>
+</div>
+</div>
+<footer class="folio"><span>The Spy’s Cookbook</span><span>Cakes &amp; Sweets</span><b>59</b></footer>
+</div></section><section class="page text recipe" id="r3825" data-fit="0"><div class="sheet">
+<figure class="plate"><img src="dish/r3825.jpg" alt=""></figure>
+<div class="body">
+<p class="type fileline"><span>File 050</span><span>Cakes &amp; Sweets</span><span>Notebook, black ink</span></p>
+<h2>Sponge Cake</h2>
+<div class="cols">
+<div class="ing"><h3>Ingredients</h3><ul><li>4 eggs</li><li>2 cups sugar</li><li>½ teaspoon salt</li><li>2 teaspoons lemon extract</li><li>2 tablespoons butter, melted in 1 cup boiling hot milk</li><li>2 cups sifted flour</li><li>2 teaspoons baking powder</li></ul><div class="exhibits"><button class="exhibit" type="button" data-full="hand/IMG_3825.jpg" aria-label="Enlarge the original: Sponge Cake"><img src="hand/IMG_3825.jpg" alt="The original page: Sponge Cake"><span class="type">Exhibit 050</span></button></div></div>
+<div class="method"><h3>Method</h3><ol class="steps"><li>Beat eggs with rotary beater until very light. Beat in sugar, salt and lemon extract. Beat in butter-milk mixture.</li><li>Sift flour and baking powder together and beat in quickly. Immediately pour into 13x9″ oblong pan.</li><li>Bake until cake tests done, 25-35 min. at 350°. Cool. Serve fresh with fruit or top with sweetened whipped cream and berries, peaches or bananas.</li></ol><div class="notes"><p class="type">On the page</p><p>Her “butter-milk mixture” is the butter melted into the hot milk, not buttermilk.</p></div></div>
+</div>
+</div>
+<footer class="folio"><span>The Spy’s Cookbook</span><span>Cakes &amp; Sweets</span><b>60</b></footer>
+</div></section><section class="page text recipe" id="r3826" data-fit="0"><div class="sheet">
+<figure class="plate"><img src="dish/r3826.jpg" alt=""></figure>
+<div class="body">
+<p class="type fileline"><span>File 051</span><span>Cakes &amp; Sweets</span><span>Notebook, blue ink</span></p>
+<h2>Fruitcake (best)</h2>
+<div class="cols">
+<div class="ing"><h3>Ingredients</h3><ul><li>¾ cup dry sherry</li><li>2 cups golden raisins</li><li>¾ lb. candied red cherries</li><li>¾ lb. candied green cherries</li><li>¾ lb. candied red pineapple, chopped</li><li>¾ lb. candied green pineapple, chopped</li><li>4 cups chopped pecans</li><li>3 cups all-purpose flour, divided</li><li>¾ cup butter, softened</li><li>¾ cup sugar</li><li>¾ cup firmly packed light brown sugar</li><li>6 eggs</li><li>¼ teaspoon salt</li><li>¾ teaspoon ground mace</li><li>¾ teaspoon ground cinnamon</li><li>¾ teaspoon ground allspice</li><li>¾ cup whipping cream</li><li>1 <mark class="unsure" title="Unconfirmed reading. Check the original.">10</mark> oz. jar strawberry preserves</li><li>¾ teaspoon almond extract</li><li>¾ teaspoon orange extract</li><li>¾ teaspoon vanilla extract</li><li>light corn syrup</li></ul><div class="exhibits"><button class="exhibit" type="button" data-full="hand/IMG_3826.jpg" aria-label="Enlarge the original: Fruitcake (best)"><img src="hand/IMG_3826.jpg" alt="The original page: Fruitcake (best)"><span class="type">Exhibit 051-A</span></button><button class="exhibit" type="button" data-full="hand/IMG_3827.jpg" aria-label="Enlarge the original: Fruitcake (best)"><img src="hand/IMG_3827.jpg" alt="The original page: Fruitcake (best)"><span class="type">Exhibit 051-B</span></button></div></div>
+<div class="method"><h3>Method</h3><ol class="steps"><li>Pour sherry over raisins, and let them soak overnight. Combine next 5 ingredients; dredge with 1 cup flour, stirring to coat. Set aside.</li><li>Cream butter in large mixing bowl; gradually add sugar, beating until light and fluffy.</li><li>Add eggs, one at a time, beating well after each addition. Combine remaining 2 cups flour, salt, mace, cinnamon, and allspice.</li><li>Add to creamed mixture alternately with whipping cream, beginning and ending with flour mixture.</li><li>Add strawberry preserves and flavorings, mixing well. Stir in fruit-nut mixture and raisins.</li><li>Spoon batter into a greased and waxed-paper-lined 10″ tube pan.</li><li>Bake at 275° for 3 hours or until wooden pick inserted into center comes out clean. Cool cake completely in pan.</li><li>Remove from pan, and remove waxed paper, and place on plate.</li><li>Brush top with corn syrup - garnish with pecans and cherries.</li><li>Note: Wrap with cheese-cloth soaked in sherry.</li></ol><div class="notes"><p class="type">On the page</p><p>“(best)” is her word, written beside the title.</p><p>Nearly every quantity is ¾. Each was checked against the page.</p><p>A line at the very top of the second page is cut off in the photograph: “…re in airtight co…”</p></div></div>
+</div>
+</div>
+<footer class="folio"><span>The Spy’s Cookbook</span><span>Cakes &amp; Sweets</span><b>61</b></footer>
+</div></section><section class="page text recipe" id="r3853" data-fit="0"><div class="sheet">
+<figure class="plate"><img src="dish/r3853.jpg" alt=""></figure>
+<div class="body">
+<p class="type fileline"><span>File 052</span><span>Cakes &amp; Sweets</span><span>Notebook, dark blue-black ink</span></p>
+<h2>Cantaloupe Balls a l’Orange</h2><p class="serves">Serves 6</p>
+<div class="cols">
+<div class="ing"><h3>Ingredients</h3><ul><li>¼ cup slightly thawed frozen orange juice concentrate</li><li>2 tablespoons light corn syrup</li><li>1 tablespoon kirsch</li><li>4 cups ripe cantaloupe balls</li><li>6 fresh mint sprigs</li></ul><div class="exhibits"><button class="exhibit" type="button" data-full="hand/IMG_3853.jpg" aria-label="Enlarge the original: Cantaloupe Balls a l’Orange"><img src="hand/IMG_3853.jpg" alt="The original page: Cantaloupe Balls a l’Orange"><span class="type">Exhibit 052</span></button></div></div>
+<div class="method"><h3>Method</h3><ol class="steps"><li>In medium bowl, combine orange juice concentrate, corn syrup and kirsch; mix well. Add melon balls, toss lightly.</li><li>Refrigerate, covered, until well chilled, about 2 hours. Spoon into six dessert dishes, or one large compote. Garnish with mint.</li></ol><div class="notes"><p class="type">On the page</p><p>She kept this one among the salads.</p></div></div>
+</div>
+</div>
+<footer class="folio"><span>The Spy’s Cookbook</span><span>Cakes &amp; Sweets</span><b>62</b></footer>
+</div></section><section class="page opener" id="ch-loose"><div class="sheet">
+<img class="plate-img" src="plate/loose.jpg" alt="">
+<div class="opener-body">
+<p class="type">Section 07 of 07 &middot; 5 recipes</p>
+<h2>Loose in the Notebook</h2>
+<ol class="opener-list"><li><a href="#r3875"><span>Spinach Apple Walnut Salad</span><b>64</b></a></li><li><a href="#r3882"><span>Mustard Greens</span><b>65</b></a></li><li><a href="#r3886"><span>Lemon Ice</span><b>66</b></a></li><li><a href="#r3890"><span>Brandied Pumpkin Pie</span><b>67</b></a></li><li><a href="#r3891"><span>Barbecued Spareribs or Country Ribs</span><b>68</b></a></li></ol>
+</div>
+<footer class="folio"><span>The Spy’s Cookbook</span><span>Loose in the Notebook</span><b>63</b></footer>
+</div></section><section class="page text recipe" id="r3875" data-fit="0"><div class="sheet">
+<figure class="plate"><img src="dish/r3875.jpg" alt=""></figure>
+<div class="body">
+<p class="type fileline"><span>File 053</span><span>Loose in the Notebook</span><span>Recipe card, blue ballpoint</span></p>
+<h2>Spinach Apple Walnut Salad</h2>
+<div class="cols">
+<div class="ing"><h3>Ingredients</h3><ul><li>½ cup granulated sugar</li><li>1 tablespoon poppy seeds</li><li>1½ teaspoons diced onion</li><li>¼ teaspoon Worcestershire sauce</li><li>½ cup oil (canola)</li><li>¼ cup cider vinegar</li><li>2 (6 oz.) bags fresh baby spinach</li><li>4 Gala apples, peeled and diced</li><li>shelled walnuts - amount to your liking</li></ul><div class="exhibits"><button class="exhibit" type="button" data-full="hand/IMG_3875.jpg" aria-label="Enlarge the original: Spinach Apple Walnut Salad"><img src="hand/IMG_3875.jpg" alt="The original page: Spinach Apple Walnut Salad"><span class="type">Exhibit 053-A</span></button><button class="exhibit" type="button" data-full="hand/IMG_3876.jpg" aria-label="Enlarge the original: Spinach Apple Walnut Salad"><img src="hand/IMG_3876.jpg" alt="The original page: Spinach Apple Walnut Salad"><span class="type">Exhibit 053-B</span></button></div></div>
+<div class="method"><h3>Method</h3><ol class="steps"><li>Combine sugar, poppy seeds, onion, Worcestershire sauce, oil and vinegar and blend well.</li><li>Place spinach in large bowl and top with apples and walnuts.</li><li>Pour dressing over salad and toss lightly.</li></ol><div class="notes"><p class="type">On the page</p><p>On the back: for a larger group use 3 bags of spinach, 6 apples, a whole 10 oz. bag of walnuts and double the dressing. If using strawberries, leave out the onions and apples.</p><p>The card stock is dated 2003, six years after she died, and the hand is rounder than hers. Someone else added this one to the notebook.</p></div></div>
+</div>
+</div>
+<footer class="folio"><span>The Spy’s Cookbook</span><span>Loose in the Notebook</span><b>64</b></footer>
+</div></section><section class="page text recipe" id="r3882" data-fit="0"><div class="sheet">
+<figure class="plate"><img src="dish/r3882.jpg" alt=""></figure>
+<div class="body">
+<p class="type fileline"><span>File 054</span><span>Loose in the Notebook</span><span>Note card, pencil</span></p>
+<h2>Mustard Greens</h2>
+<div class="cols">
+<div class="ing"><h3>Ingredients</h3><ul><li>2 packages prewashed greens</li><li><mark class="unsure" title="Unconfirmed reading. Check the original.">1</mark> cups water</li><li>1 cup chicken broth</li><li>ham hocks</li></ul><h4>Mixture</h4><ul><li>1 tablespoon butter</li><li>½ cup broth (chicken)</li><li>2 teaspoons brown sugar</li><li>2 teaspoons red wine vinegar or salad dressing</li></ul><div class="exhibits"><button class="exhibit" type="button" data-full="hand/IMG_3882.jpg" aria-label="Enlarge the original: Mustard Greens"><img src="hand/IMG_3882.jpg" alt="The original page: Mustard Greens"><span class="type">Exhibit 054</span></button></div></div>
+<div class="method"><h3>Method</h3><ol class="steps"><li>Cook 2 packages prewashed greens in <mark class="unsure" title="Unconfirmed reading. Check the original.">1</mark> cups water and 1 cup chicken broth with ham hocks - 5 minutes. Drain.</li><li>Add mixture: 1 tablespoon butter, ½ cup broth (chicken), 2 teaspoons brown sugar, 2 teaspoons red wine vinegar or salad dressing. Cook till evaporated.</li></ol><div class="notes"><p class="type">On the page</p><p>Soft pencil on a snowman note card, in a larger hand than the notebook.</p></div></div>
+</div>
+</div>
+<footer class="folio"><span>The Spy’s Cookbook</span><span>Loose in the Notebook</span><b>65</b></footer>
+</div></section><section class="page text recipe" id="r3886" data-fit="0"><div class="sheet">
+<figure class="plate"><img src="dish/r3886.jpg" alt=""></figure>
+<div class="body">
+<p class="type fileline"><span>File 055</span><span>Loose in the Notebook</span><span>Loose-leaf sheet, blue ink</span></p>
+<h2>Lemon Ice</h2>
+<div class="cols">
+<div class="ing"><h3>Ingredients</h3><ul><li>2 pints warm water</li><li>10 oz. sugar</li><li>juice of 4 lemons</li><li>2 teaspoons grated lemon rind</li></ul><div class="exhibits"><button class="exhibit" type="button" data-full="hand/IMG_3886.jpg" aria-label="Enlarge the original: Lemon Ice"><img src="hand/IMG_3886.jpg" alt="The original page: Lemon Ice"><span class="type">Exhibit 055</span></button></div></div>
+<div class="method"><h3>Method</h3><p class="nomethod type">No method on the page. She knew the rest.</p><div class="notes"><p class="type">On the page</p><p>A list and nothing more.</p><p>The pencil notes on the lower half are one of her dinner menus, printed at the back of the book.</p></div></div>
+</div>
+</div>
+<footer class="folio"><span>The Spy’s Cookbook</span><span>Loose in the Notebook</span><b>66</b></footer>
+</div></section><section class="page text recipe" id="r3890" data-fit="0"><div class="sheet">
+<figure class="plate"><img src="dish/r3890.jpg" alt=""></figure>
+<div class="body">
+<p class="type fileline"><span>File 056</span><span>Loose in the Notebook</span><span>Loose slip, pencil</span></p>
+<h2>Brandied Pumpkin Pie</h2>
+<div class="cols">
+<div class="ing"><h3>Ingredients</h3><ul><li>9″ shell</li><li>canned pumpkin</li><li>1 cup evaporated milk</li><li>1 cup lite brown sugar, firm</li><li>3 eggs, slightly beaten</li><li>¼ cup brandy</li><li>1 teaspoon pumpkin pie spice (cinnamon 1 <mark class="unsure" title="Unconfirmed reading. Check the original.">teaspoon</mark>, nutmeg, ½ teaspoon ginger, ½ teaspoon mace)</li></ul><div class="exhibits"><button class="exhibit" type="button" data-full="hand/IMG_3890.jpg" aria-label="Enlarge the original: Brandied Pumpkin Pie"><img src="hand/IMG_3890.jpg" alt="The original page: Brandied Pumpkin Pie"><span class="type">Exhibit 056</span></button></div></div>
+<div class="method"><h3>Method</h3><ol class="steps"><li>400°. Garnish pie with whip cream.</li></ol><div class="notes"><p class="type">On the page</p><p>“Brandied” was added above the title, and a large circled P in black ink sits over it.</p><p>No amount for the pumpkin, no method and no baking time. Only “400°” and the garnish.</p></div><div class="checks"><p class="type">Check the exhibit</p><p>The “1 tsp.” in the spice line is squeezed in between cinnamon and nutmeg and could belong to either.</p></div></div>
+</div>
+</div>
+<footer class="folio"><span>The Spy’s Cookbook</span><span>Loose in the Notebook</span><b>67</b></footer>
+</div></section><section class="page text recipe" id="r3891" data-fit="0"><div class="sheet">
+<figure class="plate"><img src="dish/r3891.jpg" alt=""></figure>
+<div class="body">
+<p class="type fileline"><span>File 057</span><span>Loose in the Notebook</span><span>Typed recipe form</span></p>
+<h2>Barbecued Spareribs or Country Ribs</h2>
+<div class="cols">
+<div class="ing"><h3>Ingredients</h3><h4>Barbecue sauce</h4><ul><li>1 t. salt</li><li>1 t. chili powder</li><li>1 t. celery seed</li><li>¼ cup brown sugar</li><li>¼ cup vinegar</li><li>¼ cup worcestershire sauce</li><li>1 cup tomato catsup</li><li>2 cups water</li><li>1 grated onion, sauteed with 1 minced garlic clove in butter 5 minutes</li></ul><ul><li>spareribs or country ribs</li><li>salt and pepper</li></ul><div class="exhibits"><button class="exhibit" type="button" data-full="hand/IMG_3891.jpg" aria-label="Enlarge the original: Barbecued Spareribs or Country Ribs"><img src="hand/IMG_3891.jpg" alt="The original page: Barbecued Spareribs or Country Ribs"><span class="type">Exhibit 057</span></button></div></div>
+<div class="method"><h3>Method</h3><ol class="steps"><li>Mix all ingredients and simmer half hour. Cut spareribs into 2-rib pieces.</li><li>Arrange spareribs or country ribs in shallow baking pan. Sprinkle with salt and pepper.</li><li>Pour cooked barbecue sauce over ribs. Bake 1½ hours at 350°, basting several times with barbecue sauce.</li><li>Turn meat occasionally so that it will cook evenly.</li></ol><div class="notes"><p class="type">On the page</p><p>Typed on a Cookbook Publishers, Inc. form, the kind used to collect recipes for a community cookbook. The recipe number is blank.</p><p>One handwritten word runs across the top. It may be “Super”.</p></div></div>
+</div>
+</div>
+<footer class="folio"><span>The Spy’s Cookbook</span><span>Loose in the Notebook</span><b>68</b></footer>
+</div></section><section class="page text menus" id="menus"><div class="sheet"><div class="body">
+<p class="type">Also in the file</p>
+<h2>Three dinners she planned</h2>
+<p class="lede">Among the recipes are three slips that are not recipes. Each is a menu, with what to buy for it. They are printed as she wrote them.</p>
+<div class="menu-cols"><div class="menu"><button class="exhibit" type="button" data-full="hand/IMG_3880.jpg" aria-label="Enlarge the original: a dinner menu"><img src="hand/IMG_3880.jpg" alt="The original page: a dinner menu"><span class="type">Exhibit M-A</span></button>
+<p class="type">On yellow legal paper, in pencil</p><div class="ing"><h4>Antipasto</h4><ul><li>artichoke hearts (1 jar)</li><li>roasted peppers (1 jar)</li><li><s>fresh fennel bulb</s></li><li><s>provolone cheese</s></li><li><s>Genoa salami</s></li><li>breadsticks</li></ul><h4>Entree</h4><ul><li><mark class="unsure" title="Unconfirmed reading. Check the original.">Loren’s</mark> Putanesca</li><li>spaghetti</li><li><s>plum tomatoes</s></li><li><s>anchovies</s></li><li><s>ripe olives</s></li><li>Parm. cheese</li></ul><h4>Dessert</h4><ul><li>3 pears</li><li>red wine</li><li>orange</li></ul></div><p class="menu-note">Six items are struck through. A word before “pears” could not be read. The entree is in Main Dish.</p></div><div class="menu"><button class="exhibit" type="button" data-full="hand/IMG_3895.jpg" aria-label="Enlarge the original: a dinner menu"><img src="hand/IMG_3895.jpg" alt="The original page: a dinner menu"><span class="type">Exhibit M-B</span></button>
+<p class="type">On ruled paper, in pencil</p><div class="ing"><h4>Main</h4><ul><li>lamb roast</li><li>rice</li></ul><h4>Salad</h4><ul><li>hearts of palm</li><li>tomato</li><li>lettuce</li></ul><h4>Fruit dessert</h4><ul><li>pineapple</li><li>peaches</li><li><mark class="unsure" title="Unconfirmed reading. Check the original.">cantaloupe</mark></li><li>kiwi</li><li>melon</li></ul></div><p class="menu-note">One word above “Lamb roast” is crossed out. Hearts of Palm Salad is in Appetizers &amp; Salads.</p></div><div class="menu"><button class="exhibit" type="button" data-full="hand/IMG_3886.jpg" aria-label="Enlarge the original: a dinner menu"><img src="hand/IMG_3886.jpg" alt="The original page: a dinner menu"><span class="type">Exhibit M-C</span></button>
+<p class="type">Upside down on the Lemon Ice sheet, in pencil</p><div class="ing"><h4>Dinner</h4><ul><li>oriental beef / rice</li><li>gr. beans salad</li><li>fruit cup / kirsch</li></ul><h4>To get</h4><ul><li>check melon</li><li>peppermint sticks (2 kinds)</li><li>cant. melon</li><li>honey dew</li></ul></div><p class="menu-note">Oriental Beef &amp; Snow Peas and Green Bean Salad are both in this book.</p></div></div>
+</div><footer class="folio"><span>The Spy’s Cookbook</span><span>Her menus</span><b>69</b></footer></div></section><section class="page text clippings" id="clippings"><div class="sheet"><div class="body">
+<p class="type">Also in the file</p>
+<h2>Clippings she kept</h2>
+<p class="lede">23 printed recipes were tucked into the notebook. Several come from The Tampa Tribune; the dated ones run from 1988 to 1992. The full text of each is in the transcript that goes with this book.</p>
+<div class="clip-wrap"><table class="clips"><thead><tr><th>Recipe</th><th>From</th><th>Her mark</th></tr></thead><tbody><tr><td>Spinach Tortellini in Creamy Tomato Sauce</td><td>Magazine spread, “Good Food”</td><td>“Keep this” in pencil above it; one step circled</td></tr><tr><td>Pears in Red Wine</td><td>Same spread</td><td></td></tr><tr><td>Speedy Antipasto</td><td>Same spread</td><td></td></tr><tr><td>Curried Fried Rice with Scallion and Peanuts</td><td>Gourmet, January 1992</td><td>“very good”, underlined, in the margin</td></tr><tr><td>Tomato Paella with Spicy Squid and Peas</td><td>Same page</td><td></td></tr><tr><td>Warm Hoppin’ John and Brown Rice Salad</td><td>Same page</td><td></td></tr><tr><td>Nutty Cranberries</td><td>Southern Living</td><td>A check mark in blue ink</td></tr><tr><td>Pasta e Fagioli</td><td>The Tampa Tribune, 1990</td><td></td></tr><tr><td>Hoe Cakes</td><td>The Tampa Tribune, 1992</td><td>Three ink ticks</td></tr><tr><td>Old-Fashioned Bread Pudding</td><td>The Tampa Tribune, “Recipes Lost and Found”</td><td></td></tr><tr><td>Rice Pudding</td><td>Same column</td><td></td></tr><tr><td>Spoon Bread</td><td>Newspaper readers’ column</td><td>A red tab in the notebook reads “Spoon Bread”</td></tr><tr><td>Key Biscayne Lime Pie</td><td>Parade</td><td>Pencil scribbles, no words</td></tr><tr><td>Raspberry Holiday Mold</td><td>Magazine</td><td>Photographed twice</td></tr><tr><td>Vegetable Dip and Cheese Ball</td><td>Newsprint column</td><td></td></tr><tr><td>Zippy Vegetable Dip</td><td>Magazine</td><td></td></tr><tr><td>Baked Custard</td><td>Magazine</td><td></td></tr><tr><td>Herb Vinegar</td><td>Magazine</td><td></td></tr><tr><td>Ginger Crisps</td><td>Printed page, in two pieces</td><td></td></tr><tr><td>Mama’s Collard Green Soup (Verzada)</td><td>Clipping pasted to a ruled sheet</td><td>A small ink slash in the method</td></tr><tr><td>Mushroom Soup en Croute</td><td>Magazine, December 1988</td><td>Runs off the page</td></tr><tr><td>Rainy-Day Soup</td><td>Magazine</td><td>Cut off mid-list</td></tr><tr><td>A chilled tomato and cucumber soup</td><td>Tear-out card; title is on the other side</td><td></td></tr></tbody></table></div>
+</div><footer class="folio"><span>The Spy’s Cookbook</span><span>Clippings</span><b>70</b></footer></div></section><section class="page text indexpage" id="index"><div class="sheet"><div class="body">
+<p class="type">A to Z</p>
+<h2>Every recipe by name</h2>
+<ol class="az"><li><a href="#r3822"><span>Apple Brown Betty</span><b>57</b></a></li><li><a href="#r3891"><span>Barbecued Spareribs or Country Ribs</span><b>68</b></a></li><li><a href="#r3890"><span>Brandied Pumpkin Pie</span><b>67</b></a></li><li><a href="#r3853"><span>Cantaloupe Balls a l’Orange</span><b>62</b></a></li><li><a href="#r3829"><span>Caviar-Cream Cheese Spread</span><b>6</b></a></li><li><a href="#r3818"><span>Cherry Ambrosia</span><b>53</b></a></li><li><a href="#r3848"><span>Chicken Fruit Salad</span><b>11</b></a></li><li><a href="#r3836"><span>Chicken Supremes with Sherry Sauce</span><b>27</b></a></li><li><a href="#r3819"><span>Chocolate Fudgies</span><b>55</b></a></li><li><a href="#r3866"><span>Coconut-Orange Sweet Potatoes</span><b>38</b></a></li><li><a href="#r3861"><span>Corn Fritters</span><b>34</b></a></li><li><a href="#r3862"><span>Corn Pudding</span><b>35</b></a></li><li><a href="#r3817"><span>Crunchy Chocolate Bars</span><b>52</b></a></li><li><a href="#r3847"><span>Crunchy Salmon Salad</span><b>10</b></a></li><li><a href="#r3864"><span>Easy Corn Casserole</span><b>37</b></a></li><li><a href="#r3865"><span>Easy Marinated Asparagus</span><b>19</b></a></li><li><a href="#r38182"><span>Festive Fruit Bowl</span><b>54</b></a></li><li><a href="#r3837"><span>Fried Chicken Breasts</span><b>28</b></a></li><li><a href="#r3873"><span>Fruit &amp; Pecan Dressing (for Turkey)</span><b>40</b></a></li><li><a href="#r3826"><span>Fruitcake (best)</span><b>61</b></a></li><li><a href="#r3814"><span>Ginger Pound Cake</span><b>49</b></a></li><li><a href="#r3839"><span>Grecian Baked Cod</span><b>30</b></a></li><li><a href="#r3844"><span>Grecian Green Salad</span><b>7</b></a></li><li><a href="#r3858"><span>Green Bean Salad</span><b>18</b></a></li><li><a href="#r3867"><span>Green Beans with Almonds</span><b>39</b></a></li><li><a href="#r3856"><span>Hearts of Palm Salad</span><b>16</b></a></li><li><a href="#r3852"><span>Herbed Tomatoes</span><b>13</b></a></li><li><a href="#r3874"><span>Hoecake</span><b>41</b></a></li><li><a href="#r3859"><span>Hot Chicken Salad (Country-Club style)</span><b>31</b></a></li><li><a href="#r3843"><span>Lamb Shanks Dinner</span><b>24</b></a></li><li><a href="#r3886"><span>Lemon Ice</span><b>66</b></a></li><li><a href="#r3824"><span>Lemon Tea Cake</span><b>59</b></a></li><li><a href="#r3816"><span>Mrs. Harvey’s White Fruit Cake</span><b>51</b></a></li><li><a href="#r3882"><span>Mustard Greens</span><b>65</b></a></li><li><a href="#r3832"><span>Oriental Beef &amp; Snow Peas</span><b>22</b></a></li><li><a href="#r3869"><span>Pasta Prima Vera</span><b>44</b></a></li><li><a href="#r3821"><span>Peach Cobbler</span><b>56</b></a></li><li><a href="#r3830"><span>Pepper Steak / Rice</span><b>21</b></a></li><li><a href="#r3870"><span>Pesto Sauce for Spaghetti</span><b>45</b></a></li><li><a href="#r3834"><span>Pork Medallions (Tarragon Sauce)</span><b>23</b></a></li><li><a href="#r3863"><span>Ratatouille</span><b>36</b></a></li><li><a href="#r3855"><span>Rice Salad</span><b>15</b></a></li><li><a href="#r3815"><span>Rum Cake</span><b>50</b></a></li><li><a href="#r3845"><span>Salad Supreme (“Green Stuff”)</span><b>8</b></a></li><li><a href="#r3838"><span>Sesame Chicken</span><b>29</b></a></li><li><a href="#r3872"><span>Sophia Loren’s Pasta alla Putanesca</span><b>47</b></a></li><li><a href="#r3854"><span>Sour Cream Potato Salad</span><b>14</b></a></li><li><a href="#r3846"><span>Spiced Peach Mold</span><b>9</b></a></li><li><a href="#r3875"><span>Spinach Apple Walnut Salad</span><b>64</b></a></li><li><a href="#r3825"><span>Sponge Cake</span><b>60</b></a></li><li><a href="#r3835"><span>Szechuan Chicken</span><b>26</b></a></li><li><a href="#r3823"><span>Ting-a-Lings</span><b>58</b></a></li><li><a href="#r3857"><span>Tomato &amp; Mozzarella Platter with Basil</span><b>17</b></a></li><li><a href="#r3851"><span>Tropical Chicken Boats for Two</span><b>12</b></a></li><li><a href="#r3842"><span>Welsh Rabbit</span><b>43</b></a></li><li><a href="#r3871"><span>White Clam Sauce</span><b>46</b></a></li><li><a href="#r3860"><span>Zesty Broccoli Casserole</span><b>33</b></a></li></ol>
+</div><footer class="folio"><span>The Spy’s Cookbook</span><span>Index</span><b>71</b></footer></div></section><section class="page back"><div class="sheet">
+<p class="back-quote">She kept two kinds of secrets.<br>These are the ones she wrote down.</p>
+<p class="type">57 recipes &middot; 7 sections &middot; every one with its original page</p>
+<div class="stamp">Declassified<br>for the family</div>
+</div></section>
+</main>
+<dialog id="lightbox" aria-label="Original page"><form method="dialog"><button class="lb-close" id="lb-close">Close</button></form><img id="lb-img" alt="Her original page, enlarged"></dialog>
+<script>
+(function () {
+  // Shrink the picture, then the type, until each recipe fits its sheet.
+  var flow = window.matchMedia("(max-width: 640px)");
+  function fit() {
+    var pages = document.querySelectorAll(".page.recipe");
+    for (var i = 0; i < pages.length; i++) {
+      var p = pages[i], body = p.querySelector(".body");
+      p.dataset.fit = "0";
+      if (flow.matches && !window.matchMedia("print").matches) continue;
+      for (var level = 0; level < 5 && body.scrollHeight > body.clientHeight + 1; ) {
+        p.dataset.fit = String(++level);
+      }
+      p.dataset.over = body.scrollHeight > body.clientHeight + 1 ? "1" : "0";
+    }
+  }
+  fit();
+  if (document.fonts && document.fonts.ready) document.fonts.ready.then(fit);
+  var t;
+  window.addEventListener("resize", function () { clearTimeout(t); t = setTimeout(fit, 150); });
+
+  var jump = document.getElementById("jump");
+  jump.addEventListener("change", function () {
+    var el = document.getElementById(jump.value);
+    if (el) { el.scrollIntoView(); try { history.replaceState(null, "", "#" + jump.value); } catch (e) {} }
+  });
+
+  var box = document.getElementById("lightbox"), img = document.getElementById("lb-img");
+  document.addEventListener("click", function (e) {
+    var b = e.target.closest && e.target.closest(".exhibit");
+    if (b && box.showModal) { img.src = b.dataset.full; box.showModal(); return; }
+    if (e.target === box) box.close();
+  });
+})();
+
+</script>
+</body></html>
