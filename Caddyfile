@@ -1,0 +1,35 @@
+# corticorp.com on Railway. Static files, served the way GitHub Pages served them.
+{
+	admin off
+	auto_https off
+	persist_config off
+}
+
+:{$PORT:8080} {
+	root * /srv
+	encode zstd gzip
+
+	# One canonical host. corticorp.com and www.corticorp.com both reach this service;
+	# whichever is not CANONICAL_HOST redirects to it. The *.up.railway.app address is left alone.
+	@other_host {
+		host corticorp.com www.corticorp.com
+		not host {$CANONICAL_HOST:corticorp.com}
+	}
+	redir @other_host https://{$CANONICAL_HOST:corticorp.com}{uri} 301
+
+	# As on Pages: /journal serves journal.html, and a folder without its
+	# trailing slash is redirected to it by file_server.
+	try_files {path} {path}.html
+	file_server
+
+	header {
+		Cache-Control "public, max-age=600"
+		X-Content-Type-Options nosniff
+		Referrer-Policy strict-origin-when-cross-origin
+		-Server
+	}
+
+	handle_errors {
+		respond "{err.status_code} {err.status_text}"
+	}
+}

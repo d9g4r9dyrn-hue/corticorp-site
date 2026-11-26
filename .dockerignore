@@ -1,0 +1,19 @@
+# Everything here stays in the repository but is not published on corticorp.com.
+.git
+.gitignore
+.claude
+**/.DS_Store
+node_modules
+dist
+src
+scripts
+package.json
+package-lock.json
+tsconfig.json
+CLAUDE.md
+README.md
+CNAME
+Dockerfile
+.dockerignore
+railway.toml
+projects/registry.json
