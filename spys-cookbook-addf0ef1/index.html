@@ -1295,7 +1295,8 @@ dialog#lightbox::backdrop { background: rgba(20,24,21,.78); }
 
   var box = document.getElementById("lightbox"), img = document.getElementById("lb-img");
   document.addEventListener("click", function (e) {
-    var b = e.target.closest && e.target.closest(".exhibit");
+    // Clipping exhibits are stills with no full-size image; only open ones that have one.
+    var b = e.target.closest && e.target.closest(".exhibit[data-full]");
     if (b && box.showModal) { img.src = b.dataset.full; box.showModal(); return; }
     if (e.target === box) box.close();
   });
